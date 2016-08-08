@@ -1,0 +1,12 @@
+.tab {
+  position: relative;
+}
+.tab .arrow{
+  /*position: absolute;
+  width: 0;
+  height: 0;
+  right: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #8a989c;*/
+}

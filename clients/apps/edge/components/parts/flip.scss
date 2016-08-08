@@ -1,0 +1,10 @@
+.card {
+  // perspective: 400;
+  .details, .card-image, .card-stats, .card-news {
+    // transform-style: preserve-3d;
+    transition: all .25s linear;
+  }
+  // .details,  {
+  //   transition: all .15s linear;
+  // }
+}
