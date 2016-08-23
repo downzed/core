@@ -3,7 +3,7 @@ window.__coreObject = {
     "core": {
         "config": {
             "dev": {
-                "ws": "ws://localhost:8001"
+                "ws": "ws://178.62.222.57:8001"
             }
         },
         "router": {
@@ -13,7 +13,14 @@ window.__coreObject = {
         },
         "templates": [],
         "views": [],
-        "collections": [],
+        "collections": [{
+          "name": "list",
+          "items": []
+        }],
+        "values": [{
+          "name": "test",
+          "value": "44"
+        }],
         "forms": [
             {
                 "name": "otherForm",
@@ -63,7 +70,7 @@ window.__coreObject = {
                 {
                     "name": "primary",
                     "pallete": {
-                        "normal": "#a5d6a7",
+                        "normal": "#a5d6f7",
                         "hover": "#37474f",
                         "active": "#607d8b",
                         "disabled": "#c3c7ca"
@@ -138,5 +145,5 @@ window.__coreObject = {
             }
         }
     },
-    "stuff": "abcd"
+    "stuff": "72333344"
 };
