@@ -1,3 +1,4 @@
+// @import 'loaders.css/src/animations/line-scale.scss';
 .card {
   // perspective: 400;
   .details, .card-image, .card-stats, .card-news {
@@ -7,4 +8,11 @@
   // .details,  {
   //   transition: all .15s linear;
   // }
+}
+$primary-color: #000;
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
 }

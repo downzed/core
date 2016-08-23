@@ -3,7 +3,7 @@ var PropTypes = React.PropTypes;
 var core = require('core');
 var theme = core.theme;
 
-core.Component('Menu.top', ['ui.Icon','ui.Button', 'SignIn.Modal'], (Icon, Button, SignIn)=> {
+core.Component('menu.top', ['ui.Icon','ui.Button', 'SignIn.Modal'], (Icon, Button, SignIn)=> {
   return {
     propTypes:{
       toggleMenu : PropTypes.func,
@@ -37,6 +37,7 @@ core.Component('Menu.top', ['ui.Icon','ui.Button', 'SignIn.Modal'], (Icon, Butto
             avatar: profile.picture.data.url,
             sn: sn
           };
+          console.dir(profile);
           break;
 
         case 'google':
@@ -44,8 +45,13 @@ core.Component('Menu.top', ['ui.Icon','ui.Button', 'SignIn.Modal'], (Icon, Butto
             name: profile.getName(),
             email: profile.getEmail(),
             avatar: profile.getImageUrl(),
-            sn: sn
+            sn: sn,
+            id: profile.getId(),
+            token: profile.id_token
+
+
           }
+          console.dir(user);
           break;
       }
 

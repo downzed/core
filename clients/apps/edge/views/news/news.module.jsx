@@ -3,7 +3,8 @@ var PropTypes = React.PropTypes;
 var core = require('core');
 var theme = core.theme;
 var _ = require('lodash');
-core.Component('News', ['ui.Header','afa.NewsCard'], (Header, NewsCard)=> {
+
+core.Component('news', ['ui.Header','afa.NewsCard'], (Header, NewsCard)=> {
   return {
 
     getInitialState: function() {

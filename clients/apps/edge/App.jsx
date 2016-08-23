@@ -12,41 +12,21 @@ core.on('error', (err)=>{
   console.error(err && (err.error || err));
 });
 
-// core.on('click', ()=>{ console.log('click'); })
-// core.on('mouseUp', ()=>{ console.log('mouseUp'); })
-// core.on('esc', ()=>{ console.log('esc'); })
-
-
-// core.Component('a', ({ children }) => <div> page a { children }</div>);
-// core.Component('b', ({ children }) => <div> page b { children }</div>);
-// core.Component('c', ({ children }) => <div> page c { children }</div>);
-
-// core.router.map({
-//   defaultChild: 'View',
-//   children: [{
-//     name: 'main',
-//     component: 'View',
-//     defaultChild: 'View',
-//     children: [
-//       {
-//         name:'zone',
-//         component:'MyZone',
-//         defaultChild: 'zone'
-//       }
-//     ]
-//   }]
-// });
+core.router.on();
+location.hash = '/dashboard/compare';
 
 var element = document.getElementById('app');
 core.require([
-  'core.App', 'DevTools','Dashboard'], (App, DevTools, Dashboard)=>{
+  'core.App', 'dashboard'], (App, Dashboard)=>{
+
+    core.tree.set(['core', 'router', 'map'], core.tree.get(['routerMap']));
 
     core.connection.action('language.get', {}, (lang)=>{
       core.set('config.language', JSON.parse(lang));
       core.tree.commit();
       ReactDom.render(
         <App>
-          <Dashboard ></Dashboard>
+            { core.router.render() }
         </App>, element);
 
     }, core.error);

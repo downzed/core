@@ -3,30 +3,32 @@ var PropTypes = React.PropTypes;
 var core = require('core');
 var theme = core.theme;
 var _ = require('lodash');
+var Spinner = require('react-spinkit');
 
-
-core.Component('MyZone', ['ui.Header','afa.PlayerCard', 'afa.UserCard', 'afa.Card','ui.Icon'], (Header, PlayerCard, UserCard, Card, Icon)=> {
+core.Component('myzone', ['ui.Header','afa.PlayerCard', 'afa.UserCard', 'afa.Card','ui.Icon'],
+ (Header, PlayerCard, UserCard, Card, Icon)=> {
   return {
-    propTypes:{
-      myPlayers: PropTypes.array
+
+    bindings: {
+      myPlayers : ['myPlayers'],
+      user : ['user']
     },
+
     renderPlayerCard(player, i){
       return (
         <PlayerCard key={ i } player={ player } />
       )
     },
     render(){
-      var x = <span>card content</span>;
       return (
         <div style={ zone.main }>
           <div style={ {...zone.myarea, background: theme('colors.error')} }>
-            <UserCard user={ this.props.user } />
+            <UserCard user={ this.state.user } type={ 'user' } />
             <Card content={ 'some' } key={1} style={ {marginTop: '0.5em'} }/>
-            <Card content={ x } key={2} style={ {marginTop: '0.5em'} }/>
             <Card content={ <Icon className="fa fa-users" /> } key={'icon'} style={ {marginTop: '0.5em'} }/>
           </div>
           <div style={ zone.players } className="zone-players" >
-            { _.map(this.props.myPlayers, this.renderPlayerCard) }
+            { _.map(this.state.myPlayers, this.renderPlayerCard) }
           </div>
 
         </div>

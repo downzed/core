@@ -17,11 +17,13 @@ core.Component('SignIn.Modal', ['ui.Icon','ui.Button'], (Icon, Button)=> {
 
 
     responseGoogle(response) {
-      // console.log(response);
+      // console.debug('google response', response.getAuthResponse().id_token);
       var profile = response.getBasicProfile();
+      profile['id_token'] = response.getAuthResponse().id_token;
       this.props.onLoggedIn(profile, 'google')
     },
     responseFacebook(response) {
+      // console.debug('fb response', response);
       this.props.onLoggedIn(response, 'facebook')
     },
     render(){

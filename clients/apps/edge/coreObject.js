@@ -1,4 +1,3 @@
-
 window.__coreObject = {
     "core": {
         "config": {
@@ -7,53 +6,29 @@ window.__coreObject = {
             }
         },
         "router": {
-            "initialMap": {},
-            "map": {},
+            "map": [{
+              "name": "dashboard",
+              "component": "dashboard",
+              "children": [{
+                "name": "myzone",
+                "component": "myzone",
+                "children": []
+              },{
+                "name": "compare",
+                "component": "compare",
+                "children": []
+              },{
+                "name": "news",
+                "component": "news",
+                "children": []
+              }]
+            }],
             "encodeURI": false
         },
         "templates": [],
         "views": [],
         "collections": [],
-        "forms": [
-            {
-                "name": "otherForm",
-                "inputs": {
-                    "name": {
-                        "type": "string",
-                        "label": "Name",
-                        "value": "bbbbb",
-                        "required": true,
-                        "validations": []
-                    },
-                    "lastName": {
-                        "label": "Last Name",
-                        "type": "array",
-                        "value": [
-                            "four"
-                        ],
-                        "validations": [
-                            "max:8",
-                            "phone"
-                        ],
-                        "options": [
-                            "one",
-                            "two",
-                            "three"
-                        ]
-                    }
-                }
-            }
-        ],
-        "styles": [
-            {
-                "name": "box",
-                "id": "abc",
-                "body": {
-                    "position": "absolute",
-                    "background": "{background.primary}"
-                }
-            }
-        ],
+
         "language": {
             "key": "en"
         },
@@ -140,7 +115,43 @@ window.__coreObject = {
             }
         }
     },
-    "stuff": "abcd",
     "user" : {},
-    "players" : []
+    "players" : [],
+    "compare" : {
+      "selected": [],
+      "team_a": [],
+      "team_b": []
+    },
+    // timeframes [7, 15, 30, 365]
+    "timeframes" : [7, 15, 30, 365],
+    "categories": [
+      'AST',
+      'TOV',
+      'PTS',
+      'PF',
+      'REB',
+      'OREB',
+      'DREB',
+      '3P',
+      'MIN',
+      'GP',
+      'BLK',
+      'STL',
+      'FTA',
+      'FTM',
+      'FT',
+      'FGA',
+      'FGM',
+      'FG',
+      'FG3A',
+      'FG3M'
+    ],
+    "stats" : {
+      "max" : {
+        "reb" : "",
+        "ast" : "",
+        "pts" : "",
+      }
+    }
+
 }

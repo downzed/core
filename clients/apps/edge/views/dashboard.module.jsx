@@ -4,32 +4,63 @@ var core = require('core');
 var theme = core.theme;
 var _ = require('lodash');
 
+var ProgressBar = require('react-progress-bar-plus');
+require('react-progress-bar-plus/lib/progress-bar.css');
+
+
 
 var players = require('./players.js');
 var stats = require('./stats.js');
 
 
+
 function mapPlayersAndStats(players, stats) {
   var list = [];
-  for (var x = 0; x < stats.length; x++) {
-    for (var j = 0; j < players.length; j++) {
-      if (stats[x].Player_ID === Number(players[j].playerID)) {
-        list.push({
-          ...players[j],
-          avatar: `http://stats.nba.com/media/players/230x185/${players[j].playerID}.png`,
-          stats: {...stats[x]}
-        })
-      }
-    }
+  for (var j = 0; j < players.length; j++) {
+    list.push({
+      firstName: players[j].firstName,
+      lastName: players[j].lastName,
+      id: players[j].playerID,
+    })
   }
   return list;
 }
 var newList = mapPlayersAndStats(players, stats);
 
-var players = _.reject(newList, ['TeamID', 0]);
-
-players = _.chunk(players, 13)[1];
-
+function mapPlayers(players) {
+  var list = [];
+  for (var x = 0; x < players.length; x++) {
+      list.push({
+        // ...players[x],
+        firstName: players[x].firstName,
+        lastName: players[x].lastName,
+        id: players[x].Player_ID,
+        // stats: [
+          'AST'   : players[x].AST ,
+          'TOV'   : players[x].TOV ,
+          'PTS'   : players[x].PTS ,
+          'PF'    : players[x].PF ,
+          'REB'   : players[x].REB ,
+          'OREB'  : players[x].OREB ,
+          'DREB'  : players[x].DREB ,
+          '3P'    : players[x].P3 ,
+          'MIN'   : players[x].MIN ,
+          'GP'    : players[x].GP ,
+          'BLK'   : players[x].BLK ,
+          'STL'   : players[x].STL ,
+          'FTA'   : players[x].FTA ,
+          'FTM'   : players[x].FTM ,
+          'FT'    : players[x].FT ,
+          'FGA'   : players[x].FGA ,
+          'FGM'   : players[x].FGM ,
+          'FG'    : players[x].FG ,
+          'FG3A'  : players[x].FG3A ,
+          'FG3M'  : players[x].FG3M
+        // ]
+      })
+  }
+  return list;
+}
 
 
 var dummyUser = {
@@ -44,12 +75,11 @@ if (!lsUser) {
 } else {
  core.tree.set('user', JSON.parse(lsUser));
 }
-console.log('lsUser', JSON.parse(lsUser));
 
 
 
-core.Component('Dashboard',
-  ['MyZone', 'Menu.top', 'Menu.left', 'News', 'Compare'],
+core.Component('dashboard',
+  ['myzone', 'menu.top', 'menu.left', 'news', 'compare'],
   (MyZone, TopMenu, LeftMenu, News, Compare)=> {
 
   return {
@@ -59,32 +89,22 @@ core.Component('Dashboard',
     getInitialState(){
       return {
         isMenuOpen: false,
-        selectedView: { ref: 'myzone' },
+        selectedView: { ref: 'compare' },
         currentView: '',
-        myPlayers: players
+        myPlayers: [],
+        percent: 0,
+        autoIncrement: true,
       }
     },
-
-    componentDidMount() {
-      core.tree.set('players', newList);
-    },
-
-    renderView(view){
-      switch (view.ref.toLowerCase()) {
-      case 'myzone':
-        return <MyZone myPlayers={ this.state.myPlayers } user={ this.state.user }/>
-        break;
-      case 'compare':
-        return (<Compare />)
-      case 'news':
-        return <News />
-
-      }
-    },
+    //
+    // componentDidMount() {
+    //   // core.tree.set('players', newList);
+    // },
 
     setTab(tab, e){
       this.setState({ selectedView: tab });
       if (this.state.isMenuOpen) this.setState({ isMenuOpen: false });
+      location.hash = `/dashboard/${tab.ref}`;
     },
 
     toggleMenu(){
@@ -92,14 +112,20 @@ core.Component('Dashboard',
     },
 
     render(){
+      let { autoIncrement, percent } = this.state;
+      let { children } = this.props;
+
       return (
         <div style={ {...dashboard.main, backgroundColor: theme('colors.secondary')} }>
           <TopMenu toggleMenu={ this.toggleMenu } currentView={ this.state.selectedView.title } />
           <LeftMenu isOpen={ this.state.isMenuOpen } onSelectTab={ this.setTab } />
 
           <div className="content-view" style={ dashboard.content }>
-            { this.renderView(this.state.selectedView) }
+            {
+              children
+            }
           </div>
+
 
         </div>
       );

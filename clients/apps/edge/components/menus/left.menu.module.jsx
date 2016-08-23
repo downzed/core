@@ -3,19 +3,22 @@ var PropTypes = React.PropTypes;
 var core = require('core');
 var theme = core.theme;
 require('./leftmenu.css');
-core.Component('Menu.left', ['ui.Icon'], (Icon)=> {
+core.Component('menu.left', ['ui.Icon'], (Icon)=> {
   return {
     propTypes: {
       isOpen: PropTypes.bool,
       onSelectTab: PropTypes.func
     },
+
     getInitialState(){
       return {
         tabs: [],
         selectedTab: 'myzone',
       }
     },
-    componentDidMount(){
+
+    componentWillMount(){
+
       let tabs = [
         { title: 'My Zone', ref: 'myzone', icon: 'fa-user' },
         { title: 'Compare Players', ref: 'compare', icon: 'fa-coffee' },
@@ -24,6 +27,7 @@ core.Component('Menu.left', ['ui.Icon'], (Icon)=> {
       ]
       this.setState({ tabs: tabs });
     },
+
     renderTabs(tab, i){
       tab.isActive = tab.ref === this.state.selectedTab;
       var active = tab.isActive ? { color: theme('colors.default') } : {};
