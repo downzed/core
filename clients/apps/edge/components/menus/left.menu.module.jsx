@@ -48,7 +48,7 @@ core.Component('menu.left', ['ui.Icon'], (Icon)=> {
       var showHide = this.props.isOpen ? menu.show : menu.hide;
       // console.log('render');
       return (
-        <div style={ {...menu.main, left: 0, backgroundColor: theme('colors.dark') } }>
+        <div style={ {...menu.main, ...showHide, backgroundColor: theme('colors.dark') } }>
           { this.state.tabs && this.state.tabs.length ? _.map(this.state.tabs, this.renderTabs) : null }
         </div>
       );
@@ -84,15 +84,14 @@ let menu = {
     maxWidth: 180,
     fontSize: 14,
     height: '100%',
-    boxShadow: '5px 0px 20px -10px rgb(13, 15, 15)',
-    transition: 'left 0.25s ease-in-out',
-    WebkitTransition: 'left 0.25s ease-in-out',
+    transition: 'transform 0.18s ease-in',
+    WebkitTransition: '-webkit-transform 0.18s ease-in',
   },
   hide : {
-    left: -235
+    transform: 'translateX(-180px)'
   },
   show : {
-    left: 0
+    transform: 'translateX(0)'
   }
 
 }

@@ -20,6 +20,7 @@ core.Component('myzone', ['ui.Header','afa.PlayerCard', 'afa.UserCard', 'afa.Car
       )
     },
     render(){
+      console.dir(this.state);
       return (
         <div style={ zone.main }>
           <div style={ {...zone.myarea, background: theme('colors.error')} }>
@@ -59,6 +60,7 @@ let zone = {
     flexFlow: 'row wrap',
     justifyContent: 'space-around',
     overflow: 'auto',
-    marginLeft: '15px',
+    // marginLeft: '15px',
+    padding: 15
   }
 }

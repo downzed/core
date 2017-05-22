@@ -41,10 +41,10 @@ core.Component('afa.UserCard', ['ui.Card', 'ui.Icon'], (Card, Icon)=> {
 
       let cardStyle = {
         ...card.main,
-        cursoe: typeof this.props.onClick === 'function'  ? 'pointer':'noraml',
+        cursor: typeof this.props.onClick === 'function'  ? 'pointer':'noraml',
         background: theme('colors.card'),
-        ...style,
         height: 50,
+        ...style,
       };
       card.logo = {
         ...card.logo,
@@ -95,7 +95,7 @@ core.Component('afa.Card', ['ui.Card'], (Card)=> {
     // },
 
     render(){
-      let content = this.props.content;
+      let { content, onClick } = this.props;
       let cardStyle = {
         padding: '0.5em',
         background: theme('colors.card'),
@@ -104,7 +104,7 @@ core.Component('afa.Card', ['ui.Card'], (Card)=> {
         ...this.props.style
       }
       return (
-        <div className="card user" style={ cardStyle } onClick={ this.props.onClick }>
+        <div className="card user" style={ cardStyle } onClick={ onClick }>
             { content }
         </div>
 

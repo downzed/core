@@ -1,0 +1,15 @@
+{
+  "name": "Roster Set",
+  "description": "Set your Roster",
+  "version": "0.2",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+
+
+  "permissions": ["contextMenus", "storage",  "http://*/*", "https://*/*"]
+
+}

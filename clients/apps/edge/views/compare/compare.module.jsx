@@ -13,61 +13,6 @@ require('react-progress-bar-plus/lib/progress-bar.css');
 
 
 
-var players = require('../players.js');
-var stats = require('../stats.js');
-
-
-
-function mapPlayersAndStats(players, stats) {
-  var list = [];
-  for (var j = 450; j < players.length; j++) {
-    // console.log('players[j]', players[j]);
-    list.push({
-      firstName: players[j].firstName,
-      lastName: players[j].lastName,
-      id: players[j].playerID,
-      teamId: players[j].TeamID || null,
-    })
-  }
-  return list;
-}
-var newList = mapPlayersAndStats(players, stats);
-
-function mapPlayers(players) {
-  var list = [];
-  for (var x = 0; x < players.length; x++) {
-      list.push({
-        // ...players[x],
-        firstName: players[x].firstName,
-        lastName: players[x].lastName,
-        id: players[x].Player_ID,
-        // stats: [
-          'AST'   : players[x].AST ,
-          'TOV'   : players[x].TOV ,
-          'PTS'   : players[x].PTS ,
-          'PF'    : players[x].PF ,
-          'REB'   : players[x].REB ,
-          'OREB'  : players[x].OREB ,
-          'DREB'  : players[x].DREB ,
-          '3P'    : players[x].P3 ,
-          'MIN'   : players[x].MIN ,
-          'GP'    : players[x].GP ,
-          'BLK'   : players[x].BLK ,
-          'STL'   : players[x].STL ,
-          'FTA'   : players[x].FTA ,
-          'FTM'   : players[x].FTM ,
-          'FT'    : players[x].FT ,
-          'FGA'   : players[x].FGA ,
-          'FGM'   : players[x].FGM ,
-          'FG'    : players[x].FG ,
-          'FG3A'  : players[x].FG3A ,
-          'FG3M'  : players[x].FG3M
-        // ]
-      })
-  }
-  return list;
-}
-
 core.Component('compare', ['ui.Header','afa.UserCard','ui.Button', 'fla.Checkbox', 'playerManager', 'Team.Box'],
 (Header, UserCard, Button, Checkbox, Manager, Teambox)=> {
   return {
@@ -94,48 +39,10 @@ core.Component('compare', ['ui.Header','afa.UserCard','ui.Button', 'fla.Checkbox
     //
     componentDidMount() {
       this._team = [];
-      let chunks, myplayers, newplayers;
-      core.run('getPlayerStats', { timeframe: 365 })
-          .then( (result) => {
-            if (result !== 'error') {
-            // if (result === 'error') return;
-              this.setState({ percent: 100 });
-              newplayers = mapPlayers(result.stats);
-              chunks =  _.chunk(newplayers, 13);
-              myplayers = chunks[34];
-              // console.dir(myplayers);
-              core.tree.set('players', chunks[35]);
-              core.tree.set('myPlayers', myplayers);
-              this.setMax(players);
-            } else {
-              core.run('getTeams', { players: newList })
-                  .then((res)=>{
-                    this.setState({ percent : 100 });
-                    chunks =  _.chunk(res, 13);
-                    myplayers = chunks[0];
-                    core.tree.set('players', res);
-                    core.tree.set('myPlayers', myPlayers);
-                    this.setMax(newList);
-                    // console.debug('res',res);
-                  })
-            }
-          });
+
     },
 
-    setMax(players) {
-      var max = {
-        reb: {},
-        ast: {},
-        pts: {},
-      };
-
-      max.reb = _.maxBy(players, 'REB').REB;
-      max.ast = _.maxBy(players, 'AST').AST;
-      max.pts = _.maxBy(players, 'PTS').PTS;
-
-      // ((portion/total) * 100).toFixed(2) + '%'
-      core.tree.set(['stats', 'max'], max);
-    },
+    
 
     onChecked(e){
       console.log('name:', e.name+' - '+e.checked);
@@ -271,7 +178,7 @@ core.Component('compare', ['ui.Header','afa.UserCard','ui.Button', 'fla.Checkbox
       body.timeframe  = timeframe;
       body.team_1 = team_a;
       body.team_2 = team_b;
-      // console.dir(body);
+      console.dir(body);
       // console.dir(players);
       core.run('comparePlayers', { body: body })
           .then((res)=>{
@@ -341,10 +248,10 @@ let news = {
     height: '100%'
   },
   wrap : {
-    boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
     flexDirection:'column',
     display: 'flex',
     borderRadius: 4,
+    padding: 15,
     background: 'rgba(255,255,255,0.2)',
 
   },

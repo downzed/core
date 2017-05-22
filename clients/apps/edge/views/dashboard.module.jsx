@@ -7,27 +7,57 @@ var _ = require('lodash');
 var ProgressBar = require('react-progress-bar-plus');
 require('react-progress-bar-plus/lib/progress-bar.css');
 
-
-
 var players = require('./players.js');
 var stats = require('./stats.js');
 
-
-
-function mapPlayersAndStats(players, stats) {
+const mapPlayersAndStats = (players, stats) => {
   var list = [];
   for (var j = 0; j < players.length; j++) {
-    list.push({
-      firstName: players[j].firstName,
-      lastName: players[j].lastName,
-      id: players[j].playerID,
-    })
+        list.push({
+          firstName: players[j].firstName,
+          lastName: players[j].lastName,
+          id: players[j].playerID,
+          teamId: players[j].TeamID || null,
+        })
+    }
+  for (var x in stats) {
+    for (var p in list){
+      if(stats[x].Player_ID === Number(list[p].id)) {
+        // console.log('player', list[p])
+        list[p] = {
+          ...list[p],
+        'AST'   : stats[x].AST ,
+        'TOV'   : stats[x].TOV ,
+        'PTS'   : stats[x].PTS ,
+        'PF'    : stats[x].PF ,
+        'REB'   : stats[x].REB ,
+        'OREB'  : stats[x].OREB ,
+        'DREB'  : stats[x].DREB ,
+        '3P'    : stats[x].P3 ,
+        'MIN'   : stats[x].MIN ,
+        'GP'    : stats[x].GP ,
+        'BLK'   : stats[x].BLK ,
+        'STL'   : stats[x].STL ,
+        'FTA'   : stats[x].FTA ,
+        'FTM'   : stats[x].FTM ,
+        'FT'    : stats[x].FT ,
+        'FGA'   : stats[x].FGA ,
+        'FGM'   : stats[x].FGM ,
+        'FG'    : stats[x].FG ,
+        'FG3A'  : stats[x].FG3A ,
+        'FG3M'  : stats[x].FG3M
+        }
+
+      }
+
+    }
   }
   return list;
 }
+
 var newList = mapPlayersAndStats(players, stats);
 
-function mapPlayers(players) {
+const mapPlayers = (players) => {
   var list = [];
   for (var x = 0; x < players.length; x++) {
       list.push({
@@ -97,10 +127,49 @@ core.Component('dashboard',
       }
     },
     //
-    // componentDidMount() {
-    //   // core.tree.set('players', newList);
-    // },
+    componentWillMount() {
+      let chunks, myplayers, newplayers;
+      core.run('getPlayerStats', { timeframe: 365 })
+          .then( (result) => {
+            if (result !== 'error') {
+            // if (result === 'error') return;
+              this.setState({ percent: 100 });
+              newplayers = mapPlayers(result.stats);
+              chunks =  _.chunk(newplayers, 13);
+              myplayers = chunks[34];
+              // console.dir(myplayers);
+              core.tree.set('players', chunks[35]);
+              core.tree.set('myPlayers', myplayers);
+              this.setMax(players);
+            } else {
+              core.run('getTeams', { players: newList })
+                  .then((res)=>{
+                    this.setState({ percent : 100 });
+                    chunks =  _.chunk(res, 13);
+                    myplayers = chunks[2];
+                    console.dir(myplayers);
+                    core.tree.set('players', res);
+                    core.tree.set('myPlayers', myplayers);
+                    this.setMax(res);
+                    // console.debug('res',res);
+                  })
+            }
+          });
+    },
+    setMax(players) {
+      var max = {
+        reb: {},
+        ast: {},
+        pts: {},
+      };
 
+      max.reb = _.maxBy(players, 'REB').REB;
+      max.ast = _.maxBy(players, 'AST').AST;
+      max.pts = _.maxBy(players, 'PTS').PTS;
+
+      // ((portion/total) * 100).toFixed(2) + '%'
+      core.tree.set(['stats', 'max'], max);
+    },
     setTab(tab, e){
       this.setState({ selectedView: tab });
       if (this.state.isMenuOpen) this.setState({ isMenuOpen: false });
@@ -112,21 +181,21 @@ core.Component('dashboard',
     },
 
     render(){
-      let { autoIncrement, percent } = this.state;
       let { children } = this.props;
-
+      let { isMenuOpen } = this.state;
+      var menuOpen = {
+        transform: isMenuOpen ? 'translateX(180px)' : 'translateX(0)'
+      };
       return (
         <div style={ {...dashboard.main, backgroundColor: theme('colors.secondary')} }>
-          <TopMenu toggleMenu={ this.toggleMenu } currentView={ this.state.selectedView.title } />
-          <LeftMenu isOpen={ this.state.isMenuOpen } onSelectTab={ this.setTab } />
+          <TopMenu toggleMenu={ this.toggleMenu } style={ menuOpen } />
+          <LeftMenu isOpen={ isMenuOpen } onSelectTab={ this.setTab } />
 
-          <div className="content-view" style={ dashboard.content }>
+          <div className="content-view" style={ {...dashboard.content, ...menuOpen} }>
             {
               children
             }
           </div>
-
-
         </div>
       );
     }
@@ -140,12 +209,14 @@ let dashboard = {
   },
   content: {
     position: 'absolute',
-    width: 'calc(100% - 180px)',
-    padding: '15px',
+    width: '100%',
+    background: 'rgb(183, 195, 208)',
     right: 0,
     bottom: 0,
     overflow: 'hidden',
     top: '45px',
     flexDirection: 'row',
+    transition: 'transform 0.15s ease-in-out',
+    WebkitTransition: '-webkit-transform 0.15s ease-in-out',
   }
 }

@@ -33,7 +33,9 @@ core.Component('Team.Box', ['ui.Header','afa.UserCard','ui.Button','ui.Icon'], (
     renderCards(item, key){
       console.log('item', item);
       var icons = [
-        <Icon key={'remove'} className="fa fa-times"  onClick={ this.onRemovedPlayerFromTeam.bind(this, item) }/>
+        <Icon key={'remove'} className="fa fa-times"
+          style={ {zIndex: 1} }
+          onClick={ this.onRemovedPlayerFromTeam.bind(this, item) }/>
       ];
       return (
         <UserCard user={ item } key={ item.id } style={ {margin: '0.5em 0', width: '100%'} } type={ 'player' }

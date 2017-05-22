@@ -6,6 +6,12 @@ window.__coreObject = {
             }
         },
         "router": {
+            "animation": {
+                "name": "koko",
+                "duration": 600
+            },
+            "home": "/dashboard/compare",
+
             "map": [{
               "name": "dashboard",
               "component": "dashboard",

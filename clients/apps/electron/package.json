@@ -1,0 +1,21 @@
+{
+  "name": "roster_set",
+  "version": "1.0.0",
+  "description": "short description",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager ./ RosterTest --all --out ~/Desktop/RosterTest"
+  },
+  "author": "ziv zaloscer",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.4.8",
+    "electron-packager": "^8.3.0",
+    "electron-prebuilt": "^1.4.8"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "react-google-login": "^2.7.0"
+  }
+}

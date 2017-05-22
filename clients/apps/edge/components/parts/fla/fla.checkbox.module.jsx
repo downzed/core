@@ -23,16 +23,14 @@ core.Component('fla.Checkbox', {
   onClick(e){
     let input = this.refs[e];
     input.checked = !input.checked;
+    this.setState({ checked: input.checked })
     this.onChange(input);
   },
 
   onChange(e){
     if (!e.target) {
-      console.log(e.checked);
-      this.setState({ checked: e.checked  })
       if(this.props.onClick) this.props.onClick(e);
     } else {
-      this.setState({ checked: e.target.checked  })
       if(this.props.onClick) this.props.onClick(e.target);
     }
   },
@@ -41,14 +39,14 @@ core.Component('fla.Checkbox', {
     var { label } = this.props;
     return (
       // <div onClick={ this.onClick.bind(this, label) } style={ { cursor: 'pointer', display: 'flex', flex: '1' } }>
-        <label htmlFor={ label } style={ styledLabel } onClick={this.onClick.bind(this, label)}>
+        <div htmlFor={ label } style={ styledLabel } onClick={this.onClick.bind(this, label)}>
           <input style={ styledBox }
-            defaultChecked={this.state.checked}
+            defaultChecked={ this.state.checked }
             ref={ label }
             name={ label }
             type="checkbox" />
           <span>{ label }</span>
-         </label>
+         </div>
       // </div>
     )
   }

@@ -3,6 +3,8 @@ var PropTypes = React.PropTypes;
 var core = require('core');
 var theme = core.theme;
 var _ = require('lodash');
+var Infinite = require('react-infinite');
+
 
 core.Component('playerManager', ['ui.Header','afa.UserCard','ui.Button','ui.Icon'], (Header, UserCard, Button, Icon)=> {
   return {
@@ -57,7 +59,7 @@ core.Component('playerManager', ['ui.Header','afa.UserCard','ui.Button','ui.Icon
       var sel;
       if (this._selected.length && _.includes(this._selected, player.id)) {
         sel = false;
-        this._selected = _.pull(this._selected  , player.id);
+        this._selected = _.pull(this._selected , player.id);
       } else {
         sel = true;
         this._selected.push(player.id);
@@ -71,7 +73,13 @@ core.Component('playerManager', ['ui.Header','afa.UserCard','ui.Button','ui.Icon
       this._selected = [];
       this.setState({ selected: [] });
     },
-
+    elementInfiniteLoad(){
+      return (
+        <div className="infinite-list-item">
+            Loading...
+        </div>
+      );
+    },
     getFiltered(filter) {
       var filtered;
       if (!this.state.players) return [];
@@ -86,10 +94,14 @@ core.Component('playerManager', ['ui.Header','afa.UserCard','ui.Button','ui.Icon
     render(){
 
       let { filter } = this.props;
+      let list = this.getFiltered(filter);
       return (
-        <div style={ {overflowY:'auto', overflowX: 'hidden', minHeight: '200px', maxHeight: '350px', background:'#dfdfdf', padding: 8} }>
-          { _.map(this.getFiltered(filter), this.renderCards) }
-        </div>
+          <Infinite
+            loadingSpinnerDelegate={this.elementInfiniteLoad()}
+            preloadBatchSize={ 500 }
+            containerHeight={ 800 } elementHeight={50}>
+            { _.map(list, this.renderCards) }
+          </Infinite>
       );
     }
   }
