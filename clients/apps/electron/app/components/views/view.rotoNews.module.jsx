@@ -20,22 +20,22 @@ import MenuItem from 'material-ui/MenuItem';
 // https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=https://www.fantasypros.com/nba/stats/rodney-stuckey.php&format=rss&num=30;
 
 const urls = [
-  {
-    title : 'The Score',
-    url : 'https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=http://feeds.thescore.com/nba.rss&format=rss&num=30'
-  },
+  // {
+  //   title : 'The Score',
+  //   url : 'https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=http://feeds.thescore.com/nba.rss&format=rss&num=30'
+  // },
   {
     title : 'Roto Wire',
     url : 'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player/?v=717525&limit=10',
     img: `http://stats.nba.com/media/players/230x185/`
   },
-  {
-    title : 'Rotoworld',
-    url : `https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=
-            http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=article&count=30
-              &format=rss&num=30`,
-    img : `http://www.rotoworld.com/images/headshots/NBA/`
-  }
+  // {
+  //   title : 'Rotoworld',
+  //   url : `https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=
+  //           http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=article&count=30
+  //             &format=rss&num=30`,
+  //   img : `http://www.rotoworld.com/images/headshots/NBA/`
+  // }
 ];
 
 const returnAvatar = (id, uri, type) => {
@@ -45,7 +45,7 @@ const returnAvatar = (id, uri, type) => {
     case 'the score':
       return run(uri)
     case 'roto wire':
-    return run(`${uri}${id}.png`)
+      return run(`${uri}${id}.png`)
   }
 
   function run(uri){
@@ -71,30 +71,7 @@ const replaceStr = (str) => {
 
       // //-- remove P and A tags but preserve what's inside of them
       returnText=returnText.replace(/<p.*>/gi, "\n");
-      // console.info('p',returnText)
-      // returnText=returnText.replace(/<div.*>(.*?)<\/div>/gi, "$1");
-      // console.info('div',returnText)
       returnText=returnText.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 ($1)");
-
-      //-- remove all inside SCRIPT and STYLE tags
-      // returnText=returnText.replace(/<script.*>[\w\W]{1,}(.*?)[\w\W]{1,}<\/script>/gi, "");
-      // returnText=returnText.replace(/<style.*>[\w\W]{1,}(.*?)[\w\W]{1,}<\/style>/gi, "");
-      // //-- remove all else
-      // returnText=returnText.replace(/<(?:.|\s)*?>/g, "");
-      //
-      // //-- get rid of more than 2 multiple line breaks:
-      // returnText=returnText.replace(/(?:(?:\r\n|\r|\n)\s*){2,}/gim, "\n\n");
-      //
-      // //-- get rid of more than 2 spaces:
-      // returnText = returnText.replace(/ +(?= )/g,'');
-      //
-      // //-- get rid of html-encoded characters:
-      // returnText=returnText.replace(/&nbsp;/gi," ");
-      // returnText=returnText.replace(/&amp;/gi,"&");
-      // returnText=returnText.replace(/&quot;/gi,'"');
-      // returnText=returnText.replace(/&lt;/gi,'<');
-      // returnText=returnText.replace(/&gt;/gi,'>');
-      // returnText=returnText.replace(/&#39;/gi,"'");
       return returnText;
 }
 
@@ -103,7 +80,7 @@ core.Component('view.RotoNews', ['ui.Loader'], (Loader)=>{
 
       getInitialState(){
         return {
-          selected: 'The Score', // Rotoworld
+          selected: 'Roto Wire', // Rotoworld
           news: [],
           urls: urls,
           listItemOpen: false,

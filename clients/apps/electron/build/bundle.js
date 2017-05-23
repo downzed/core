@@ -184,7 +184,7 @@ webpackJsonp([0],{
 
 	var newList = mapPlayersAndStats(players, stats);
 
-	core.Component('Index', ['core.App', 'Views'], function (App, Views) {
+	core.Component('Index', ['core.App', 'Views', 'PlayerDialog'], function (App, Views, PlayerDialog) {
 	  return {
 	    getInitialState: function getInitialState() {
 	      return {
@@ -221,13 +221,12 @@ webpackJsonp([0],{
 	      var res = this.getTeams(newList);
 	      var chunks = _.chunk(res, 13);
 	      var myplayers = chunks[6];
-	      // console.dir(myplayers);
-	      core.tree.set('players', res);
+	      console.dir(chunks[5]);
+	      core.tree.set('players', chunks[5]);
 	      core.tree.set('myPlayers', myplayers);
 	      this.setMax(res);
 	    },
 	    getTeams: function getTeams(players) {
-	      console.dir(players);
 	      var wteams = [];
 
 	      for (var x = 0; x < players.length; x++) {
@@ -303,12 +302,7 @@ webpackJsonp([0],{
 	          React.createElement(
 	            _MenuItem2.default,
 	            { onTouchTap: this.changeViews.bind(this, 'RotoPlayers') },
-	            'Players'
-	          ),
-	          React.createElement(
-	            _MenuItem2.default,
-	            { onTouchTap: this.changeViews.bind(this, 'SignIn') },
-	            'Sign In'
+	            'Compare'
 	          )
 	        ),
 	        React.createElement(
@@ -1474,19 +1468,29 @@ webpackJsonp([0],{
 	        showPopup: false,
 	        isLoading: true,
 	        urls: urls
+
 	      };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	      this.compare = [];
 	    },
 	    openPopup: function openPopup(type, player) {
 	      console.log(type);
 	      console.log(player);
-
-	      var _$find = _.find(urls, ['title', type]);
+	    },
+	    addToCompare: function addToCompare(team, player) {
+	      var _$find = _.find(urls, ['title', 'stats']);
 
 	      var url = _$find.url;
 	      var img = _$find.img;
+	      // var limit = type === 'stats';
+	      // this.getInfo(url, player.id, true)
 
-	      var limit = type === 'stats';
-	      this.getInfo(url, player.id, limit);
+	      var stats = this.getInfo(url, player.id, true);
+	      this.compare.push(player);
+	      core.tree.set(['player', 'popup', 'player'], player);
+	      core.emit('get.Player.data', { player: player, type: 'stats' });
 	    },
 	    getInfo: function getInfo(url, id, limit) {
 	      var _this = this;
@@ -1524,8 +1528,9 @@ webpackJsonp([0],{
 	      stats = _.map(gameObjects, function (game) {
 	        return _.zipObject(data.headers, game);
 	      });
-
+	      //showPopup: true, popupType: 'stats'
 	      this.setState({ data: stats, showPopup: true, popupType: 'stats' });
+	      return stats;
 	    },
 	    handleClose: function handleClose() {
 	      this.setState({ showPopup: false });
@@ -1559,13 +1564,13 @@ webpackJsonp([0],{
 	        { iconButtonElement: iconButtonElement },
 	        React.createElement(
 	          _MenuItem2.default,
-	          { onTouchTap: this.openPopup.bind(this, 'stats', player) },
-	          'Stats'
+	          { onTouchTap: this.addToCompare.bind(this, 'team1', player) },
+	          'team 1'
 	        ),
 	        React.createElement(
 	          _MenuItem2.default,
-	          { onTouchTap: this.openPopup.bind(this, 'news', player) },
-	          'News'
+	          { onTouchTap: this.addToCompare.bind(this, 'team2', player) },
+	          'team 2'
 	        )
 	      );
 	      return React.createElement(
@@ -1924,8 +1929,6 @@ webpackJsonp([0],{
 	      });
 	    },
 	    setListItems: function setListItems(json) {
-
-	      // console.debug('JSON', json);
 	      var _state = this.state;
 	      var selected = _state.selected;
 	      var img = _state.img;
@@ -1937,7 +1940,7 @@ webpackJsonp([0],{
 	          temp,
 	          res,
 	          list;
-	      for (var i = 0; i < 550; i++) {
+	      for (var i = 65; i < 615; i++) {
 	        var playerRow = json.rowSet[i];
 	        playerObjects.push(playerRow);
 	      }
@@ -1952,7 +1955,6 @@ webpackJsonp([0],{
 	          id: pl.PERSON_ID
 	        });
 	      });
-
 	      list = this.createList(res);
 	      this.setState({ list: list, players: res, entries: json });
 	    },
@@ -2027,43 +2029,6 @@ webpackJsonp([0],{
 
 
 	      return React.createElement(RotoPlayer, { key: key, player: player, selected: selected, isLoading: isLoading });
-	      // const selectedStyle = selected.toLowerCase() === 'rotoworld' ? { maxWidth: '100%' } : { maxHeight: '100%' }
-	      // let style = {
-	      //   transition: 'all 0.2s ease-in-out 0.1s',
-	      //   WebkitTransition: 'all 0.2s ease-in-out 0.1s',
-	      //   opacity: isLoading ? 0 : 1,
-	      //   transform: isLoading  ? 'scale(0.4)' : 'scale(1)',
-	      //   WebkitTransform: isLoading  ? 'scale(0.4)' : 'scale(1)'
-	      // }
-	      // const iconButtonElement = (
-	      //   <IconButton
-	      //     touch={true}
-	      //     tooltip="more"
-	      //     tooltipPosition={ key === list.length-1  ? "top-left" : "bottom-left" }
-	      //   >
-	      //     <MoreVertIcon />
-	      //   </IconButton>
-	      // );
-	      //
-	      // const rightIconMenu = (
-	      //   <IconMenu iconButtonElement={iconButtonElement}>
-	      //     <MenuItem >Stats</MenuItem>
-	      //     <MenuItem>News</MenuItem>
-	      //   </IconMenu>
-	      // );
-	      // return(
-	      //    <ListItem key={ key }
-	      //      rightIconButton={ rightIconMenu }
-	      //      leftAvatar={
-	      //        <Paper style={{ ...styles.avatar.paper, ...style }} zDepth={ 2 } circle={ true }>
-	      //          <img style={ selectedStyle } id={ player.id }
-	      //
-	      //            />
-	      //        </Paper>
-	      //      }
-	      //      primaryText={ player.DISPLAY_LAST_COMMA_FIRST }
-	      //      secondaryText={ player.TEAM_CITY + ' ' + player.TEAM_NAME }
-	      //    />);
 	    },
 	    renderSelectList: function renderSelectList(item, key) {
 	      return React.createElement(_MenuItem2.default, { key: key, value: item.title, primaryText: item.title });
@@ -2414,17 +2379,15 @@ webpackJsonp([0],{
 	// const baseUrl = '
 	// https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=https://www.fantasypros.com/nba/stats/rodney-stuckey.php&format=rss&num=30;
 
-	var urls = [{
-	  title: 'The Score',
-	  url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=http://feeds.thescore.com/nba.rss&format=rss&num=30'
-	}, {
+	var urls = [
+	// {
+	//   title : 'The Score',
+	//   url : 'https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=http://feeds.thescore.com/nba.rss&format=rss&num=30'
+	// },
+	{
 	  title: 'Roto Wire',
 	  url: 'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player/?v=717525&limit=10',
 	  img: 'http://stats.nba.com/media/players/230x185/'
-	}, {
-	  title: 'Rotoworld',
-	  url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=\n            http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=article&count=30\n              &format=rss&num=30',
-	  img: 'http://www.rotoworld.com/images/headshots/NBA/'
 	}];
 
 	var returnAvatar = function returnAvatar(id, uri, type) {
@@ -2459,30 +2422,7 @@ webpackJsonp([0],{
 
 	  // //-- remove P and A tags but preserve what's inside of them
 	  returnText = returnText.replace(/<p.*>/gi, "\n");
-	  // console.info('p',returnText)
-	  // returnText=returnText.replace(/<div.*>(.*?)<\/div>/gi, "$1");
-	  // console.info('div',returnText)
 	  returnText = returnText.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 ($1)");
-
-	  //-- remove all inside SCRIPT and STYLE tags
-	  // returnText=returnText.replace(/<script.*>[\w\W]{1,}(.*?)[\w\W]{1,}<\/script>/gi, "");
-	  // returnText=returnText.replace(/<style.*>[\w\W]{1,}(.*?)[\w\W]{1,}<\/style>/gi, "");
-	  // //-- remove all else
-	  // returnText=returnText.replace(/<(?:.|\s)*?>/g, "");
-	  //
-	  // //-- get rid of more than 2 multiple line breaks:
-	  // returnText=returnText.replace(/(?:(?:\r\n|\r|\n)\s*){2,}/gim, "\n\n");
-	  //
-	  // //-- get rid of more than 2 spaces:
-	  // returnText = returnText.replace(/ +(?= )/g,'');
-	  //
-	  // //-- get rid of html-encoded characters:
-	  // returnText=returnText.replace(/&nbsp;/gi," ");
-	  // returnText=returnText.replace(/&amp;/gi,"&");
-	  // returnText=returnText.replace(/&quot;/gi,'"');
-	  // returnText=returnText.replace(/&lt;/gi,'<');
-	  // returnText=returnText.replace(/&gt;/gi,'>');
-	  // returnText=returnText.replace(/&#39;/gi,"'");
 	  return returnText;
 	};
 
@@ -2490,7 +2430,7 @@ webpackJsonp([0],{
 	  return {
 	    getInitialState: function getInitialState() {
 	      return {
-	        selected: 'The Score', // Rotoworld
+	        selected: 'Roto Wire', // Rotoworld
 	        news: [],
 	        urls: urls,
 	        listItemOpen: false,

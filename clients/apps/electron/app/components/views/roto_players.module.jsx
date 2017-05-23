@@ -89,11 +89,10 @@ core.Component('view.RotoPlayers', ['RotoPlayer'], (RotoPlayer)=>{
 
       setListItems(json){
 
-        // console.debug('JSON', json);
         let { selected, img, players } = this.state;
 
         var playerObjects = [], header, temp, res, list;
-        for (let i = 0; i < 550; i++) {
+        for (let i = 65; i < 615; i++) {
             var playerRow = json.rowSet[i];
             playerObjects.push(playerRow)
         }
@@ -107,7 +106,6 @@ core.Component('view.RotoPlayers', ['RotoPlayer'], (RotoPlayer)=>{
             id: pl.PERSON_ID,
           }
         })
-
         list = this.createList(res)
         this.setState({ list: list, players: res, entries: json });
 
@@ -171,7 +169,7 @@ core.Component('view.RotoPlayers', ['RotoPlayer'], (RotoPlayer)=>{
                 nestedItems={ [..._.map(list[item], this.renderNested)] }
               />
 
-              );
+        );
       },
 
       renderNested(player, key) {
@@ -180,53 +178,16 @@ core.Component('view.RotoPlayers', ['RotoPlayer'], (RotoPlayer)=>{
         return (
           <RotoPlayer key={ key } player={ player } selected={ selected } isLoading={ isLoading } />
         )
-        // const selectedStyle = selected.toLowerCase() === 'rotoworld' ? { maxWidth: '100%' } : { maxHeight: '100%' }
-        // let style = {
-        //   transition: 'all 0.2s ease-in-out 0.1s',
-        //   WebkitTransition: 'all 0.2s ease-in-out 0.1s',
-        //   opacity: isLoading ? 0 : 1,
-        //   transform: isLoading  ? 'scale(0.4)' : 'scale(1)',
-        //   WebkitTransform: isLoading  ? 'scale(0.4)' : 'scale(1)'
-        // }
-        // const iconButtonElement = (
-        //   <IconButton
-        //     touch={true}
-        //     tooltip="more"
-        //     tooltipPosition={ key === list.length-1  ? "top-left" : "bottom-left" }
-        //   >
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // );
-        //
-        // const rightIconMenu = (
-        //   <IconMenu iconButtonElement={iconButtonElement}>
-        //     <MenuItem >Stats</MenuItem>
-        //     <MenuItem>News</MenuItem>
-        //   </IconMenu>
-        // );
-        // return(
-        //    <ListItem key={ key }
-        //      rightIconButton={ rightIconMenu }
-        //      leftAvatar={
-        //        <Paper style={{ ...styles.avatar.paper, ...style }} zDepth={ 2 } circle={ true }>
-        //          <img style={ selectedStyle } id={ player.id }
-        //
-        //            />
-        //        </Paper>
-        //      }
-        //      primaryText={ player.DISPLAY_LAST_COMMA_FIRST }
-        //      secondaryText={ player.TEAM_CITY + ' ' + player.TEAM_NAME }
-        //    />);
+
       },
 
       renderSelectList(item, key){
         return (
-          <MenuItem key={ key } value={ item.title }  primaryText={ item.title } />
+          <MenuItem key={ key } value={ item.title } primaryText={ item.title } />
         );
       },
 
       filterPlayers(string){
-
         let { players } = this.state;
         var temp  =  _.filter(players, o => {
           return o.DISPLAY_FIRST_LAST.toLowerCase().indexOf(string.toLowerCase()) > -1 || o.DISPLAY_LAST_COMMA_FIRST.toLowerCase().indexOf(string.toLowerCase()) > -1

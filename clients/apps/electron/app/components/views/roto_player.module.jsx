@@ -47,16 +47,28 @@ core.Component('RotoPlayer', ['RotoPlayerDialog'], (RotoPlayerDialog)=>{
           popupType: 'stats',
           showPopup: false,
           isLoading: true,
-          urls: urls
+          urls: urls,
+
+
         }
       },
-
+      componentDidMount: function() {
+        this.compare = [];
+      },
       openPopup(type, player){
         console.log(type)
         console.log(player)
-        let { url, img } = _.find(urls, ['title' , type ]);
-        var limit = type === 'stats';
-        this.getInfo(url, player.id, limit)
+
+      },
+
+      addToCompare(team, player) {
+        let { url, img } = _.find(urls, ['title' , 'stats' ]);
+        // var limit = type === 'stats';
+        // this.getInfo(url, player.id, true)
+        var stats = this.getInfo(url, player.id, true)
+        this.compare.push(player);
+        core.tree.set(['player','popup', 'player'], player);
+        core.emit('get.Player.data', { player: player , type: 'stats' });
 
       },
 
@@ -95,9 +107,9 @@ core.Component('RotoPlayer', ['RotoPlayerDialog'], (RotoPlayerDialog)=>{
         stats = _.map(gameObjects, (game)=>{
           return _.zipObject(data.headers, game)
         });
-
+//showPopup: true, popupType: 'stats'
         this.setState({ data: stats, showPopup: true, popupType: 'stats' });
-
+        return stats;
       },
 
       handleClose(){
@@ -123,8 +135,8 @@ core.Component('RotoPlayer', ['RotoPlayerDialog'], (RotoPlayerDialog)=>{
 
         const rightIconMenu = (
           <IconMenu iconButtonElement={iconButtonElement}>
-            <MenuItem onTouchTap={ this.openPopup.bind(this, 'stats', player) }>Stats</MenuItem>
-              <MenuItem onTouchTap={ this.openPopup.bind(this, 'news', player) }>News</MenuItem>
+            <MenuItem onTouchTap={ this.addToCompare.bind(this, 'team1', player) }>team 1</MenuItem>
+            <MenuItem onTouchTap={ this.addToCompare.bind(this, 'team2', player) }>team 2</MenuItem>
           </IconMenu>
         );
         return(

@@ -71,8 +71,8 @@ const mapPlayersAndStats = (players, stats) => {
 
 var newList = mapPlayersAndStats(players, stats);
 
-core.Component('Index', ['core.App','Views'],
-(App, Views)=>{
+core.Component('Index', ['core.App','Views', 'PlayerDialog'],
+(App, Views, PlayerDialog)=>{
   return {
 
       getInitialState(){
@@ -110,15 +110,13 @@ core.Component('Index', ['core.App','Views'],
         var res = this.getTeams(newList);
         var chunks =  _.chunk(res, 13);
         var myplayers = chunks[6];
-          // console.dir(myplayers);
-          core.tree.set('players', res);
+          console.dir(chunks[5]);
+          core.tree.set('players', chunks[5]);
           core.tree.set('myPlayers', myplayers);
           this.setMax(res);
-
       },
 
       getTeams(players){
-        console.dir(players);
         var wteams = [];
 
         for (let x = 0; x < players.length; x++) {
@@ -176,8 +174,10 @@ core.Component('Index', ['core.App','Views'],
                     onRequestChange={ e => { this.setState({open: !open}); }} >
                     <MenuItem onTouchTap={ this.changeViews.bind(this, 'myZone')}>Home</MenuItem>
                     <MenuItem onTouchTap={ this.changeViews.bind(this, 'RotoNews')}>News</MenuItem>
-                    <MenuItem onTouchTap={ this.changeViews.bind(this, 'RotoPlayers')}>Players</MenuItem>
+                    <MenuItem onTouchTap={ this.changeViews.bind(this, 'RotoPlayers')}>Compare</MenuItem>
+                    {/*
                     <MenuItem onTouchTap={ this.changeViews.bind(this, 'SignIn')}>Sign In</MenuItem>
+                    */}
                   </Drawer>
 
                   <div className={'wrapper'} style={{ padding: '25px', bottom: '0', top: '65px', width: '100%', position: 'absolute' }}>
