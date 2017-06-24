@@ -1,4 +1,5 @@
 module.exports = [
-  "user" : {},
-  "players" : []
+    "user": {},
+    "players": [],
+    "allPlayers": []
 ]

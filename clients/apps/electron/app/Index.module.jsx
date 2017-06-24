@@ -4,124 +4,76 @@ var sa = require('superagent')
 var core = require('core');
 var _ = require('lodash');
 // var _ = window._;//
-console.dir(_);
+// console.dir(_);
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
-// var Pusher = require('pusher');
-const base = 'http://46.121.135.238:3310/api/v1.0/';
-const nbaTL = 'http://stats.nba.com/media/img/teams/logos/';
 
-
-var players  = require('../assets/players.js')
-var stats = require('../assets/stats.js').filter((pl)=>{
-  return pl.TimeFrame > 1 && pl.PTS > 5;
-})
-// console.debug('√ß',stats);
 var teams = require('../assets/teams.js');
+var allPlayers = core.tree.select('allPlayers');
 
-const mapPlayersAndStats = (players, stats) => {
-  var list = [];
-
-  for (var j = 0; j < players.length; j++) {
-        list.push({
-          firstName: players[j].firstName,
-          lastName: players[j].lastName,
-          id: players[j].playerID,
-          teamId: players[j].TeamID || null,
-        })
-    }
-  for (var x in stats) {
-    for (var p in list){
-      if(stats[x].Player_ID === Number(list[p].id)) {
-        list[p] = {
-          ...list[p],
-        'AST'   : stats[x].AST ,
-        'TOV'   : stats[x].TOV ,
-        'PTS'   : stats[x].PTS ,
-        'PF'    : stats[x].PF ,
-        'REB'   : stats[x].REB ,
-        'OREB'  : stats[x].OREB ,
-        'DREB'  : stats[x].DREB ,
-        '3P'    : stats[x].P3 ,
-        'MIN'   : stats[x].MIN ,
-        'GP'    : stats[x].GP ,
-        'BLK'   : stats[x].BLK ,
-        'STL'   : stats[x].STL ,
-        'FTA'   : stats[x].FTA ,
-        'FTM'   : stats[x].FTM ,
-        'FT'    : stats[x].FT ,
-        'FGA'   : stats[x].FGA ,
-        'FGM'   : stats[x].FGM ,
-        'FG'    : stats[x].FG ,
-        'FG3A'  : stats[x].FG3A ,
-        'FG3M'  : stats[x].FG3M
-        }
-
-      }
-
-    }
-  }
-  return list.filter((x)=>{
-    return x.MIN > 5;
-  });
-}
-
-var newList = mapPlayersAndStats(players, stats);
-
-core.Component('Index', ['core.App','Views', 'PlayerDialog'],
-(App, Views, PlayerDialog)=>{
+core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
+(App, Views, PlayerDialog, StatsDiaglog)=>{
   return {
 
       getInitialState(){
         return {
           apps: {},
-          open: false,
-          view: 'myZone',
+          open: true ,
+          view: 'Compare',
           roster: {},
-          name: 'Team Name Roster',
-          timeframe: 365
+          name: 'Fantasy Edge',
+          dialogOpen: false,
+          comparedData: [],
+          timeframe: '365',
+          menuItems:  [
+            { label: 'Home', icon: 'home', ref: 'myZone', active: false },
+            { label: 'News', icon: 'description', ref: 'RotoNews', active: false },
+            { label: 'Compare', icon: 'compare_arrows', ref: 'Compare', active: true },
+            { label: 'SignIn', icon: 'settings', ref: 'SignIn', active: false }
+          ]
+
         };
       },
 
-      componentDidMount() {
-        setTimeout(()=>{
+      componentWillMount() {
           this.getPlayers();
-        }, 1000);
-      },
+          this.allPlayers = core.tree.select('allPlayers');
+          core.on('compared.players', this.handleCompare);
+      },              
 
-      getPlayers(){
-        // console.log('getPlayers')
-        // sa.get(`${base}stats/players?timeframe=${this.state.timeframe}`)
-        //   .end((err, res)=>{
-        //     if (res && res.ok) {
-        //       console.dir(res.body);
-        //
-        //       // promise.resolve(res.body.body);
-        //
-        //     } else {
-        //       console.log(err)
-        //
-        //       // promise.resolve('error');
-        //     }
-        //   });chunks =  _.chunk(res, 13);
-        var res = this.getTeams(newList);
-        var chunks =  _.chunk(res, 13);
-        var myplayers = chunks[6];
-          console.dir(chunks[5]);
-          core.tree.set('players', chunks[5]);
-          core.tree.set('myPlayers', myplayers);
-          this.setMax(res);
-      },
 
+      getPlayers(period){
+        var { allPlayers, timeframe } = this.state;
+        if (!period) period = timeframe;
+        core.run('getAllPlayers', { period })
+            .then(({ isError })=>{
+              if (isError) return;
+              // console.debug('this.allPlayers.get() => ', this.allPlayers.get());
+              var { players, total } = this.allPlayers.get();
+              // console.debug('players => ', players);
+              // console.debug('total => ', total);
+              // var res = this.getTeams(list);
+              // var chunks =  _.chunk(res, 13);
+              // var myplayers = chunks[6];
+              core.emit('players.loaded', { players: players, total: total });
+              // core.tree.set('players', chunks[5]);
+              // core.tree.set('myPlayers', myplayers)
+            });
+        //   this.setMax(res);
+      },
+      handleCompare(data){
+        console.dir(data)
+        this.setState({ comparedData: data, dialogOpen: true })
+      },
       getTeams(players){
         var wteams = [];
 
         for (let x = 0; x < players.length; x++) {
           for (let t = 0; t < teams.length; t++) {
-            if (Number(players[x].teamId) === teams[t].teamId){
+            if (Number(players[x].TeamID) === teams[t].teamId){
               wteams.push({
                 ...players[x],
                 ...teams[t],
@@ -148,44 +100,67 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog'],
         // console.dir(core.tree.get(['stats', 'max']));
       },
 
-      handleClose(){
-        this.setState({ open: false });
+      handleModalCLose(){
+        this.setState({ dialogOpen: false, comparedData: {} });
       },
 
       changeViews(view){
-        this.setState({ view: view, open: false  })
+        var { menuItems } = this.state;
+        
+         menuItems = _.map(menuItems, (item)=>{
+          return {
+            ...item,
+            active: item.ref === view
+          }
+        });
+        this.setState({ view: view, menuItems: menuItems, open: true });
       },
 
       getLocalStorageDetails(details) {
         console.log('obj');
         this.setState({ roster: {...roster, ...details} })
       },
-
+      renderMenu(){
+        var { menuItems, view } = this.state;
+       
+        return _.map(menuItems, (item, i)=>{
+          var { icon, label, ref, active } = item;
+          var itemStyle = {
+            icon: { color: active ? '#f2fafa':'#9196a6', fontSize: 18 },
+            div: {  color: active ? '#f2fafa':'#9196a6', fontSize: 14, background: active ? '#46bbc2' : 'none' }
+          }
+          return (
+            <MenuItem key={ i }
+                      leftIcon={ <FontIcon style={ itemStyle.icon } className="material-icons">{ icon }</FontIcon> }
+                      style={ itemStyle.div }
+                      innerDivStyle={{ paddingLeft: 45, background: active ? '#46bbc2' : 'none'  }} 
+                      onTouchTap={ this.changeViews.bind(this, ref) }>{ label }</MenuItem>
+          )
+        });
+      },
       render () {
-        let { open, view, name, type } = this.state;
+        let { open, view, name, type, dialogOpen, comparedData } = this.state;
           return (
               <App>
-                <AppBar title={ name }
-                  onLeftIconButtonTouchTap={ e => { this.setState({open: !open}); } } />
+                <AppBar title={ name } style={{ background: '#323e51', fontSize: 18, paddingLeft: '140px' }} showMenuIconButton={ false }
+                  onLeftIconButtonTouchTap={ e => { this.setState({open: true }); } } />
                   <Drawer
-                    docked={ false }
-                    width={ 200 }
-                    open={ open }
-                    onRequestChange={ e => { this.setState({open: !open}); }} >
-                    <MenuItem onTouchTap={ this.changeViews.bind(this, 'myZone')}>Home</MenuItem>
-                    <MenuItem onTouchTap={ this.changeViews.bind(this, 'RotoNews')}>News</MenuItem>
-                    <MenuItem onTouchTap={ this.changeViews.bind(this, 'RotoPlayers')}>Compare</MenuItem>
-                    {/*
-                    <MenuItem onTouchTap={ this.changeViews.bind(this, 'SignIn')}>Sign In</MenuItem>
-                    */}
+                    containerStyle={{ backgroundColor: '#323e51', top: 64, boxShadow: 'rgba(0, 0, 0, 0.227) 1px 5px 10px' }}
+                    docked={ true }
+                    width={ 140 }
+                    open={ true }
+                    onRequestChange={ e => { this.setState({open: true }); }} >
+                    { this.renderMenu() }
                   </Drawer>
 
-                  <div className={'wrapper'} style={{ padding: '25px', bottom: '0', top: '65px', width: '100%', position: 'absolute' }}>
+                  <div className={'wrapper'} style={{ ...isOpen(open),  position: 'absolute' }}>
 
                     <Views
                         getLocalStorageDetails={ this.getLocalStorageDetails }
                         view={ view }
                         handleNameChange={ name => { this.setState({ name: name }) } } />
+                    <StatsDiaglog open={ dialogOpen } data={ comparedData } onClose={ this.handleModalCLose } />
+                      
                   </div>
                   {/*
                   <FlatButton icon={ <FontIcon className={ 'fa fa-arrow-left' } /> }
@@ -198,3 +173,10 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog'],
       }
   }
 });
+const isOpen = (open) => {
+  return {
+    left: open ? 140 : 0,
+    padding: '0', bottom: '0', top: '65px', right: 0,
+    transition: 'all 0.015s ease-in-out'
+  }
+}

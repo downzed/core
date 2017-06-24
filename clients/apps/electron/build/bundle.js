@@ -35,45 +35,59 @@ webpackJsonp([0],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
-	var core = __webpack_require__(211);
-	var ReactDom = __webpack_require__(266);
+	var React = __webpack_require__(211);
+	var core = __webpack_require__(247);
+	var ReactDom = __webpack_require__(302);
 
 
 	(0, _reactTapEventPlugin2.default)();
 
-	core.loadContext('index', __webpack_require__(392));
+	core.loadContext('index', __webpack_require__(428));
 	// core.loadContext('modules', require.context('modules', true, /.*\.module\.js/));
-	core.loadContext('source', __webpack_require__(392));
+	core.loadContext('source', __webpack_require__(428));
+	// core.run('loadGoogleChart').then( ()=>{
+	//     console.log('google.load')
+	//     google.load("visualization", "1", {
+	//       packages:["corechart"],
+	//     //   callback: function() {
+	//     //     that.startRenderingComponents();
+	//     //   }
+	//     });
+	// });
+
 
 	core.require(['Index'], function (Index) {
 
-	  ReactDom.render(React.createElement(
-	    _MuiThemeProvider2.default,
-	    { muiTheme: (0, _getMuiTheme2.default)(_lightBaseTheme2.default) },
-	    React.createElement(Index, null)
-	  ), document.getElementById('app'));
+	    ReactDom.render(React.createElement(
+	        _MuiThemeProvider2.default,
+	        { muiTheme: (0, _getMuiTheme2.default)(_lightBaseTheme2.default) },
+	        React.createElement(Index, null)
+	    ), document.getElementById('app'));
 	});
 
 /***/ },
 
-/***/ 392:
+/***/ 428:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./Index.module.jsx": 393,
-		"./actions/actions.module.jsx": 469,
-		"./components/Loader/ui.Loader.module.jsx": 471,
-		"./components/views/player_dialog.module.jsx": 474,
-		"./components/views/roto_player.module.jsx": 607,
-		"./components/views/roto_player_dialog.module.jsx": 632,
-		"./components/views/roto_players.module.jsx": 639,
-		"./components/views/view.myZone.module.jsx": 640,
-		"./components/views/view.rotoNews.module.jsx": 651,
-		"./components/views/view.sign_in.module.jsx": 652,
-		"./components/views/view.steps.one.module.jsx": 654,
-		"./components/views/view.steps.two.module.jsx": 671,
-		"./components/views/views.module.jsx": 676
+		"./Index.module.jsx": 429,
+		"./actions/actions.module.jsx": 503,
+		"./actions/comparePlayers.module.jsx": 505,
+		"./actions/getAllPlayers.module.jsx": 506,
+		"./components/Loader/ui.Loader.module.jsx": 507,
+		"./components/modules/player_dialog.module.jsx": 510,
+		"./components/modules/roto_player.module.jsx": 643,
+		"./components/modules/roto_player_dialog.module.jsx": 668,
+		"./components/modules/stats.google.chart.module.jsx": 675,
+		"./components/modules/stats_dialog.module.jsx": 734,
+		"./components/views/Compare.module.jsx": 842,
+		"./components/views/view.myZone.module.jsx": 845,
+		"./components/views/view.rotoNews.module.jsx": 856,
+		"./components/views/view.sign_in.module.jsx": 857,
+		"./components/views/view.steps.one.module.jsx": 859,
+		"./components/views/view.steps.two.module.jsx": 876,
+		"./components/views/views.module.jsx": 881
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -86,152 +100,112 @@ webpackJsonp([0],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 392;
+	webpackContext.id = 428;
 
 
 /***/ },
 
-/***/ 393:
+/***/ 429:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Drawer = __webpack_require__(394);
+	var _Drawer = __webpack_require__(430);
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _MenuItem = __webpack_require__(406);
+	var _MenuItem = __webpack_require__(442);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _AppBar = __webpack_require__(459);
+	var _AppBar = __webpack_require__(495);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 
-	var _FlatButton = __webpack_require__(462);
+	var _FlatButton = __webpack_require__(498);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _FontIcon = __webpack_require__(447);
+	var _FontIcon = __webpack_require__(483);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(465);
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
 	// var _ = window._;//
-	console.dir(_);
+	// console.dir(_);
 
-	// var Pusher = require('pusher');
-	var base = 'http://46.121.135.238:3310/api/v1.0/';
-	var nbaTL = 'http://stats.nba.com/media/img/teams/logos/';
 
-	var players = __webpack_require__(466);
-	var stats = __webpack_require__(467).filter(function (pl) {
-	  return pl.TimeFrame > 1 && pl.PTS > 5;
-	});
-	// console.debug('√ß',stats);
-	var teams = __webpack_require__(468);
+	var teams = __webpack_require__(502);
+	var allPlayers = core.tree.select('allPlayers');
 
-	var mapPlayersAndStats = function mapPlayersAndStats(players, stats) {
-	  var list = [];
-
-	  for (var j = 0; j < players.length; j++) {
-	    list.push({
-	      firstName: players[j].firstName,
-	      lastName: players[j].lastName,
-	      id: players[j].playerID,
-	      teamId: players[j].TeamID || null
-	    });
-	  }
-	  for (var x in stats) {
-	    for (var p in list) {
-	      if (stats[x].Player_ID === Number(list[p].id)) {
-	        list[p] = _extends({}, list[p], {
-	          'AST': stats[x].AST,
-	          'TOV': stats[x].TOV,
-	          'PTS': stats[x].PTS,
-	          'PF': stats[x].PF,
-	          'REB': stats[x].REB,
-	          'OREB': stats[x].OREB,
-	          'DREB': stats[x].DREB,
-	          '3P': stats[x].P3,
-	          'MIN': stats[x].MIN,
-	          'GP': stats[x].GP,
-	          'BLK': stats[x].BLK,
-	          'STL': stats[x].STL,
-	          'FTA': stats[x].FTA,
-	          'FTM': stats[x].FTM,
-	          'FT': stats[x].FT,
-	          'FGA': stats[x].FGA,
-	          'FGM': stats[x].FGM,
-	          'FG': stats[x].FG,
-	          'FG3A': stats[x].FG3A,
-	          'FG3M': stats[x].FG3M
-	        });
-	      }
-	    }
-	  }
-	  return list.filter(function (x) {
-	    return x.MIN > 5;
-	  });
-	};
-
-	var newList = mapPlayersAndStats(players, stats);
-
-	core.Component('Index', ['core.App', 'Views', 'PlayerDialog'], function (App, Views, PlayerDialog) {
+	core.Component('Index', ['core.App', 'Views', 'PlayerDialog', 'Stats.Diaglog'], function (App, Views, PlayerDialog, StatsDiaglog) {
 	  return {
 	    getInitialState: function getInitialState() {
 	      return {
 	        apps: {},
-	        open: false,
-	        view: 'myZone',
+	        open: true,
+	        view: 'Compare',
 	        roster: {},
-	        name: 'Team Name Roster',
-	        timeframe: 365
+	        name: 'Fantasy Edge',
+	        dialogOpen: false,
+	        comparedData: [],
+	        timeframe: '365',
+	        menuItems: [{ label: 'Home', icon: 'home', ref: 'myZone', active: false }, { label: 'News', icon: 'description', ref: 'RotoNews', active: false }, { label: 'Compare', icon: 'compare_arrows', ref: 'Compare', active: true }, { label: 'SignIn', icon: 'settings', ref: 'SignIn', active: false }]
+
 	      };
 	    },
-	    componentDidMount: function componentDidMount() {
+	    componentWillMount: function componentWillMount() {
+	      this.getPlayers();
+	      this.allPlayers = core.tree.select('allPlayers');
+	      core.on('compared.players', this.handleCompare);
+	    },
+	    getPlayers: function getPlayers(period) {
 	      var _this = this;
 
-	      setTimeout(function () {
-	        _this.getPlayers();
-	      }, 1000);
+	      var _state = this.state;
+	      var allPlayers = _state.allPlayers;
+	      var timeframe = _state.timeframe;
+
+	      if (!period) period = timeframe;
+	      core.run('getAllPlayers', { period: period }).then(function (_ref) {
+	        var isError = _ref.isError;
+
+	        if (isError) return;
+	        // console.debug('this.allPlayers.get() => ', this.allPlayers.get());
+
+	        var _allPlayers$get = _this.allPlayers.get();
+
+	        var players = _allPlayers$get.players;
+	        var total = _allPlayers$get.total;
+	        // console.debug('players => ', players);
+	        // console.debug('total => ', total);
+	        // var res = this.getTeams(list);
+	        // var chunks =  _.chunk(res, 13);
+	        // var myplayers = chunks[6];
+
+	        core.emit('players.loaded', { players: players, total: total });
+	        // core.tree.set('players', chunks[5]);
+	        // core.tree.set('myPlayers', myplayers)
+	      });
+	      //   this.setMax(res);
 	    },
-	    getPlayers: function getPlayers() {
-	      // console.log('getPlayers')
-	      // sa.get(`${base}stats/players?timeframe=${this.state.timeframe}`)
-	      //   .end((err, res)=>{
-	      //     if (res && res.ok) {
-	      //       console.dir(res.body);
-	      //
-	      //       // promise.resolve(res.body.body);
-	      //
-	      //     } else {
-	      //       console.log(err)
-	      //
-	      //       // promise.resolve('error');
-	      //     }
-	      //   });chunks =  _.chunk(res, 13);
-	      var res = this.getTeams(newList);
-	      var chunks = _.chunk(res, 13);
-	      var myplayers = chunks[6];
-	      console.dir(chunks[5]);
-	      core.tree.set('players', chunks[5]);
-	      core.tree.set('myPlayers', myplayers);
-	      this.setMax(res);
+	    handleCompare: function handleCompare(data) {
+	      console.dir(data);
+	      this.setState({ comparedData: data, dialogOpen: true });
 	    },
 	    getTeams: function getTeams(players) {
 	      var wteams = [];
 
 	      for (var x = 0; x < players.length; x++) {
 	        for (var t = 0; t < teams.length; t++) {
-	          if (Number(players[x].teamId) === teams[t].teamId) {
+	          if (Number(players[x].TeamID) === teams[t].teamId) {
 	            wteams.push(_extends({}, players[x], teams[t], {
 	              teamLogo: teams[t].abbreviation + '_logo.svg'
 	            }));
@@ -254,75 +228,113 @@ webpackJsonp([0],{
 	      core.tree.set(['stats', 'max'], max);
 	      // console.dir(core.tree.get(['stats', 'max']));
 	    },
-	    handleClose: function handleClose() {
-	      this.setState({ open: false });
+	    handleModalCLose: function handleModalCLose() {
+	      this.setState({ dialogOpen: false, comparedData: {} });
 	    },
 	    changeViews: function changeViews(view) {
-	      this.setState({ view: view, open: false });
+	      var menuItems = this.state.menuItems;
+
+
+	      menuItems = _.map(menuItems, function (item) {
+	        return _extends({}, item, {
+	          active: item.ref === view
+	        });
+	      });
+	      this.setState({ view: view, menuItems: menuItems, open: true });
 	    },
 	    getLocalStorageDetails: function getLocalStorageDetails(details) {
 	      console.log('obj');
 	      this.setState({ roster: _extends({}, roster, details) });
 	    },
-	    render: function render() {
+	    renderMenu: function renderMenu() {
 	      var _this2 = this;
 
-	      var _state = this.state;
-	      var open = _state.open;
-	      var view = _state.view;
-	      var name = _state.name;
-	      var type = _state.type;
+	      var _state2 = this.state;
+	      var menuItems = _state2.menuItems;
+	      var view = _state2.view;
+
+
+	      return _.map(menuItems, function (item, i) {
+	        var icon = item.icon;
+	        var label = item.label;
+	        var ref = item.ref;
+	        var active = item.active;
+
+	        var itemStyle = {
+	          icon: { color: active ? '#f2fafa' : '#9196a6', fontSize: 18 },
+	          div: { color: active ? '#f2fafa' : '#9196a6', fontSize: 14, background: active ? '#46bbc2' : 'none' }
+	        };
+	        return React.createElement(
+	          _MenuItem2.default,
+	          { key: i,
+	            leftIcon: React.createElement(
+	              _FontIcon2.default,
+	              { style: itemStyle.icon, className: 'material-icons' },
+	              icon
+	            ),
+	            style: itemStyle.div,
+	            innerDivStyle: { paddingLeft: 45, background: active ? '#46bbc2' : 'none' },
+	            onTouchTap: _this2.changeViews.bind(_this2, ref) },
+	          label
+	        );
+	      });
+	    },
+	    render: function render() {
+	      var _this3 = this;
+
+	      var _state3 = this.state;
+	      var open = _state3.open;
+	      var view = _state3.view;
+	      var name = _state3.name;
+	      var type = _state3.type;
+	      var dialogOpen = _state3.dialogOpen;
+	      var comparedData = _state3.comparedData;
 
 	      return React.createElement(
 	        App,
 	        null,
-	        React.createElement(_AppBar2.default, { title: name,
+	        React.createElement(_AppBar2.default, { title: name, style: { background: '#323e51', fontSize: 18, paddingLeft: '140px' }, showMenuIconButton: false,
 	          onLeftIconButtonTouchTap: function onLeftIconButtonTouchTap(e) {
-	            _this2.setState({ open: !open });
+	            _this3.setState({ open: true });
 	          } }),
 	        React.createElement(
 	          _Drawer2.default,
 	          {
-	            docked: false,
-	            width: 200,
-	            open: open,
+	            containerStyle: { backgroundColor: '#323e51', top: 64, boxShadow: 'rgba(0, 0, 0, 0.227) 1px 5px 10px' },
+	            docked: true,
+	            width: 140,
+	            open: true,
 	            onRequestChange: function onRequestChange(e) {
-	              _this2.setState({ open: !open });
+	              _this3.setState({ open: true });
 	            } },
-	          React.createElement(
-	            _MenuItem2.default,
-	            { onTouchTap: this.changeViews.bind(this, 'myZone') },
-	            'Home'
-	          ),
-	          React.createElement(
-	            _MenuItem2.default,
-	            { onTouchTap: this.changeViews.bind(this, 'RotoNews') },
-	            'News'
-	          ),
-	          React.createElement(
-	            _MenuItem2.default,
-	            { onTouchTap: this.changeViews.bind(this, 'RotoPlayers') },
-	            'Compare'
-	          )
+	          this.renderMenu()
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'wrapper', style: { padding: '25px', bottom: '0', top: '65px', width: '100%', position: 'absolute' } },
+	          { className: 'wrapper', style: _extends({}, isOpen(open), { position: 'absolute' }) },
 	          React.createElement(Views, {
 	            getLocalStorageDetails: this.getLocalStorageDetails,
 	            view: view,
 	            handleNameChange: function handleNameChange(name) {
-	              _this2.setState({ name: name });
-	            } })
+	              _this3.setState({ name: name });
+	            } }),
+	          React.createElement(StatsDiaglog, { open: dialogOpen, data: comparedData, onClose: this.handleModalCLose })
 	        )
 	      );
 	    }
 	  };
 	});
+	var isOpen = function isOpen(open) {
+	  return {
+	    left: open ? 140 : 0,
+	    padding: '0', bottom: '0', top: '65px', right: 0,
+	    transition: 'all 0.015s ease-in-out'
+	  };
+	};
 
 /***/ },
 
-/***/ 469:
+/***/ 503:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -331,15 +343,16 @@ webpackJsonp([0],{
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var React = __webpack_require__(29);
-	var core = __webpack_require__(211);
-	var sa = __webpack_require__(220);
-	var _ = __webpack_require__(465);
-	var teams = __webpack_require__(470);
+	var React = __webpack_require__(211);
+	var core = __webpack_require__(247);
+	var sa = __webpack_require__(256);
+	var _ = __webpack_require__(501);
+	var teams = __webpack_require__(504);
 	var base = 'http://46.121.135.238:3310/api/v1.0/';
 	var nbaAvatar = 'http://stats.nba.com/media/players/230x185/';
 	var nbaTL = 'http://stats.nba.com/media/img/teams/logos/';
-
+	var yoBase = 'http://ec2-13-58-180-255.us-east-2.compute.amazonaws.com:8080/FantasyEdge/';
+	// http://ec2-13-58-180-255.us-east-2.compute.amazonaws.com:8080/FantasyEdge/GetAllPlayersAvg?Period=364
 	core.Action('getPlayerAvatar', { id: 'number' }, function (data, promise) {
 	  // avatar: `http://stats.nba.com/media/players/230x185/${players[x].Player_ID}.png` ,
 	  sa.get('' + nbaAvatar + data.id + '.png').end(function (err, res) {
@@ -382,41 +395,20 @@ webpackJsonp([0],{
 	  });
 	});
 
-	core.Action('getPlayerStats', { timeframe: 'number' }, function (data, promise) {
-	  // timeframes [7, 15, 30, 365]
-	  sa.get(base + 'stats/players?timeframe=' + data.timeframe).end(function (err, res) {
+	core.Action('loadGoogleChart', {
+	  type: 'string' // <- type 'string' and the '!' means it's required [string!].
+	}, function (data, promise) {
+	  sa.get('https://www.google.com/jsapi').end(function (err, res) {
 	    if (res && res.ok) {
-	      // console.dir(res.body);
-
-	      promise.resolve(res.body.body);
-	    } else {
-	      promise.resolve('error');
-	    }
-	  });
-	});
-
-	core.Action('getSinglePlayer', { id: 'number!' }, function (data, promise) {
-	  sa.get(base + 'stats/player/' + data.id).end(function (err, res) {
-	    if (res && res.body) {
-	      promise.resolve(res.body.body);
-	    }
-	  });
-	});
-
-	core.Action('comparePlayers', { body: 'object' }, function (data, promise) {
-	  sa.post(base + 'compare').send(data).end(function (err, res) {
-	    if (res && res.ok) {
-	      console.debug('results: ', res.body);
-	      promise.resolve(res.body);
-	    } else {
-	      promise.resolve('error');
+	      console.debug('res => ', res);
+	      promise.resolve(res.ok);
 	    }
 	  });
 	});
 
 /***/ },
 
-/***/ 470:
+/***/ 504:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -605,18 +597,115 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 471:
+/***/ 505:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(29);
+	var React = __webpack_require__(211);
+	var core = __webpack_require__(247);
+	var sa = __webpack_require__(256);
+	var _ = __webpack_require__(501);
+	var teams = __webpack_require__(504);
+	var base = 'http://ec2-13-58-180-255.us-east-2.compute.amazonaws.com:8080/FantasyEdge';
+
+	core.Action('comparePlayers', { form: 'object' }, function (data, promise) {
+	  var compared = core.tree.select('compared');
+	  var form = data.form;
+
+	  console.debug('form => ', form);
+	  sa.post(base + '/ComparePlayers').send(_extends({}, form)).end(function (err, res) {
+	    if (res && res.ok) {
+	      promise.resolve(_extends({ stats: res.body }, form));
+	    } else {
+	      promise.resolve(_extends({ isError: true }, err));
+	    }
+	  });
+	});
+
+/***/ },
+
+/***/ 506:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var React = __webpack_require__(211);
+	var core = __webpack_require__(247);
+	var sa = __webpack_require__(256);
+	var _ = __webpack_require__(501);
+	var teams = __webpack_require__(504);
+	var base = 'http://ec2-13-58-180-255.us-east-2.compute.amazonaws.com:8080/FantasyEdge';
+
+	core.Action('getAllPlayers', { period: 'string' }, function (data, promise) {
+	  var allPlayers = core.tree.select('allPlayers');
+	  var total = 0;
+	  sa.post(base + '/GetAllPlayersAvg?Period=' + data.period)
+	  // .send(data)
+	  .end(function (err, res) {
+	    if (res && res.ok) {
+	      var body = res.body;
+	      var headers = res.headers;
+
+	      if (headers['players-count']) total = headers['players-count'];
+	      if (body['Players'] && !_.isEmpty(body['Players'])) {
+	        allPlayers.set({ players: body['Players'], total: total });
+	        promise.resolve({ isError: false });
+	      } else {
+	        allPlayers.set(undefined);
+	        promise.resolve(err);
+	      }
+	    } else {
+	      promise.resolve(_extends({ isError: true }, err));
+	    }
+	  });
+	});
+
+	core.Action('getPlayersByPage', { period: 'string', page: 'number' }, function (data, promise) {
+	  var pagePlayers = core.tree.select('pagePlayers');
+	  // pagePlayers.set(undefined);
+	  var total = 0;
+	  sa.post(base + '/GetAllPlayersAvg?Period=' + data.period + '&Page=' + data.page)
+	  // .send(data)
+	  .end(function (err, res) {
+	    if (res && res.ok) {
+	      var body = res.body;
+	      var headers = res.headers;
+	      // console.debug('res => ', res);
+
+	      if (headers['players-count']) total = headers['players-count'];
+	      if (body['Players'] && !_.isEmpty(body['Players'])) {
+	        // pagePlayers.set(body['Players'])
+	        promise.resolve({ data: _extends({}, body, { total: total }), isError: false });
+	      } else {
+	        pagePlayers.set(undefined);
+	        promise.resolve(err);
+	        promise.resolve({ data: err, isError: false });
+	      }
+	    } else {
+	      promise.resolve({ isError: true, data: err });
+	    }
+	  });
+	});
+
+/***/ },
+
+/***/ 507:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var React = __webpack_require__(211);
 	var PropTypes = React.PropTypes;
 
-	var core = __webpack_require__(211);
-	var myCss = __webpack_require__(472);
+	var core = __webpack_require__(247);
+	var myCss = __webpack_require__(508);
 
 	var allScreen = {
 	  display: 'flex',
@@ -711,16 +800,16 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 472:
+/***/ 508:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(473);
+	var content = __webpack_require__(509);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(259)(content, {});
+	var update = __webpack_require__(295)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -738,10 +827,10 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 473:
+/***/ 509:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(258)();
+	exports = module.exports = __webpack_require__(294)();
 	// imports
 
 
@@ -753,54 +842,54 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 474:
+/***/ 510:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Dialog = __webpack_require__(475);
+	var _Dialog = __webpack_require__(511);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
-	var _FlatButton = __webpack_require__(462);
+	var _FlatButton = __webpack_require__(498);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(477);
+	var _RaisedButton = __webpack_require__(513);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _MenuItem = __webpack_require__(406);
+	var _MenuItem = __webpack_require__(442);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _IconButton = __webpack_require__(445);
+	var _IconButton = __webpack_require__(481);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Table = __webpack_require__(479);
+	var _Table = __webpack_require__(515);
 
-	var _List = __webpack_require__(492);
+	var _List = __webpack_require__(528);
 
-	var _GridList = __webpack_require__(494);
+	var _GridList = __webpack_require__(530);
 
-	var _CircularProgress = __webpack_require__(497);
+	var _CircularProgress = __webpack_require__(533);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _Tabs = __webpack_require__(499);
+	var _Tabs = __webpack_require__(535);
 
 	var _colors = __webpack_require__(170);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(465);
-	var moment = __webpack_require__(504);
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
+	var moment = __webpack_require__(540);
 
 	var urls = [{
 	  title: 'stats',
@@ -1143,212 +1232,212 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 505:
+/***/ 541:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 506,
-		"./af.js": 506,
-		"./ar": 507,
-		"./ar-ma": 508,
-		"./ar-ma.js": 508,
-		"./ar-sa": 509,
-		"./ar-sa.js": 509,
-		"./ar-tn": 510,
-		"./ar-tn.js": 510,
-		"./ar.js": 507,
-		"./az": 511,
-		"./az.js": 511,
-		"./be": 512,
-		"./be.js": 512,
-		"./bg": 513,
-		"./bg.js": 513,
-		"./bn": 514,
-		"./bn.js": 514,
-		"./bo": 515,
-		"./bo.js": 515,
-		"./br": 516,
-		"./br.js": 516,
-		"./bs": 517,
-		"./bs.js": 517,
-		"./ca": 518,
-		"./ca.js": 518,
-		"./cs": 519,
-		"./cs.js": 519,
-		"./cv": 520,
-		"./cv.js": 520,
-		"./cy": 521,
-		"./cy.js": 521,
-		"./da": 522,
-		"./da.js": 522,
-		"./de": 523,
-		"./de-at": 524,
-		"./de-at.js": 524,
-		"./de.js": 523,
-		"./dv": 525,
-		"./dv.js": 525,
-		"./el": 526,
-		"./el.js": 526,
-		"./en-au": 527,
-		"./en-au.js": 527,
-		"./en-ca": 528,
-		"./en-ca.js": 528,
-		"./en-gb": 529,
-		"./en-gb.js": 529,
-		"./en-ie": 530,
-		"./en-ie.js": 530,
-		"./en-nz": 531,
-		"./en-nz.js": 531,
-		"./eo": 532,
-		"./eo.js": 532,
-		"./es": 533,
-		"./es-do": 534,
-		"./es-do.js": 534,
-		"./es.js": 533,
-		"./et": 535,
-		"./et.js": 535,
-		"./eu": 536,
-		"./eu.js": 536,
-		"./fa": 537,
-		"./fa.js": 537,
-		"./fi": 538,
-		"./fi.js": 538,
-		"./fo": 539,
-		"./fo.js": 539,
-		"./fr": 540,
-		"./fr-ca": 541,
-		"./fr-ca.js": 541,
-		"./fr-ch": 542,
-		"./fr-ch.js": 542,
-		"./fr.js": 540,
-		"./fy": 543,
-		"./fy.js": 543,
-		"./gd": 544,
-		"./gd.js": 544,
-		"./gl": 545,
-		"./gl.js": 545,
-		"./he": 546,
-		"./he.js": 546,
-		"./hi": 547,
-		"./hi.js": 547,
-		"./hr": 548,
-		"./hr.js": 548,
-		"./hu": 549,
-		"./hu.js": 549,
-		"./hy-am": 550,
-		"./hy-am.js": 550,
-		"./id": 551,
-		"./id.js": 551,
-		"./is": 552,
-		"./is.js": 552,
-		"./it": 553,
-		"./it.js": 553,
-		"./ja": 554,
-		"./ja.js": 554,
-		"./jv": 555,
-		"./jv.js": 555,
-		"./ka": 556,
-		"./ka.js": 556,
-		"./kk": 557,
-		"./kk.js": 557,
-		"./km": 558,
-		"./km.js": 558,
-		"./ko": 559,
-		"./ko.js": 559,
-		"./ky": 560,
-		"./ky.js": 560,
-		"./lb": 561,
-		"./lb.js": 561,
-		"./lo": 562,
-		"./lo.js": 562,
-		"./lt": 563,
-		"./lt.js": 563,
-		"./lv": 564,
-		"./lv.js": 564,
-		"./me": 565,
-		"./me.js": 565,
-		"./mk": 566,
-		"./mk.js": 566,
-		"./ml": 567,
-		"./ml.js": 567,
-		"./mr": 568,
-		"./mr.js": 568,
-		"./ms": 569,
-		"./ms-my": 570,
-		"./ms-my.js": 570,
-		"./ms.js": 569,
-		"./my": 571,
-		"./my.js": 571,
-		"./nb": 572,
-		"./nb.js": 572,
-		"./ne": 573,
-		"./ne.js": 573,
-		"./nl": 574,
-		"./nl.js": 574,
-		"./nn": 575,
-		"./nn.js": 575,
-		"./pa-in": 576,
-		"./pa-in.js": 576,
-		"./pl": 577,
-		"./pl.js": 577,
-		"./pt": 578,
-		"./pt-br": 579,
-		"./pt-br.js": 579,
-		"./pt.js": 578,
-		"./ro": 580,
-		"./ro.js": 580,
-		"./ru": 581,
-		"./ru.js": 581,
-		"./se": 582,
-		"./se.js": 582,
-		"./si": 583,
-		"./si.js": 583,
-		"./sk": 584,
-		"./sk.js": 584,
-		"./sl": 585,
-		"./sl.js": 585,
-		"./sq": 586,
-		"./sq.js": 586,
-		"./sr": 587,
-		"./sr-cyrl": 588,
-		"./sr-cyrl.js": 588,
-		"./sr.js": 587,
-		"./ss": 589,
-		"./ss.js": 589,
-		"./sv": 590,
-		"./sv.js": 590,
-		"./sw": 591,
-		"./sw.js": 591,
-		"./ta": 592,
-		"./ta.js": 592,
-		"./te": 593,
-		"./te.js": 593,
-		"./th": 594,
-		"./th.js": 594,
-		"./tl-ph": 595,
-		"./tl-ph.js": 595,
-		"./tlh": 596,
-		"./tlh.js": 596,
-		"./tr": 597,
-		"./tr.js": 597,
-		"./tzl": 598,
-		"./tzl.js": 598,
-		"./tzm": 599,
-		"./tzm-latn": 600,
-		"./tzm-latn.js": 600,
-		"./tzm.js": 599,
-		"./uk": 601,
-		"./uk.js": 601,
-		"./uz": 602,
-		"./uz.js": 602,
-		"./vi": 603,
-		"./vi.js": 603,
-		"./x-pseudo": 604,
-		"./x-pseudo.js": 604,
-		"./zh-cn": 605,
-		"./zh-cn.js": 605,
-		"./zh-tw": 606,
-		"./zh-tw.js": 606
+		"./af": 542,
+		"./af.js": 542,
+		"./ar": 543,
+		"./ar-ma": 544,
+		"./ar-ma.js": 544,
+		"./ar-sa": 545,
+		"./ar-sa.js": 545,
+		"./ar-tn": 546,
+		"./ar-tn.js": 546,
+		"./ar.js": 543,
+		"./az": 547,
+		"./az.js": 547,
+		"./be": 548,
+		"./be.js": 548,
+		"./bg": 549,
+		"./bg.js": 549,
+		"./bn": 550,
+		"./bn.js": 550,
+		"./bo": 551,
+		"./bo.js": 551,
+		"./br": 552,
+		"./br.js": 552,
+		"./bs": 553,
+		"./bs.js": 553,
+		"./ca": 554,
+		"./ca.js": 554,
+		"./cs": 555,
+		"./cs.js": 555,
+		"./cv": 556,
+		"./cv.js": 556,
+		"./cy": 557,
+		"./cy.js": 557,
+		"./da": 558,
+		"./da.js": 558,
+		"./de": 559,
+		"./de-at": 560,
+		"./de-at.js": 560,
+		"./de.js": 559,
+		"./dv": 561,
+		"./dv.js": 561,
+		"./el": 562,
+		"./el.js": 562,
+		"./en-au": 563,
+		"./en-au.js": 563,
+		"./en-ca": 564,
+		"./en-ca.js": 564,
+		"./en-gb": 565,
+		"./en-gb.js": 565,
+		"./en-ie": 566,
+		"./en-ie.js": 566,
+		"./en-nz": 567,
+		"./en-nz.js": 567,
+		"./eo": 568,
+		"./eo.js": 568,
+		"./es": 569,
+		"./es-do": 570,
+		"./es-do.js": 570,
+		"./es.js": 569,
+		"./et": 571,
+		"./et.js": 571,
+		"./eu": 572,
+		"./eu.js": 572,
+		"./fa": 573,
+		"./fa.js": 573,
+		"./fi": 574,
+		"./fi.js": 574,
+		"./fo": 575,
+		"./fo.js": 575,
+		"./fr": 576,
+		"./fr-ca": 577,
+		"./fr-ca.js": 577,
+		"./fr-ch": 578,
+		"./fr-ch.js": 578,
+		"./fr.js": 576,
+		"./fy": 579,
+		"./fy.js": 579,
+		"./gd": 580,
+		"./gd.js": 580,
+		"./gl": 581,
+		"./gl.js": 581,
+		"./he": 582,
+		"./he.js": 582,
+		"./hi": 583,
+		"./hi.js": 583,
+		"./hr": 584,
+		"./hr.js": 584,
+		"./hu": 585,
+		"./hu.js": 585,
+		"./hy-am": 586,
+		"./hy-am.js": 586,
+		"./id": 587,
+		"./id.js": 587,
+		"./is": 588,
+		"./is.js": 588,
+		"./it": 589,
+		"./it.js": 589,
+		"./ja": 590,
+		"./ja.js": 590,
+		"./jv": 591,
+		"./jv.js": 591,
+		"./ka": 592,
+		"./ka.js": 592,
+		"./kk": 593,
+		"./kk.js": 593,
+		"./km": 594,
+		"./km.js": 594,
+		"./ko": 595,
+		"./ko.js": 595,
+		"./ky": 596,
+		"./ky.js": 596,
+		"./lb": 597,
+		"./lb.js": 597,
+		"./lo": 598,
+		"./lo.js": 598,
+		"./lt": 599,
+		"./lt.js": 599,
+		"./lv": 600,
+		"./lv.js": 600,
+		"./me": 601,
+		"./me.js": 601,
+		"./mk": 602,
+		"./mk.js": 602,
+		"./ml": 603,
+		"./ml.js": 603,
+		"./mr": 604,
+		"./mr.js": 604,
+		"./ms": 605,
+		"./ms-my": 606,
+		"./ms-my.js": 606,
+		"./ms.js": 605,
+		"./my": 607,
+		"./my.js": 607,
+		"./nb": 608,
+		"./nb.js": 608,
+		"./ne": 609,
+		"./ne.js": 609,
+		"./nl": 610,
+		"./nl.js": 610,
+		"./nn": 611,
+		"./nn.js": 611,
+		"./pa-in": 612,
+		"./pa-in.js": 612,
+		"./pl": 613,
+		"./pl.js": 613,
+		"./pt": 614,
+		"./pt-br": 615,
+		"./pt-br.js": 615,
+		"./pt.js": 614,
+		"./ro": 616,
+		"./ro.js": 616,
+		"./ru": 617,
+		"./ru.js": 617,
+		"./se": 618,
+		"./se.js": 618,
+		"./si": 619,
+		"./si.js": 619,
+		"./sk": 620,
+		"./sk.js": 620,
+		"./sl": 621,
+		"./sl.js": 621,
+		"./sq": 622,
+		"./sq.js": 622,
+		"./sr": 623,
+		"./sr-cyrl": 624,
+		"./sr-cyrl.js": 624,
+		"./sr.js": 623,
+		"./ss": 625,
+		"./ss.js": 625,
+		"./sv": 626,
+		"./sv.js": 626,
+		"./sw": 627,
+		"./sw.js": 627,
+		"./ta": 628,
+		"./ta.js": 628,
+		"./te": 629,
+		"./te.js": 629,
+		"./th": 630,
+		"./th.js": 630,
+		"./tl-ph": 631,
+		"./tl-ph.js": 631,
+		"./tlh": 632,
+		"./tlh.js": 632,
+		"./tr": 633,
+		"./tr.js": 633,
+		"./tzl": 634,
+		"./tzl.js": 634,
+		"./tzm": 635,
+		"./tzm-latn": 636,
+		"./tzm-latn.js": 636,
+		"./tzm.js": 635,
+		"./uk": 637,
+		"./uk.js": 637,
+		"./uz": 638,
+		"./uz.js": 638,
+		"./vi": 639,
+		"./vi.js": 639,
+		"./x-pseudo": 640,
+		"./x-pseudo.js": 640,
+		"./zh-cn": 641,
+		"./zh-cn.js": 641,
+		"./zh-tw": 642,
+		"./zh-tw.js": 642
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -1361,88 +1450,88 @@ webpackJsonp([0],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 505;
+	webpackContext.id = 541;
 
 
 /***/ },
 
-/***/ 607:
+/***/ 643:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(477);
+	var _RaisedButton = __webpack_require__(513);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(447);
+	var _FontIcon = __webpack_require__(483);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(608);
+	var _Avatar = __webpack_require__(644);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(403);
+	var _Paper = __webpack_require__(439);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(610);
+	var _Chip = __webpack_require__(646);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Subheader = __webpack_require__(454);
+	var _Subheader = __webpack_require__(490);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(492);
+	var _List = __webpack_require__(528);
 
-	var _RefreshIndicator = __webpack_require__(613);
+	var _RefreshIndicator = __webpack_require__(649);
 
 	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
 
-	var _CircularProgress = __webpack_require__(497);
+	var _CircularProgress = __webpack_require__(533);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(615);
+	var _SelectField = __webpack_require__(651);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _TextField = __webpack_require__(617);
+	var _TextField = __webpack_require__(653);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Dialog = __webpack_require__(475);
+	var _Dialog = __webpack_require__(511);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
 	var _colors = __webpack_require__(170);
 
-	var _IconButton = __webpack_require__(445);
+	var _IconButton = __webpack_require__(481);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _moreVert = __webpack_require__(629);
+	var _moreVert = __webpack_require__(665);
 
 	var _moreVert2 = _interopRequireDefault(_moreVert);
 
-	var _IconMenu = __webpack_require__(630);
+	var _IconMenu = __webpack_require__(666);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _MenuItem = __webpack_require__(406);
+	var _MenuItem = __webpack_require__(442);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(465);
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
 
 
 	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
@@ -1485,9 +1574,9 @@ webpackJsonp([0],{
 	      var url = _$find.url;
 	      var img = _$find.img;
 	      // var limit = type === 'stats';
-	      // this.getInfo(url, player.id, true)
+	      // this.getInfo(url, player.PlayerID, true)
 
-	      var stats = this.getInfo(url, player.id, true);
+	      var stats = this.getInfo(url, player.PlayerID, true);
 	      this.compare.push(player);
 	      core.tree.set(['player', 'popup', 'player'], player);
 	      core.emit('get.Player.data', { player: player, type: 'stats' });
@@ -1581,7 +1670,7 @@ webpackJsonp([0],{
 	          leftAvatar: React.createElement(
 	            _Paper2.default,
 	            { style: _extends({}, styles.avatar.paper, style), zDepth: 2, circle: true },
-	            React.createElement('img', { style: selectedStyle, id: player.id })
+	            React.createElement('img', { style: selectedStyle, id: player.PlayerID })
 	          ),
 	          primaryText: player.DISPLAY_LAST_COMMA_FIRST,
 	          secondaryText: player.TEAM_CITY + ' ' + player.TEAM_NAME
@@ -1625,53 +1714,53 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 632:
+/***/ 668:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Drawer = __webpack_require__(394);
+	var _Drawer = __webpack_require__(430);
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _AppBar = __webpack_require__(459);
+	var _AppBar = __webpack_require__(495);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 
-	var _FlatButton = __webpack_require__(462);
+	var _FlatButton = __webpack_require__(498);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(477);
+	var _RaisedButton = __webpack_require__(513);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _Paper = __webpack_require__(403);
+	var _Paper = __webpack_require__(439);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _MenuItem = __webpack_require__(406);
+	var _MenuItem = __webpack_require__(442);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _IconButton = __webpack_require__(445);
+	var _IconButton = __webpack_require__(481);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _List = __webpack_require__(492);
+	var _List = __webpack_require__(528);
 
-	var _close = __webpack_require__(633);
+	var _close = __webpack_require__(669);
 
 	var _close2 = _interopRequireDefault(_close);
 
-	var _Toolbar = __webpack_require__(634);
+	var _Toolbar = __webpack_require__(670);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(465);
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
 
 
 	var returnAvatar = function returnAvatar(id) {
@@ -1788,305 +1877,71 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 639:
+/***/ 675:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	var _reactChartjs = __webpack_require__(676);
 
-	var _RaisedButton = __webpack_require__(477);
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
 
-	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
-
-	var _FontIcon = __webpack_require__(447);
-
-	var _FontIcon2 = _interopRequireDefault(_FontIcon);
-
-	var _Avatar = __webpack_require__(608);
-
-	var _Avatar2 = _interopRequireDefault(_Avatar);
-
-	var _Paper = __webpack_require__(403);
-
-	var _Paper2 = _interopRequireDefault(_Paper);
-
-	var _Chip = __webpack_require__(610);
-
-	var _Chip2 = _interopRequireDefault(_Chip);
-
-	var _Subheader = __webpack_require__(454);
-
-	var _Subheader2 = _interopRequireDefault(_Subheader);
-
-	var _List = __webpack_require__(492);
-
-	var _RefreshIndicator = __webpack_require__(613);
-
-	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
-
-	var _CircularProgress = __webpack_require__(497);
-
-	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
-
-	var _SelectField = __webpack_require__(615);
-
-	var _SelectField2 = _interopRequireDefault(_SelectField);
-
-	var _TextField = __webpack_require__(617);
-
-	var _TextField2 = _interopRequireDefault(_TextField);
-
-	var _Dialog = __webpack_require__(475);
-
-	var _Dialog2 = _interopRequireDefault(_Dialog);
-
-	var _colors = __webpack_require__(170);
-
-	var _IconButton = __webpack_require__(445);
-
-	var _IconButton2 = _interopRequireDefault(_IconButton);
-
-	var _moreVert = __webpack_require__(629);
-
-	var _moreVert2 = _interopRequireDefault(_moreVert);
-
-	var _IconMenu = __webpack_require__(630);
-
-	var _IconMenu2 = _interopRequireDefault(_IconMenu);
-
-	var _MenuItem = __webpack_require__(406);
-
-	var _MenuItem2 = _interopRequireDefault(_MenuItem);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-	var React = __webpack_require__(29);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(465);
-
-
-	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
-	// const baseUrl = '
-	// https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=https://www.fantasypros.com/nba/stats/rodney-stuckey.php&format=rss&num=30;
-
-	var urls = [{
-	  title: 'players',
-	  url: 'http://stats.nba.com/stats/commonallplayers?IsOnlyCurrentSeason=0&LeagueID=00&Season=2016-17',
-	  img: 'http://stats.nba.com/media/players/230x185/'
-	}, {
-	  title: 'Roto Wire',
-	  url: 'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player/?v=717525&limit=10',
-	  img: 'http://stats.nba.com/media/players/230x185/'
-	}];
-
-	var returnAvatar = function returnAvatar(id, uri, type) {
-	  run('' + uri + id + '.png');
-	  function run(uri) {
-	    var xhr = new XMLHttpRequest();
-	    xhr.responseType = 'blob';
-	    xhr.onload = function () {
-	      try {
-	        document.getElementById(id).src = window.URL.createObjectURL(xhr.response);
-	      } catch (e) {}
-	      // console.error(e)
-
-	      // return window.URL.createObjectURL(xhr.response);
-	    };
-	    xhr.open('GET', uri, true);
-	    xhr.send();
-	  }
-	};
-
-	core.Component('view.RotoPlayers', ['RotoPlayer'], function (RotoPlayer) {
+	core.Component('Stats.Google.Chart', [], function () {
 	  return {
 	    getInitialState: function getInitialState() {
 	      return {
-	        selected: 'players', // Rotoworld
-	        players: [],
-	        list: [],
-	        urls: urls,
-	        listItemOpen: false,
-	        isLoading: true
+	        data: this.props.data
 	      };
 	    },
-	    getRss: function getRss(url) {
-	      var _this = this;
-
-	      this.setState({ isLoading: true });
-	      var playersJson;
-	      return new Promise(function (resolve, reject) {
-	        sa.get(url).end(function (err, res) {
-	          if (res && res.status === 200) {
-	            if (!_.isEmpty(res.body)) {
-	              _this.setListItems(res.body.resultSets[0]);
-	            }
-	          }
-	        });
-	      });
-	    },
-	    setListItems: function setListItems(json) {
-	      var _state = this.state;
-	      var selected = _state.selected;
-	      var img = _state.img;
-	      var players = _state.players;
-
-
-	      var playerObjects = [],
-	          header,
-	          temp,
-	          res,
-	          list;
-	      for (var i = 65; i < 615; i++) {
-	        var playerRow = json.rowSet[i];
-	        playerObjects.push(playerRow);
-	      }
-
-	      res = _.map(playerObjects, function (player) {
-	        return _.zipObject(json.headers, player);
-	      }).filter(function (p) {
-	        return p.ROSTERSTATUS !== 0;
-	      });
-	      res = _.map(res, function (pl) {
-	        return _extends({}, pl, {
-	          id: pl.PERSON_ID
-	        });
-	      });
-	      list = this.createList(res);
-	      this.setState({ list: list, players: res, entries: json });
+	    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	      this.setState({ data: nextProps.data });
 	    },
 	    componentDidMount: function componentDidMount() {
-	      this.loadUrl('players');
+	      this.setState({ data: this.props.data });
 	    },
-	    createList: function createList(res) {
-	      var img = this.state.img;
+	    drawChart: function drawChart() {
+	      var data = this.state.data;
 
-	      var list = { letters: [] };
-	      _.forEach(res, function (player) {
-	        var itLetter = player.DISPLAY_LAST_COMMA_FIRST.substring(0, 1).toUpperCase();
-	        player.avatar = returnAvatar(player.id, img);
-	        if (!(itLetter in list)) {
-	          list[itLetter] = [];
-	          list.letters.push(itLetter);
+	      if (!data) return null;
+	      var labels = [],
+	          set = [];
+	      for (var l = 0; l < data.length; l++) {
+	        labels.push(data[l].key);
+	        set.push(data[l].value);
+	      }
+
+	      var chartData = {
+	        labels: [].concat(labels),
+	        datasets: [{
+	          data: [].concat(set),
+	          options: {
+	            legend: {
+	              display: false
+	            }
+	          }
+	        }],
+	        legend: {
+	          display: false
+	        },
+	        tooltips: {
+	          callbacks: {
+	            label: function label(tooltipItem) {
+	              return tooltipItem.yLabel;
+	            }
+	          }
 	        }
-	        list[itLetter].push(player);
-	      });
-	      list.letters.sort();
-	      this.setState({ isLoading: false });
-	      return list;
-	    },
-	    loadUrl: function loadUrl(selected) {
-	      var urls = this.state.urls;
-
-	      var _$find = _.find(urls, ['title', selected]);
-
-	      var url = _$find.url;
-	      var img = _$find.img;
-
-	      this.setState({ selected: selected, img: img });
-
-	      this.getRss(url);
-	    },
-	    handleSelectFeed: function handleSelectFeed(event, index, value) {
-	      this.loadUrl(value);
-	    },
-	    renderList: function renderList(item, key) {
-	      var _state2 = this.state;
-	      var selected = _state2.selected;
-	      var isLoading = _state2.isLoading;
-	      var list = _state2.list;
-
-
-	      var style = {
-	        transition: 'all 0.2s ease-in-out 0.1s',
-	        WebkitTransition: 'all 0.2s ease-in-out 0.1s',
-	        opacity: isLoading ? 0 : 1,
-	        transform: isLoading ? 'scale(0.4)' : 'scale(1)',
-	        WebkitTransform: isLoading ? 'scale(0.4)' : 'scale(1)'
 	      };
 
-	      return React.createElement(_List.ListItem, { key: key,
-	        style: { height: '55px' },
-	        leftAvatar: React.createElement(
-	          _Avatar2.default,
-	          {
-	            style: _extends({}, style) },
-	          item
-	        ),
-	        primaryTogglesNestedList: true,
-	        secondaryTextLines: 1,
-	        nestedItems: [].concat(_toConsumableArray(_.map(list[item], this.renderNested)))
-	      });
-	    },
-	    renderNested: function renderNested(player, key) {
-	      var _state3 = this.state;
-	      var selected = _state3.selected;
-	      var isLoading = _state3.isLoading;
-	      var list = _state3.list;
-
-
-	      return React.createElement(RotoPlayer, { key: key, player: player, selected: selected, isLoading: isLoading });
-	    },
-	    renderSelectList: function renderSelectList(item, key) {
-	      return React.createElement(_MenuItem2.default, { key: key, value: item.title, primaryText: item.title });
-	    },
-	    filterPlayers: function filterPlayers(string) {
-	      var players = this.state.players;
-
-	      var temp = _.filter(players, function (o) {
-	        return o.DISPLAY_FIRST_LAST.toLowerCase().indexOf(string.toLowerCase()) > -1 || o.DISPLAY_LAST_COMMA_FIRST.toLowerCase().indexOf(string.toLowerCase()) > -1;
-	      });
-
-	      var xlist = this.createList(temp);
-	      this.setState({ list: xlist });
-	    },
-	    onKeyDown: function onKeyDown(e, string) {
-	      var _this2 = this;
-
-	      var _makeSearchRequest = function _makeSearchRequest() {
-	        _this2.filterPlayers(string);
-	      };
-
-	      var search = _.debounce(_makeSearchRequest, 250);
-
-	      search();
+	      return React.createElement(_reactChartjs.Line, { ref: 'chart', data: chartData });
 	    },
 	    render: function render() {
-	      var _state4 = this.state;
-	      var type = _state4.type;
-	      var list = _state4.list;
-	      var players = _state4.players;
-	      var isLoading = _state4.isLoading;
-	      var urls = _state4.urls;
-	      var selected = _state4.selected;
-
 	      return React.createElement(
 	        'div',
-	        { style: styles.wrap },
-	        React.createElement(_TextField2.default, { id: 'filterPlayers',
-	          onChange: this.onKeyDown,
-	          hintText: 'Filter Players',
-	          floatingLabelText: 'Filter Players'
-	        }),
-	        React.createElement(
-	          _Paper2.default,
-	          { style: { width: '100%', overflow: 'auto' } },
-	          list.letters && list.letters.length ? React.createElement(
-	            _List.List,
-	            null,
-	            _.map(list.letters, this.renderList)
-	          ) : null
-	        ),
-	        React.createElement(_RaisedButton2.default, {
-	          icon: React.createElement(_FontIcon2.default, { className: isLoading ? 'fa fa-circle-o-notch fa-spin' : 'fa fa-refresh' }),
-	          onTouchTap: this.loadUrl.bind(this, selected),
-	          style: { position: 'absolute', right: 15, top: 15,
-	            transition: 'all 0.5s ease-in',
-	            WebkitTransition: 'all 0.5s ease-in'
-	          } })
+	        { className: 'chart_wrap', style: { height: '100%', width: '100%', padding: 15 } },
+	        this.drawChart()
 	      );
 	    }
 	  };
@@ -2120,42 +1975,1295 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 640:
+/***/ 734:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Card = __webpack_require__(641);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _GridList = __webpack_require__(494);
+	var _RaisedButton = __webpack_require__(513);
 
-	var _CircularProgress = __webpack_require__(497);
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+	var _FontIcon = __webpack_require__(483);
 
-	var _Subheader = __webpack_require__(454);
+	var _FontIcon2 = _interopRequireDefault(_FontIcon);
+
+	var _Avatar = __webpack_require__(644);
+
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+
+	var _Paper = __webpack_require__(439);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _Chip = __webpack_require__(646);
+
+	var _Chip2 = _interopRequireDefault(_Chip);
+
+	var _Subheader = __webpack_require__(490);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _FlatButton = __webpack_require__(462);
+	var _List = __webpack_require__(528);
 
-	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+	var _CircularProgress = __webpack_require__(533);
 
-	var _IconButton = __webpack_require__(445);
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
+	var _SelectField = __webpack_require__(651);
+
+	var _SelectField2 = _interopRequireDefault(_SelectField);
+
+	var _TextField = __webpack_require__(653);
+
+	var _TextField2 = _interopRequireDefault(_TextField);
+
+	var _Drawer = __webpack_require__(430);
+
+	var _Drawer2 = _interopRequireDefault(_Drawer);
+
+	var _colors = __webpack_require__(170);
+
+	var _IconButton = __webpack_require__(481);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Avatar = __webpack_require__(608);
+	var _moreVert = __webpack_require__(665);
+
+	var _moreVert2 = _interopRequireDefault(_moreVert);
+
+	var _IconMenu = __webpack_require__(666);
+
+	var _IconMenu2 = _interopRequireDefault(_IconMenu);
+
+	var _MenuItem = __webpack_require__(442);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+	var _saladUi = __webpack_require__(735);
+
+	var _saladUi2 = _interopRequireDefault(_saladUi);
+
+	var _LinearProgress = __webpack_require__(736);
+
+	var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
+
+	var _Tabs = __webpack_require__(535);
+
+	var _reactSwipeableViews = __webpack_require__(738);
+
+	var _reactSwipeableViews2 = _interopRequireDefault(_reactSwipeableViews);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
+
+	core.Component('Stats.Diaglog', ['Stats.Google.Chart'], function (Chart) {
+	  return {
+	    getInitialState: function getInitialState() {
+	      return {
+	        open: false,
+	        players: [],
+	        tabIndex: 0
+	      };
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps(next) {
+	      this.setState({ open: next.open, data: next.data });
+	      if (next.data && !_.isEmpty(next.data)) {
+	        this.setPlayers(next.data);
+	      }
+	    },
+	    componentWillMount: function componentWillMount() {
+	      var _this = this;
+
+	      core.on('players.loaded', function (_ref) {
+	        var players = _ref.players;
+	        var total = _ref.total;
+
+	        _this.setState({ players: players });
+	      });
+	    },
+	    componentWillUnmount: function componentWillUnmount() {
+	      this.setState({ data: null });
+	    },
+	    setPlayers: function setPlayers(data) {
+	      var players = this.state.players;
+
+	      var myIds = data['My Players'];
+	      var targetIds = data['Target Players'];
+
+	      var get = function get(arr) {
+	        return _.filter(players, function (player) {
+	          return arr.indexOf(player.PlayerID) > -1;
+	        });
+	      };
+	      var newTeam = {
+	        'MyPlayers': { data: get(myIds), label: 'My Players' },
+	        'TargetPlayers': { data: get(targetIds), label: 'Target Players' }
+	      };
+
+	      this.setState(_extends({}, newTeam));
+	    },
+	    handleClose: function handleClose() {
+	      this.setState({ open: false });
+	      if (this.props.onClose) this.props.onClose();
+	    },
+	    renderPlayers: function renderPlayers(players) {
+	      var style = {
+	        flex: 1,
+	        height: '250px',
+	        margin: '0px 15px',
+	        paddingBottom: '48px',
+	        overflow: 'hidden'
+	      };
+
+	      if (!players || !players.data) return null;
+	      return React.createElement(
+	        _Paper2.default,
+	        { key: _.uniqueId(), style: _extends({}, style, style.paper) },
+	        React.createElement(
+	          _Subheader2.default,
+	          { style: styles.subheader },
+	          players.label
+	        ),
+	        React.createElement(
+	          _List.List,
+	          { style: { height: '100%', overflowY: 'auto' } },
+	          _.map(players.data, this.renderPlayer)
+	        )
+	      );
+	    },
+	    renderPlayer: function renderPlayer(player, key) {
+	      return React.createElement(_List.ListItem, { key: key,
+	        innerDivStyle: styles.listItem,
+	        primaryText: this.renderPrimary(player),
+	        leftIcon: React.createElement(
+	          _FontIcon2.default,
+	          { className: 'material-icons', style: {
+	              height: 'auto',
+	              width: 'auto',
+	              top: '0',
+	              margin: '0 5px 0 0',
+	              left: '0',
+	              position: 'relative',
+	              fontSize: '18px'
+	            } },
+	          'person'
+	        ),
+	        secondaryTextLines: 1
+	      });
+	    },
+	    renderPrimary: function renderPrimary(item) {
+	      var Name = item.Name;
+	      var LastName = item.LastName;
+	      var PlayerID = item.PlayerID;
+
+	      var primary = {
+	        wrap: {
+	          width: '100%',
+	          display: 'flex',
+	          alignItems: 'center',
+	          justifyContent: 'space-between'
+
+	        }
+	      };
+	      return React.createElement(
+	        'div',
+	        { style: primary.wrap },
+	        React.createElement(
+	          'div',
+	          { style: { width: 180 } },
+	          LastName,
+	          ', ',
+	          Name
+	        )
+	      );
+	    },
+	    renderStats: function renderStats(data) {
+	      var mainStats = [];
+	      if (!data) return null;else {
+	        var stats = data.stats;
+
+
+	        for (var x in stats) {
+	          if (x === 'PTS') mainStats.push({ label: 'Points', val: stats[x] });
+	          if (x === 'AST') mainStats.push({ label: 'Assits', val: stats[x] });
+	          if (x === 'REB') mainStats.push({ label: 'Rebounds', val: stats[x] });
+	        }
+	        return React.createElement(
+	          'div',
+	          { style: { display: 'flex', padding: '15px 5px' } },
+	          _.map(mainStats, this.renderStatBox)
+	        );
+	      }
+	      /**
+	       * AST, PTS, REB
+	         */
+	    },
+	    renderOverallStats: function renderOverallStats(data) {
+	      var mainStats = [];
+	      if (!data) return null;else {
+	        var stats = data.stats;
+
+	        mainStats = _.map(stats, function (value, key) {
+	          return { key: key, value: value };
+	        });
+
+	        return React.createElement(
+	          _Paper2.default,
+	          { style: _extends({ display: 'flex', padding: 0, flexDirection: 'column', margin: '5px 20px 15px' }, style.paper) },
+	          React.createElement(
+	            _Subheader2.default,
+	            { style: style.sub },
+	            'OverallS Stats'
+	          ),
+	          React.createElement(Chart, { data: mainStats })
+	        );
+	      }
+	      /**
+	       * AST, PTS, REB
+	         */
+	    },
+	    renderStatBox: function renderStatBox(stat, key) {
+
+	      var getVal = function getVal(val) {
+	        var text = 'you ';
+	        if (val * 10 < 0) {
+	          text += 'give ';
+	          val = val * -1;
+	        } else text += 'get ';
+	        return text + val;
+	      };
+	      return React.createElement(
+	        _Paper2.default,
+	        { key: key, style: _extends({}, style.box, style.paper) },
+	        React.createElement(
+	          _Subheader2.default,
+	          { style: style.sub },
+	          stat.label
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: style.bar },
+	          React.createElement(
+	            'div',
+	            { style: { marginBottom: '15px' } },
+	            getVal(stat.val)
+	          ),
+	          React.createElement(_LinearProgress2.default, {
+	            color: stat.val * 10 < 0 ? '#F44336' : '#03A9F4',
+	            mode: 'determinate',
+	            value: stat.val * 10 < 0 ? stat.val * -1 : stat.val,
+	            min: 0, max: 30 })
+	        )
+	      );
+	    },
+	    handleTabChange: function handleTabChange(val) {
+	      this.setState({ tabIndex: val });
+	    },
+	    renderTabs: function renderTabs() {
+	      var _state = this.state;
+	      var tabIndex = _state.tabIndex;
+	      var data = _state.data;
+
+	      var styles = {
+	        headline: {
+	          fontSize: 24,
+	          paddingTop: 16,
+	          marginBottom: 12,
+	          fontWeight: 400
+	        }
+	      };
+
+	      return React.createElement(
+	        'div',
+	        { style: { padding: 20 } },
+	        React.createElement(
+	          _Tabs.Tabs,
+	          { onChange: this.handleTabChange,
+	            value: this.state.tabIndex },
+	          React.createElement(_Tabs.Tab, { label: 'Basic Stats', value: 0 }),
+	          React.createElement(_Tabs.Tab, { label: 'Overall Stats', value: 1 })
+	        ),
+	        React.createElement(
+	          _reactSwipeableViews2.default,
+	          {
+	            index: this.state.tabIndex,
+	            onChangeIndex: this.handleTabChange
+	          },
+	          React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	              'h2',
+	              { style: styles.headline },
+	              'Tabs with slide effect'
+	            ),
+	            'Swipe to see the next slide.',
+	            React.createElement('br', null)
+	          ),
+	          this.renderStats(data)
+	        )
+	      );
+	    },
+	    render: function render() {
+	      var _state2 = this.state;
+	      var open = _state2.open;
+	      var MyPlayers = _state2.MyPlayers;
+	      var TargetPlayers = _state2.TargetPlayers;
+	      var data = _state2.data;
+
+
+	      var customContentStyle = {
+	        width: open ? 'calc(100% - 140px)' : 0, top: 65,
+	        background: '#f5f9fc'
+	      };
+	      {/*{ this.renderTabs() }*/}
+	      return React.createElement(
+	        _Drawer2.default,
+	        { containerStyle: customContentStyle, openSecondary: true, open: open },
+	        React.createElement(
+	          _IconButton2.default,
+	          { iconStyle: { fontSize: 16 },
+	            iconClassName: 'material-icons',
+	            onTouchTap: this.handleClose.bind(this, null) },
+	          'clear_all'
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: { display: 'flex', padding: 5 } },
+	          this.renderPlayers(MyPlayers),
+	          this.renderPlayers(TargetPlayers)
+	        ),
+	        this.renderStats(data),
+	        this.renderOverallStats(data)
+	      );
+	    }
+	  };
+	});
+	var styles = {
+	  avatar: {
+	    paper: {
+	      height: 45,
+	      width: 45,
+	      overflow: 'hidden',
+	      textAlign: 'center',
+	      display: 'flex',
+	      alignItems: 'center',
+	      justifyContent: 'center',
+	      margin: '0 auto'
+	    },
+	    image: { maxWidth: '100%' }
+	  },
+	  subheader: {
+	    backgroundColor: '#323e51',
+	    position: 'relative',
+	    fontSize: '12px',
+	    fontWeight: '700',
+	    color: '#E0F2F1'
+	  },
+	  listItem: { padding: '10px 15px', fontSize: 14, height: 35, display: 'flex', alignItems: 'center', borderBottom: '1px solid #eee' },
+	  wrap: { height: '100%', paddingBottom: '60px' },
+	  badgeWrap: { position: 'absolute', right: '15px', top: '12px', fontSize: 12 },
+	  badge: function badge(primary) {
+	    return { width: '34px', height: '24px', borderRadius: '15%', background: primary ? 'rgba(70, 187, 194, 0.5)' : 'rgba(255, 64, 129, .35)' };
+	  }
+	};
+	var style = {
+	  box: {
+	    flex: 1,
+	    height: 'auto',
+	    margin: '0 15px',
+	    flexDirection: 'column',
+	    justifyContent: 'space-between',
+	    alignItems: 'center'
+	  },
+	  paper: {
+	    boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
+	  },
+	  sub: {
+	    height: 30, color: '#E0F2F1', backgroundColor: '#323e51',
+	    display: 'flex', alignItems: 'center', lineHeight: 'normal', paddingLeft: 15, position: 'relative',
+	    fontSize: '12px', fontWeight: '700', borderBottom: '1px solid #ddd'
+	  },
+	  bar: { padding: '10px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', height: '100px', flex: '1', flexDirection: 'column' }
+	};
+
+/***/ },
+
+/***/ 842:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	var _RaisedButton = __webpack_require__(513);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _FlatButton = __webpack_require__(498);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+	var _FontIcon = __webpack_require__(483);
+
+	var _FontIcon2 = _interopRequireDefault(_FontIcon);
+
+	var _Avatar = __webpack_require__(644);
+
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+
+	var _Paper = __webpack_require__(439);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _Chip = __webpack_require__(646);
+
+	var _Chip2 = _interopRequireDefault(_Chip);
+
+	var _Subheader = __webpack_require__(490);
+
+	var _Subheader2 = _interopRequireDefault(_Subheader);
+
+	var _List = __webpack_require__(528);
+
+	var _RefreshIndicator = __webpack_require__(649);
+
+	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
+
+	var _LinearProgress = __webpack_require__(736);
+
+	var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
+
+	var _SelectField = __webpack_require__(651);
+
+	var _SelectField2 = _interopRequireDefault(_SelectField);
+
+	var _TextField = __webpack_require__(653);
+
+	var _TextField2 = _interopRequireDefault(_TextField);
+
+	var _Dialog = __webpack_require__(511);
+
+	var _Dialog2 = _interopRequireDefault(_Dialog);
+
+	var _colors = __webpack_require__(170);
+
+	var _IconButton = __webpack_require__(481);
+
+	var _IconButton2 = _interopRequireDefault(_IconButton);
+
+	var _moreVert = __webpack_require__(665);
+
+	var _moreVert2 = _interopRequireDefault(_moreVert);
+
+	var _IconMenu = __webpack_require__(666);
+
+	var _IconMenu2 = _interopRequireDefault(_IconMenu);
+
+	var _MenuItem = __webpack_require__(442);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+	var _Badge = __webpack_require__(843);
+
+	var _Badge2 = _interopRequireDefault(_Badge);
+
+	var _Toolbar = __webpack_require__(670);
+
+	var _CircularProgress = __webpack_require__(533);
+
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
+	var _reactLazyload = __webpack_require__(909);
+
+	var _reactLazyload2 = _interopRequireDefault(_reactLazyload);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
+
+
+	var returnAvatar = function returnAvatar(id, uri, type) {
+	  run('' + uri + id + '.png');
+	  function run(uri) {
+	    var xhr = new XMLHttpRequest();
+	    xhr.responseType = 'blob';
+	    xhr.onload = function () {
+	      try {
+	        document.getElementById(id).src = window.URL.createObjectURL(xhr.response);
+	      } catch (e) {}
+	      // console.error(e)
+
+	      // return window.URL.createObjectURL(xhr.response);
+	    };
+	    xhr.open('GET', uri, true);
+	    xhr.send();
+	  }
+	};
+	var copy = function copy(obj) {
+	  if (null == obj || "object" != (typeof obj === 'undefined' ? 'undefined' : _typeof(obj))) return obj;
+	  var copy = obj.constructor();
+	  for (var attr in obj) {
+	    if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+	  }
+	  return copy;
+	};
+	core.Component('view.Compare', ['RotoPlayer'], function (RotoPlayer) {
+	  return {
+	    getInitialState: function getInitialState() {
+	      return {
+	        selected: 'players', // Rotoworld
+	        players: [],
+	        selectedOpt: 'Last Name',
+	        list: [],
+	        origList: [],
+	        query: '',
+	        isLoading: true,
+	        toggleSearch: false,
+	        hoverID: null,
+	        form: {
+	          'Target Players': [],
+	          'My Players': []
+	        },
+	        pageNumber: 1,
+	        total: 0
+	      };
+	    },
+	    componentWillMount: function componentWillMount() {
+	      var _this = this;
+
+	      this.initForm();
+	      core.on('players.loaded', function (_ref) {
+	        var players = _ref.players;
+	        var total = _ref.total;
+
+	        setTimeout(function () {
+	          _this.setState({ total: total, players: _.orderBy(players, 'LastName') });
+	          _this.handleList(players);
+	        }, 250);
+	      });
+	    },
+	    componentDidMount: function componentDidMount() {
+	      // this.loadPlayers(this.state.pageNumber, this.handleList);
+
+	      // setTimeout(() => {
+	      //   this.loadMore(2)
+	      //   setTimeout(() => {
+	      //     this.loadMore(3)
+	      //   }, 1000);
+	      // }, 1000);
+
+	    },
+
+	    // loadPlayers(pageNumber, callback) {
+	    //   core.run('getPlayersByPage' ,{ period: '365', page: pageNumber })
+	    //       .then(({ data, isError })=>{
+	    //         if (isError) return;
+	    //         else {
+	    //           var { Players, total } = data;
+	    //           if (Players && total) {
+	    //             this.setState({ total: total });
+	    //             if (callback) callback(this.state.players)
+	    //           }
+	    //         }
+	    //       }); 
+	    // },
+
+	    // loadMore(number){
+	    //   var { list } = this.state;
+	    //   var temp;
+	    //   this.setState({ isLoading: true })
+	    //   const addMorePlayers = (players) => {
+	    //     temp = list.concat(players);
+	    //     temp = _.sortBy(temp, 'LastName');
+	    //     this.setState({ list: temp, origList: temp, isLoading: false, pageNumber: number })
+	    //   }
+	    //   this.loadPlayers(number, addMorePlayers)
+	    // },
+
+	    initForm: function initForm() {
+	      this.setState({
+	        form: {
+	          'Target Players': [],
+	          'My Players': []
+	        }
+	      });
+	    },
+	    handleList: function handleList(players) {
+	      var list, chunks;
+	      if (players && players instanceof Array) {
+	        list = _.sortBy(players, 'LastName');
+	        this.setState({ origList: list, list: list, isLoading: false });
+	      }
+	      // console.debug('players => ', players);
+	    },
+	    renderPlayersList: function renderPlayersList(list) {
+	      if (list && list.length) {
+	        return React.createElement(
+	          _List.List,
+	          { style: { fontSize: 12, overflow: 'auto', flex: 1, padding: '0px !important' } },
+	          _.map(list, this.renderList)
+	        );
+	      }
+	      return null;
+	    },
+	    renderComparedList: function renderComparedList(item, key) {
+	      var _state = this.state;
+	      var selected = _state.selected;
+	      var isLoading = _state.isLoading;
+	      var list = _state.list;
+	      // console.log(item)
+
+	      var style = {
+	        transition: 'all 0.2s ease-in-out 0.1s',
+	        WebkitTransition: 'all 0.2s ease-in-out 0.1s',
+	        opacity: isLoading ? 0 : 1,
+	        transform: isLoading ? 'scale(0.4)' : 'scale(1)',
+	        WebkitTransform: isLoading ? 'scale(0.4)' : 'scale(1)'
+	      };
+	      return React.createElement(_List.ListItem, { key: key,
+	        innerDivStyle: styles.listItem,
+	        primaryText: this.renderPrimary(item),
+	        leftIcon: React.createElement(
+	          _FontIcon2.default,
+	          { className: 'material-icons', style: {
+	              height: 'auto',
+	              width: 'auto',
+	              top: '0',
+	              margin: '0 5px 0 0',
+	              left: '0',
+	              position: 'relative',
+	              fontSize: '18px'
+	            } },
+	          'person'
+	        ),
+	        secondaryTextLines: 1
+	      });
+	    },
+	    renderList: function renderList(item, key) {
+	      var _state2 = this.state;
+	      var selected = _state2.selected;
+	      var isLoading = _state2.isLoading;
+
+	      var style = {
+	        transition: 'all 0.2s ease-in-out 0.1s',
+	        WebkitTransition: 'all 0.2s ease-in-out 0.1s',
+	        opacity: isLoading ? 0 : 1,
+	        transform: isLoading ? 'scale(0.4)' : 'scale(1)',
+	        WebkitTransform: isLoading ? 'scale(0.4)' : 'scale(1)'
+	      };
+
+	      var placeholder = function placeholder() {
+	        return React.createElement(
+	          'div',
+	          { style: _extends({}, styles.listItem, { justifyContent: 'center' }) },
+	          'Loading'
+	        );
+	      };
+	      if (item.isInComapre) console.log(item);
+	      if (item.isInComapre) return null;
+	      return React.createElement(
+	        _reactLazyload2.default,
+	        { height: 45, key: key, once: true, resize: true, overflow: true, placeholder: placeholder(), offset: [-90, 0], debounce: 500 },
+	        React.createElement(_List.ListItem, { key: key,
+	          innerDivStyle: styles.listItem,
+	          primaryText: this.renderPrimary(item, key),
+	          leftIcon: React.createElement(
+	            _FontIcon2.default,
+	            { className: 'material-icons', style: {
+	                height: 'auto',
+	                width: 'auto',
+	                top: '0',
+	                margin: '0 5px 0 0',
+	                left: '0',
+	                position: 'relative',
+	                fontSize: '18px'
+	              } },
+	            'person'
+	          ),
+	          secondaryTextLines: 1
+	        })
+	      );
+	    },
+	    onMouseEnter: function onMouseEnter(id) {
+	      this.setState({ hoverID: id });
+	    },
+	    onMouseLeave: function onMouseLeave() {
+	      this.setState({ hoverID: null });
+	    },
+	    renderPrimary: function renderPrimary(item, i) {
+	      var _this2 = this;
+
+	      var _state3 = this.state;
+	      var hoverID = _state3.hoverID;
+	      var selectedOpt = _state3.selectedOpt;
+	      var Name = item.Name;
+	      var LastName = item.LastName;
+	      var PlayerID = item.PlayerID;
+	      var isInComapre = item.isInComapre;
+	      var Statistics = item.Statistics;
+
+	      var primary = {
+	        wrap: {
+	          width: '100%',
+	          display: 'flex',
+	          alignItems: 'center',
+	          justifyContent: 'space-between'
+
+	        },
+	        buttons: {
+	          fontSize: 16,
+	          width: 26
+	        },
+	        smallIcon: {
+	          height: 26
+	        },
+	        add: {
+	          display: isInComapre ? 'none' : 'flex'
+	        },
+	        remove: {
+	          display: !isInComapre ? 'none' : 'flex'
+	        }
+	      };
+	      var getFontWeight = function getFontWeight(i) {
+	        if (i <= 2) return 700;else return 500;
+	      };
+	      var renderStat = function renderStat() {
+	        if (isInComapre || !selectedOpt || selectedOpt.toLowerCase() === 'first name' || selectedOpt.toLowerCase() === 'last name') {
+	          return null;
+	        } else return React.createElement(
+	          'span',
+	          { style: { marginRight: 15, fontWeight: getFontWeight(i) } },
+	          Statistics[selectedOpt],
+	          ' '
+	        );
+	      };
+
+	      return React.createElement(
+	        'div',
+	        { style: primary.wrap },
+	        React.createElement(
+	          'div',
+	          { style: { width: '100%', display: 'flex', justifyContent: 'space-between' } },
+	          LastName,
+	          ', ',
+	          Name,
+	          renderStat()
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: _extends({ flex: '0 auto' }, primary.add) },
+	          React.createElement(
+	            _IconButton2.default,
+	            { style: { marginRight: 2.5 },
+	              iconStyle: { fontSize: 16 },
+	              iconClassName: 'material-icons',
+	              onTouchTap: function onTouchTap(e) {
+	                _this2.addTo('Target Players', PlayerID);
+	              } },
+	            'add_shopping_cart'
+	          ),
+	          React.createElement(
+	            _IconButton2.default,
+	            {
+	              iconClassName: 'material-icons',
+	              iconStyle: { fontSize: 16 },
+	              onTouchTap: function onTouchTap(e) {
+	                _this2.addTo('My Players', PlayerID);
+	              } },
+	            'remove_shopping_cart'
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: _extends({ flex: '0 auto' }, primary.remove) },
+	          React.createElement(
+	            _IconButton2.default,
+	            { iconStyle: { fontSize: 16 },
+	              iconClassName: 'material-icons',
+	              onTouchTap: function onTouchTap(e) {
+	                _this2.removePlayer(PlayerID);
+	              } },
+	            'remove_circle'
+	          )
+	        )
+	      );
+	    },
+	    addTo: function addTo(where, id) {
+	      var _state4 = this.state;
+	      var form = _state4.form;
+	      var list = _state4.list;
+	      var origList = _state4.origList;
+	      var selectedOpt = _state4.selectedOpt;
+	      var players = _state4.players;
+
+	      var temp = copy(form);
+	      // console.log(id, where)
+	      temp[where].push(id);
+	      this.setState({ form: temp, isLoading: true });
+	      var _that = this;
+	      // setTimeout(function() {
+	      this.filterBy(selectedOpt);
+	      // }, 350);
+	    },
+	    removePlayer: function removePlayer(id) {
+	      var _state5 = this.state;
+	      var form = _state5.form;
+	      var list = _state5.list;
+	      var origList = _state5.origList;
+
+	      var index,
+	          temp = []; //copy(form);
+	      for (var x in form) {
+	        if (form[x] && form[x].length) {
+	          for (var i = 0; i < form[x].length; i++) {
+	            if (form[x][i] === id) {
+	              form[x] = _.filter(form[x], function (item) {
+	                return item !== id;
+	              });
+	              break;
+	            }
+	          }
+	        }
+	      }
+	      temp = form;
+	      this.setState({ form: temp });
+	      this.filterList(origList, true);
+	    },
+	    filterList: function filterList(list, updateState) {
+	      var _state6 = this.state;
+	      var form = _state6.form;
+	      var selectedOpt = _state6.selectedOpt;
+
+	      var mlist = list,
+	          ids = [];
+	      for (var d in form) {
+	        if (form[d].length) {
+	          for (var x = 0; x < form[d].length; x++) {
+	            ids.push(form[d][x]);
+	          }
+	        }
+	      }
+	      if (ids && ids.length) {
+	        mlist = _.map(list, function (item) {
+	          if (ids.indexOf(item.PlayerID) > -1) {
+	            return _extends({}, item, { isInComapre: true });
+	          } else {
+	            return _extends({}, item, { isInComapre: false });
+	          }
+	        });
+	        // var players = _.map(players, (item)=>{
+	        //   if (ids.indexOf(item.PlayerID) > -1) {
+	        //     return { ...item, isInComapre: true }
+	        //   }
+	        //   else {
+	        //     return { ...item, isInComapre: false }
+	        //   }
+	        // });
+	      }
+	      if (!updateState) return mlist;
+	      this.setState({ list: mlist, isLoading: false, searchLoading: false });
+	    },
+	    makeCompare: function makeCompare() {
+	      core.run('comparePlayers', { form: _extends({}, this.state.form, { Period: '364' }) }).then(function (data) {
+	        core.emit('compared.players', data);
+	      });
+	    },
+	    toggleSearchPlayers: function toggleSearchPlayers() {
+	      var toggleSearch = this.state.toggleSearch;
+
+	      this.setState({ toggleSearch: !toggleSearch });
+	    },
+	    onSearchPlayers: function onSearchPlayers() {
+	      var _state7 = this.state;
+	      var list = _state7.list;
+	      var players = _state7.players;
+	      var origList = _state7.origList;
+	      var query = _state7.query;
+	      var searchLoading = _state7.searchLoading;
+
+	      this.setState({ searchLoading: true });
+	      var temp;
+	      if (!query) {
+	        temp = this.filterList(players, false);
+	      } else {
+	        temp = _.filter(players, function (o) {
+	          return o.Name.toLowerCase().indexOf(query.toLowerCase()) > -1 || o.LastName.toLowerCase().indexOf(query.toLowerCase()) > -1;
+	        });
+	      }
+	      temp = _.sortBy(temp, 'LastName');
+
+	      // setTimeout(()=>{
+	      this.setState({ list: temp, searchLoading: false });
+	      // }, 1500)
+	    },
+	    onReset: function onReset() {
+	      this.initForm();
+	      this.setState({ query: '' });
+	      this.filterList(this.state.players, true);
+	      this.setState({ selectedOpt: 'Last Name' });
+	    },
+	    onKeyDown: function onKeyDown(e, string) {
+	      this.setState({ query: string });
+	    },
+	    onScroll: function onScroll(e) {
+	      // var { total, pageNumber, origList } = this.state;
+	      // total = Number(total);
+	      // console.log(origList.length,'::', total)
+	      // var { clientHeight, scrollHeight, scrollTop } = e.target;
+	      // if (scrollHeight - scrollTop === clientHeight) {
+	      //   if (total >= origList.length) {
+	      //     pageNumber += 1;
+	      //     this.loadMore(pageNumber)
+	      //   }
+	      // }
+	    },
+	    renderComparePlayers: function renderComparePlayers(ids, title) {
+	      var _state8 = this.state;
+	      var origList = _state8.origList;
+	      var players = _state8.players;
+
+	      if (!ids || !ids.length) return null;
+	      var mlist = _.filter(players, function (item) {
+	        return ids.indexOf(item.PlayerID) > -1;
+	      });
+	      if (!mlist || !mlist.length) return null;else mlist = _.map(mlist, function (item) {
+	        return _extends({}, item, {
+	          isInComapre: true
+	        });
+	      });
+	      return React.createElement(
+	        _List.List,
+	        { style: { fontSize: 12, width: '100%', padding: '0px !important' } },
+	        _.map(mlist, this.renderComparedList)
+	      );
+	    },
+	    renderToolbar: function renderToolbar() {
+	      var _state9 = this.state;
+	      var toggleSearch = _state9.toggleSearch;
+	      var query = _state9.query;
+
+	      var textfield = {
+	        transition: 'margin 0.15s ease-in-out, width 0.10s ease-in-out',
+	        marginLeft: toggleSearch ? 15 : 0,
+	        marginRight: 15,
+	        width: toggleSearch ? '145px' : '0px',
+	        fontSize: '12px'
+	      };
+	      var fieldWrap = {
+	        transition: 'all 0.10s ease-in-out',
+	        opacity: toggleSearch ? '1' : '0',
+	        width: toggleSearch ? '175px' : '0px',
+	        display: 'flex'
+	      };
+	      var icon = { display: 'flex', alignItems: 'center', fontSize: 18, cursor: 'pointer' };
+	      return React.createElement(
+	        _Toolbar.Toolbar,
+	        { style: { width: '100%', paddingRight: 0, background: '#fff', borderBottom: '1px solid #dedede' } },
+	        React.createElement(
+	          _Toolbar.ToolbarGroup,
+	          { firstChild: true },
+	          React.createElement(
+	            _FontIcon2.default,
+	            { className: 'material-icons',
+	              onTouchTap: this.toggleSearchPlayers,
+	              style: icon },
+	            'search'
+	          ),
+	          React.createElement(
+	            'div',
+	            { style: fieldWrap },
+	            React.createElement(_TextField2.default, { id: 'search_players', underlineStyle: { borderColor: 'rgb(0, 188, 212)' }, style: textfield, value: query, onChange: this.onKeyDown }),
+	            React.createElement(
+	              _FontIcon2.default,
+	              { className: 'material-icons',
+	                disabled: !this.state.query,
+	                onTouchTap: this.onSearchPlayers,
+	                style: _extends({}, icon, { marginRight: '0.5em' }) },
+	              'navigate_next'
+	            ),
+	            React.createElement(
+	              _FontIcon2.default,
+	              { className: 'material-icons',
+	                onTouchTap: this.clear,
+	                disabled: !this.state.query,
+	                style: _extends({}, icon, { fontSize: 16 }) },
+	              'clear'
+	            )
+	          ),
+	          React.createElement(_Toolbar.ToolbarSeparator, null)
+	        ),
+	        React.createElement(
+	          _Toolbar.ToolbarGroup,
+	          null,
+	          React.createElement(_FlatButton2.default, { labelStyle: { fontSize: 12 }, disabled: this.getDisabled('list'), label: 'reset', onTouchTap: this.onReset }),
+	          React.createElement(_Toolbar.ToolbarSeparator, { style: { marginLeft: 0 } }),
+	          React.createElement(_FlatButton2.default, { labelStyle: { fontSize: 12 }, disabled: this.getDisabled('form'), label: 'compare', primary: true, onTouchTap: this.makeCompare })
+	        )
+	      );
+	    },
+	    clear: function clear() {
+	      var _this3 = this;
+
+	      this.setState({ query: '', toggleSearch: false });
+	      setTimeout(function () {
+	        _this3.onSearchPlayers();
+	      }, 250);
+	    },
+	    getDisabled: function getDisabled(type) {
+	      var _state10 = this.state;
+	      var form = _state10.form;
+	      var list = _state10.list;
+	      var origList = _state10.origList;
+
+	      switch (type) {
+	        case 'form':
+	          return _.isEmpty(form) || _.isEmpty(form['Target Players']) || _.isEmpty(form['My Players']);
+	        case 'list':
+	          if (!_.isEmpty(form['Target Players']) || !_.isEmpty(form['My Players'])) return false;else return true;
+	      }
+	    },
+	    getTotal: function getTotal() {
+	      var _state11 = this.state;
+	      var total = _state11.total;
+	      var form = _state11.form;
+
+	      var realTotal;
+	      var num = Number(total) - Number(form['My Players'].length) - Number(form['Target Players'].length);
+	      return num;
+	    },
+	    renderOptions: function renderOptions() {
+	      var _this4 = this;
+
+	      var players = this.state.players;
+
+	      var options = [];
+	      if (!players || !players.length) return null;
+	      options = _.map(players[0].Statistics, function (val, stat) {
+	        return stat;
+	      });
+	      options.unshift('First Name');
+	      options.unshift('Last Name');
+	      return _.map(options, function (opt, i) {
+	        return React.createElement(_MenuItem2.default, { value: opt, key: i, primaryText: opt, onTouchTap: function onTouchTap(e) {
+	            _this4.filterBy(opt);
+	          } });
+	      });;
+	    },
+	    renderPlayersHeader: function renderPlayersHeader() {
+	      var selectedOpt = this.state.selectedOpt;
+
+	      return React.createElement(
+	        _Subheader2.default,
+	        { style: styles.subheader },
+	        'Players by ',
+	        selectedOpt,
+	        React.createElement(
+	          _IconMenu2.default,
+	          { iconStyle: { color: '#fff', fontSize: 14 }, style: { marginRight: '45px' },
+	            iconButtonElement: React.createElement(
+	              _IconButton2.default,
+	              {
+	                tooltip: 'filter list',
+	                iconClassName: 'material-icons' },
+	              'filter_list'
+	            ),
+	            menuStyle: { fontSize: 12 },
+	            anchorOrigin: { horizontal: 'middle', vertical: 'top' },
+	            targetOrigin: { horizontal: 'middle', vertical: 'top' },
+	            maxHeight: 202 },
+	          this.renderOptions()
+	        ),
+	        React.createElement(_Badge2.default, { secondary: true, badgeContent: this.getTotal(),
+	          style: styles.badgeWrap,
+	          badgeStyle: styles.badge(true) })
+	      );
+	    },
+	    filterBy: function filterBy(obj) {
+	      var _state12 = this.state;
+	      var players = _state12.players;
+	      var origList = _state12.origList;
+	      var list = _state12.list;
+	      var searchLoading = _state12.searchLoading;
+	      var isLoading = _state12.isLoading;
+
+	      this.setState({ searchLoading: true, isLoading: true });
+	      var temp;
+	      if (!obj) {
+	        temp = this.filterList(players, false);
+	      } else {
+	        if (obj.toLowerCase() === 'last name') temp = _.sortBy(list, 'LastName');else if (obj.toLowerCase() === 'first name') temp = _.sortBy(list, 'Name');else {
+	          temp = _.orderBy(players, 'Statistics.' + obj, ['desc']);
+	        }
+	      }
+	      this.filterList(temp, true);
+	      this.setState({ selectedOpt: obj });
+	    },
+	    render: function render() {
+	      var _state13 = this.state;
+	      var type = _state13.type;
+	      var list = _state13.list;
+	      var players = _state13.players;
+	      var isLoading = _state13.isLoading;
+	      var searchLoading = _state13.searchLoading;
+	      var form = _state13.form;
+	      var total = _state13.total;
+
+
+	      return React.createElement(
+	        'div',
+	        { style: styles.wrap },
+	        this.renderToolbar(),
+	        React.createElement(
+	          'div',
+	          { style: { display: 'flex', padding: 15, flexDirection: 'row', width: '100%', height: '100%' } },
+	          React.createElement(
+	            _Paper2.default,
+	            { style: _extends({}, styles.paper, { position: 'relative' }), onScroll: this.onScroll },
+	            React.createElement(
+	              'div',
+	              null,
+	              this.renderPlayersHeader()
+	            ),
+	            this.renderPlayersList(list),
+	            React.createElement(
+	              'div',
+	              { style: _extends({}, styles.spinner, { display: searchLoading || isLoading ? 'flex' : 'none' }) },
+	              React.createElement(_CircularProgress2.default, { style: { opacity: searchLoading || isLoading ? 1 : 0 } })
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { style: { display: 'flex', flex: 1, flexDirection: 'column', marginLeft: 15 } },
+	            React.createElement(
+	              _Paper2.default,
+	              { style: styles.paper, onScroll: this.onScroll },
+	              React.createElement(
+	                _Subheader2.default,
+	                { style: styles.subheader },
+	                'Give Players',
+	                React.createElement(_Badge2.default, { primary: true, badgeContent: form['My Players'].length,
+	                  style: styles.badgeWrap,
+	                  badgeStyle: styles.badge(false) })
+	              ),
+	              this.renderComparePlayers(form['My Players'])
+	            ),
+	            React.createElement(
+	              _Paper2.default,
+	              { style: _extends({ marginTop: 15 }, styles.paper), onScroll: this.onScroll },
+	              React.createElement(
+	                _Subheader2.default,
+	                { style: styles.subheader },
+	                'Get Players',
+	                React.createElement(_Badge2.default, { primary: true, badgeContent: form['Target Players'].length,
+	                  style: styles.badgeWrap,
+	                  badgeStyle: styles.badge(false) })
+	              ),
+	              this.renderComparePlayers(form['Target Players'])
+	            )
+	          )
+	        )
+	      );
+	    }
+	  };
+	});
+	var styles = {
+	  spinner: {
+	    position: 'absolute',
+	    top: '50px',
+	    bottom: '0',
+	    left: '0',
+	    display: 'flex',
+	    right: '0',
+	    alignItems: 'center',
+	    justifyContent: 'center',
+	    width: '100%',
+	    background: 'rgba(255,255,255,0.6)'
+	  },
+	  avatar: {
+	    paper: {
+	      height: 45,
+	      width: 45,
+	      overflow: 'hidden',
+	      textAlign: 'center',
+	      display: 'flex',
+	      alignItems: 'center',
+	      justifyContent: 'center',
+	      margin: '0 auto'
+	    },
+	    image: { maxWidth: '100%' }
+	  },
+	  paper: {
+	    display: 'flex', flex: 1, width: '100%', overflow: 'auto', flexDirection: 'column',
+	    boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
+	  },
+	  subheader: {
+	    backgroundColor: '#323e51',
+	    position: 'relative',
+	    fontSize: '12px',
+	    fontWeight: '700',
+	    color: '#E0F2F1',
+	    display: 'flex',
+	    justifyContent: 'space-between'
+	  },
+	  listItem: { padding: '10px 15px', fontSize: 14, height: 45, display: 'flex', alignItems: 'center', borderBottom: '1px solid #eee' },
+	  wrap: { height: '100%', paddingBottom: '60px' },
+	  badgeWrap: { position: 'absolute', right: '15px', top: '12px', fontSize: 12 },
+	  badge: function badge(primary) {
+	    return { width: '34px', height: '24px', borderRadius: '15%', background: primary ? 'rgba(70, 187, 194, 0.5)' : 'rgba(255, 64, 129, .35)' };
+	  }
+	};
+
+/***/ },
+
+/***/ 845:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _Card = __webpack_require__(846);
+
+	var _GridList = __webpack_require__(530);
+
+	var _CircularProgress = __webpack_require__(533);
+
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
+	var _Subheader = __webpack_require__(490);
+
+	var _Subheader2 = _interopRequireDefault(_Subheader);
+
+	var _FlatButton = __webpack_require__(498);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+	var _IconButton = __webpack_require__(481);
+
+	var _IconButton2 = _interopRequireDefault(_IconButton);
+
+	var _Avatar = __webpack_require__(644);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
+	var React = __webpack_require__(211);
 	var PropTypes = React.PropTypes;
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(465);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
 
 
 	var imgUrl = 'http://stats.nba.com/media/players/230x185/';
@@ -2318,61 +3426,61 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 651:
+/***/ 856:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(477);
+	var _RaisedButton = __webpack_require__(513);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(447);
+	var _FontIcon = __webpack_require__(483);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(608);
+	var _Avatar = __webpack_require__(644);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(403);
+	var _Paper = __webpack_require__(439);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(610);
+	var _Chip = __webpack_require__(646);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Subheader = __webpack_require__(454);
+	var _Subheader = __webpack_require__(490);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(492);
+	var _List = __webpack_require__(528);
 
-	var _RefreshIndicator = __webpack_require__(613);
+	var _RefreshIndicator = __webpack_require__(649);
 
 	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
 
-	var _CircularProgress = __webpack_require__(497);
+	var _CircularProgress = __webpack_require__(533);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(615);
+	var _SelectField = __webpack_require__(651);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _MenuItem = __webpack_require__(406);
+	var _MenuItem = __webpack_require__(442);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(465);
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var _ = __webpack_require__(501);
 
 
 	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
@@ -2635,19 +3743,19 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 652:
+/***/ 857:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactGoogleLogin = __webpack_require__(653);
+	var _reactGoogleLogin = __webpack_require__(858);
 
 	var _reactGoogleLogin2 = _interopRequireDefault(_reactGoogleLogin);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
-	var core = __webpack_require__(211);
+	var React = __webpack_require__(211);
+	var core = __webpack_require__(247);
 	// var moment = require('moment');
 	// var google = require('googleapis');
 	// var compute = google.compute('v1');
@@ -2721,36 +3829,36 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 654:
+/***/ 859:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _TextField = __webpack_require__(617);
+	var _TextField = __webpack_require__(653);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _RaisedButton = __webpack_require__(477);
+	var _RaisedButton = __webpack_require__(513);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(447);
+	var _FontIcon = __webpack_require__(483);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(608);
+	var _Avatar = __webpack_require__(644);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(403);
+	var _Paper = __webpack_require__(439);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(610);
+	var _Chip = __webpack_require__(646);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _DatePicker = __webpack_require__(655);
+	var _DatePicker = __webpack_require__(860);
 
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 
@@ -2758,9 +3866,9 @@ webpackJsonp([0],{
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var React = __webpack_require__(29);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
 
 	core.Component('view.Steps.One', ['ui.Loader'], function (Loader) {
 	  return {
@@ -2916,62 +4024,62 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 671:
+/***/ 876:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Snackbar = __webpack_require__(672);
+	var _Snackbar = __webpack_require__(877);
 
 	var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
-	var _RaisedButton = __webpack_require__(477);
+	var _RaisedButton = __webpack_require__(513);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FlatButton = __webpack_require__(462);
+	var _FlatButton = __webpack_require__(498);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _List = __webpack_require__(492);
+	var _List = __webpack_require__(528);
 
-	var _Subheader = __webpack_require__(454);
+	var _Subheader = __webpack_require__(490);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _Dialog = __webpack_require__(475);
+	var _Dialog = __webpack_require__(511);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
 	var _colors = __webpack_require__(170);
 
-	var _Paper = __webpack_require__(403);
+	var _Paper = __webpack_require__(439);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _TextField = __webpack_require__(617);
+	var _TextField = __webpack_require__(653);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Chip = __webpack_require__(610);
+	var _Chip = __webpack_require__(646);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Avatar = __webpack_require__(608);
+	var _Avatar = __webpack_require__(644);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _FontIcon = __webpack_require__(447);
+	var _FontIcon = __webpack_require__(483);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(29);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var moment = __webpack_require__(504);
-	var _ = __webpack_require__(465);
+	var React = __webpack_require__(211);
+	var sa = __webpack_require__(256);
+	var core = __webpack_require__(247);
+	var moment = __webpack_require__(540);
+	var _ = __webpack_require__(501);
 
 	core.Component('view.Steps.Two', ['Slot'], function (Slot) {
 	  return {
@@ -3324,14 +4432,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 676:
+/***/ 881:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var React = __webpack_require__(29);
-	var core = __webpack_require__(211);
-	var moment = __webpack_require__(504);
+	var React = __webpack_require__(211);
+	var core = __webpack_require__(247);
+	var moment = __webpack_require__(540);
 
 	core.Component('Views', [], function () {
 	  return {
