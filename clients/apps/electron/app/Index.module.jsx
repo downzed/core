@@ -108,7 +108,11 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
               wteams.push({
                 ...players[x],
                 ...teams[t],
+<<<<<<< HEAD
                 teamLogo: `http://stats.nba.com/media/img/teams/logos/${teams[t].abbreviation}_logo.svg`,
+=======
+                teamLogo: 'http://stats.nba.com/media/img/teams/logos/'+teams[t].abbreviation+'_logo.svg',
+>>>>>>> ab8102ed3d4265a4e0c43d3c778e12bd7551dd38
               })
             }
           }
