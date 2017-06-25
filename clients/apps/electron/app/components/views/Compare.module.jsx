@@ -3,22 +3,15 @@ var React = require('react');
 var sa = require('superagent')
 var core = require('core');
 var _ = require('lodash');
-import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
-import Chip from 'material-ui/Chip';
 import Subheader from 'material-ui/Subheader';
 import {List, ListItem} from 'material-ui/List';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
 import LinearProgress from 'material-ui/LinearProgress';
-import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
-import Dialog from 'material-ui/Dialog';
-import { transparent } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Badge from 'material-ui/Badge';
@@ -96,7 +89,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         //     this.loadMore(3)
         //   }, 1000);
         // }, 1000);
-        
+
       },
       // loadPlayers(pageNumber, callback) {
       //   core.run('getPlayersByPage' ,{ period: '365', page: pageNumber })
@@ -109,9 +102,9 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       //             if (callback) callback(this.state.players)
       //           }
       //         }
-      //       }); 
+      //       });
       // },
-      
+
       // loadMore(number){
       //   var { list } = this.state;
       //   var temp;
@@ -138,10 +131,9 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         if (players && players instanceof Array) {
           list = _.sortBy(players, 'LastName');
           this.setState({ origList: list, list: list, isLoading: false });
-        } 
-        // console.debug('players => ', players);
+        }
       },
-      
+
       renderPlayersList(list){
         if (list && list.length) {
           return (
@@ -149,7 +141,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
               { _.map(list, this.renderList) }
             </List>
           );
-        } 
+        }
         return null;
       },
 
@@ -199,14 +191,18 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             </div>
           )
         }
-        if (item.isInComapre) console.log(item)
+
         if (item.isInComapre) return null;
         return (
-          <LazyLoad height={45} key={ key } once={ true } resize={ true } overflow={ true } placeholder={ placeholder() } offset={[-90, 0]} debounce={500}>
+          <LazyLoad height={45} key={ key } once={ true } resize={ true }
+                    overflow={ true }
+                    placeholder={ placeholder() }
+                    offset={[-30, 0]} debounce={350}>
             <ListItem key={ key }
-                  innerDivStyle={ styles.listItem }
+                  style={{ background: item.color }}
+                  innerDivStyle={{ ...styles.listItem, paddingLeft: 15, background: item.color } }
                   primaryText={ this.renderPrimary(item, key) }
-                  leftIcon={ <FontIcon className="material-icons" style={{
+                  leftIcon={ <FontIcon className="material-icons" color={item.color} style={{
                         height: 'auto',
                         width: 'auto',
                         top: '0',
@@ -225,7 +221,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       onMouseEnter(id){
         this.setState({ hoverID: id })
       },
-        
+
       onMouseLeave(){
         this.setState({ hoverID: null })
       },
@@ -249,9 +245,9 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             height: 26,
           },
           add: {
-            display: isInComapre ? 'none' : 'flex',            
+            display: isInComapre ? 'none' : 'flex',
           },
-          remove: { 
+          remove: {
             display: !isInComapre ? 'none' : 'flex',
           }
         }
@@ -267,12 +263,12 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
 
         return (
           <div style={ primary.wrap }  >
-            
+
             <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
               { LastName }, { Name }
               { renderStat() }
             </div>
-  
+
             <div style={{ flex:'0 auto', ...primary.add }}>
               <IconButton style={{ marginRight: 2.5 }}
                   iconStyle={{ fontSize: 16 }}
@@ -295,7 +291,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
                   remove_circle
               </IconButton>
             </div>
-  
+
           </div>
         )
       },
@@ -311,7 +307,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         this.filterBy(selectedOpt)
         // }, 350);
       },
-      
+
       removePlayer(id){
         var { form, list, origList  } = this.state;
         var index, temp = []//copy(form);
@@ -349,8 +345,8 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             }
             else {
               return { ...item, isInComapre: false }
-            } 
-              
+            }
+
           });
           // var players = _.map(players, (item)=>{
           //   if (ids.indexOf(item.PlayerID) > -1) {
@@ -375,7 +371,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       toggleSearchPlayers(){
         var { toggleSearch } = this.state;
         this.setState({ toggleSearch: !toggleSearch });
-        
+
       },
 
       onSearchPlayers(){
@@ -421,7 +417,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       renderComparePlayers(ids, title){
-        var { origList, players } = this.state; 
+        var { origList, players } = this.state;
         if (!ids || !ids.length) return null;
         var mlist = _.filter(players, (item)=>{
           return ids.indexOf(item.PlayerID) > -1;
@@ -429,7 +425,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         if (!mlist || !mlist.length) return null;
         else mlist = _.map(mlist, (item)=>{
           return {
-            ...item, 
+            ...item,
             isInComapre: true
           }
         })
@@ -459,22 +455,22 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         return (
           <Toolbar style={{ width: '100%', paddingRight: 0, background: '#fff', borderBottom: '1px solid #dedede' }}>
             <ToolbarGroup firstChild={true}>
-              <FontIcon className="material-icons" 
-                        onTouchTap={ this.toggleSearchPlayers } 
+              <FontIcon className="material-icons"
+                        onTouchTap={ this.toggleSearchPlayers }
                         style={ icon }>
                         search
               </FontIcon>
 
               <div style={ fieldWrap }>
                 <TextField id={ 'search_players' } underlineStyle={{ borderColor: 'rgb(0, 188, 212)' }} style={ textfield } value={ query } onChange={ this.onKeyDown } />
-                <FontIcon className="material-icons" 
+                <FontIcon className="material-icons"
                           disabled={ !this.state.query }
-                          onTouchTap={ this.onSearchPlayers } 
+                          onTouchTap={ this.onSearchPlayers }
                           style={{ ...icon, marginRight: '0.5em' }} >
                           navigate_next
                 </FontIcon>
-                <FontIcon className="material-icons" 
-                          onTouchTap={ this.clear } 
+                <FontIcon className="material-icons"
+                          onTouchTap={ this.clear }
                           disabled={ !this.state.query }
                           style={{ ...icon, fontSize: 16 }} >
                           clear
@@ -492,12 +488,12 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       clear(){
-        this.setState({ query: '', toggleSearch: false }); 
+        this.setState({ query: '', toggleSearch: false });
         setTimeout(()=>{
-          this.onSearchPlayers() 
+          this.onSearchPlayers()
         }, 250);
       },
-      
+
       getDisabled(type){
         var { form, list, origList } = this.state;
         switch (type) {
@@ -515,7 +511,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         var num = Number(total) - Number(form['My Players'].length) - Number(form['Target Players'].length);
         return num;
       },
-      
+
       renderOptions(){
         var { players } = this.state;
         var options = [];
@@ -528,8 +524,8 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         return _.map(options, (opt, i)=>{
           return <MenuItem value={ opt } key={ i } primaryText={ opt }  onTouchTap={ (e)=> { this.filterBy(opt); } }/>
         });;
-      },  
-      
+      },
+
       renderPlayersHeader(){
         var { selectedOpt } = this.state;
         return (
@@ -549,13 +545,13 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
                 maxHeight={202}>
                 { this.renderOptions() }
             </IconMenu>
-            <Badge secondary={ true } badgeContent={ this.getTotal() } 
-                  style={ styles.badgeWrap } 
+            <Badge secondary={ true } badgeContent={ this.getTotal() }
+                  style={ styles.badgeWrap }
                   badgeStyle={ styles.badge(true) }/>
           </Subheader>
         )
       },
-     
+
       filterBy(obj){
         let { players, origList, list, searchLoading, isLoading } = this.state;
         this.setState({ searchLoading: true, isLoading: true })
@@ -575,7 +571,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
 
       render () {
         let { type, list, players, isLoading,  searchLoading, form, total } = this.state;
-       
+
           return (
             <div style={ styles.wrap }>
               { this.renderToolbar() }
@@ -594,22 +590,22 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
                     <Paper style={ styles.paper } onScroll={ this.onScroll }>
                       <Subheader style={ styles.subheader }>
                         Give Players
-                        <Badge primary={ true } badgeContent={ form['My Players'].length } 
-                            style={ styles.badgeWrap } 
+                        <Badge primary={ true } badgeContent={ form['My Players'].length }
+                            style={ styles.badgeWrap }
                              badgeStyle={ styles.badge(false) }/>
                       </Subheader>
                       { this.renderComparePlayers(form['My Players']) }
-                    </Paper>  
+                    </Paper>
 
                     <Paper style={{ marginTop: 15, ...styles.paper }} onScroll={ this.onScroll }>
                       <Subheader style={ styles.subheader }>
                         Get Players
-                        <Badge primary={ true } badgeContent={ form['Target Players'].length } 
-                               style={ styles.badgeWrap } 
+                        <Badge primary={ true } badgeContent={ form['Target Players'].length }
+                               style={ styles.badgeWrap }
                                badgeStyle={ styles.badge(false) }/>
                       </Subheader>
                       { this.renderComparePlayers(form['Target Players']) }
-                    </Paper>               
+                    </Paper>
                   </div>
               </div>
 
@@ -657,7 +653,9 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
   },
-  listItem: { padding: '10px 15px', fontSize: 14, height: 45, display: 'flex', alignItems: 'center', borderBottom: '1px solid #eee' },
+  listItem: {
+    padding: '10px 15px !important', fontSize: 14, height: 45, display: 'flex', alignItems: 'center', borderBottom: '1px solid #eee'
+  },
   wrap: { height: '100%', paddingBottom: '60px' },
   badgeWrap: { position: 'absolute',  right: '15px',  top: '12px', fontSize: 12 },
   badge: (primary) => { return { width: '34px', height: '24px', borderRadius: '15%', background: primary ? 'rgba(70, 187, 194, 0.5)': 'rgba(255, 64, 129, .35)'   } }

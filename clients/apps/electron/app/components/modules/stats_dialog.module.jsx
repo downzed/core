@@ -26,7 +26,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
   return {
-     
+
       getInitialState(){
         return {
           open: false,
@@ -54,7 +54,7 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
         var { players } = this.state;
         var myIds = data['My Players'];
         var targetIds = data['Target Players'];
-        
+
         const get = (arr) => {
           return _.filter(players, (player)=>{ return arr.indexOf(player.PlayerID) > -1 });
         };
@@ -62,7 +62,7 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
           'MyPlayers': { data: get(myIds), label: 'My Players' },
           'TargetPlayers': { data: get(targetIds), label: 'Target Players' },
         };
-        
+
         this.setState({ ...newTeam });
       },
 
@@ -122,19 +122,19 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
         }
         return (
           <div style={ primary.wrap }  >
-            
+
             <div style={{ width: 180 }}>
               { LastName }, { Name }
             </div>
 
-  
+
           </div>
         )
       },
 
       renderStats(data){
         var mainStats = [];
-        if (!data) return null; 
+        if (!data) return null;
         else {
           var { stats } = data;
 
@@ -153,14 +153,14 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
         }
      /**
       * AST, PTS, REB
-        */   
+        */
       },
 
       renderOverallStats(data){
         var mainStats = [];
-        if (!data) return null; 
+        if (!data) return null;
         else {
-          var { stats } = data; 
+          var { stats } = data;
           mainStats = _.map( stats, (value, key) => ({key,value}) );
 
           return(
@@ -168,19 +168,19 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
                 <Subheader style={ style.sub }>
                   OverallS Stats
                 </Subheader>
-             
+
                 <Chart data={ mainStats } />
             </Paper>
           );
         }
      /**
       * AST, PTS, REB
-        */   
+        */
       },
 
       renderStatBox(stat, key){
-        
-       
+
+
         const getVal = (val) => {
           var text = 'you ';
           if (val*10 < 0) {
@@ -199,13 +199,13 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
               <div style={{ marginBottom: '15px' }}>
                 { getVal(stat.val) }
               </div>
-              <LinearProgress 
-                  color={ (stat.val*10 < 0) ? '#F44336': '#03A9F4' } 
-                  mode="determinate" 
-                  value={ (stat.val*10 < 0) ? stat.val*-1 : stat.val } 
+              <LinearProgress
+                  color={ (stat.val*10 < 0) ? '#F44336': '#03A9F4' }
+                  mode="determinate"
+                  value={ (stat.val*10 < 0) ? stat.val*-1 : stat.val }
                   min={ 0 } max={ 30 } />
             </div>
-              
+
           </Paper>
         )
       },
@@ -246,8 +246,8 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
 
       render () {
         var { open, MyPlayers, TargetPlayers, data } = this.state;
-        
-        var customContentStyle = { 
+
+        var customContentStyle = {
           width: open ? 'calc(100% - 140px)' : 0, top: 65,
           background: '#f5f9fc',
         }
@@ -263,7 +263,7 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
               { this.renderPlayers(MyPlayers) }
               { this.renderPlayers(TargetPlayers) }
             </div>
-             
+
             { this.renderStats(data) }
             { this.renderOverallStats(data) }
           </Drawer>
@@ -291,6 +291,10 @@ const styles = {
     position: 'relative',
     fontSize: '12px',
     fontWeight: '700',
+    height: 30,
+    display: 'flex',
+    lineHeight: 'normal',
+    alignItems:'center',
     color: '#E0F2F1'
   },
   listItem: { padding: '10px 15px', fontSize: 14, height: 35, display: 'flex', alignItems: 'center', borderBottom: '1px solid #eee' },
@@ -310,10 +314,10 @@ const styles = {
           paper : {
             boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
           },
-          sub : { 
+          sub : {
             height: 30, color: '#E0F2F1', backgroundColor: '#323e51',
             display: 'flex', alignItems:'center', lineHeight: 'normal', paddingLeft: 15, position: 'relative',
-            fontSize: '12px', fontWeight: '700', borderBottom: '1px solid #ddd' 
+            fontSize: '12px', fontWeight: '700', borderBottom: '1px solid #ddd'
           },
           bar : { padding: '10px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', height: '100px', flex: '1', flexDirection: 'column' }
         };
