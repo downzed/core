@@ -82,12 +82,12 @@ webpackJsonp([0],{
 		"./components/modules/stats.google.chart.module.jsx": 675,
 		"./components/modules/stats_dialog.module.jsx": 734,
 		"./components/views/Compare.module.jsx": 842,
-		"./components/views/view.myZone.module.jsx": 845,
-		"./components/views/view.rotoNews.module.jsx": 856,
-		"./components/views/view.sign_in.module.jsx": 857,
-		"./components/views/view.steps.one.module.jsx": 859,
-		"./components/views/view.steps.two.module.jsx": 876,
-		"./components/views/views.module.jsx": 881
+		"./components/views/view.myZone.module.jsx": 851,
+		"./components/views/view.rotoNews.module.jsx": 862,
+		"./components/views/view.sign_in.module.jsx": 863,
+		"./components/views/view.steps.one.module.jsx": 865,
+		"./components/views/view.steps.two.module.jsx": 882,
+		"./components/views/views.module.jsx": 887
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -185,12 +185,12 @@ webpackJsonp([0],{
 	        var players = _allPlayers$get.players;
 	        var total = _allPlayers$get.total;
 	        // console.debug('players => ', players);
-	        // console.debug('total => ', total);
-	        // var res = this.getTeams(list);
+
+	        var res = _this.getTeams(players);
 	        // var chunks =  _.chunk(res, 13);
 	        // var myplayers = chunks[6];
-
-	        core.emit('players.loaded', { players: players, total: total });
+	        console.debug('res => ', res);
+	        core.emit('players.loaded', { players: res, total: total });
 	        // core.tree.set('players', chunks[5]);
 	        // core.tree.set('myPlayers', myplayers)
 	      });
@@ -207,7 +207,7 @@ webpackJsonp([0],{
 	        for (var t = 0; t < teams.length; t++) {
 	          if (Number(players[x].TeamID) === teams[t].teamId) {
 	            wteams.push(_extends({}, players[x], teams[t], {
-	              teamLogo: teams[t].abbreviation + '_logo.svg'
+	              teamLogo: 'http://stats.nba.com/media/img/teams/logos/' + teams[t].abbreviation + '_logo.svg'
 	            }));
 	          }
 	        }
@@ -2483,7 +2483,7 @@ webpackJsonp([0],{
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _reactLazyload = __webpack_require__(909);
+	var _reactLazyload = __webpack_require__(845);
 
 	var _reactLazyload2 = _interopRequireDefault(_reactLazyload);
 
@@ -2714,6 +2714,7 @@ webpackJsonp([0],{
 	      var PlayerID = item.PlayerID;
 	      var isInComapre = item.isInComapre;
 	      var Statistics = item.Statistics;
+	      var teamLogo = item.teamLogo;
 
 	      var primary = {
 	        wrap: {
@@ -2750,7 +2751,19 @@ webpackJsonp([0],{
 	          ' '
 	        );
 	      };
-
+	      var getColor = function getColor() {
+	        var canvas = document.getElementById('myCanvas');
+	        var context = canvas.getContext('2d');
+	        var imageObj = new Image();
+	        imageObj.onload = function () {
+	          canvas.width = imageObj.width;
+	          canvas.height = imageObj.height;
+	          context.drawImage(imageObj, 0, 0, imageObj.width, imageObj.height, 0, 0, 400, 300);
+	        };
+	        imageObj.src = teamLogo;
+	        console.log('x >', x);
+	      };
+	      getColor();
 	      return React.createElement(
 	        'div',
 	        { style: primary.wrap },
@@ -3174,7 +3187,8 @@ webpackJsonp([0],{
 	              this.renderComparePlayers(form['Target Players'])
 	            )
 	          )
-	        )
+	        ),
+	        React.createElement('canvas', { id: 'myCanvas', style: { display: 'none', width: '300px', height: '300px' } })
 	      );
 	    }
 	  };
@@ -3228,12 +3242,12 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 845:
+/***/ 851:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Card = __webpack_require__(846);
+	var _Card = __webpack_require__(852);
 
 	var _GridList = __webpack_require__(530);
 
@@ -3426,7 +3440,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 856:
+/***/ 862:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3743,12 +3757,12 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 857:
+/***/ 863:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactGoogleLogin = __webpack_require__(858);
+	var _reactGoogleLogin = __webpack_require__(864);
 
 	var _reactGoogleLogin2 = _interopRequireDefault(_reactGoogleLogin);
 
@@ -3829,7 +3843,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 859:
+/***/ 865:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3858,7 +3872,7 @@ webpackJsonp([0],{
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _DatePicker = __webpack_require__(860);
+	var _DatePicker = __webpack_require__(866);
 
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 
@@ -4024,12 +4038,12 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 876:
+/***/ 882:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Snackbar = __webpack_require__(877);
+	var _Snackbar = __webpack_require__(883);
 
 	var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
@@ -4432,7 +4446,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 881:
+/***/ 887:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

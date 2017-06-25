@@ -54,11 +54,11 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
               // console.debug('this.allPlayers.get() => ', this.allPlayers.get());
               var { players, total } = this.allPlayers.get();
               // console.debug('players => ', players);
-              // console.debug('total => ', total);
-              // var res = this.getTeams(list);
+              var res = this.getTeams(players);
               // var chunks =  _.chunk(res, 13);
               // var myplayers = chunks[6];
-              core.emit('players.loaded', { players: players, total: total });
+              console.debug('res => ', res);
+              core.emit('players.loaded', { players: res, total: total });
               // core.tree.set('players', chunks[5]);
               // core.tree.set('myPlayers', myplayers)
             });
@@ -77,7 +77,7 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
               wteams.push({
                 ...players[x],
                 ...teams[t],
-                teamLogo: teams[t].abbreviation+'_logo.svg',
+                teamLogo: 'http://stats.nba.com/media/img/teams/logos/'+teams[t].abbreviation+'_logo.svg',
               })
             }
           }
