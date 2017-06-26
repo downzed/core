@@ -264,22 +264,8 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             return null;
           } else return <span style={{ marginRight: 15, fontWeight: getFontWeight(i) }}>{ Statistics[selectedOpt] } </span>
         };
-        const getColor = () => {
-          var canvas = document.getElementById('myCanvas');
-          var context = canvas.getContext('2d');
-          var imageObj = new Image();
-          imageObj.onload = function() {
-            canvas.width=imageObj.width;
-            canvas.height=imageObj.height;
-            context.drawImage(imageObj,0,0,imageObj.width,imageObj.height,0,0,400,300);
-          };
-          imageObj.src = teamLogo;
-          console.log('x >', x)
-        };
-        getColor();
         return (
           <div style={ primary.wrap }  >
-            
             <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
               { LastName }, { Name }
               { renderStat() }
@@ -362,16 +348,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             else {
               return { ...item, isInComapre: false }
             } 
-              
           });
-          // var players = _.map(players, (item)=>{
-          //   if (ids.indexOf(item.PlayerID) > -1) {
-          //     return { ...item, isInComapre: true }
-          //   }
-          //   else {
-          //     return { ...item, isInComapre: false }
-          //   }
-          // });
         }
         if (!updateState) return mlist;
         this.setState({ list: mlist, isLoading: false, searchLoading: false })
