@@ -56,12 +56,15 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
               // console.debug('players => ', players);
               // console.debug('total => ', total);
               var res = this.getTeams(players);
+              res = _.sortBy(res, 'LastName');
+              core.tree.set('allPlayers', { players: res, total: total });
+              // { players: res instanceof Array ? res : [], total: total });
               // var res = this.getTeams(players, this.getColor);
-              // var chunks =  _.chunk(res, 13);
-              // var myplayers = chunks[6];
-              core.emit('players.loaded', { players: res instanceof Array ? res : [], total: total });
-              // core.tree.set('players', chunks[5]);
-              // core.tree.set('myPlayers', myplayers)
+              var chunks =  _.chunk(res, 13);
+              var myplayers = chunks[6];
+              core.emit('players.loaded',{ players: res, total: total })
+              core.tree.set('players', chunks[5]);
+              core.tree.set('myPlayers', chunks[5]);
             });
         //   this.setMax(res);
       },

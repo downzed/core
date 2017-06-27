@@ -45,17 +45,37 @@ const copy = (obj) => {
       if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
   }
   return copy;
-}
+};
+var stats = {  
+  'BLK': 'Blocks', 
+  'FGA': 'FG Attemptes', 
+  'AST': 'Assists', 
+  'OREB': 'Off. Rebounds', 
+  'STL': 'Steals', 
+  'DREB': 'Def. Rebounds', 
+  'FGM': 'FG Made', 
+  'REB': 'Rebounds', 
+  'PTS': 'Points', 
+  'FG3A': '3 Points Attempts', 
+  'FTA': 'Free Throws Attempts', 
+  'MIN': 'Minutes', 
+  'PF': 'Personal Fouls', 
+  'TOV': 'Turnovers', 
+  'FG3M': '3 Points Made', 
+  'FTM': 'Free Throws Attempts' 
+};
+
 core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
   return {
-
+      bindings: {
+        players: ['allPlayers'] 
+      },
       getInitialState(){
         return {
           selected: 'players', // Rotoworld
-          players: [],
           selectedOpt: 'Last Name',
           list: [],
-          origList: [],
+          originalList: [],
           query: '',
           isLoading: true,
           toggleSearch: false,
@@ -70,53 +90,17 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       componentWillMount(){
-        this.initForm();
+        // this.initForm();
         core.on('players.loaded', ({ players, total })=>{
           setTimeout(() => {
-            this.setState({ total: total, players: _.orderBy(players, 'LastName') })
-            this.handleList(players);
+            if (players && players instanceof Array) {
+              var list = _.orderBy(players, 'LastName');
+              this.setState({ total: total, players: list, originalList: list, isLoading: false });
+            }
           }, 250);
         })
-
       },
-
-      componentDidMount(){
-        // this.loadPlayers(this.state.pageNumber, this.handleList);
-
-        // setTimeout(() => {
-        //   this.loadMore(2)
-        //   setTimeout(() => {
-        //     this.loadMore(3)
-        //   }, 1000);
-        // }, 1000);
-
-      },
-      // loadPlayers(pageNumber, callback) {
-      //   core.run('getPlayersByPage' ,{ period: '365', page: pageNumber })
-      //       .then(({ data, isError })=>{
-      //         if (isError) return;
-      //         else {
-      //           var { Players, total } = data;
-      //           if (Players && total) {
-      //             this.setState({ total: total });
-      //             if (callback) callback(this.state.players)
-      //           }
-      //         }
-      //       });
-      // },
-
-      // loadMore(number){
-      //   var { list } = this.state;
-      //   var temp;
-      //   this.setState({ isLoading: true })
-      //   const addMorePlayers = (players) => {
-      //     temp = list.concat(players);
-      //     temp = _.sortBy(temp, 'LastName');
-      //     this.setState({ list: temp, origList: temp, isLoading: false, pageNumber: number })
-      //   }
-      //   this.loadPlayers(number, addMorePlayers)
-      // },
-
+      
       initForm(){
         this.setState({
           form: {
@@ -126,14 +110,20 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         });
       },
 
-      handleList(players){
-        var list, chunks;
-        if (players && players instanceof Array) {
-          list = _.sortBy(players, 'LastName');
-          this.setState({ origList: list, list: list, isLoading: false });
+      componentDidMount(){
+        if (!this.state.players || !this.state.players.length) {
+          var data = core.tree.get('allPlayers');
+          if (data && typeof data !== 'undefined'){
+            var { players, total } = data;
+            if (players && players instanceof Array) {
+              var list = _.orderBy(players, 'LastName');
+              this.setState({ total: total, players: list, originalList: list, isLoading: false });
+            } else return;
+          }
+          // console.debug('core.tree.get(allPlayers) => ', core.tree.get('allPlayers'));
         }
       },
-
+     
       renderPlayersList(list){
         if (list && list.length) {
           return (
@@ -296,7 +286,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       addTo(where, id){
-        var { form, list, origList,selectedOpt, players } = this.state;
+        var { form, list, selectedOpt, players } = this.state;
         var temp = copy(form)
         // console.log(id, where)
         temp[where].push(id);
@@ -308,7 +298,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       removePlayer(id){
-        var { form, list, origList  } = this.state;
+        var { form, players, originalList  } = this.state;
         var index, temp = []//copy(form);
         for (var x in form) {
           if (form[x] && form[x].length) {
@@ -324,11 +314,12 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         }
         temp = form;
         this.setState({ form: temp });
-        this.filterList(origList, true)
+        this.filterList(originalList, true)
       },
 
       filterList(list, updateState){
         var { form, selectedOpt } = this.state;
+        console.debug('form => ', form);
         var mlist = list, ids = [];
         for (var d in form) {
           if (form[d].length){
@@ -344,12 +335,11 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             }
             else {
               return { ...item, isInComapre: false }
-            }
-
+            } 
           });
         }
         if (!updateState) return mlist;
-        this.setState({ list: mlist, isLoading: false, searchLoading: false })
+        this.setState({ players: mlist, isLoading: false, searchLoading: false })
       },
 
       makeCompare(){
@@ -366,11 +356,11 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       onSearchPlayers(){
-        let { list, players, origList, query, searchLoading } = this.state;
+        let { list, players, originalList, query, searchLoading } = this.state;
         this.setState({ searchLoading: true })
         var temp;
         if (!query) {
-          temp = this.filterList(players, false);
+          temp = this.filterList(originalList, false);
         } else {
           temp  =  _.filter(players, o => {
             return o.Name.toLowerCase().indexOf(query.toLowerCase()) > -1 || o.LastName.toLowerCase().indexOf(query.toLowerCase()) > -1
@@ -379,36 +369,25 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         temp = _.sortBy(temp, 'LastName');
 
         // setTimeout(()=>{
-          this.setState({ list: temp, searchLoading: false })
+          this.setState({ players: temp, searchLoading: false })
         // }, 1500)
       },
 
       onReset(){
         this.initForm();
-        this.setState({ query: '' });
-        this.filterList(this.state.players, true);
-        this.setState({ selectedOpt: 'Last Name' })
+        this.setState({ query: '', isLoading: true });
+        setTimeout(()=>{
+          this.filterList(this.state.originalList, true);
+          this.setState({ selectedOpt: 'Last Name', isLoading: false })
+        }, 350);
       },
 
       onKeyDown(e, string){
         this.setState({ query: string })
       },
 
-      onScroll(e){
-        // var { total, pageNumber, origList } = this.state;
-        // total = Number(total);
-        // console.log(origList.length,'::', total)
-        // var { clientHeight, scrollHeight, scrollTop } = e.target;
-        // if (scrollHeight - scrollTop === clientHeight) {
-        //   if (total >= origList.length) {
-        //     pageNumber += 1;
-        //     this.loadMore(pageNumber)
-        //   }
-        // }
-      },
-
       renderComparePlayers(ids, title){
-        var { origList, players } = this.state;
+        var { players } = this.state;
         if (!ids || !ids.length) return null;
         var mlist = _.filter(players, (item)=>{
           return ids.indexOf(item.PlayerID) > -1;
@@ -486,7 +465,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       getDisabled(type){
-        var { form, list, origList } = this.state;
+        var { form } = this.state;
         switch (type) {
           case 'form':
             return _.isEmpty(form) || _.isEmpty(form['Target Players']) || _.isEmpty(form['My Players'])
@@ -507,14 +486,18 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         var { players } = this.state;
         var options = [];
         if (!players || !players.length) return null;
-        options = _.map(players[0].Statistics, (val , stat) => {
-          return stat;
+        options = _.map(stats, (val , stat) => {
+            return {
+              type: stat,
+              label: val
+            };
         } );
-        options.unshift('First Name');
-        options.unshift('Last Name');
+        options.push({ type: 'Name', label: 'First Name' }, { type: 'LastName', label: 'Last Name'});
+        options = _.sortBy(options, 'label');
+        console.debug('options => ', options);
         return _.map(options, (opt, i)=>{
-          return <MenuItem value={ opt } key={ i } primaryText={ opt }  onTouchTap={ (e)=> { this.filterBy(opt); } }/>
-        });;
+          return <MenuItem value={ opt.type } key={ i } primaryText={ opt.label }  onTouchTap={ (e)=> { this.filterBy(opt.type); } }/>
+        });
       },
 
       renderPlayersHeader(){
@@ -522,12 +505,12 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         return (
           <Subheader style={ styles.subheader }>
             Players by { selectedOpt }
-            <IconMenu iconStyle={{ color: '#fff', fontSize: 14 }} style={{ marginRight: '45px'}}
+            <IconMenu iconStyle={{ color: '#fff', fontSize: 14 }} menuStyle={{ fontSize: 14 }} style={{ marginRight: '45px'}}
                 iconButtonElement={
                     <IconButton
-                        tooltip="filter list"
+                        tooltip="Sort by"
                         iconClassName="material-icons">
-                        filter_list
+                        sort
                     </IconButton>
                 }
                 menuStyle={{ fontSize: 12 }}
@@ -544,14 +527,14 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       filterBy(obj){
-        let { players, origList, list, searchLoading, isLoading } = this.state;
+        let { players, searchLoading, isLoading } = this.state;
         this.setState({ searchLoading: true, isLoading: true })
         var temp;
         if (!obj) {
           temp = this.filterList(players, false);
         } else {
-          if (obj.toLowerCase() === 'last name') temp = _.sortBy(list, 'LastName');
-          else if (obj.toLowerCase() === 'first name') temp = _.sortBy(list, 'Name');
+          if (obj.toLowerCase() === 'last name') temp = _.sortBy(players, 'LastName');
+          else if (obj.toLowerCase() === 'first name') temp = _.sortBy(players, 'Name');
           else {
             temp = _.orderBy(players, `Statistics.${obj}`, ['desc']);
           }
@@ -561,7 +544,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       render () {
-        let { type, list, players, isLoading,  searchLoading, form, total } = this.state;
+        let { players, isLoading, searchLoading, form } = this.state;
 
           return (
             <div style={ styles.wrap }>
@@ -571,7 +554,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
                     <div>
                       { this.renderPlayersHeader() }
                     </div>
-                    { this.renderPlayersList(list) }
+                    { this.renderPlayersList(players) }
                     <div style={{ ...styles.spinner, display: searchLoading || isLoading ? 'flex' : 'none' }}>
                       <CircularProgress style={{  opacity: searchLoading || isLoading ? 1 : 0 }} />
                     </div>
