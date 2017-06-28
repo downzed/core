@@ -49,13 +49,10 @@ const copy = (obj) => {
 var stats = {  
   'BLK': 'Blocks', 
   'FGA': 'FG Attemptes', 
-  'AST': 'Assists', 
   'OREB': 'Off. Rebounds', 
   'STL': 'Steals', 
   'DREB': 'Def. Rebounds', 
   'FGM': 'FG Made', 
-  'REB': 'Rebounds', 
-  'PTS': 'Points', 
   'FG3A': '3 Points Attempts', 
   'FTA': 'Free Throws Attempts', 
   'MIN': 'Minutes', 
@@ -64,7 +61,11 @@ var stats = {
   'FG3M': '3 Points Made', 
   'FTM': 'Free Throws Attempts' 
 };
-
+var ms = [
+  { type: 'PTS', label: 'Points' },
+  { type: 'REB', label: 'Rebounds' },
+  { type: 'AST', label: 'Assits' }
+];
 core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
   return {
       bindings: {
@@ -73,7 +74,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       getInitialState(){
         return {
           selected: 'players', // Rotoworld
-          selectedOpt: 'Last Name',
+          selectedOpt: { label: 'Last Name', type: 'LastName' },
           list: [],
           originalList: [],
           query: '',
@@ -120,7 +121,6 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
               this.setState({ total: total, players: list, originalList: list, isLoading: false });
             } else return;
           }
-          // console.debug('core.tree.get(allPlayers) => ', core.tree.get('allPlayers'));
         }
       },
      
@@ -241,14 +241,34 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             display: !isInComapre ? 'none' : 'flex',
           }
         }
-        const getFontWeight = (i) => {
-          if (i <= 2 ) return 700
-          else return 500
-        }
+
+      
+
+        const style = (i) => { return {
+              width: '40px',
+              textAlign: 'center',
+              marginRight : (i === ms.length -1) || i === 'sel' ? 5 : 10,
+              
+            }}
         const renderStat = () => {
-          if (isInComapre || !selectedOpt || selectedOpt.toLowerCase() === 'first name' || selectedOpt.toLowerCase() === 'last name') {
+          if (isInComapre || !selectedOpt) {
             return null;
-          } else return <span style={{ marginRight: 15, fontWeight: getFontWeight(i) }}>{ Statistics[selectedOpt] } </span>
+          } else {
+            
+            return (
+              <div style={{ display: 'flex' }}>
+              {
+                _.map(ms, (opt, i)=>{
+                  return (
+                    <span key={ i } style={ style(i) }>
+                      { Statistics[opt.type] }
+                    </span> 
+                  );
+                })
+              }               
+              </div>
+            )
+          }
         };
         return (
           <div style={ primary.wrap }  >
@@ -293,7 +313,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         this.setState({ form: temp, isLoading: true });
         var _that = this;
         // setTimeout(function() {
-        this.filterBy(selectedOpt)
+        this.sortBy(selectedOpt)
         // }, 350);
       },
 
@@ -318,8 +338,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       },
 
       filterList(list, updateState){
-        var { form, selectedOpt } = this.state;
-        console.debug('form => ', form);
+        var { form } = this.state;
         var mlist = list, ids = [];
         for (var d in form) {
           if (form[d].length){
@@ -378,7 +397,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         this.setState({ query: '', isLoading: true });
         setTimeout(()=>{
           this.filterList(this.state.originalList, true);
-          this.setState({ selectedOpt: 'Last Name', isLoading: false })
+          this.setState({ selectedOpt: { type: 'LastName', label: 'Last Name' }, isLoading: false })
         }, 350);
       },
 
@@ -494,53 +513,80 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         } );
         options.push({ type: 'Name', label: 'First Name' }, { type: 'LastName', label: 'Last Name'});
         options = _.sortBy(options, 'label');
-        console.debug('options => ', options);
         return _.map(options, (opt, i)=>{
-          return <MenuItem value={ opt.type } key={ i } primaryText={ opt.label }  onTouchTap={ (e)=> { this.filterBy(opt.type); } }/>
+          return <MenuItem value={ opt.type } key={ i } primaryText={ opt.label }  onTouchTap={ (e)=> { this.sortBy(opt); } }/>
         });
       },
 
       renderPlayersHeader(){
         var { selectedOpt } = this.state;
+        var sort = {
+          marginRight: 15
+        }
+        const style = (i) => { return {
+            cursor: 'pointer',
+            width: '40px',
+            textAlign: 'center',
+            marginRight : (i === ms.length -1) || i === 'sel' ? 30 : 10
+        }}
+        const mainStats = () => {
+          
+          return _.map(ms, (opt, i)=>{
+            return (
+              <span key={ i } onClick={ () => { this.sortBy(opt) } }  style={ style(i) }>
+                { opt.type }
+              </span> 
+            );
+          });
+        }
+
         return (
           <Subheader style={ styles.subheader }>
-            Players by { selectedOpt }
-            <IconMenu iconStyle={{ color: '#fff', fontSize: 14 }} menuStyle={{ fontSize: 14 }} style={{ marginRight: '45px'}}
-                iconButtonElement={
-                    <IconButton
-                        tooltip="Sort by"
-                        iconClassName="material-icons">
-                        sort
-                    </IconButton>
-                }
-                menuStyle={{ fontSize: 12 }}
-                anchorOrigin={{ horizontal: 'middle', vertical: 'top' }}
-                targetOrigin={{ horizontal: 'middle', vertical: 'top' }}
-                maxHeight={202}>
-                { this.renderOptions() }
-            </IconMenu>
-            <Badge secondary={ true } badgeContent={ this.getTotal() }
-                  style={ styles.badgeWrap }
-                  badgeStyle={ styles.badge(true) }/>
+            Players by { selectedOpt.label }
+            <div style={{ display: 'flex' }}>
+              { mainStats() }
+              <IconMenu iconStyle={{ color: '#fff', fontSize: 14 }} menuStyle={{ fontSize: 14 }} style={{ marginRight: '45px'}}
+                  iconButtonElement={
+                      <IconButton
+                          tooltip="Sort by"
+                          iconClassName="material-icons">
+                          sort
+                      </IconButton>
+                  }
+                  menuStyle={{ fontSize: 12 }}
+                  anchorOrigin={{ horizontal: 'middle', vertical: 'top' }}
+                  targetOrigin={{ horizontal: 'middle', vertical: 'top' }}
+                  maxHeight={202}>
+                  { this.renderOptions() }
+              </IconMenu>
+              <Badge secondary={ true } badgeContent={ this.getTotal() }
+                    style={ styles.badgeWrap }
+                    badgeStyle={ styles.badge(true) } />
+            </div>
           </Subheader>
         )
       },
 
-      filterBy(obj){
+      sortBy(obj){
         let { players, searchLoading, isLoading } = this.state;
         this.setState({ searchLoading: true, isLoading: true })
         var temp;
         if (!obj) {
           temp = this.filterList(players, false);
-        } else {
-          if (obj.toLowerCase() === 'last name') temp = _.sortBy(players, 'LastName');
-          else if (obj.toLowerCase() === 'first name') temp = _.sortBy(players, 'Name');
+        }
+        else {
+          var { type, label } = obj; 
+          if ((type.toLowerCase() !== 'lastname') && (type.toLowerCase() !== 'name') ) {
+            temp = temp = _.orderBy(players, `Statistics.${type}`, ['desc']);
+          } 
           else {
-            temp = _.orderBy(players, `Statistics.${obj}`, ['desc']);
+            temp = _.orderBy(players, type, ['asc']); 
           }
         }
-        this.filterList(temp, true)
-        this.setState({ selectedOpt: obj })
+
+        this.filterList(temp, true);
+        this.setState({ selectedOpt: obj });
+        
       },
 
       render () {
@@ -588,6 +634,11 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
       }
   }
 });
+const displayStat = (selectedOpt) => {
+  return {
+    display: (selectedOpt.type.toLowerCase() !== 'lastname') ||  (selectedOpt.type.toLowerCase() !== 'name') ? 'flex' : 'none'
+  }
+}
 const styles = {
   spinner: {
     position: 'absolute',
