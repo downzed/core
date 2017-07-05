@@ -5,6 +5,7 @@ var core = require('core');
 // var google = require('googleapis');
 // var compute = google.compute('v1');
 import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
 core.Component('view.SignIn', [], ()=>{
   return {
@@ -14,7 +15,11 @@ core.Component('view.SignIn', [], ()=>{
             roster: { }
           }
       },
-
+      componentWillMount() {
+        core.on('google.click', ()=>{
+          console.log('1 -> ',  1)
+        })
+      },
       // setLocalStorage(data){
       //
       //   let { changeSteps, getLocalStorageDetails, stepIndex } = this.props;
@@ -33,21 +38,46 @@ core.Component('view.SignIn', [], ()=>{
       //
       // },
 
-      onLogin (login) {
-        console.log(login);
+      responseGoogle(response) {
+        console.debug('response => ',  response)
+        var profile = response.getBasicProfile();
+        console.debug('google response', profile);
+        console.log('ID: ' + profile.getId());
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
 
+        // profile['id_token'] = response.getAuthResponse().id_token;
+      },
+
+      responseFacebook(response) {
+        console.debug('fb response', response);
       },
 
       render () {
 
           return (
             <div style={ signin.wrap }>
-              <GoogleLogin
-      clientId="79549914610-lmoailp8g9r956537ammi2jnh93u7vq1.apps.googleusercontent.com"
-      buttonText="Login"
-      onSuccess={this.onLogin}
-      onFailure={this.onLogin}
-    />
+              <GoogleLogin ref={ 'google_btn' }
+                  clientId="79549914610-lmoailp8g9r956537ammi2jnh93u7vq1.apps.googleusercontent.com"
+                  scope={ 'email profile' }
+                  uxMode={'popup'}
+                  buttonText="Log444in"
+                  onSuccess={this.responseGoogle}
+                  onFailure={this.onLogin}
+                  />
+
+                  <FacebookLogin
+                    appId="302562886764541"
+                    autoLoad={ false }
+                    xfbml={ true }
+                    version='2.7'
+                    fields="name,email,picture"
+                    callback={ this.responseFacebook }
+                    icon="fa-facebook"
+                  />
             </div>
           );
       }

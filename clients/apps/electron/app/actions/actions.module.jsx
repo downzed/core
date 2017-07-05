@@ -6,8 +6,8 @@ var teams = require('./teams.js');
 let base = 'http://46.121.135.238:3310/api/v1.0/';
 let nbaAvatar = 'http://stats.nba.com/media/players/230x185/';
 let nbaTL = 'http://stats.nba.com/media/img/teams/logos/';
-let yoBase = 'http://ec2-13-58-180-255.us-east-2.compute.amazonaws.com:8080/FantasyEdge/';
-// http://ec2-13-58-180-255.us-east-2.compute.amazonaws.com:8080/FantasyEdge/GetAllPlayersAvg?Period=364
+let yoBase = 'Fantasyedge.ddns.net:8080/FantasyEdge/';
+// Fantasyedge.ddns.net:8080/FantasyEdge/GetAllPlayersAvg?Period=364
 core.Action('getPlayerAvatar', {id: 'number'}, (data, promise)=>{
   // avatar: `http://stats.nba.com/media/players/230x185/${players[x].Player_ID}.png` ,
   sa.get(`${nbaAvatar}${data.id}.png`)

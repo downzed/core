@@ -3,10 +3,8 @@ var PropTypes = React.PropTypes;
 var sa = require('superagent')
 var core = require('core');
 var _ = require('lodash');
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import {GridList, GridTile} from 'material-ui/GridList';
-import CircularProgress from 'material-ui/CircularProgress';
 import Subheader from 'material-ui/Subheader';
+import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import Avatar from 'material-ui/Avatar';
@@ -37,6 +35,9 @@ core.Component('view.myZone', ['PlayerDialog'],
     getInitialState(){
       return {
         hovered: '',
+        cards: [
+          { label: 'Welcome, user', type: 'user', data: {} }, { label: 'News', type: 'news', data: [] },
+        ]
       }
     },
 
@@ -57,8 +58,13 @@ core.Component('view.myZone', ['PlayerDialog'],
       core.tree.set(['player','popup', 'player'], player);
       core.emit('get.Player.data', { player: player , type: 'stats' });
     },
-    getAvatar(){
 
+    renderUser(data){
+       return (<span>no data</span>);
+    },
+
+    renderNews(data){
+       return (<span>no news</span>);
     },
     renderPlayerCard(player, i){
       let { hovered } = this.state;
@@ -98,79 +104,64 @@ core.Component('view.myZone', ['PlayerDialog'],
         </GridTile>
       )
     },
-    render(){
-      let { myplayers } = this.state;
-      const loader = (show) => {
-        var cp = {
-          position:'absolute', top: 0, left: 0, right: 0, bottom: 0,
-          zIndex: 1,
-          background: 'rgba(225,225,225,0.6)',
-          flex: 1,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }
-        if (show) return (
-          <div style={ cp }>
-            <CircularProgress mode="indeterminate" />
-          </div>
-        )
-        return null;
+
+    renderCardData(card){
+      var { data, type } = card;
+      switch (type) {
+        case 'user':
+            return this.renderUser(data)
+        case 'news':
+            return this.renderNews(data)
+
+      }
+    },
+
+    renderHomeCards(card, i){
+      var diff = {
+         width: i == 1 ? 'auto' : '275px',
+         marginLeft: i == 1 ? 0 : 15,
+         flex: i == 1 ? 1 : 'none'
       }
       return (
-        <div style={ zone.wrap }>
-          <Card id={ 'zoneCard' } style={ { height: '100%', width: '100%'} }>
-           <CardHeader
-             title="Without Avatar"
-             subtitle="Subtitle"
-             avatar="http://www.rotoworld.com/images/headshots/NBA/2671.jpg"
-           />
-         {/*
-           <CardActions>
-             <FlatButton label="Action1" />
-             <FlatButton label="Action2" />
-           </CardActions>
-           */}
-           <CardText style={{ overflow: 'auto' }}>
-             <div style={ zone.players } className="zone-players" >
-               <GridList
-                  cols={ 3 }
-                  padding={ 15 }
-                  cellHeight={ 110 }
-                  style={{ width: '100%', height: '100%' }}
-                >
-                  { myplayers && myplayers.length ? _.map(myplayers, this.renderPlayerCard) : loader(true) }
+        <Paper key={ i } style={{ ...styles.paper , position: 'relative', ...diff }}>
+          <Subheader style={ styles.subheader }>
+            { card.label }
+          </Subheader>
+          { this.renderCardData(card) }
+        </Paper>
+      )
+    },
 
-                </GridList>
-
-             </div>
-           </CardText>
-         </Card>
-
-         <PlayerDialog />
-
+    render(){
+      let { myplayers, cards } = this.state;
+      return (
+        <div style={ styles.wrap }>
+           <div style={{ height: 450, display:'flex', padding:'15px 0px' , flexDirection:'row', width: '100%', height: '100%' }}>
+                { _.map(cards, this.renderHomeCards) }
+            </div>
         </div>
       );
     }
   }
 });
-let zone = {
-
-  wrap: {
-    height: '100%',
-    width: '100%',
-    minHeight: '300px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+const styles = {
+   paper : {
+    display:'flex', flex: 1, width: '100%', overflow: 'auto', flexDirection: 'column',
+    margin: '0 15px',
+    boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
   },
-  card: {
-    boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-  },
-  players: {
-    height: '100%',
+  subheader: {
+    backgroundColor: '#323e51',
+    position: 'relative',
+    fontSize: '12px',
+    fontWeight: '700',
+    color: '#E0F2F1',
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  }
-}
+    height: 48,
+    justifyContent: 'space-between',
+  },
+  listItem: {
+    padding: '10px 15px !important', fontSize: 14, height: 45, display: 'flex', alignItems: 'center', borderBottom: '1px solid #eee'
+  },
+  wrap: { height: '100%' },
+};

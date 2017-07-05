@@ -3,7 +3,7 @@ var core = require('core');
 var sa = require('superagent');
 var _ = require('lodash');
 var teams = require('./teams.js');
-let base = 'http://ec2-13-58-180-255.us-east-2.compute.amazonaws.com:8080/FantasyEdge';
+let base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
 
 core.Action('comparePlayers', { form: 'object' }, (data, promise)=>{
   var compared = core.tree.select('compared');

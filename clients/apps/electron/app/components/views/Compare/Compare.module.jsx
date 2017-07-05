@@ -46,31 +46,31 @@ const copy = (obj) => {
   }
   return copy;
 };
-var stats = {  
-  'BLK': 'Blocks', 
-  'FGA': 'FG Attemptes', 
-  'OREB': 'Off. Rebounds', 
-  'STL': 'Steals', 
-  'DREB': 'Def. Rebounds', 
-  'FGM': 'FG Made', 
-  'FG3A': '3 Points Attempts', 
-  'FTA': 'Free Throws Attempts', 
-  'MIN': 'Minutes', 
-  'PF': 'Personal Fouls', 
-  'TOV': 'Turnovers', 
-  'FG3M': '3 Points Made', 
-  'FTM': 'Free Throws Attempts' 
+var stats = {
+  'BLK': 'Blocks',
+  'FGA': 'FG Attemptes',
+  'OREB': 'Off. Rebounds',
+  'STL': 'Steals',
+  'DREB': 'Def. Rebounds',
+  'FGM': 'FG Made',
+  'FG3A': '3 Points Attempts',
+  'FTA': 'Free Throws Attempts',
+  'MIN': 'Minutes',
+  'PF': 'Personal Fouls',
+  'TOV': 'Turnovers',
+  'FG3M': '3 Points Made',
+  'FTM': 'Free Throws Attempts',
+  'PTS': 'Points',
+  'REB': 'Rebounds',
+  'AST': 'Assists'
 };
-var ms = [
-  { type: 'PTS', label: 'Points' },
-  { type: 'REB', label: 'Rebounds' },
-  { type: 'AST', label: 'Assits' }
-];
-core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
+
+core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
   return {
       bindings: {
-        players: ['allPlayers'] 
+        players: ['allPlayers']
       },
+
       getInitialState(){
         return {
           selected: 'players', // Rotoworld
@@ -101,7 +101,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
           }, 250);
         })
       },
-      
+
       initForm(){
         this.setState({
           form: {
@@ -123,7 +123,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
           }
         }
       },
-     
+
       renderPlayersList(list){
         if (list && list.length) {
           return (
@@ -135,45 +135,33 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         return null;
       },
 
-      renderComparedList(item, key){
-        let { selected, isLoading, list } = this.state;
-        // console.log(item)
-        let style = {
-          transition: 'all 0.2s ease-in-out 0.1s',
-          WebkitTransition: 'all 0.2s ease-in-out 0.1s',
-          opacity: isLoading ? 0 : 1,
-          transform: isLoading  ? 'scale(0.4)' : 'scale(1)',
-          WebkitTransform: isLoading  ? 'scale(0.4)' : 'scale(1)'
-        }
+      renderComparePlayers(ids, title){
+        var { players } = this.state;
+        if (!ids || !ids.length) return null;
+        var mlist = _.filter(players, (item)=>{
+          return ids.indexOf(item.PlayerID) > -1;
+        });
+        if (!mlist || !mlist.length) return null;
+        else mlist = _.map(mlist, (item)=>{
+          return {
+            ...item,
+            isInComapre: true
+          }
+        })
         return (
-          <ListItem key={ key }
-                innerDivStyle={ styles.listItem }
-                primaryText={ this.renderPrimary(item) }
-                leftIcon={ <FontIcon className="material-icons" style={{
-                      height: 'auto',
-                      width: 'auto',
-                      top: '0',
-                      margin: '0 5px 0 0',
-                      left: '0',
-                      position: 'relative',
-                      fontSize: '18px'
-                 }}>person</FontIcon> }
-                secondaryTextLines={ 1 }
-              />
+           <List style={{ fontSize: 12, width: '100%', padding: '0px !important', overflow: 'auto', height: '100%' }}>
+              { _.map(mlist, this.renderComparedList) }
+            </List>
+        )
+      },
 
+      renderComparedList(item, key){
+        return (
+          <PlayerItem key={ key } item={ item } onRemove={ this.removePlayer } selectedOpt={ this.state.selectedOpt }/>
         );
       },
 
       renderList(item, key){
-        let { selected, isLoading } = this.state;
-        let style = {
-          transition: 'all 0.2s ease-in-out 0.1s',
-          WebkitTransition: 'all 0.2s ease-in-out 0.1s',
-          opacity: isLoading ? 0 : 1,
-          transform: isLoading  ? 'scale(0.4)' : 'scale(1)',
-          WebkitTransform: isLoading  ? 'scale(0.4)' : 'scale(1)'
-        }
-
         const placeholder = () => {
           return (
             <div style={{ ...styles.listItem, justifyContent: 'center' }}>
@@ -186,123 +174,13 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
         return (
           <LazyLoad height={45} key={ key } once={ true } resize={ true }
                     overflow={ true }
+                    unmountIfInvisible={ true }
                     placeholder={ placeholder() }
-                    offset={[-30, 0]} debounce={350}>
-            <ListItem key={ key }
-                  style={{ background: item.color }}
-                  innerDivStyle={{ ...styles.listItem, paddingLeft: 15, background: item.color } }
-                  primaryText={ this.renderPrimary(item, key) }
-                  leftIcon={ <FontIcon className="material-icons" color={item.color} style={{
-                        height: 'auto',
-                        width: 'auto',
-                        top: '0',
-                        margin: '0 5px 0 0',
-                        left: '0',
-                        position: 'relative',
-                        fontSize: '18px'
-                  }}>person</FontIcon> }
-                  secondaryTextLines={ 1 }
-                />
+                    offset={[-15, 0]} debounce={350}>
+            <PlayerItem item={ item } onAdd={ this.addTo } selectedOpt={ this.state.selectedOpt } />
           </LazyLoad>
 
         );
-      },
-
-      onMouseEnter(id){
-        this.setState({ hoverID: id })
-      },
-
-      onMouseLeave(){
-        this.setState({ hoverID: null })
-      },
-
-      renderPrimary(item, i){
-        var { hoverID, selectedOpt } = this.state;
-        var { Name, LastName, PlayerID, isInComapre, Statistics, teamLogo } = item;
-        var primary = {
-          wrap: {
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-
-          },
-          buttons: {
-            fontSize: 16,
-            width: 26,
-          },
-          smallIcon: {
-            height: 26,
-          },
-          add: {
-            display: isInComapre ? 'none' : 'flex',
-          },
-          remove: {
-            display: !isInComapre ? 'none' : 'flex',
-          }
-        }
-
-      
-
-        const style = (i) => { return {
-              width: '40px',
-              textAlign: 'center',
-              marginRight : (i === ms.length -1) || i === 'sel' ? 5 : 10,
-              
-            }}
-        const renderStat = () => {
-          if (isInComapre || !selectedOpt) {
-            return null;
-          } else {
-            
-            return (
-              <div style={{ display: 'flex' }}>
-              {
-                _.map(ms, (opt, i)=>{
-                  return (
-                    <span key={ i } style={ style(i) }>
-                      { Statistics[opt.type] }
-                    </span> 
-                  );
-                })
-              }               
-              </div>
-            )
-          }
-        };
-        return (
-          <div style={ primary.wrap }  >
-
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-              { LastName }, { Name }
-              { renderStat() }
-            </div>
-
-            <div style={{ flex:'0 auto', ...primary.add }}>
-              <IconButton style={{ marginRight: 2.5 }}
-                  iconStyle={{ fontSize: 16 }}
-                  iconClassName="material-icons"
-                  onTouchTap={ (e)=>{ this.addTo('Target Players', PlayerID) } }>
-                  add_shopping_cart
-              </IconButton>
-
-              <IconButton
-                  iconClassName="material-icons"
-                  iconStyle={{ fontSize: 16 }}
-                  onTouchTap={ (e)=>{ this.addTo('My Players', PlayerID) } }>
-                remove_shopping_cart
-              </IconButton>
-            </div>
-            <div style={{ flex:'0 auto', ...primary.remove }}>
-              <IconButton iconStyle={{ fontSize: 16 }}
-                  iconClassName="material-icons"
-                  onTouchTap={ (e)=>{ this.removePlayer(PlayerID) } }>
-                  remove_circle
-              </IconButton>
-            </div>
-
-          </div>
-        )
       },
 
       addTo(where, id){
@@ -354,7 +232,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             }
             else {
               return { ...item, isInComapre: false }
-            } 
+            }
           });
         }
         if (!updateState) return mlist;
@@ -403,26 +281,6 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
 
       onKeyDown(e, string){
         this.setState({ query: string })
-      },
-
-      renderComparePlayers(ids, title){
-        var { players } = this.state;
-        if (!ids || !ids.length) return null;
-        var mlist = _.filter(players, (item)=>{
-          return ids.indexOf(item.PlayerID) > -1;
-        });
-        if (!mlist || !mlist.length) return null;
-        else mlist = _.map(mlist, (item)=>{
-          return {
-            ...item,
-            isInComapre: true
-          }
-        })
-        return (
-           <List style={{ fontSize: 12, width: '100%', padding: '0px !important'}}>
-              { _.map(mlist, this.renderComparedList) }
-            </List>
-        )
       },
 
       renderToolbar(){
@@ -530,12 +388,12 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
             marginRight : (i === ms.length -1) || i === 'sel' ? 30 : 10
         }}
         const mainStats = () => {
-          
+
           return _.map(ms, (opt, i)=>{
             return (
               <span key={ i } onClick={ () => { this.sortBy(opt) } }  style={ style(i) }>
                 { opt.type }
-              </span> 
+              </span>
             );
           });
         }
@@ -544,7 +402,7 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
           <Subheader style={ styles.subheader }>
             Players by { selectedOpt.label }
             <div style={{ display: 'flex' }}>
-              { mainStats() }
+              {/* mainStats() */}
               <IconMenu iconStyle={{ color: '#fff', fontSize: 14 }} menuStyle={{ fontSize: 14 }} style={{ marginRight: '45px'}}
                   iconButtonElement={
                       <IconButton
@@ -575,18 +433,18 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
           temp = this.filterList(players, false);
         }
         else {
-          var { type, label } = obj; 
+          var { type, label } = obj;
           if ((type.toLowerCase() !== 'lastname') && (type.toLowerCase() !== 'name') ) {
             temp = temp = _.orderBy(players, `Statistics.${type}`, ['desc']);
-          } 
+          }
           else {
-            temp = _.orderBy(players, type, ['asc']); 
+            temp = _.orderBy(players, type, ['asc']);
           }
         }
 
         this.filterList(temp, true);
         this.setState({ selectedOpt: obj });
-        
+
       },
 
       render () {
@@ -628,7 +486,6 @@ core.Component('view.Compare', ['RotoPlayer'], (RotoPlayer)=>{
                     </Paper>
                   </div>
               </div>
-              <canvas id="myCanvas" style={{ display: 'none', width: '300px', height: '300px' }}></canvas>
             </div>
           );
       }
