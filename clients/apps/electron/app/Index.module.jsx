@@ -253,6 +253,7 @@ core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compa
         localStorage.setItem('user', JSON.stringify(user));
         this.setState({ popopen: false, isLoggedIn: true });
         core.tree.set('user', user);
+        core.tree.set('isLoggedIn', isLoggedIn);
       },
 
       renderLoginButtons () {

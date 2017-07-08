@@ -45,13 +45,13 @@ webpackJsonp([0],{
 	core.loadContext('index', __webpack_require__(404));
 	// core.loadContext('modules', require.context('modules', true, /.*\.module\.js/));
 	core.loadContext('source', __webpack_require__(404));
-
+	var hash = location.hash.split('#')[1];
 	core.require(['Index'], function (Index) {
 
 	  ReactDom.render(React.createElement(
 	    _MuiThemeProvider2.default,
 	    { muiTheme: (0, _getMuiTheme2.default)(_lightBaseTheme2.default) },
-	    React.createElement(Index, { hash: location.hash.split('#')[1] })
+	    React.createElement(Index, { hash: hash })
 	  ), document.getElementById('app'));
 	});
 
@@ -62,25 +62,26 @@ webpackJsonp([0],{
 
 	var map = {
 		"./Index.module.jsx": 405,
-		"./actions/actions.module.jsx": 720,
-		"./actions/comparePlayers.module.jsx": 722,
-		"./actions/getAllPlayers.module.jsx": 723,
-		"./actions/signup.module.jsx": 1025,
-		"./components/Loader/ui.Loader.module.jsx": 724,
-		"./components/modules/player_dialog.module.jsx": 727,
-		"./components/modules/roto_player.module.jsx": 875,
-		"./components/modules/roto_player_dialog.module.jsx": 904,
-		"./components/views/@@view.myZone.module.jsx": 911,
-		"./components/views/Compare/Compare.module.jsx": 922,
-		"./components/views/Compare/player.listItem.module.jsx": 933,
-		"./components/views/Compare/stats.google.chart.module.jsx": 934,
-		"./components/views/Compare/stats_dialog.module.jsx": 985,
-		"./components/views/view.myZone.module.jsx": 999,
-		"./components/views/view.rotoNews.module.jsx": 1000,
-		"./components/views/view.sign_in.module.jsx": 1001,
-		"./components/views/view.steps.one.module.jsx": 1002,
-		"./components/views/view.steps.two.module.jsx": 1019,
-		"./components/views/views.module.jsx": 1024
+		"./actions/actions.module.jsx": 532,
+		"./actions/comparePlayers.module.jsx": 534,
+		"./actions/getAllPlayers.module.jsx": 535,
+		"./actions/signup.module.jsx": 536,
+		"./components/Loader/ui.Loader.module.jsx": 537,
+		"./components/modules/player_dialog.module.jsx": 540,
+		"./components/modules/roto_player.module.jsx": 686,
+		"./components/modules/roto_player_dialog.module.jsx": 715,
+		"./components/views/@@view.myZone.module.jsx": 722,
+		"./components/views/Compare/Compare.module.jsx": 733,
+		"./components/views/Compare/player.listItem.module.jsx": 744,
+		"./components/views/Compare/stats.google.chart.module.jsx": 926,
+		"./components/views/Compare/stats_dialog.module.jsx": 977,
+		"./components/views/myzone/userCard.module.jsx": 1017,
+		"./components/views/myzone/view.myZone.module.jsx": 1018,
+		"./components/views/view.rotoNews.module.jsx": 991,
+		"./components/views/view.sign_in.module.jsx": 992,
+		"./components/views/view.steps.one.module.jsx": 993,
+		"./components/views/view.steps.two.module.jsx": 1010,
+		"./components/views/views.module.jsx": 1015
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -117,15 +118,15 @@ webpackJsonp([0],{
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _RaisedButton = __webpack_require__(730);
+	var _RaisedButton = __webpack_require__(476);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _AppBar = __webpack_require__(476);
+	var _AppBar = __webpack_require__(478);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(481);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -133,7 +134,7 @@ webpackJsonp([0],{
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(484);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
@@ -141,31 +142,31 @@ webpackJsonp([0],{
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Popover = __webpack_require__(484);
+	var _Popover = __webpack_require__(486);
 
 	var _Popover2 = _interopRequireDefault(_Popover);
 
-	var _reactGoogleLogin = __webpack_require__(667);
+	var _reactGoogleLogin = __webpack_require__(488);
 
 	var _reactGoogleLogin2 = _interopRequireDefault(_reactGoogleLogin);
 
-	var _reactFacebookLogin = __webpack_require__(668);
+	var _reactFacebookLogin = __webpack_require__(489);
 
 	var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
 
-	var _reactRouterDom = __webpack_require__(680);
+	var _reactRouterDom = __webpack_require__(490);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 	// var _ = window._;//
 	// console.dir(_);
 
 
-	var teams = __webpack_require__(719);
+	var teams = __webpack_require__(531);
 	var allPlayers = core.tree.select('allPlayers');
 	var isLoggedIn = false;
 	var lsUser = JSON.parse(localStorage.getItem('user')) || {
@@ -409,6 +410,7 @@ webpackJsonp([0],{
 	      localStorage.setItem('user', JSON.stringify(user));
 	      this.setState({ popopen: false, isLoggedIn: true });
 	      core.tree.set('user', user);
+	      core.tree.set('isLoggedIn', isLoggedIn);
 	    },
 	    renderLoginButtons: function renderLoginButtons() {
 	      var _this4 = this;
@@ -577,7 +579,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 720:
+/***/ 532:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -589,8 +591,8 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var core = __webpack_require__(212);
 	var sa = __webpack_require__(221);
-	var _ = __webpack_require__(718);
-	var teams = __webpack_require__(721);
+	var _ = __webpack_require__(530);
+	var teams = __webpack_require__(533);
 	var base = 'http://46.121.135.238:3310/api/v1.0/';
 	var nbaAvatar = 'http://stats.nba.com/media/players/230x185/';
 	var nbaTL = 'http://stats.nba.com/media/img/teams/logos/';
@@ -651,7 +653,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 721:
+/***/ 533:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -840,7 +842,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 722:
+/***/ 534:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -850,8 +852,8 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var core = __webpack_require__(212);
 	var sa = __webpack_require__(221);
-	var _ = __webpack_require__(718);
-	var teams = __webpack_require__(721);
+	var _ = __webpack_require__(530);
+	var teams = __webpack_require__(533);
 	var base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
 
 	core.Action('comparePlayers', { form: 'object' }, function (data, promise) {
@@ -870,7 +872,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 723:
+/***/ 535:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -880,8 +882,8 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var core = __webpack_require__(212);
 	var sa = __webpack_require__(221);
-	var _ = __webpack_require__(718);
-	var teams = __webpack_require__(721);
+	var _ = __webpack_require__(530);
+	var teams = __webpack_require__(533);
 	var base = 'http://Fantasyedge.ddns.net:8080/FantasyEdge';
 	// Fantasyedge.ddns.net
 	core.Action('getAllPlayers', { period: 'string' }, function (data, promise) {
@@ -938,7 +940,37 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 724:
+/***/ 536:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var React = __webpack_require__(113);
+	var core = __webpack_require__(212);
+	var sa = __webpack_require__(221);
+	var _ = __webpack_require__(530);
+	var teams = __webpack_require__(533);
+	var base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
+
+	core.Action('signupUser', { form: 'object' }, function (data, promise) {
+	  var compared = core.tree.select('compared');
+	  var form = data.form;
+
+	  console.debug('form => ', form);
+	  sa.post(base + '/ComparePlayers').send(_extends({}, form)).end(function (err, res) {
+	    if (res && res.ok) {
+	      promise.resolve(_extends({ stats: res.body }, form));
+	    } else {
+	      promise.resolve(_extends({ isError: true }, err));
+	    }
+	  });
+	});
+
+/***/ },
+
+/***/ 537:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -949,7 +981,7 @@ webpackJsonp([0],{
 	var PropTypes = React.PropTypes;
 
 	var core = __webpack_require__(212);
-	var myCss = __webpack_require__(725);
+	var myCss = __webpack_require__(538);
 
 	var allScreen = {
 	  display: 'flex',
@@ -1045,13 +1077,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 725:
+/***/ 538:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(726);
+	var content = __webpack_require__(539);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(261)(content, {});
@@ -1072,7 +1104,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 726:
+/***/ 539:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(260)();
@@ -1087,22 +1119,22 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 727:
+/***/ 540:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Dialog = __webpack_require__(728);
+	var _Dialog = __webpack_require__(541);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(481);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(730);
+	var _RaisedButton = __webpack_require__(476);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -1114,17 +1146,17 @@ webpackJsonp([0],{
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Table = __webpack_require__(732);
+	var _Table = __webpack_require__(543);
 
-	var _List = __webpack_require__(745);
+	var _List = __webpack_require__(556);
 
-	var _GridList = __webpack_require__(747);
+	var _GridList = __webpack_require__(558);
 
-	var _CircularProgress = __webpack_require__(751);
+	var _CircularProgress = __webpack_require__(562);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _Tabs = __webpack_require__(753);
+	var _Tabs = __webpack_require__(564);
 
 	var _colors = __webpack_require__(169);
 
@@ -1133,8 +1165,8 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
-	var moment = __webpack_require__(758);
+	var _ = __webpack_require__(530);
+	var moment = __webpack_require__(569);
 
 	var urls = [{
 	  title: 'stats',
@@ -1477,240 +1509,240 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 759:
+/***/ 570:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 760,
-		"./af.js": 760,
-		"./ar": 761,
-		"./ar-dz": 762,
-		"./ar-dz.js": 762,
-		"./ar-kw": 763,
-		"./ar-kw.js": 763,
-		"./ar-ly": 764,
-		"./ar-ly.js": 764,
-		"./ar-ma": 765,
-		"./ar-ma.js": 765,
-		"./ar-sa": 766,
-		"./ar-sa.js": 766,
-		"./ar-tn": 767,
-		"./ar-tn.js": 767,
-		"./ar.js": 761,
-		"./az": 768,
-		"./az.js": 768,
-		"./be": 769,
-		"./be.js": 769,
-		"./bg": 770,
-		"./bg.js": 770,
-		"./bn": 771,
-		"./bn.js": 771,
-		"./bo": 772,
-		"./bo.js": 772,
-		"./br": 773,
-		"./br.js": 773,
-		"./bs": 774,
-		"./bs.js": 774,
-		"./ca": 775,
-		"./ca.js": 775,
-		"./cs": 776,
-		"./cs.js": 776,
-		"./cv": 777,
-		"./cv.js": 777,
-		"./cy": 778,
-		"./cy.js": 778,
-		"./da": 779,
-		"./da.js": 779,
-		"./de": 780,
-		"./de-at": 781,
-		"./de-at.js": 781,
-		"./de-ch": 782,
-		"./de-ch.js": 782,
-		"./de.js": 780,
-		"./dv": 783,
-		"./dv.js": 783,
-		"./el": 784,
-		"./el.js": 784,
-		"./en-au": 785,
-		"./en-au.js": 785,
-		"./en-ca": 786,
-		"./en-ca.js": 786,
-		"./en-gb": 787,
-		"./en-gb.js": 787,
-		"./en-ie": 788,
-		"./en-ie.js": 788,
-		"./en-nz": 789,
-		"./en-nz.js": 789,
-		"./eo": 790,
-		"./eo.js": 790,
-		"./es": 791,
-		"./es-do": 792,
-		"./es-do.js": 792,
-		"./es.js": 791,
-		"./et": 793,
-		"./et.js": 793,
-		"./eu": 794,
-		"./eu.js": 794,
-		"./fa": 795,
-		"./fa.js": 795,
-		"./fi": 796,
-		"./fi.js": 796,
-		"./fo": 797,
-		"./fo.js": 797,
-		"./fr": 798,
-		"./fr-ca": 799,
-		"./fr-ca.js": 799,
-		"./fr-ch": 800,
-		"./fr-ch.js": 800,
-		"./fr.js": 798,
-		"./fy": 801,
-		"./fy.js": 801,
-		"./gd": 802,
-		"./gd.js": 802,
-		"./gl": 803,
-		"./gl.js": 803,
-		"./gom-latn": 804,
-		"./gom-latn.js": 804,
-		"./he": 805,
-		"./he.js": 805,
-		"./hi": 806,
-		"./hi.js": 806,
-		"./hr": 807,
-		"./hr.js": 807,
-		"./hu": 808,
-		"./hu.js": 808,
-		"./hy-am": 809,
-		"./hy-am.js": 809,
-		"./id": 810,
-		"./id.js": 810,
-		"./is": 811,
-		"./is.js": 811,
-		"./it": 812,
-		"./it.js": 812,
-		"./ja": 813,
-		"./ja.js": 813,
-		"./jv": 814,
-		"./jv.js": 814,
-		"./ka": 815,
-		"./ka.js": 815,
-		"./kk": 816,
-		"./kk.js": 816,
-		"./km": 817,
-		"./km.js": 817,
-		"./kn": 818,
-		"./kn.js": 818,
-		"./ko": 819,
-		"./ko.js": 819,
-		"./ky": 820,
-		"./ky.js": 820,
-		"./lb": 821,
-		"./lb.js": 821,
-		"./lo": 822,
-		"./lo.js": 822,
-		"./lt": 823,
-		"./lt.js": 823,
-		"./lv": 824,
-		"./lv.js": 824,
-		"./me": 825,
-		"./me.js": 825,
-		"./mi": 826,
-		"./mi.js": 826,
-		"./mk": 827,
-		"./mk.js": 827,
-		"./ml": 828,
-		"./ml.js": 828,
-		"./mr": 829,
-		"./mr.js": 829,
-		"./ms": 830,
-		"./ms-my": 831,
-		"./ms-my.js": 831,
-		"./ms.js": 830,
-		"./my": 832,
-		"./my.js": 832,
-		"./nb": 833,
-		"./nb.js": 833,
-		"./ne": 834,
-		"./ne.js": 834,
-		"./nl": 835,
-		"./nl-be": 836,
-		"./nl-be.js": 836,
-		"./nl.js": 835,
-		"./nn": 837,
-		"./nn.js": 837,
-		"./pa-in": 838,
-		"./pa-in.js": 838,
-		"./pl": 839,
-		"./pl.js": 839,
-		"./pt": 840,
-		"./pt-br": 841,
-		"./pt-br.js": 841,
-		"./pt.js": 840,
-		"./ro": 842,
-		"./ro.js": 842,
-		"./ru": 843,
-		"./ru.js": 843,
-		"./sd": 844,
-		"./sd.js": 844,
-		"./se": 845,
-		"./se.js": 845,
-		"./si": 846,
-		"./si.js": 846,
-		"./sk": 847,
-		"./sk.js": 847,
-		"./sl": 848,
-		"./sl.js": 848,
-		"./sq": 849,
-		"./sq.js": 849,
-		"./sr": 850,
-		"./sr-cyrl": 851,
-		"./sr-cyrl.js": 851,
-		"./sr.js": 850,
-		"./ss": 852,
-		"./ss.js": 852,
-		"./sv": 853,
-		"./sv.js": 853,
-		"./sw": 854,
-		"./sw.js": 854,
-		"./ta": 855,
-		"./ta.js": 855,
-		"./te": 856,
-		"./te.js": 856,
-		"./tet": 857,
-		"./tet.js": 857,
-		"./th": 858,
-		"./th.js": 858,
-		"./tl-ph": 859,
-		"./tl-ph.js": 859,
-		"./tlh": 860,
-		"./tlh.js": 860,
-		"./tr": 861,
-		"./tr.js": 861,
-		"./tzl": 862,
-		"./tzl.js": 862,
-		"./tzm": 863,
-		"./tzm-latn": 864,
-		"./tzm-latn.js": 864,
-		"./tzm.js": 863,
-		"./uk": 865,
-		"./uk.js": 865,
-		"./ur": 866,
-		"./ur.js": 866,
-		"./uz": 867,
-		"./uz-latn": 868,
-		"./uz-latn.js": 868,
-		"./uz.js": 867,
-		"./vi": 869,
-		"./vi.js": 869,
-		"./x-pseudo": 870,
-		"./x-pseudo.js": 870,
-		"./yo": 871,
-		"./yo.js": 871,
-		"./zh-cn": 872,
-		"./zh-cn.js": 872,
-		"./zh-hk": 873,
-		"./zh-hk.js": 873,
-		"./zh-tw": 874,
-		"./zh-tw.js": 874
+		"./af": 571,
+		"./af.js": 571,
+		"./ar": 572,
+		"./ar-dz": 573,
+		"./ar-dz.js": 573,
+		"./ar-kw": 574,
+		"./ar-kw.js": 574,
+		"./ar-ly": 575,
+		"./ar-ly.js": 575,
+		"./ar-ma": 576,
+		"./ar-ma.js": 576,
+		"./ar-sa": 577,
+		"./ar-sa.js": 577,
+		"./ar-tn": 578,
+		"./ar-tn.js": 578,
+		"./ar.js": 572,
+		"./az": 579,
+		"./az.js": 579,
+		"./be": 580,
+		"./be.js": 580,
+		"./bg": 581,
+		"./bg.js": 581,
+		"./bn": 582,
+		"./bn.js": 582,
+		"./bo": 583,
+		"./bo.js": 583,
+		"./br": 584,
+		"./br.js": 584,
+		"./bs": 585,
+		"./bs.js": 585,
+		"./ca": 586,
+		"./ca.js": 586,
+		"./cs": 587,
+		"./cs.js": 587,
+		"./cv": 588,
+		"./cv.js": 588,
+		"./cy": 589,
+		"./cy.js": 589,
+		"./da": 590,
+		"./da.js": 590,
+		"./de": 591,
+		"./de-at": 592,
+		"./de-at.js": 592,
+		"./de-ch": 593,
+		"./de-ch.js": 593,
+		"./de.js": 591,
+		"./dv": 594,
+		"./dv.js": 594,
+		"./el": 595,
+		"./el.js": 595,
+		"./en-au": 596,
+		"./en-au.js": 596,
+		"./en-ca": 597,
+		"./en-ca.js": 597,
+		"./en-gb": 598,
+		"./en-gb.js": 598,
+		"./en-ie": 599,
+		"./en-ie.js": 599,
+		"./en-nz": 600,
+		"./en-nz.js": 600,
+		"./eo": 601,
+		"./eo.js": 601,
+		"./es": 602,
+		"./es-do": 603,
+		"./es-do.js": 603,
+		"./es.js": 602,
+		"./et": 604,
+		"./et.js": 604,
+		"./eu": 605,
+		"./eu.js": 605,
+		"./fa": 606,
+		"./fa.js": 606,
+		"./fi": 607,
+		"./fi.js": 607,
+		"./fo": 608,
+		"./fo.js": 608,
+		"./fr": 609,
+		"./fr-ca": 610,
+		"./fr-ca.js": 610,
+		"./fr-ch": 611,
+		"./fr-ch.js": 611,
+		"./fr.js": 609,
+		"./fy": 612,
+		"./fy.js": 612,
+		"./gd": 613,
+		"./gd.js": 613,
+		"./gl": 614,
+		"./gl.js": 614,
+		"./gom-latn": 615,
+		"./gom-latn.js": 615,
+		"./he": 616,
+		"./he.js": 616,
+		"./hi": 617,
+		"./hi.js": 617,
+		"./hr": 618,
+		"./hr.js": 618,
+		"./hu": 619,
+		"./hu.js": 619,
+		"./hy-am": 620,
+		"./hy-am.js": 620,
+		"./id": 621,
+		"./id.js": 621,
+		"./is": 622,
+		"./is.js": 622,
+		"./it": 623,
+		"./it.js": 623,
+		"./ja": 624,
+		"./ja.js": 624,
+		"./jv": 625,
+		"./jv.js": 625,
+		"./ka": 626,
+		"./ka.js": 626,
+		"./kk": 627,
+		"./kk.js": 627,
+		"./km": 628,
+		"./km.js": 628,
+		"./kn": 629,
+		"./kn.js": 629,
+		"./ko": 630,
+		"./ko.js": 630,
+		"./ky": 631,
+		"./ky.js": 631,
+		"./lb": 632,
+		"./lb.js": 632,
+		"./lo": 633,
+		"./lo.js": 633,
+		"./lt": 634,
+		"./lt.js": 634,
+		"./lv": 635,
+		"./lv.js": 635,
+		"./me": 636,
+		"./me.js": 636,
+		"./mi": 637,
+		"./mi.js": 637,
+		"./mk": 638,
+		"./mk.js": 638,
+		"./ml": 639,
+		"./ml.js": 639,
+		"./mr": 640,
+		"./mr.js": 640,
+		"./ms": 641,
+		"./ms-my": 642,
+		"./ms-my.js": 642,
+		"./ms.js": 641,
+		"./my": 643,
+		"./my.js": 643,
+		"./nb": 644,
+		"./nb.js": 644,
+		"./ne": 645,
+		"./ne.js": 645,
+		"./nl": 646,
+		"./nl-be": 647,
+		"./nl-be.js": 647,
+		"./nl.js": 646,
+		"./nn": 648,
+		"./nn.js": 648,
+		"./pa-in": 649,
+		"./pa-in.js": 649,
+		"./pl": 650,
+		"./pl.js": 650,
+		"./pt": 651,
+		"./pt-br": 652,
+		"./pt-br.js": 652,
+		"./pt.js": 651,
+		"./ro": 653,
+		"./ro.js": 653,
+		"./ru": 654,
+		"./ru.js": 654,
+		"./sd": 655,
+		"./sd.js": 655,
+		"./se": 656,
+		"./se.js": 656,
+		"./si": 657,
+		"./si.js": 657,
+		"./sk": 658,
+		"./sk.js": 658,
+		"./sl": 659,
+		"./sl.js": 659,
+		"./sq": 660,
+		"./sq.js": 660,
+		"./sr": 661,
+		"./sr-cyrl": 662,
+		"./sr-cyrl.js": 662,
+		"./sr.js": 661,
+		"./ss": 663,
+		"./ss.js": 663,
+		"./sv": 664,
+		"./sv.js": 664,
+		"./sw": 665,
+		"./sw.js": 665,
+		"./ta": 666,
+		"./ta.js": 666,
+		"./te": 667,
+		"./te.js": 667,
+		"./tet": 668,
+		"./tet.js": 668,
+		"./th": 669,
+		"./th.js": 669,
+		"./tl-ph": 670,
+		"./tl-ph.js": 670,
+		"./tlh": 671,
+		"./tlh.js": 671,
+		"./tr": 672,
+		"./tr.js": 672,
+		"./tzl": 673,
+		"./tzl.js": 673,
+		"./tzm": 674,
+		"./tzm-latn": 675,
+		"./tzm-latn.js": 675,
+		"./tzm.js": 674,
+		"./uk": 676,
+		"./uk.js": 676,
+		"./ur": 677,
+		"./ur.js": 677,
+		"./uz": 678,
+		"./uz-latn": 679,
+		"./uz-latn.js": 679,
+		"./uz.js": 678,
+		"./vi": 680,
+		"./vi.js": 680,
+		"./x-pseudo": 681,
+		"./x-pseudo.js": 681,
+		"./yo": 682,
+		"./yo.js": 682,
+		"./zh-cn": 683,
+		"./zh-cn.js": 683,
+		"./zh-hk": 684,
+		"./zh-hk.js": 684,
+		"./zh-tw": 685,
+		"./zh-tw.js": 685
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -1723,19 +1755,19 @@ webpackJsonp([0],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 759;
+	webpackContext.id = 570;
 
 
 /***/ },
 
-/***/ 875:
+/***/ 686:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(730);
+	var _RaisedButton = __webpack_require__(476);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -1743,7 +1775,7 @@ webpackJsonp([0],{
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(876);
+	var _Avatar = __webpack_require__(687);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -1751,7 +1783,7 @@ webpackJsonp([0],{
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(878);
+	var _Chip = __webpack_require__(689);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
@@ -1759,25 +1791,25 @@ webpackJsonp([0],{
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(745);
+	var _List = __webpack_require__(556);
 
-	var _RefreshIndicator = __webpack_require__(881);
+	var _RefreshIndicator = __webpack_require__(692);
 
 	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
 
-	var _CircularProgress = __webpack_require__(751);
+	var _CircularProgress = __webpack_require__(562);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(890);
+	var _SelectField = __webpack_require__(701);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _TextField = __webpack_require__(892);
+	var _TextField = __webpack_require__(703);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Dialog = __webpack_require__(728);
+	var _Dialog = __webpack_require__(541);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
@@ -1787,11 +1819,11 @@ webpackJsonp([0],{
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _moreVert = __webpack_require__(903);
+	var _moreVert = __webpack_require__(714);
 
 	var _moreVert2 = _interopRequireDefault(_moreVert);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(484);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
@@ -1804,7 +1836,7 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 
 
 	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
@@ -1987,7 +2019,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 904:
+/***/ 715:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1996,15 +2028,15 @@ webpackJsonp([0],{
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _AppBar = __webpack_require__(476);
+	var _AppBar = __webpack_require__(478);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(481);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(730);
+	var _RaisedButton = __webpack_require__(476);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -2020,20 +2052,20 @@ webpackJsonp([0],{
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _List = __webpack_require__(745);
+	var _List = __webpack_require__(556);
 
-	var _close = __webpack_require__(905);
+	var _close = __webpack_require__(716);
 
 	var _close2 = _interopRequireDefault(_close);
 
-	var _Toolbar = __webpack_require__(906);
+	var _Toolbar = __webpack_require__(717);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 
 
 	var returnAvatar = function returnAvatar(id) {
@@ -2150,16 +2182,16 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 911:
+/***/ 722:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Card = __webpack_require__(912);
+	var _Card = __webpack_require__(723);
 
-	var _GridList = __webpack_require__(747);
+	var _GridList = __webpack_require__(558);
 
-	var _CircularProgress = __webpack_require__(751);
+	var _CircularProgress = __webpack_require__(562);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
@@ -2167,7 +2199,7 @@ webpackJsonp([0],{
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(481);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -2175,7 +2207,7 @@ webpackJsonp([0],{
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Avatar = __webpack_require__(876);
+	var _Avatar = __webpack_require__(687);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -2185,7 +2217,7 @@ webpackJsonp([0],{
 	var PropTypes = React.PropTypes;
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 
 
 	var imgUrl = 'http://stats.nba.com/media/players/230x185/';
@@ -2348,7 +2380,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 922:
+/***/ 733:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2357,7 +2389,7 @@ webpackJsonp([0],{
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(481);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -2365,7 +2397,7 @@ webpackJsonp([0],{
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(876);
+	var _Avatar = __webpack_require__(687);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -2377,13 +2409,13 @@ webpackJsonp([0],{
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(745);
+	var _List = __webpack_require__(556);
 
-	var _LinearProgress = __webpack_require__(923);
+	var _LinearProgress = __webpack_require__(734);
 
 	var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
 
-	var _TextField = __webpack_require__(892);
+	var _TextField = __webpack_require__(703);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
@@ -2391,7 +2423,7 @@ webpackJsonp([0],{
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(484);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
@@ -2399,17 +2431,17 @@ webpackJsonp([0],{
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _Badge = __webpack_require__(925);
+	var _Badge = __webpack_require__(736);
 
 	var _Badge2 = _interopRequireDefault(_Badge);
 
-	var _Toolbar = __webpack_require__(906);
+	var _Toolbar = __webpack_require__(717);
 
-	var _CircularProgress = __webpack_require__(751);
+	var _CircularProgress = __webpack_require__(562);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _reactLazyload = __webpack_require__(927);
+	var _reactLazyload = __webpack_require__(738);
 
 	var _reactLazyload2 = _interopRequireDefault(_reactLazyload);
 
@@ -2420,7 +2452,7 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 
 
 	var copy = function copy(obj) {
@@ -2988,7 +3020,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 933:
+/***/ 744:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2999,17 +3031,17 @@ webpackJsonp([0],{
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _List = __webpack_require__(745);
+	var _List = __webpack_require__(556);
 
 	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(484);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _Popover = __webpack_require__(484);
+	var _Popover = __webpack_require__(486);
 
 	var _Popover2 = _interopRequireDefault(_Popover);
 
@@ -3021,7 +3053,7 @@ webpackJsonp([0],{
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _nodeVibrant = __webpack_require__(486);
+	var _nodeVibrant = __webpack_require__(745);
 
 	var Vibrant = _interopRequireWildcard(_nodeVibrant);
 
@@ -3032,7 +3064,7 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 
 
 	var stats = {
@@ -3315,17 +3347,17 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 934:
+/***/ 926:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactChartjs = __webpack_require__(935);
+	var _reactChartjs = __webpack_require__(927);
 
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 
 	core.Component('Stats.Google.Chart', [], function () {
 	  return {
@@ -3413,14 +3445,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 985:
+/***/ 977:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(730);
+	var _RaisedButton = __webpack_require__(476);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -3428,7 +3460,7 @@ webpackJsonp([0],{
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(876);
+	var _Avatar = __webpack_require__(687);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -3436,7 +3468,7 @@ webpackJsonp([0],{
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(878);
+	var _Chip = __webpack_require__(689);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
@@ -3444,17 +3476,17 @@ webpackJsonp([0],{
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(745);
+	var _List = __webpack_require__(556);
 
-	var _CircularProgress = __webpack_require__(751);
+	var _CircularProgress = __webpack_require__(562);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(890);
+	var _SelectField = __webpack_require__(701);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _TextField = __webpack_require__(892);
+	var _TextField = __webpack_require__(703);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
@@ -3468,11 +3500,11 @@ webpackJsonp([0],{
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _moreVert = __webpack_require__(903);
+	var _moreVert = __webpack_require__(714);
 
 	var _moreVert2 = _interopRequireDefault(_moreVert);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(484);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
@@ -3480,13 +3512,13 @@ webpackJsonp([0],{
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _LinearProgress = __webpack_require__(923);
+	var _LinearProgress = __webpack_require__(734);
 
 	var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
 
-	var _Tabs = __webpack_require__(753);
+	var _Tabs = __webpack_require__(564);
 
-	var _reactSwipeableViews = __webpack_require__(987);
+	var _reactSwipeableViews = __webpack_require__(978);
 
 	var _reactSwipeableViews2 = _interopRequireDefault(_reactSwipeableViews);
 
@@ -3495,7 +3527,7 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 
 	core.Component('Stats.Diaglog', ['Stats.Google.Chart'], function (Chart) {
 	  return {
@@ -3838,247 +3870,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 999:
+/***/ 991:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Subheader = __webpack_require__(433);
-
-	var _Subheader2 = _interopRequireDefault(_Subheader);
-
-	var _Paper = __webpack_require__(423);
-
-	var _Paper2 = _interopRequireDefault(_Paper);
-
-	var _FlatButton = __webpack_require__(479);
-
-	var _FlatButton2 = _interopRequireDefault(_FlatButton);
-
-	var _IconButton = __webpack_require__(467);
-
-	var _IconButton2 = _interopRequireDefault(_IconButton);
-
-	var _Avatar = __webpack_require__(876);
-
-	var _Avatar2 = _interopRequireDefault(_Avatar);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var React = __webpack_require__(113);
-	var PropTypes = React.PropTypes;
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
-
-
-	var imgUrl = 'http://stats.nba.com/media/players/230x185/';
-	var teamUrl = 'http://stats.nba.com/media/img/teams/logos/';
-	var urls = [{
-	  title: 'stats',
-	  url: 'http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&Season=2016-17&SeasonType=Regular+Season&PlayerID=',
-	  img: imgUrl
-	}, {
-	  title: 'news',
-	  url: 'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player/?playerId=',
-	  img: imgUrl
-	}];
-
-	core.Component('view.myZone', ['PlayerDialog'], function (PlayerDialog) {
-	  return {
-
-	    bindings: {
-	      myplayers: ['myPlayers'],
-	      user: ['user']
-	    },
-
-	    getInitialState: function getInitialState() {
-	      return {
-	        hovered: '',
-	        cards: [{ label: 'Welcome, user', type: 'user', data: {} }, { label: 'News', type: 'news', data: [] }]
-	      };
-	    },
-	    componentDidMount: function componentDidMount() {
-	      if (this.state.user && this.state.user.id) {
-	        this.setUser(this.state.user);
-	      }
-	      core.on('user.logged.in', this.setUser);
-	    },
-	    setUser: function setUser(user) {
-	      var cards = this.state.cards;
-
-	      if (user && user.id) {
-	        for (var d = 0; d < cards.length; d++) {
-	          if (cards[d].type == 'user') {
-	            cards[d].label = 'Welcome, ' + user.fullName;
-	            cards[d].data = user;
-	          }
-	        }
-	        this.setState({ cards: cards });
-	      }
-	    },
-	    onMouseEnter: function onMouseEnter(id) {
-	      this.setState({ hovered: id });
-	    },
-	    onMouseLeave: function onMouseLeave(id) {
-	      this.setState({ hovered: '' });
-	    },
-	    openPopup: function openPopup(player) {
-	      // console.log(player)
-	      //
-	      // let { url, img } = _.find(urls, ['title' , 'stats' ]);
-	      // var limit = true; //type === 'stats';
-	      // this.getInfo(url, player.id, limit)
-	      core.tree.set(['player', 'popup', 'player'], player);
-	      core.emit('get.Player.data', { player: player, type: 'stats' });
-	    },
-	    renderUser: function renderUser(user) {
-	      // console.debug('user => ',  user)
-	      // var { user } = this.state;
-	      // console.debug('user => ',  user)
-	      if (_.isEmpty(user)) return React.createElement(
-	        'span',
-	        null,
-	        'no data'
-	      );else return React.createElement(
-	        'div',
-	        null,
-	        React.createElement('img', { src: user.avatar })
-	      );
-	    },
-	    renderNews: function renderNews(data) {
-	      return React.createElement(
-	        'span',
-	        null,
-	        'no news'
-	      );
-	    },
-	    renderPlayerCard: function renderPlayerCard(player, i) {
-	      var hovered = this.state.hovered;
-
-
-	      var images = {
-	        team: { width: '100%', position: 'absolute', left: 0, top: '-30px', opacity: '.3', right: 0, zIndex: -1 },
-	        player: { maxHeight: '50%', bottom: 0, position: 'absolute', right: 0, zIndex: 1 }
-	      };
-
-	      var card = {
-	        transition: 'box-shadow 0.23s ease',
-	        cursor: 'pointer',
-	        boxShadow: hovered === player.id ? '0px 8px 14px rgba(0, 0, 0, 0.12) , 0px 6px 8px rgba(0, 0, 0, 0.50) ' : '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
-	      };
-	      var getSubtitle = function getSubtitle() {
-	        return React.createElement(
-	          'div',
-	          null,
-	          React.createElement(
-	            'b',
-	            null,
-	            player.teamName
-	          )
-	        );
-	      };
-
-	      return React.createElement(
-	        GridTile,
-	        {
-	          onMouseEnter: this.onMouseEnter.bind(this, player.id),
-	          onMouseLeave: this.onMouseLeave.bind(this, player.id),
-	          key: i,
-	          onTouchTap: this.openPopup.bind(this, player),
-	          style: card,
-
-	          title: player.firstName + ' ' + player.lastName,
-	          subtitle: getSubtitle()
-	        },
-	        React.createElement('img', { src: '' + imgUrl + player.id + '.png', style: images.player }),
-	        React.createElement('img', { src: '' + teamUrl + player.teamLogo, style: images.team })
-	      );
-	    },
-	    renderCardData: function renderCardData(card) {
-	      var data = card.data,
-	          type = card.type;
-
-
-	      switch (type) {
-	        case 'user':
-	          return this.renderUser(data);
-	        case 'news':
-	          return this.renderNews(data);
-
-	      }
-	    },
-	    renderHomeCards: function renderHomeCards(card, i) {
-	      var diff = {
-	        width: i == 1 ? 'auto' : '275px',
-	        marginLeft: i == 1 ? 0 : 15,
-	        flex: i == 1 ? 1 : 'none'
-	      };
-	      return React.createElement(
-	        _Paper2.default,
-	        { key: i, style: _extends({}, styles.paper, { position: 'relative' }, diff) },
-	        React.createElement(
-	          _Subheader2.default,
-	          { style: styles.subheader },
-	          card.label
-	        ),
-	        this.renderCardData(card)
-	      );
-	    },
-	    render: function render() {
-	      var _state = this.state,
-	          myplayers = _state.myplayers,
-	          cards = _state.cards;
-
-	      console.log('this.state -> ', this.state);
-	      return React.createElement(
-	        'div',
-	        { style: styles.wrap },
-	        React.createElement(
-	          'div',
-	          { style: _defineProperty({ height: 450, display: 'flex', padding: '15px 0px', flexDirection: 'row', width: '100%' }, 'height', '100%') },
-	          _.map(cards, this.renderHomeCards)
-	        )
-	      );
-	    }
-	  };
-	});
-	var styles = {
-	  paper: {
-	    display: 'flex', flex: 1, width: '100%', overflow: 'auto', flexDirection: 'column',
-	    margin: '0 15px'
-	    // boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
-	  },
-	  subheader: {
-	    backgroundColor: '#323e51',
-	    position: 'relative',
-	    fontSize: '12px',
-	    fontWeight: '700',
-	    color: '#E0F2F1',
-	    display: 'flex',
-	    height: 48,
-	    justifyContent: 'space-between'
-	  },
-	  listItem: {
-	    padding: '10px 15px !important', fontSize: 14, height: 45, display: 'flex', alignItems: 'center', borderBottom: '1px solid #eee'
-	  },
-	  wrap: { height: '100%' }
-	};
-
-/***/ },
-
-/***/ 1000:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _RaisedButton = __webpack_require__(730);
+	var _RaisedButton = __webpack_require__(476);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -4086,7 +3885,7 @@ webpackJsonp([0],{
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(876);
+	var _Avatar = __webpack_require__(687);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -4094,7 +3893,7 @@ webpackJsonp([0],{
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(878);
+	var _Chip = __webpack_require__(689);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
@@ -4102,17 +3901,17 @@ webpackJsonp([0],{
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(745);
+	var _List = __webpack_require__(556);
 
-	var _RefreshIndicator = __webpack_require__(881);
+	var _RefreshIndicator = __webpack_require__(692);
 
 	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
 
-	var _CircularProgress = __webpack_require__(751);
+	var _CircularProgress = __webpack_require__(562);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(890);
+	var _SelectField = __webpack_require__(701);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
@@ -4125,7 +3924,7 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var _ = __webpack_require__(718);
+	var _ = __webpack_require__(530);
 
 
 	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
@@ -4390,16 +4189,16 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1001:
+/***/ 992:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactGoogleLogin = __webpack_require__(667);
+	var _reactGoogleLogin = __webpack_require__(488);
 
 	var _reactGoogleLogin2 = _interopRequireDefault(_reactGoogleLogin);
 
-	var _reactFacebookLogin = __webpack_require__(668);
+	var _reactFacebookLogin = __webpack_require__(489);
 
 	var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
 
@@ -4508,16 +4307,16 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1002:
+/***/ 993:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _TextField = __webpack_require__(892);
+	var _TextField = __webpack_require__(703);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _RaisedButton = __webpack_require__(730);
+	var _RaisedButton = __webpack_require__(476);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -4525,7 +4324,7 @@ webpackJsonp([0],{
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(876);
+	var _Avatar = __webpack_require__(687);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -4533,11 +4332,11 @@ webpackJsonp([0],{
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(878);
+	var _Chip = __webpack_require__(689);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _DatePicker = __webpack_require__(1003);
+	var _DatePicker = __webpack_require__(994);
 
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 
@@ -4703,30 +4502,30 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1019:
+/***/ 1010:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Snackbar = __webpack_require__(1020);
+	var _Snackbar = __webpack_require__(1011);
 
 	var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
-	var _RaisedButton = __webpack_require__(730);
+	var _RaisedButton = __webpack_require__(476);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(481);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _List = __webpack_require__(745);
+	var _List = __webpack_require__(556);
 
 	var _Subheader = __webpack_require__(433);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _Dialog = __webpack_require__(728);
+	var _Dialog = __webpack_require__(541);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
@@ -4736,15 +4535,15 @@ webpackJsonp([0],{
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _TextField = __webpack_require__(892);
+	var _TextField = __webpack_require__(703);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Chip = __webpack_require__(878);
+	var _Chip = __webpack_require__(689);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Avatar = __webpack_require__(876);
+	var _Avatar = __webpack_require__(687);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -4757,8 +4556,8 @@ webpackJsonp([0],{
 	var React = __webpack_require__(113);
 	var sa = __webpack_require__(221);
 	var core = __webpack_require__(212);
-	var moment = __webpack_require__(758);
-	var _ = __webpack_require__(718);
+	var moment = __webpack_require__(569);
+	var _ = __webpack_require__(530);
 
 	core.Component('view.Steps.Two', ['Slot'], function (Slot) {
 	  return {
@@ -5111,12 +4910,12 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1024:
+/***/ 1015:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _CircularProgress = __webpack_require__(751);
+	var _CircularProgress = __webpack_require__(562);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
@@ -5124,7 +4923,7 @@ webpackJsonp([0],{
 
 	var React = __webpack_require__(113);
 	var core = __webpack_require__(212);
-	var moment = __webpack_require__(758);
+	var moment = __webpack_require__(569);
 
 
 	core.Component('Views', [], function () {
@@ -5198,33 +4997,396 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1025:
+/***/ 1017:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _Subheader = __webpack_require__(433);
+
+	var _Subheader2 = _interopRequireDefault(_Subheader);
+
+	var _Paper = __webpack_require__(423);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _FlatButton = __webpack_require__(481);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+	var _IconButton = __webpack_require__(467);
+
+	var _IconButton2 = _interopRequireDefault(_IconButton);
+
+	var _Avatar = __webpack_require__(687);
+
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+
+	var _CircularProgress = __webpack_require__(562);
+
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
+	var _List = __webpack_require__(556);
+
+	var _Menu = __webpack_require__(426);
+
+	var _Menu2 = _interopRequireDefault(_Menu);
+
+	var _Divider = __webpack_require__(1019);
+
+	var _Divider2 = _interopRequireDefault(_Divider);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(113);
+	var PropTypes = React.PropTypes;
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(530);
+
+
+	core.Component('UserCard', ['PlayerDialog'], function (PlayerDialog) {
+	  return {
+	    bindings: {
+	      'isLoggedIn': ['isLoggedIn'],
+	      'myPlayers': ['myPlayers']
+	    },
+	    getInitialState: function getInitialState() {
+	      return {
+	        user: this.props.user
+	      };
+	    },
+	    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	      if (this.props.user && this.props.user.id !== nextProps.user.id) this.setState({ user: nextProps.user });
+	    },
+	    renderAvatar: function renderAvatar(user) {
+	      var props = {};
+	      var isLoggedIn = this.state.isLoggedIn;
+
+	      if (user && user.id !== null) {
+	        props['src'] = user.avatar;
+	      } else if (!isLoggedIn) {
+	        props['icon'] = React.createElement('i', { className: 'fa fa-user-plus' });
+	      } else {
+	        props['icon'] = React.createElement('i', { className: 'fa fa-circle-o-notch fa-spin' });
+	      }
+	      return props;
+	    },
+	    renderPlayer: function renderPlayer(player, key) {
+	      return React.createElement(
+	        'div',
+	        { key: key },
+	        React.createElement(_List.ListItem, { leftAvatar: React.createElement(_Avatar2.default, { icon: React.createElement('i', { className: 'fa fa-thumbs-o-up', style: { height: 40 } }) }),
+	          insetChildren: true,
+	          primaryText: React.createElement(
+	            'div',
+	            { style: { fontSize: 14 } },
+	            player.Name + ' ' + player.LastName
+	          ),
+	          secondaryText: React.createElement(
+	            'span',
+	            { style: { fontSize: 12 } },
+	            player.teamName
+	          ) }),
+	        React.createElement(_Divider2.default, null)
+	      );
+	    },
+	    renderMyPlayers: function renderMyPlayers() {
+	      var _state = this.state,
+	          myPlayers = _state.myPlayers,
+	          isLoggedIn = _state.isLoggedIn;
+
+	      if ((!myPlayers || !myPlayers.length) && !isLoggedIn) {
+
+	        return React.createElement(_List.ListItem, { leftAvatar: React.createElement(_Avatar2.default, { icon: React.createElement('i', { className: 'fa fa-user-plus' }) }),
+	          insetChildren: true,
+	          primaryText: React.createElement(
+	            'div',
+	            null,
+	            ' ',
+	            React.createElement(_FlatButton2.default, { label: 'add player' }),
+	            ' '
+	          ) });
+	      } else {
+	        return React.createElement(
+	          _List.List,
+	          { style: { overflowY: 'auto' } },
+	          _.map(myPlayers, this.renderPlayer)
+	        );
+	      }
+	    },
+	    render: function render() {
+	      // console.log('this.props -> ',  this.props)
+	      var user = this.props.user;
+
+	      return React.createElement(
+	        'div',
+	        { style: styles.wrap },
+	        React.createElement(_List.ListItem, { leftAvatar: React.createElement(_Avatar2.default, this.renderAvatar(user)),
+	          insetChildren: true,
+	          primaryText: user && user.fullName ? user.fullName : 'Loading',
+	          secondaryText: 'Email: ' + (user && user.email ? user.email : 'Loading') }),
+	        React.createElement(
+	          _List.List,
+	          { style: { flex: 1, display: 'flex', flexDirection: 'column' } },
+	          React.createElement(
+	            _Subheader2.default,
+	            { style: styles.subheader },
+	            'My Players'
+	          ),
+	          React.createElement(_Divider2.default, null),
+	          this.renderMyPlayers()
+	        )
+	      );
+	    }
+	  };
+	});
+	var styles = {
+	  subheader: {
+	    fontFamily: 'Roboto, sans-serif'
+	  },
+	  wrap: {
+	    height: '450px',
+	    display: 'flex',
+	    justifyContent: 'flex-start',
+	    flexDirection: 'column'
+	  }
+	};
+
+/***/ },
+
+/***/ 1018:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+	var _Subheader = __webpack_require__(433);
+
+	var _Subheader2 = _interopRequireDefault(_Subheader);
+
+	var _Paper = __webpack_require__(423);
+
+	var _Paper2 = _interopRequireDefault(_Paper);
+
+	var _FlatButton = __webpack_require__(481);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+	var _IconButton = __webpack_require__(467);
+
+	var _IconButton2 = _interopRequireDefault(_IconButton);
+
+	var _Avatar = __webpack_require__(687);
+
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	var React = __webpack_require__(113);
-	var core = __webpack_require__(212);
+	var PropTypes = React.PropTypes;
 	var sa = __webpack_require__(221);
-	var _ = __webpack_require__(718);
-	var teams = __webpack_require__(721);
-	var base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(530);
 
-	core.Action('signupUser', { form: 'object' }, function (data, promise) {
-	  var compared = core.tree.select('compared');
-	  var form = data.form;
 
-	  console.debug('form => ', form);
-	  sa.post(base + '/ComparePlayers').send(_extends({}, form)).end(function (err, res) {
-	    if (res && res.ok) {
-	      promise.resolve(_extends({ stats: res.body }, form));
-	    } else {
-	      promise.resolve(_extends({ isError: true }, err));
+	var imgUrl = 'http://stats.nba.com/media/players/230x185/';
+	var teamUrl = 'http://stats.nba.com/media/img/teams/logos/';
+	var urls = [{
+	  title: 'stats',
+	  url: 'http://stats.nba.com/stats/playergamelog?DateFrom=&DateTo=&LeagueID=00&Season=2016-17&SeasonType=Regular+Season&PlayerID=',
+	  img: imgUrl
+	}, {
+	  title: 'news',
+	  url: 'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player/?playerId=',
+	  img: imgUrl
+	}];
+
+	core.Component('view.myZone', ['UserCard'], function (UserCard) {
+	  return {
+
+	    bindings: {
+	      myplayers: ['myPlayers'],
+	      user: ['user']
+	    },
+
+	    getInitialState: function getInitialState() {
+	      return {
+	        hovered: '',
+	        cards: [{ label: 'Welcome, user', type: 'user', data: {} }, { label: 'News', type: 'news', data: [] }],
+	        loading: true
+	      };
+	    },
+	    componentDidMount: function componentDidMount() {
+	      if (this.state.user && this.state.user.id) {
+	        this.setUser(this.state.user);
+	      }
+	      core.on('user.logged.in', this.setUser);
+	    },
+	    setUser: function setUser(user) {
+	      var cards = this.state.cards;
+
+	      if (user && user.id) {
+	        // for (var d = 0; d < cards.length; d++) {
+	        //   if (cards[d].type == 'user') {
+	        //     cards[d].label = `Welcome, ${ user.fullName }`;
+	        //     cards[d].data = user;
+	        //   }
+	        // }
+	        this.setState({ loading: false });
+	      }
+	    },
+	    onMouseEnter: function onMouseEnter(id) {
+	      this.setState({ hovered: id });
+	    },
+	    onMouseLeave: function onMouseLeave(id) {
+	      this.setState({ hovered: '' });
+	    },
+	    openPopup: function openPopup(player) {
+	      // console.log(player)
+	      //
+	      // let { url, img } = _.find(urls, ['title' , 'stats' ]);
+	      // var limit = true; //type === 'stats';
+	      // this.getInfo(url, player.id, limit)
+	      core.tree.set(['player', 'popup', 'player'], player);
+	      core.emit('get.Player.data', { player: player, type: 'stats' });
+	    },
+	    renderUser: function renderUser(user) {
+	      // console.debug('user => ',  user)
+	      // var { user } = this.state;
+	      // console.debug('user => ',  user)
+	      if (_.isEmpty(user)) return React.createElement(
+	        'span',
+	        null,
+	        'no data'
+	      );else return React.createElement(
+	        'div',
+	        null,
+	        React.createElement('img', { src: user.avatar })
+	      );
+	    },
+	    renderNews: function renderNews(data) {
+	      return React.createElement(
+	        'span',
+	        null,
+	        'no news'
+	      );
+	    },
+	    renderPlayerCard: function renderPlayerCard(player, i) {
+	      var hovered = this.state.hovered;
+
+
+	      var images = {
+	        team: { width: '100%', position: 'absolute', left: 0, top: '-30px', opacity: '.3', right: 0, zIndex: -1 },
+	        player: { maxHeight: '50%', bottom: 0, position: 'absolute', right: 0, zIndex: 1 }
+	      };
+
+	      var card = {
+	        transition: 'box-shadow 0.23s ease',
+	        cursor: 'pointer',
+	        boxShadow: hovered === player.id ? '0px 8px 14px rgba(0, 0, 0, 0.12) , 0px 6px 8px rgba(0, 0, 0, 0.50) ' : '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'
+	      };
+	      var getSubtitle = function getSubtitle() {
+	        return React.createElement(
+	          'div',
+	          null,
+	          React.createElement(
+	            'b',
+	            null,
+	            player.teamName
+	          )
+	        );
+	      };
+
+	      return React.createElement(
+	        GridTile,
+	        {
+	          onMouseEnter: this.onMouseEnter.bind(this, player.id),
+	          onMouseLeave: this.onMouseLeave.bind(this, player.id),
+	          key: i,
+	          onTouchTap: this.openPopup.bind(this, player),
+	          style: card,
+
+	          title: player.firstName + ' ' + player.lastName,
+	          subtitle: getSubtitle()
+	        },
+	        React.createElement('img', { src: '' + imgUrl + player.id + '.png', style: images.player }),
+	        React.createElement('img', { src: '' + teamUrl + player.teamLogo, style: images.team })
+	      );
+	    },
+	    renderCardData: function renderCardData(card) {
+	      var data = card.data,
+	          type = card.type;
+
+
+	      switch (type) {
+	        case 'user':
+	          return this.renderUser(data);
+	        case 'news':
+	          return this.renderNews(data);
+
+	      }
+	    },
+	    renderHomeCards: function renderHomeCards(card, i) {
+	      var diff = {
+	        width: i == 1 ? 'auto' : '275px',
+	        marginLeft: i == 1 ? 0 : 15,
+	        flex: i == 1 ? 1 : 'none'
+	      };
+	      return React.createElement(
+	        _Paper2.default,
+	        { key: i, style: _extends({}, styles.paper, { position: 'relative' }, diff) },
+	        React.createElement(
+	          _Subheader2.default,
+	          { style: styles.subheader },
+	          card.label
+	        ),
+	        this.renderCardData(card)
+	      );
+	    },
+	    render: function render() {
+	      var _state = this.state,
+	          myplayers = _state.myplayers,
+	          cards = _state.cards,
+	          loading = _state.loading;
+	      // console.log('this.state -> ',  this.state)
+
+	      return React.createElement(
+	        'div',
+	        { style: styles.wrap },
+	        React.createElement(
+	          'div',
+	          { style: _defineProperty({ height: 450, display: 'flex', padding: '15px 0px', flexDirection: 'row', width: '100%' }, 'height', '100%') },
+	          React.createElement(UserCard, { user: this.state.user, loading: loading })
+	        )
+	      );
 	    }
-	  });
+	  };
 	});
+	var styles = {
+	  paper: {
+	    display: 'flex', flex: 1, width: '100%', overflow: 'auto', flexDirection: 'column',
+	    margin: '0 15px'
+	    // boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
+	  },
+	  subheader: {
+	    backgroundColor: '#323e51',
+	    position: 'relative',
+	    fontSize: '12px',
+	    fontWeight: '700',
+	    color: '#E0F2F1',
+	    display: 'flex',
+	    height: 48,
+	    justifyContent: 'space-between'
+	  },
+	  listItem: {
+	    padding: '10px 15px !important', fontSize: 14, height: 45, display: 'flex', alignItems: 'center', borderBottom: '1px solid #eee'
+	  },
+	  wrap: { height: '100%' }
+	};
 
 /***/ }
 
