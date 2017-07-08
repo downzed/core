@@ -8,6 +8,7 @@ var _ = require('lodash');
 import Drawer from 'material-ui/Drawer';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
@@ -15,16 +16,36 @@ import FontIcon from 'material-ui/FontIcon';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import Popover from 'material-ui/Popover';
-import * as Vibrant from 'node-vibrant';
 
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 
+import {
+  BrowserRouter as Router,
+  Route,
+  HashRouter ,
+  Link,
+  browserHistory,
+  Switch
+} from 'react-router-dom';
+
+
 var teams = require('../assets/teams.js');
 var allPlayers = core.tree.select('allPlayers');
+var isLoggedIn = false;
+var lsUser =JSON.parse(localStorage.getItem('user')) || {
+  id: null,
+  fullName: null,
+  avatar: null,
+  email: null
+};
 
-core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
-(App, Views, PlayerDialog, StatsDiaglog)=>{
+if (!_.isEmpty(lsUser) && lsUser.id !== null) {
+  isLoggedIn = true;
+}
+
+core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compare', 'PlayerDialog', 'Stats.Diaglog'],
+(App, Home, News, Compare, PlayerDialog, StatsDiaglog)=>{
   return {
 
       getInitialState(){
@@ -32,30 +53,57 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
           apps: {},
           open: true ,
           popopen: false ,
-          view: 'myZone',
           roster: {},
           name: 'Fantasy Edge',
           dialogOpen: false,
           comparedData: [],
+          location: this.props.hash,
+          loading: true,
+          isLoggedIn: isLoggedIn,
           timeframe: '14',
-          menuItems:  [
-            { label: 'Home', icon: 'home', ref: 'myZone', active: false },
-            { label: 'News', icon: 'description', ref: 'RotoNews', active: false },
-            { label: 'Compare', icon: 'compare_arrows', ref: 'Compare', active: false },
-            { label: 'SignIn', icon: 'settings', ref: 'SignIn', active: false }
+
+          user: lsUser,
+
+          routes: [
+            {
+              path: '/',
+              exact: true,
+              label: 'Home',
+              active: true,
+              ref: Home,
+              icon: 'home',
+            },
+            {
+              path: '/news',
+              ref: News,
+              label: 'News',
+              icon: 'description',
+            },
+            {
+              path: '/compare',
+              ref: Compare,
+              label: 'Compare',
+              icon: 'compare_arrows',
+            }
           ]
 
         };
       },
 
-      componentDidMount(){
-        this.changeViews(this.state.view)
-      },
-
       componentWillMount() {
-          this.getPlayers();
-          this.allPlayers = core.tree.select('allPlayers');
-          core.on('compared.players', this.handleCompare);
+        var { user } = this.state;
+        this.getPlayers();
+        this.allPlayers = core.tree.select('allPlayers');
+        // console.log(this.state.user)
+
+        core.on('compared.players', this.handleCompare);
+
+      },
+      componentDidMount: function() {
+        var {user}=this.state;
+        if (user && user.id !== null) {
+          this.emitUser(user)
+        }
       },
 
       getPlayers(period){
@@ -75,6 +123,7 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
               var chunks =  _.chunk(res, 13);
               var myplayers = chunks[6];
               core.emit('players.loaded',{ players: res, total: total })
+              this.setState({ loading: false })
               core.tree.set('players', chunks[5]);
               core.tree.set('myPlayers', chunks[5]);
             });
@@ -83,38 +132,6 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
 
       handleCompare(data){
         this.setState({ comparedData: data, dialogOpen: true })
-      },
-
-      getColor(players){
-        const get = (src) => {
-          if (!src) return '#fff';
-          var r, g, b, pal;
-          var x;
-          Vibrant.from(src).getPalette((err, palette) => {
-            if (err){ console.error(err); x = 'red'; }
-            // if (palette && palette.hasOwnProperty('Vibrant')) {
-            //     if (palette['Vibrant'].hasOwnProperty('_rgb')) {
-                  // console.debug('palette[Vibrant][_rgb] => ',  palette['Vibrant']['_rgb'])
-                  if (palette && palette['Vibrant'] !== null && palette['Vibrant']['_rgb']) {
-                    pal = palette['Vibrant']['_rgb'];
-                    r = pal[0];
-                    g = pal[1];
-                    b = pal[2];
-                    x= `rgba(${r},${g},${b}, .6)`;
-                  }
-                // }
-                else x = 'green'
-            // }
-          });
-          return x;
-
-        };
-        return _.map(players, (player)=>{
-          return {
-            ...player,
-            color:get(player.teamLogo)
-          }
-        })
       },
 
       getTeams(players, callback){
@@ -154,15 +171,15 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
       },
 
       changeViews(view){
-        var { menuItems } = this.state;
+        var { routes } = this.state;
 
-         menuItems = _.map(menuItems, (item)=>{
+         routes = _.map(routes, (item)=>{
           return {
             ...item,
-            active: item.ref === view
+            active: item.path === view.path
           }
         });
-        this.setState({ view: view, menuItems: menuItems, open: true });
+        this.setState({ view: view, routes: routes, open: true });
       },
 
       getLocalStorageDetails(details) {
@@ -170,21 +187,28 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
         this.setState({ roster: {...roster, ...details} })
       },
 
-      renderMenu(){
-        var { menuItems, view } = this.state;
+      changePath(path){
+        location.hash = '#'+path;
+        this.setState({ location: path })
+      },
 
-        return _.map(menuItems, (item, i)=>{
-          var { icon, label, ref, active } = item;
+      renderMenu(){
+        var { routes, location } = this.state;
+
+        return _.map(routes, (route, i)=>{
+          var { icon, label, ref, path } = route;
+          var active = location === path;
           var itemStyle = {
             icon: { color: active ? '#f2fafa':'#9196a6', fontSize: 18 },
             div: {  color: active ? '#f2fafa':'#9196a6', fontSize: 14, background: active ? '#46bbc2' : 'none' }
           }
           return (
-            <MenuItem key={ i }
-                      leftIcon={ <FontIcon style={ itemStyle.icon } className="material-icons">{ icon }</FontIcon> }
-                      style={ itemStyle.div }
-                      innerDivStyle={{ paddingLeft: 45, background: active ? '#46bbc2' : 'none'  }}
-                      onTouchTap={ this.changeViews.bind(this, ref) }>{ label }</MenuItem>
+
+              <MenuItem key={ i }
+                        leftIcon={ <FontIcon style={ itemStyle.icon } className="material-icons">{ icon }</FontIcon> }
+                        style={ itemStyle.div }
+                        onTouchTap={ this.changePath.bind(this, path) }
+                        innerDivStyle={{ paddingLeft: 45, background: active ? '#46bbc2' : 'none'  }}>{ label }</MenuItem>
           )
         });
       },
@@ -198,51 +222,95 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
       },
 
       rightIcon(){
-
+        var {isLoggedIn, user} = this.state;
+        if (isLoggedIn) return <FlatButton
+            style={{ marginTop: -8, color: '#fafafa', marginRight: 15  }}
+            label={ user.fullName } />;
         return (
           <div>
-            <IconButton
+            <FlatButton
                 onTouchTap={this.handleTouchTap}
-                style={{ marginTop: -8  }}
-                iconStyle={{ color: '#fafafa' }}
-                iconClassName="material-icons">
-                input
-            </IconButton>
+                style={{ marginTop: -8, color: '#fafafa', marginRight: 15  }}
+                label={ 'Login' } />
             <Popover
                 open={this.state.popopen}
                 anchorEl={this.state.anchorEl}
                 anchorOrigin={{ 'horizontal': 'left', 'vertical': 'bottom' }}
                 targetOrigin={{ 'horizontal': 'right', 'vertical': 'bottom' }}
                 onRequestClose={ e => { this.setState({ popopen: false }) }} >
-              <div>
-                <div onTouchTap={ e => { this.google_btn.signIn() } }>
-                  <span> google</span>
-                  <span className={ 'fa fa-google'  }></span>
-                </div>
-                <MenuItem primaryText="Facebook" onTouchTap={ e => { this.fb_btn.click() } } leftIcon={<IconButton style={{ fontSize: 16 }} iconClassName={ 'fa fa-facebook' }/>} />
-              </div>
+                <Menu desktop={true} style={{ padding: 0 }}>
+                  <MenuItem primaryText="Google" onTouchTap={ e => { this.google_btn.signIn() } } />
+                  <MenuItem primaryText="Facebook" disabled={ false } onTouchTap={ e => { this.fb_btn.click() } }/>
+                </Menu>
             </Popover>
 
           </div>
         )
       },
 
+      emitUser(user){
+        core.emit('user.logged.in', user)
+        localStorage.setItem('user', JSON.stringify(user));
+        this.setState({ popopen: false, isLoggedIn: true });
+        core.tree.set('user', user);
+      },
+
       renderLoginButtons () {
+        var { user } = this.state;
+        var at;
 
         const responseGoogle = (response) => {
-          console.debug('response => ',  response)
-          var profile = response.getBasicProfile();
-          console.debug('google response', profile);
-          console.log('ID: ' + profile.getId());
-          console.log('Full Name: ' + profile.getName());
-          console.log('Given Name: ' + profile.getGivenName());
-          console.log('Family Name: ' + profile.getFamilyName());
-          console.log('Image URL: ' + profile.getImageUrl());
-          console.log('Email: ' + profile.getEmail());
+          if (response && !_.isEmpty(response) && response.accessToken) {
+            var profile = response.getBasicProfile();
+            at = response['accessToken']
+
+            // console.debug('google response', profile);
+            // console.log('ID: ' + profile.getId());
+            // console.log('Full Name: ' + profile.getName());
+            // console.log('Given Name: ' + profile.getGivenName());
+            // console.log('Family Name: ' + profile.getFamilyName());
+            // console.log('Image URL: ' + profile.getImageUrl());
+            // console.log('Email: ' + profile.getEmail());
+
+            user['id'] = profile.getId();
+            user['fullName'] = profile.getName();
+            user['avatar'] = profile.getImageUrl();
+            user['email'] = profile.getEmail();
+            this.emitUser(user)
+          }
+          else {
+            console.error('response [Google] eror! > ',  response)
+          }
+
         };
 
         const responseFacebook = (response) => {
-          console.debug('fb response', response);
+          if (response && !_.isEmpty(response) && response.accessToken) {
+            at = response['accessToken']
+            user['id'] = response.id || response.userID;
+            user['fullName'] = response.name;
+            user['avatar'] = response.picture.data.url;
+            user['email'] = response.email;
+            this.emitUser(user)
+          } else {
+            console.error('response [Facebook] eror! > ',  response)
+          }
+          /*
+                    {
+            "name": "Ziv Zaloscer",
+            "email": "downzed@gmail.com",
+            "picture": {
+              "data": {
+                "is_silhouette": false,
+                "url": "https://fb-s-d-a.akamaihd.net/h-ak-fbx/v/t1.0-1/p50x50/11032599_10153599356804391_1596119410188371739_n.jpg?oh=947b7df264f0935d44d769cb5d647709&oe=5A04425F&__gda__=1506122703_b06d76770d47a75d46c4b85e710a04e1"
+              }
+            },
+            "id": "10154545029714391",
+            "accessToken": "EAAETLeljRZC0BAO9SMpwyVlJphSA6QentEOz4QwGBtJr3NyizD9w9r8pBOgjjOZB0Y6sfdqFCtuZCIodi5vEGdqVxa1bTYYQy7OYSbTVP07XSVFf7VLh70O9LIu8w6ucRDWe4iZAsZBiBI9murrauOxWlva7gz4zY2MuHYbS02sDGI7rubwZCljpCicin7ZBnoZD",
+            "userID": "10154545029714391",
+            "expiresIn": 7133,
+            "signedRequest": "0WmDYG29Jhg6TIyOS3_h1zqeVKaCWLR24XXNFGGPF90.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUURCODJURDh5SWg2R0pjS0NDRlRDeEUtLVJmZk1tQ005SUNnTXJQSjI3anI4dG1BLWE2WE1PWUhsVHNJTTNpOHZxUkt0a09RYld3NDNfVUtfS3VBYzJ3TWRKM1M4VEFrSmI5VE5vZTNieVQ2YzFrZjJfcmJrbUMxM1pSTjdJck5JckJEXzVxRDdtTjhmVHppMVdQN05mRXpxMUZxczFGZnhyNENJZjVLYlp3N3FHNGtJdFBweElYTE40dGJfck5BZkFmQ092TGVJY0hGY3I5aGpXbk1KdkhqZDVfOFV1WU93TFdmVGFlRW9Hd004R2xPR01fNWp4SDJiV2h3Y0dHQ0U3bEQ2Z2JGYWpsZ0UwLUtMUVBOWW91UWl0ODlxUjNmcnl2c29oTUdYS3A4VHZGeEtSWWt3UWVFTWw5emZ2VTJQR250cGJ6U0lmLXpEdnNFQzZCRVptRyIsImlzc3VlZF9hdCI6MTQ5OTUyMjQ2NywidXNlcl9pZCI6IjEwMTU0NTQ1MDI5NzE0MzkxIn0"
+          }*/
         };
 
         return (
@@ -270,9 +338,30 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
         );
       },
 
+      renderRoutes(){
+        var { routes, user } = this.state;
+        return (
+            <Switch className={ 'routes-wrapper' }>
+           {
+              _.map(routes, (item, key)=>{
+                return <Route
+                           user={ user }
+                           key={key}
+                           path={item.path}
+                           exact={item.exact}
+                           component={ item.ref } />
+             })
+           }
+           </Switch>
+        )
+      },
+
       render () {
-        let { open, view, name, type, dialogOpen, comparedData } = this.state;
+        let { open, view, name, type, dialogOpen, comparedData, loading } = this.state;
+
           return (
+
+            <HashRouter basename="/">
               <App>
                 <AppBar title={ name }
                   style={{ background: '#323e51', fontSize: 18, paddingLeft: '140px', paddingRight: 15, alignItems: 'center',  justifyContent: 'space-between' }} showMenuIconButton={ false }
@@ -284,25 +373,19 @@ core.Component('Index', ['core.App','Views', 'PlayerDialog', 'Stats.Diaglog'],
                     width={ 140 }
                     open={ true }
                     onRequestChange={ e => { this.setState({open: true }); }} >
+                      <div className={ 'menu_routes-wrapper' }>
                     { this.renderMenu() }
+                      </div>
                   </Drawer>
                 { this.renderLoginButtons() }
                   <div className={'wrapper'} style={{ ...isOpen(open),  position: 'absolute' }}>
 
-                    <Views
-                        getLocalStorageDetails={ this.getLocalStorageDetails }
-                        view={ view }
-                        handleNameChange={ name => { this.setState({ name: name }) } } />
-                    <StatsDiaglog open={ dialogOpen } data={ comparedData } onClose={ this.handleModalCLose } />
+                 { this.renderRoutes(view) }
+                <StatsDiaglog open={ dialogOpen } data={ comparedData } onClose={ this.handleModalCLose } />
 
                   </div>
-                  {/*
-                  <FlatButton icon={ <FontIcon className={ 'fa fa-arrow-left' } /> }
-                    style={{ position:'absolute', left: 25, bottom: 25 }}
-                    onClick={ e => { this.changeSteps(stepIndex-1) } } />
-                    */}
                 </App>
-
+            </HashRouter>
           );
       }
   }

@@ -20,24 +20,6 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 import CircularProgress from 'material-ui/CircularProgress';
 import LazyLoad from 'react-lazyload';
 
-const returnAvatar = (id, uri, type) => {
-  run(`${uri}${id}.png`)
-  function run(uri){
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    xhr.onload = () => {
-      try {
-        document.getElementById(id).src = window.URL.createObjectURL(xhr.response);
-      } catch (e) {
-        // console.error(e)
-      }
-      // return window.URL.createObjectURL(xhr.response);
-    }
-    xhr.open('GET', uri, true);
-    xhr.send();
-  }
-
-};
 const copy = (obj) => {
   if (null == obj || "object" != typeof obj) return obj;
   var copy = obj.constructor();
@@ -92,14 +74,7 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
 
       componentWillMount(){
         // this.initForm();
-        core.on('players.loaded', ({ players, total })=>{
-          setTimeout(() => {
-            if (players && players instanceof Array) {
-              var list = _.orderBy(players, 'LastName');
-              this.setState({ total: total, players: list, originalList: list, isLoading: false });
-            }
-          }, 250);
-        })
+
       },
 
       initForm(){
@@ -112,6 +87,14 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
       },
 
       componentDidMount(){
+        core.on('players.loaded', ({ players, total })=>{
+          setTimeout(() => {
+            if (players && players instanceof Array) {
+              var list = _.orderBy(players, 'LastName');
+              this.setState({ total: total, players: list, originalList: list, isLoading: false });
+            }
+          }, 250);
+        })
         if (!this.state.players || !this.state.players.length) {
           var data = core.tree.get('allPlayers');
           if (data && typeof data !== 'undefined'){

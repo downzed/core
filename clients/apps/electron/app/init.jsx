@@ -14,21 +14,12 @@ injectTapEventPlugin();
 core.loadContext('index', require.context('./', true, /.*\.module\.js/));
 // core.loadContext('modules', require.context('modules', true, /.*\.module\.js/));
 core.loadContext('source', require.context('./', true, /.*\.module\.js/));
-// core.run('loadGoogleChart').then( ()=>{
-//     console.log('google.load')
-//     google.load("visualization", "1", {
-//       packages:["corechart"],
-//     //   callback: function() {
-//     //     that.startRenderingComponents();
-//     //   }
-//     });
-// });
-
 
 core.require(['Index'], (Index)=>{
 
   ReactDom.render(
+
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-        <Index />
+      <Index hash={ location.hash.split('#')[1] } />
     </MuiThemeProvider>, document.getElementById('app'));
 })

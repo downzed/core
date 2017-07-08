@@ -53,7 +53,7 @@ module.exports = function(core){
       };
     },
     getInitialState(){
-      var animation = routerCursor.get('animation');
+      var animation = routerCursor.get('animation') || {  "name": "koko", "duration": 600 };
       var classes = {
         animation: `core-animation-${animation.name}`,
         active: `core-animation-${animation.name}-active`,

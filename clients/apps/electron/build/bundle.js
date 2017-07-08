@@ -17,79 +17,70 @@ webpackJsonp([0],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _MuiThemeProvider = __webpack_require__(27);
+	var _MuiThemeProvider = __webpack_require__(26);
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _darkBaseTheme = __webpack_require__(210);
+	var _darkBaseTheme = __webpack_require__(211);
 
 	var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
-	var _lightBaseTheme = __webpack_require__(167);
+	var _lightBaseTheme = __webpack_require__(168);
 
 	var _lightBaseTheme2 = _interopRequireDefault(_lightBaseTheme);
 
-	var _getMuiTheme = __webpack_require__(152);
+	var _getMuiTheme = __webpack_require__(153);
 
 	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var core = __webpack_require__(211);
-	var ReactDom = __webpack_require__(266);
+	var React = __webpack_require__(113);
+	var core = __webpack_require__(212);
+	var ReactDom = __webpack_require__(268);
 
 
 	(0, _reactTapEventPlugin2.default)();
 
-	core.loadContext('index', __webpack_require__(408));
+	core.loadContext('index', __webpack_require__(404));
 	// core.loadContext('modules', require.context('modules', true, /.*\.module\.js/));
-	core.loadContext('source', __webpack_require__(408));
-	// core.run('loadGoogleChart').then( ()=>{
-	//     console.log('google.load')
-	//     google.load("visualization", "1", {
-	//       packages:["corechart"],
-	//     //   callback: function() {
-	//     //     that.startRenderingComponents();
-	//     //   }
-	//     });
-	// });
-
+	core.loadContext('source', __webpack_require__(404));
 
 	core.require(['Index'], function (Index) {
 
-	    ReactDom.render(React.createElement(
-	        _MuiThemeProvider2.default,
-	        { muiTheme: (0, _getMuiTheme2.default)(_lightBaseTheme2.default) },
-	        React.createElement(Index, null)
-	    ), document.getElementById('app'));
+	  ReactDom.render(React.createElement(
+	    _MuiThemeProvider2.default,
+	    { muiTheme: (0, _getMuiTheme2.default)(_lightBaseTheme2.default) },
+	    React.createElement(Index, { hash: location.hash.split('#')[1] })
+	  ), document.getElementById('app'));
 	});
 
 /***/ },
 
-/***/ 408:
+/***/ 404:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./Index.module.jsx": 409,
-		"./actions/actions.module.jsx": 675,
-		"./actions/comparePlayers.module.jsx": 677,
-		"./actions/getAllPlayers.module.jsx": 678,
-		"./components/Loader/ui.Loader.module.jsx": 679,
-		"./components/modules/player_dialog.module.jsx": 682,
-		"./components/modules/roto_player.module.jsx": 816,
-		"./components/modules/roto_player_dialog.module.jsx": 845,
-		"./components/views/@@view.myZone.module.jsx": 852,
-		"./components/views/Compare/Compare.module.jsx": 863,
-		"./components/views/Compare/player.listItem.module.jsx": 876,
-		"./components/views/Compare/stats.google.chart.module.jsx": 877,
-		"./components/views/Compare/stats_dialog.module.jsx": 928,
-		"./components/views/view.myZone.module.jsx": 1035,
-		"./components/views/view.rotoNews.module.jsx": 1036,
-		"./components/views/view.sign_in.module.jsx": 1037,
-		"./components/views/view.steps.one.module.jsx": 1038,
-		"./components/views/view.steps.two.module.jsx": 1055,
-		"./components/views/views.module.jsx": 1060
+		"./Index.module.jsx": 405,
+		"./actions/actions.module.jsx": 720,
+		"./actions/comparePlayers.module.jsx": 722,
+		"./actions/getAllPlayers.module.jsx": 723,
+		"./actions/signup.module.jsx": 1025,
+		"./components/Loader/ui.Loader.module.jsx": 724,
+		"./components/modules/player_dialog.module.jsx": 727,
+		"./components/modules/roto_player.module.jsx": 875,
+		"./components/modules/roto_player_dialog.module.jsx": 904,
+		"./components/views/@@view.myZone.module.jsx": 911,
+		"./components/views/Compare/Compare.module.jsx": 922,
+		"./components/views/Compare/player.listItem.module.jsx": 933,
+		"./components/views/Compare/stats.google.chart.module.jsx": 934,
+		"./components/views/Compare/stats_dialog.module.jsx": 985,
+		"./components/views/view.myZone.module.jsx": 999,
+		"./components/views/view.rotoNews.module.jsx": 1000,
+		"./components/views/view.sign_in.module.jsx": 1001,
+		"./components/views/view.steps.one.module.jsx": 1002,
+		"./components/views/view.steps.two.module.jsx": 1019,
+		"./components/views/views.module.jsx": 1024
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -102,112 +93,155 @@ webpackJsonp([0],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 408;
+	webpackContext.id = 404;
 
 
 /***/ },
 
-/***/ 409:
+/***/ 405:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Drawer = __webpack_require__(410);
+	var _Drawer = __webpack_require__(406);
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _Menu = __webpack_require__(431);
+	var _Menu = __webpack_require__(426);
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _MenuItem = __webpack_require__(441);
+	var _MenuItem = __webpack_require__(436);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _AppBar = __webpack_require__(480);
+	var _RaisedButton = __webpack_require__(730);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _AppBar = __webpack_require__(476);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 
-	var _FlatButton = __webpack_require__(483);
+	var _FlatButton = __webpack_require__(479);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _FontIcon = __webpack_require__(473);
+	var _FontIcon = __webpack_require__(469);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _IconMenu = __webpack_require__(486);
+	var _IconMenu = __webpack_require__(482);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Popover = __webpack_require__(488);
+	var _Popover = __webpack_require__(484);
 
 	var _Popover2 = _interopRequireDefault(_Popover);
 
-	var _nodeVibrant = __webpack_require__(490);
-
-	var Vibrant = _interopRequireWildcard(_nodeVibrant);
-
-	var _reactGoogleLogin = __webpack_require__(671);
+	var _reactGoogleLogin = __webpack_require__(667);
 
 	var _reactGoogleLogin2 = _interopRequireDefault(_reactGoogleLogin);
 
-	var _reactFacebookLogin = __webpack_require__(672);
+	var _reactFacebookLogin = __webpack_require__(668);
 
 	var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	var _reactRouterDom = __webpack_require__(680);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 	// var _ = window._;//
 	// console.dir(_);
 
 
-	var teams = __webpack_require__(674);
+	var teams = __webpack_require__(719);
 	var allPlayers = core.tree.select('allPlayers');
+	var isLoggedIn = false;
+	var lsUser = JSON.parse(localStorage.getItem('user')) || {
+	  id: null,
+	  fullName: null,
+	  avatar: null,
+	  email: null
+	};
 
-	core.Component('Index', ['core.App', 'Views', 'PlayerDialog', 'Stats.Diaglog'], function (App, Views, PlayerDialog, StatsDiaglog) {
+	if (!_.isEmpty(lsUser) && lsUser.id !== null) {
+	  isLoggedIn = true;
+	}
+
+	core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compare', 'PlayerDialog', 'Stats.Diaglog'], function (App, Home, News, Compare, PlayerDialog, StatsDiaglog) {
 	  return {
 	    getInitialState: function getInitialState() {
 	      return {
 	        apps: {},
 	        open: true,
 	        popopen: false,
-	        view: 'myZone',
 	        roster: {},
 	        name: 'Fantasy Edge',
 	        dialogOpen: false,
 	        comparedData: [],
+	        location: this.props.hash,
+	        loading: true,
+	        isLoggedIn: isLoggedIn,
 	        timeframe: '14',
-	        menuItems: [{ label: 'Home', icon: 'home', ref: 'myZone', active: false }, { label: 'News', icon: 'description', ref: 'RotoNews', active: false }, { label: 'Compare', icon: 'compare_arrows', ref: 'Compare', active: false }, { label: 'SignIn', icon: 'settings', ref: 'SignIn', active: false }]
+
+	        user: lsUser,
+
+	        routes: [{
+	          path: '/',
+	          exact: true,
+	          label: 'Home',
+	          active: true,
+	          ref: Home,
+	          icon: 'home'
+	        }, {
+	          path: '/news',
+	          ref: News,
+	          label: 'News',
+	          icon: 'description'
+	        }, {
+	          path: '/compare',
+	          ref: Compare,
+	          label: 'Compare',
+	          icon: 'compare_arrows'
+	        }]
 
 	      };
 	    },
-	    componentDidMount: function componentDidMount() {
-	      this.changeViews(this.state.view);
-	    },
 	    componentWillMount: function componentWillMount() {
+	      var user = this.state.user;
+
 	      this.getPlayers();
 	      this.allPlayers = core.tree.select('allPlayers');
+	      // console.log(this.state.user)
+
 	      core.on('compared.players', this.handleCompare);
 	    },
+
+	    componentDidMount: function componentDidMount() {
+	      var user = this.state.user;
+
+	      if (user && user.id !== null) {
+	        this.emitUser(user);
+	      }
+	    },
+
 	    getPlayers: function getPlayers(period) {
 	      var _this = this;
 
-	      var _state = this.state;
-	      var allPlayers = _state.allPlayers;
-	      var timeframe = _state.timeframe;
+	      var _state = this.state,
+	          allPlayers = _state.allPlayers,
+	          timeframe = _state.timeframe;
 
 	      if (!period) period = timeframe;
 	      core.run('getAllPlayers', { period: period }).then(function (_ref) {
@@ -215,12 +249,12 @@ webpackJsonp([0],{
 
 	        if (isError) return;
 
-	        var _allPlayers$get = _this.allPlayers.get();
-
-	        var players = _allPlayers$get.players;
-	        var total = _allPlayers$get.total;
+	        var _allPlayers$get = _this.allPlayers.get(),
+	            players = _allPlayers$get.players,
+	            total = _allPlayers$get.total;
 	        // console.debug('players => ', players);
 	        // console.debug('total => ', total);
+
 
 	        var res = _this.getTeams(players);
 	        res = _.sortBy(res, 'LastName');
@@ -230,6 +264,7 @@ webpackJsonp([0],{
 	        var chunks = _.chunk(res, 13);
 	        var myplayers = chunks[6];
 	        core.emit('players.loaded', { players: res, total: total });
+	        _this.setState({ loading: false });
 	        core.tree.set('players', chunks[5]);
 	        core.tree.set('myPlayers', chunks[5]);
 	      });
@@ -237,37 +272,6 @@ webpackJsonp([0],{
 	    },
 	    handleCompare: function handleCompare(data) {
 	      this.setState({ comparedData: data, dialogOpen: true });
-	    },
-	    getColor: function getColor(players) {
-	      var get = function get(src) {
-	        if (!src) return '#fff';
-	        var r, g, b, pal;
-	        var x;
-	        Vibrant.from(src).getPalette(function (err, palette) {
-	          if (err) {
-	            console.error(err);x = 'red';
-	          }
-	          // if (palette && palette.hasOwnProperty('Vibrant')) {
-	          //     if (palette['Vibrant'].hasOwnProperty('_rgb')) {
-	          // console.debug('palette[Vibrant][_rgb] => ',  palette['Vibrant']['_rgb'])
-	          if (palette && palette['Vibrant'] !== null && palette['Vibrant']['_rgb']) {
-	            pal = palette['Vibrant']['_rgb'];
-	            r = pal[0];
-	            g = pal[1];
-	            b = pal[2];
-	            x = 'rgba(' + r + ',' + g + ',' + b + ', .6)';
-	          }
-	          // }
-	          else x = 'green';
-	          // }
-	        });
-	        return x;
-	      };
-	      return _.map(players, function (player) {
-	        return _extends({}, player, {
-	          color: get(player.teamLogo)
-	        });
-	      });
 	    },
 	    getTeams: function getTeams(players, callback) {
 	      var wteams = [];
@@ -301,34 +305,39 @@ webpackJsonp([0],{
 	      this.setState({ dialogOpen: false, comparedData: {} });
 	    },
 	    changeViews: function changeViews(view) {
-	      var menuItems = this.state.menuItems;
+	      var routes = this.state.routes;
 
 
-	      menuItems = _.map(menuItems, function (item) {
+	      routes = _.map(routes, function (item) {
 	        return _extends({}, item, {
-	          active: item.ref === view
+	          active: item.path === view.path
 	        });
 	      });
-	      this.setState({ view: view, menuItems: menuItems, open: true });
+	      this.setState({ view: view, routes: routes, open: true });
 	    },
 	    getLocalStorageDetails: function getLocalStorageDetails(details) {
 	      console.log('obj');
 	      this.setState({ roster: _extends({}, roster, details) });
 	    },
+	    changePath: function changePath(path) {
+	      location.hash = '#' + path;
+	      this.setState({ location: path });
+	    },
 	    renderMenu: function renderMenu() {
 	      var _this2 = this;
 
-	      var _state2 = this.state;
-	      var menuItems = _state2.menuItems;
-	      var view = _state2.view;
+	      var _state2 = this.state,
+	          routes = _state2.routes,
+	          location = _state2.location;
 
 
-	      return _.map(menuItems, function (item, i) {
-	        var icon = item.icon;
-	        var label = item.label;
-	        var ref = item.ref;
-	        var active = item.active;
+	      return _.map(routes, function (route, i) {
+	        var icon = route.icon,
+	            label = route.label,
+	            ref = route.ref,
+	            path = route.path;
 
+	        var active = location === path;
 	        var itemStyle = {
 	          icon: { color: active ? '#f2fafa' : '#9196a6', fontSize: 18 },
 	          div: { color: active ? '#f2fafa' : '#9196a6', fontSize: 14, background: active ? '#46bbc2' : 'none' }
@@ -342,8 +351,8 @@ webpackJsonp([0],{
 	              icon
 	            ),
 	            style: itemStyle.div,
-	            innerDivStyle: { paddingLeft: 45, background: active ? '#46bbc2' : 'none' },
-	            onTouchTap: _this2.changeViews.bind(_this2, ref) },
+	            onTouchTap: _this2.changePath.bind(_this2, path),
+	            innerDivStyle: { paddingLeft: 45, background: active ? '#46bbc2' : 'none' } },
 	          label
 	        );
 	      });
@@ -358,18 +367,20 @@ webpackJsonp([0],{
 	    rightIcon: function rightIcon() {
 	      var _this3 = this;
 
+	      var _state3 = this.state,
+	          isLoggedIn = _state3.isLoggedIn,
+	          user = _state3.user;
+
+	      if (isLoggedIn) return React.createElement(_FlatButton2.default, {
+	        style: { marginTop: -8, color: '#fafafa', marginRight: 15 },
+	        label: user.fullName });
 	      return React.createElement(
 	        'div',
 	        null,
-	        React.createElement(
-	          _IconButton2.default,
-	          {
-	            onTouchTap: this.handleTouchTap,
-	            style: { marginTop: -8 },
-	            iconStyle: { color: '#fafafa' },
-	            iconClassName: 'material-icons' },
-	          'input'
-	        ),
+	        React.createElement(_FlatButton2.default, {
+	          onTouchTap: this.handleTouchTap,
+	          style: { marginTop: -8, color: '#fafafa', marginRight: 15 },
+	          label: 'Login' }),
 	        React.createElement(
 	          _Popover2.default,
 	          {
@@ -381,44 +392,81 @@ webpackJsonp([0],{
 	              _this3.setState({ popopen: false });
 	            } },
 	          React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	              'div',
-	              { onTouchTap: function onTouchTap(e) {
-	                  _this3.google_btn.signIn();
-	                } },
-	              React.createElement(
-	                'span',
-	                null,
-	                ' google'
-	              ),
-	              React.createElement('span', { className: 'fa fa-google' })
-	            ),
-	            React.createElement(_MenuItem2.default, { primaryText: 'Facebook', onTouchTap: function onTouchTap(e) {
+	            _Menu2.default,
+	            { desktop: true, style: { padding: 0 } },
+	            React.createElement(_MenuItem2.default, { primaryText: 'Google', onTouchTap: function onTouchTap(e) {
+	                _this3.google_btn.signIn();
+	              } }),
+	            React.createElement(_MenuItem2.default, { primaryText: 'Facebook', disabled: false, onTouchTap: function onTouchTap(e) {
 	                _this3.fb_btn.click();
-	              }, leftIcon: React.createElement(_IconButton2.default, { style: { fontSize: 16 }, iconClassName: 'fa fa-facebook' }) })
+	              } })
 	          )
 	        )
 	      );
 	    },
+	    emitUser: function emitUser(user) {
+	      core.emit('user.logged.in', user);
+	      localStorage.setItem('user', JSON.stringify(user));
+	      this.setState({ popopen: false, isLoggedIn: true });
+	      core.tree.set('user', user);
+	    },
 	    renderLoginButtons: function renderLoginButtons() {
 	      var _this4 = this;
 
+	      var user = this.state.user;
+
+	      var at;
+
 	      var responseGoogle = function responseGoogle(response) {
-	        console.debug('response => ', response);
-	        var profile = response.getBasicProfile();
-	        console.debug('google response', profile);
-	        console.log('ID: ' + profile.getId());
-	        console.log('Full Name: ' + profile.getName());
-	        console.log('Given Name: ' + profile.getGivenName());
-	        console.log('Family Name: ' + profile.getFamilyName());
-	        console.log('Image URL: ' + profile.getImageUrl());
-	        console.log('Email: ' + profile.getEmail());
+	        if (response && !_.isEmpty(response) && response.accessToken) {
+	          var profile = response.getBasicProfile();
+	          at = response['accessToken'];
+
+	          // console.debug('google response', profile);
+	          // console.log('ID: ' + profile.getId());
+	          // console.log('Full Name: ' + profile.getName());
+	          // console.log('Given Name: ' + profile.getGivenName());
+	          // console.log('Family Name: ' + profile.getFamilyName());
+	          // console.log('Image URL: ' + profile.getImageUrl());
+	          // console.log('Email: ' + profile.getEmail());
+
+	          user['id'] = profile.getId();
+	          user['fullName'] = profile.getName();
+	          user['avatar'] = profile.getImageUrl();
+	          user['email'] = profile.getEmail();
+	          _this4.emitUser(user);
+	        } else {
+	          console.error('response [Google] eror! > ', response);
+	        }
 	      };
 
 	      var responseFacebook = function responseFacebook(response) {
-	        console.debug('fb response', response);
+	        if (response && !_.isEmpty(response) && response.accessToken) {
+	          at = response['accessToken'];
+	          user['id'] = response.id || response.userID;
+	          user['fullName'] = response.name;
+	          user['avatar'] = response.picture.data.url;
+	          user['email'] = response.email;
+	          _this4.emitUser(user);
+	        } else {
+	          console.error('response [Facebook] eror! > ', response);
+	        }
+	        /*
+	                  {
+	          "name": "Ziv Zaloscer",
+	          "email": "downzed@gmail.com",
+	          "picture": {
+	            "data": {
+	              "is_silhouette": false,
+	              "url": "https://fb-s-d-a.akamaihd.net/h-ak-fbx/v/t1.0-1/p50x50/11032599_10153599356804391_1596119410188371739_n.jpg?oh=947b7df264f0935d44d769cb5d647709&oe=5A04425F&__gda__=1506122703_b06d76770d47a75d46c4b85e710a04e1"
+	            }
+	          },
+	          "id": "10154545029714391",
+	          "accessToken": "EAAETLeljRZC0BAO9SMpwyVlJphSA6QentEOz4QwGBtJr3NyizD9w9r8pBOgjjOZB0Y6sfdqFCtuZCIodi5vEGdqVxa1bTYYQy7OYSbTVP07XSVFf7VLh70O9LIu8w6ucRDWe4iZAsZBiBI9murrauOxWlva7gz4zY2MuHYbS02sDGI7rubwZCljpCicin7ZBnoZD",
+	          "userID": "10154545029714391",
+	          "expiresIn": 7133,
+	          "signedRequest": "0WmDYG29Jhg6TIyOS3_h1zqeVKaCWLR24XXNFGGPF90.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUURCODJURDh5SWg2R0pjS0NDRlRDeEUtLVJmZk1tQ005SUNnTXJQSjI3anI4dG1BLWE2WE1PWUhsVHNJTTNpOHZxUkt0a09RYld3NDNfVUtfS3VBYzJ3TWRKM1M4VEFrSmI5VE5vZTNieVQ2YzFrZjJfcmJrbUMxM1pSTjdJck5JckJEXzVxRDdtTjhmVHppMVdQN05mRXpxMUZxczFGZnhyNENJZjVLYlp3N3FHNGtJdFBweElYTE40dGJfck5BZkFmQ092TGVJY0hGY3I5aGpXbk1KdkhqZDVfOFV1WU93TFdmVGFlRW9Hd004R2xPR01fNWp4SDJiV2h3Y0dHQ0U3bEQ2Z2JGYWpsZ0UwLUtMUVBOWW91UWl0ODlxUjNmcnl2c29oTUdYS3A4VHZGeEtSWWt3UWVFTWw5emZ2VTJQR250cGJ6U0lmLXpEdnNFQzZCRVptRyIsImlzc3VlZF9hdCI6MTQ5OTUyMjQ2NywidXNlcl9pZCI6IjEwMTU0NTQ1MDI5NzE0MzkxIn0"
+	        }*/
 	      };
 
 	      return React.createElement(
@@ -448,49 +496,72 @@ webpackJsonp([0],{
 	        })
 	      );
 	    },
+	    renderRoutes: function renderRoutes() {
+	      var _state4 = this.state,
+	          routes = _state4.routes,
+	          user = _state4.user;
+
+	      return React.createElement(
+	        _reactRouterDom.Switch,
+	        { className: 'routes-wrapper' },
+	        _.map(routes, function (item, key) {
+	          return React.createElement(_reactRouterDom.Route, {
+	            user: user,
+	            key: key,
+	            path: item.path,
+	            exact: item.exact,
+	            component: item.ref });
+	        })
+	      );
+	    },
 	    render: function render() {
 	      var _this5 = this;
 
-	      var _state3 = this.state;
-	      var open = _state3.open;
-	      var view = _state3.view;
-	      var name = _state3.name;
-	      var type = _state3.type;
-	      var dialogOpen = _state3.dialogOpen;
-	      var comparedData = _state3.comparedData;
+	      var _state5 = this.state,
+	          open = _state5.open,
+	          view = _state5.view,
+	          name = _state5.name,
+	          type = _state5.type,
+	          dialogOpen = _state5.dialogOpen,
+	          comparedData = _state5.comparedData,
+	          loading = _state5.loading;
+
 
 	      return React.createElement(
-	        App,
-	        null,
-	        React.createElement(_AppBar2.default, { title: name,
-	          style: { background: '#323e51', fontSize: 18, paddingLeft: '140px', paddingRight: 15, alignItems: 'center', justifyContent: 'space-between' }, showMenuIconButton: false,
-	          iconElementRight: this.rightIcon(),
-	          onLeftIconButtonTouchTap: function onLeftIconButtonTouchTap(e) {
-	            _this5.setState({ open: true });
-	          } }),
+	        _reactRouterDom.HashRouter,
+	        { basename: '/' },
 	        React.createElement(
-	          _Drawer2.default,
-	          {
-	            containerStyle: { backgroundColor: '#323e51', top: 64, boxShadow: 'rgba(0, 0, 0, 0.227) 1px 5px 10px' },
-	            docked: true,
-	            width: 140,
-	            open: true,
-	            onRequestChange: function onRequestChange(e) {
+	          App,
+	          null,
+	          React.createElement(_AppBar2.default, { title: name,
+	            style: { background: '#323e51', fontSize: 18, paddingLeft: '140px', paddingRight: 15, alignItems: 'center', justifyContent: 'space-between' }, showMenuIconButton: false,
+	            iconElementRight: this.rightIcon(),
+	            onLeftIconButtonTouchTap: function onLeftIconButtonTouchTap(e) {
 	              _this5.setState({ open: true });
-	            } },
-	          this.renderMenu()
-	        ),
-	        this.renderLoginButtons(),
-	        React.createElement(
-	          'div',
-	          { className: 'wrapper', style: _extends({}, isOpen(open), { position: 'absolute' }) },
-	          React.createElement(Views, {
-	            getLocalStorageDetails: this.getLocalStorageDetails,
-	            view: view,
-	            handleNameChange: function handleNameChange(name) {
-	              _this5.setState({ name: name });
 	            } }),
-	          React.createElement(StatsDiaglog, { open: dialogOpen, data: comparedData, onClose: this.handleModalCLose })
+	          React.createElement(
+	            _Drawer2.default,
+	            {
+	              containerStyle: { backgroundColor: '#323e51', top: 64, boxShadow: 'rgba(0, 0, 0, 0.227) 1px 5px 10px' },
+	              docked: true,
+	              width: 140,
+	              open: true,
+	              onRequestChange: function onRequestChange(e) {
+	                _this5.setState({ open: true });
+	              } },
+	            React.createElement(
+	              'div',
+	              { className: 'menu_routes-wrapper' },
+	              this.renderMenu()
+	            )
+	          ),
+	          this.renderLoginButtons(),
+	          React.createElement(
+	            'div',
+	            { className: 'wrapper', style: _extends({}, isOpen(open), { position: 'absolute' }) },
+	            this.renderRoutes(view),
+	            React.createElement(StatsDiaglog, { open: dialogOpen, data: comparedData, onClose: this.handleModalCLose })
+	          )
 	        )
 	      );
 	    }
@@ -506,7 +577,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 675:
+/***/ 720:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -515,11 +586,11 @@ webpackJsonp([0],{
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var React = __webpack_require__(114);
-	var core = __webpack_require__(211);
-	var sa = __webpack_require__(220);
-	var _ = __webpack_require__(673);
-	var teams = __webpack_require__(676);
+	var React = __webpack_require__(113);
+	var core = __webpack_require__(212);
+	var sa = __webpack_require__(221);
+	var _ = __webpack_require__(718);
+	var teams = __webpack_require__(721);
 	var base = 'http://46.121.135.238:3310/api/v1.0/';
 	var nbaAvatar = 'http://stats.nba.com/media/players/230x185/';
 	var nbaTL = 'http://stats.nba.com/media/img/teams/logos/';
@@ -580,7 +651,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 676:
+/***/ 721:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -769,18 +840,18 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 677:
+/***/ 722:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(114);
-	var core = __webpack_require__(211);
-	var sa = __webpack_require__(220);
-	var _ = __webpack_require__(673);
-	var teams = __webpack_require__(676);
+	var React = __webpack_require__(113);
+	var core = __webpack_require__(212);
+	var sa = __webpack_require__(221);
+	var _ = __webpack_require__(718);
+	var teams = __webpack_require__(721);
 	var base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
 
 	core.Action('comparePlayers', { form: 'object' }, function (data, promise) {
@@ -799,34 +870,33 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 678:
+/***/ 723:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(114);
-	var core = __webpack_require__(211);
-	var sa = __webpack_require__(220);
-	var _ = __webpack_require__(673);
-	var teams = __webpack_require__(676);
+	var React = __webpack_require__(113);
+	var core = __webpack_require__(212);
+	var sa = __webpack_require__(221);
+	var _ = __webpack_require__(718);
+	var teams = __webpack_require__(721);
 	var base = 'http://Fantasyedge.ddns.net:8080/FantasyEdge';
 	// Fantasyedge.ddns.net
 	core.Action('getAllPlayers', { period: 'string' }, function (data, promise) {
 	  var allPlayers = core.tree.select('allPlayers');
 	  var total = 0;
-	  console.log(1111);
 	  sa.post(base + '/GetAllPlayersAvg?Period=' + data.period)
 	  // .send(data)
 	  .end(function (err, res) {
 	    if (res && res.ok) {
-	      var body = res.body;
-	      var headers = res.headers;
+	      var body = res.body,
+	          headers = res.headers;
+	      // console.debug('headers => ',  headers)
 
-	      console.debug('headers => ', headers);
-	      if (headers['players-count']) total = headers['players-count'];
 	      if (body['Players'] && !_.isEmpty(body['Players'])) {
+	        if (headers['players-count']) total = headers['players-count'];else total = body['Players'].length;
 	        allPlayers.set({ players: body['Players'], total: total });
 	        promise.resolve({ isError: false });
 	      } else {
@@ -847,8 +917,8 @@ webpackJsonp([0],{
 	  // .send(data)
 	  .end(function (err, res) {
 	    if (res && res.ok) {
-	      var body = res.body;
-	      var headers = res.headers;
+	      var body = res.body,
+	          headers = res.headers;
 	      // console.debug('res => ', res);
 
 	      if (headers['players-count']) total = headers['players-count'];
@@ -868,18 +938,18 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 679:
+/***/ 724:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(114);
+	var React = __webpack_require__(113);
 	var PropTypes = React.PropTypes;
 
-	var core = __webpack_require__(211);
-	var myCss = __webpack_require__(680);
+	var core = __webpack_require__(212);
+	var myCss = __webpack_require__(725);
 
 	var allScreen = {
 	  display: 'flex',
@@ -970,27 +1040,28 @@ webpackJsonp([0],{
 	{/*
 	   calling to <Loader /> will be like:
 	  <Loader background="#000" style={ {width: 10px, marginLeft: 15px} } show={!this.state.data} spinner={1} />
+	  
 	  */}
 
 /***/ },
 
-/***/ 680:
+/***/ 725:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(681);
+	var content = __webpack_require__(726);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(259)(content, {});
+	var update = __webpack_require__(261)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./loader-theme.css", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./loader-theme.css");
+			module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./loader-theme.css", function() {
+				var newContent = require("!!../../../../../node_modules/css-loader/index.js!./loader-theme.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1001,69 +1072,69 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 681:
+/***/ 726:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(258)();
+	exports = module.exports = __webpack_require__(260)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".spinner {\n  width: 70px;\n  text-align: center;\n}\n\n.spinner > div {\n  width: 10px;\n  height: 10px;\n  background-color: #333;\n  border-radius: 100%;\n  display: inline-block;\n  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n  animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n}\n\n.spinner .bounce1 {\n  -webkit-animation-delay: -0.32s;\n  animation-delay: -0.32s;\n}\n\n.spinner .bounce2 {\n  -webkit-animation-delay: -0.16s;\n  animation-delay: -0.16s;\n}\n\n@-webkit-keyframes sk-bouncedelay {\n  0%, 80%, 100% { -webkit-transform: scale(0) }\n  40% { -webkit-transform: scale(1.0) }\n}\n\n@keyframes sk-bouncedelay {\n  0%, 80%, 100% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  } 40% {\n    -webkit-transform: scale(1.0);\n    transform: scale(1.0);\n  }\n}\n\n.sk-fading-circle {\n  width: 40px;\n  height: 40px;\n  position: relative;\n}\n\n.sk-fading-circle .sk-circle {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.sk-fading-circle .sk-circle:before {\n  content: '';\n  display: block;\n  margin: 0 auto;\n  width: 15%;\n  height: 15%;\n  background-color: #333;\n  border-radius: 100%;\n  -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\n          animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\n}\n.sk-fading-circle .sk-circle2 {\n  -webkit-transform: rotate(30deg);\n      -ms-transform: rotate(30deg);\n          transform: rotate(30deg);\n}\n.sk-fading-circle .sk-circle3 {\n  -webkit-transform: rotate(60deg);\n      -ms-transform: rotate(60deg);\n          transform: rotate(60deg);\n}\n.sk-fading-circle .sk-circle4 {\n  -webkit-transform: rotate(90deg);\n      -ms-transform: rotate(90deg);\n          transform: rotate(90deg);\n}\n.sk-fading-circle .sk-circle5 {\n  -webkit-transform: rotate(120deg);\n      -ms-transform: rotate(120deg);\n          transform: rotate(120deg);\n}\n.sk-fading-circle .sk-circle6 {\n  -webkit-transform: rotate(150deg);\n      -ms-transform: rotate(150deg);\n          transform: rotate(150deg);\n}\n.sk-fading-circle .sk-circle7 {\n  -webkit-transform: rotate(180deg);\n      -ms-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n.sk-fading-circle .sk-circle8 {\n  -webkit-transform: rotate(210deg);\n      -ms-transform: rotate(210deg);\n          transform: rotate(210deg);\n}\n.sk-fading-circle .sk-circle9 {\n  -webkit-transform: rotate(240deg);\n      -ms-transform: rotate(240deg);\n          transform: rotate(240deg);\n}\n.sk-fading-circle .sk-circle10 {\n  -webkit-transform: rotate(270deg);\n      -ms-transform: rotate(270deg);\n          transform: rotate(270deg);\n}\n.sk-fading-circle .sk-circle11 {\n  -webkit-transform: rotate(300deg);\n      -ms-transform: rotate(300deg);\n          transform: rotate(300deg);\n}\n.sk-fading-circle .sk-circle12 {\n  -webkit-transform: rotate(330deg);\n      -ms-transform: rotate(330deg);\n          transform: rotate(330deg);\n}\n.sk-fading-circle .sk-circle2:before {\n  -webkit-animation-delay: -1.1s;\n          animation-delay: -1.1s;\n}\n.sk-fading-circle .sk-circle3:before {\n  -webkit-animation-delay: -1s;\n          animation-delay: -1s;\n}\n.sk-fading-circle .sk-circle4:before {\n  -webkit-animation-delay: -0.9s;\n          animation-delay: -0.9s;\n}\n.sk-fading-circle .sk-circle5:before {\n  -webkit-animation-delay: -0.8s;\n          animation-delay: -0.8s;\n}\n.sk-fading-circle .sk-circle6:before {\n  -webkit-animation-delay: -0.7s;\n          animation-delay: -0.7s;\n}\n.sk-fading-circle .sk-circle7:before {\n  -webkit-animation-delay: -0.6s;\n          animation-delay: -0.6s;\n}\n.sk-fading-circle .sk-circle8:before {\n  -webkit-animation-delay: -0.5s;\n          animation-delay: -0.5s;\n}\n.sk-fading-circle .sk-circle9:before {\n  -webkit-animation-delay: -0.4s;\n          animation-delay: -0.4s;\n}\n.sk-fading-circle .sk-circle10:before {\n  -webkit-animation-delay: -0.3s;\n          animation-delay: -0.3s;\n}\n.sk-fading-circle .sk-circle11:before {\n  -webkit-animation-delay: -0.2s;\n          animation-delay: -0.2s;\n}\n.sk-fading-circle .sk-circle12:before {\n  -webkit-animation-delay: -0.1s;\n          animation-delay: -0.1s;\n}\n\n@-webkit-keyframes sk-circleFadeDelay {\n  0%, 39%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n}\n\n@keyframes sk-circleFadeDelay {\n  0%, 39%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n}\n\n.circle {\n  width: 40px;\n  height: 40px;\n  background-color: #333;\n\n  border-radius: 100%;\n  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;\n  animation: sk-scaleout 1.0s infinite ease-in-out;\n}\n\n@-webkit-keyframes sk-scaleout {\n  0% { -webkit-transform: scale(0) }\n  100% {\n    -webkit-transform: scale(1.0);\n    opacity: 0;\n  }\n}\n\n@keyframes sk-scaleout {\n  0% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  } 100% {\n    -webkit-transform: scale(1.0);\n    transform: scale(1.0);\n    opacity: 0;\n  }\n}\n", ""]);
+	exports.push([module.id, ".spinner {\r\n  width: 70px;\r\n  text-align: center;\r\n}\r\n\r\n.spinner > div {\r\n  width: 10px;\r\n  height: 10px;\r\n  background-color: #333;\r\n  border-radius: 100%;\r\n  display: inline-block;\r\n  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\r\n  animation: sk-bouncedelay 1.4s infinite ease-in-out both;\r\n}\r\n\r\n.spinner .bounce1 {\r\n  -webkit-animation-delay: -0.32s;\r\n  animation-delay: -0.32s;\r\n}\r\n\r\n.spinner .bounce2 {\r\n  -webkit-animation-delay: -0.16s;\r\n  animation-delay: -0.16s;\r\n}\r\n\r\n@-webkit-keyframes sk-bouncedelay {\r\n  0%, 80%, 100% { -webkit-transform: scale(0) }\r\n  40% { -webkit-transform: scale(1.0) }\r\n}\r\n\r\n@keyframes sk-bouncedelay {\r\n  0%, 80%, 100% {\r\n    -webkit-transform: scale(0);\r\n    transform: scale(0);\r\n  } 40% {\r\n    -webkit-transform: scale(1.0);\r\n    transform: scale(1.0);\r\n  }\r\n}\r\n\r\n.sk-fading-circle {\r\n  width: 40px;\r\n  height: 40px;\r\n  position: relative;\r\n}\r\n\r\n.sk-fading-circle .sk-circle {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n}\r\n\r\n.sk-fading-circle .sk-circle:before {\r\n  content: '';\r\n  display: block;\r\n  margin: 0 auto;\r\n  width: 15%;\r\n  height: 15%;\r\n  background-color: #333;\r\n  border-radius: 100%;\r\n  -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\r\n          animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\r\n}\r\n.sk-fading-circle .sk-circle2 {\r\n  -webkit-transform: rotate(30deg);\r\n      -ms-transform: rotate(30deg);\r\n          transform: rotate(30deg);\r\n}\r\n.sk-fading-circle .sk-circle3 {\r\n  -webkit-transform: rotate(60deg);\r\n      -ms-transform: rotate(60deg);\r\n          transform: rotate(60deg);\r\n}\r\n.sk-fading-circle .sk-circle4 {\r\n  -webkit-transform: rotate(90deg);\r\n      -ms-transform: rotate(90deg);\r\n          transform: rotate(90deg);\r\n}\r\n.sk-fading-circle .sk-circle5 {\r\n  -webkit-transform: rotate(120deg);\r\n      -ms-transform: rotate(120deg);\r\n          transform: rotate(120deg);\r\n}\r\n.sk-fading-circle .sk-circle6 {\r\n  -webkit-transform: rotate(150deg);\r\n      -ms-transform: rotate(150deg);\r\n          transform: rotate(150deg);\r\n}\r\n.sk-fading-circle .sk-circle7 {\r\n  -webkit-transform: rotate(180deg);\r\n      -ms-transform: rotate(180deg);\r\n          transform: rotate(180deg);\r\n}\r\n.sk-fading-circle .sk-circle8 {\r\n  -webkit-transform: rotate(210deg);\r\n      -ms-transform: rotate(210deg);\r\n          transform: rotate(210deg);\r\n}\r\n.sk-fading-circle .sk-circle9 {\r\n  -webkit-transform: rotate(240deg);\r\n      -ms-transform: rotate(240deg);\r\n          transform: rotate(240deg);\r\n}\r\n.sk-fading-circle .sk-circle10 {\r\n  -webkit-transform: rotate(270deg);\r\n      -ms-transform: rotate(270deg);\r\n          transform: rotate(270deg);\r\n}\r\n.sk-fading-circle .sk-circle11 {\r\n  -webkit-transform: rotate(300deg);\r\n      -ms-transform: rotate(300deg);\r\n          transform: rotate(300deg);\r\n}\r\n.sk-fading-circle .sk-circle12 {\r\n  -webkit-transform: rotate(330deg);\r\n      -ms-transform: rotate(330deg);\r\n          transform: rotate(330deg);\r\n}\r\n.sk-fading-circle .sk-circle2:before {\r\n  -webkit-animation-delay: -1.1s;\r\n          animation-delay: -1.1s;\r\n}\r\n.sk-fading-circle .sk-circle3:before {\r\n  -webkit-animation-delay: -1s;\r\n          animation-delay: -1s;\r\n}\r\n.sk-fading-circle .sk-circle4:before {\r\n  -webkit-animation-delay: -0.9s;\r\n          animation-delay: -0.9s;\r\n}\r\n.sk-fading-circle .sk-circle5:before {\r\n  -webkit-animation-delay: -0.8s;\r\n          animation-delay: -0.8s;\r\n}\r\n.sk-fading-circle .sk-circle6:before {\r\n  -webkit-animation-delay: -0.7s;\r\n          animation-delay: -0.7s;\r\n}\r\n.sk-fading-circle .sk-circle7:before {\r\n  -webkit-animation-delay: -0.6s;\r\n          animation-delay: -0.6s;\r\n}\r\n.sk-fading-circle .sk-circle8:before {\r\n  -webkit-animation-delay: -0.5s;\r\n          animation-delay: -0.5s;\r\n}\r\n.sk-fading-circle .sk-circle9:before {\r\n  -webkit-animation-delay: -0.4s;\r\n          animation-delay: -0.4s;\r\n}\r\n.sk-fading-circle .sk-circle10:before {\r\n  -webkit-animation-delay: -0.3s;\r\n          animation-delay: -0.3s;\r\n}\r\n.sk-fading-circle .sk-circle11:before {\r\n  -webkit-animation-delay: -0.2s;\r\n          animation-delay: -0.2s;\r\n}\r\n.sk-fading-circle .sk-circle12:before {\r\n  -webkit-animation-delay: -0.1s;\r\n          animation-delay: -0.1s;\r\n}\r\n\r\n@-webkit-keyframes sk-circleFadeDelay {\r\n  0%, 39%, 100% { opacity: 0; }\r\n  40% { opacity: 1; }\r\n}\r\n\r\n@keyframes sk-circleFadeDelay {\r\n  0%, 39%, 100% { opacity: 0; }\r\n  40% { opacity: 1; }\r\n}\r\n\r\n.circle {\r\n  width: 40px;\r\n  height: 40px;\r\n  background-color: #333;\r\n\r\n  border-radius: 100%;\r\n  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;\r\n  animation: sk-scaleout 1.0s infinite ease-in-out;\r\n}\r\n\r\n@-webkit-keyframes sk-scaleout {\r\n  0% { -webkit-transform: scale(0) }\r\n  100% {\r\n    -webkit-transform: scale(1.0);\r\n    opacity: 0;\r\n  }\r\n}\r\n\r\n@keyframes sk-scaleout {\r\n  0% {\r\n    -webkit-transform: scale(0);\r\n    transform: scale(0);\r\n  } 100% {\r\n    -webkit-transform: scale(1.0);\r\n    transform: scale(1.0);\r\n    opacity: 0;\r\n  }\r\n}\r\n", ""]);
 
 	// exports
 
 
 /***/ },
 
-/***/ 682:
+/***/ 727:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Dialog = __webpack_require__(683);
+	var _Dialog = __webpack_require__(728);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
-	var _FlatButton = __webpack_require__(483);
+	var _FlatButton = __webpack_require__(479);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(685);
+	var _RaisedButton = __webpack_require__(730);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _MenuItem = __webpack_require__(441);
+	var _MenuItem = __webpack_require__(436);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Table = __webpack_require__(687);
+	var _Table = __webpack_require__(732);
 
-	var _List = __webpack_require__(700);
+	var _List = __webpack_require__(745);
 
-	var _GridList = __webpack_require__(702);
+	var _GridList = __webpack_require__(747);
 
-	var _CircularProgress = __webpack_require__(706);
+	var _CircularProgress = __webpack_require__(751);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _Tabs = __webpack_require__(708);
+	var _Tabs = __webpack_require__(753);
 
-	var _colors = __webpack_require__(168);
+	var _colors = __webpack_require__(169);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
-	var moment = __webpack_require__(713);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
+	var moment = __webpack_require__(758);
 
 	var urls = [{
 	  title: 'stats',
@@ -1094,18 +1165,17 @@ webpackJsonp([0],{
 	      core.on('get.Player.data', this.getData);
 	    },
 	    getData: function getData(_ref) {
-	      var player = _ref.player;
-	      var type = _ref.type;
+	      var player = _ref.player,
+	          type = _ref.type;
 
 	      // console.log('player', player)
 	      core.tree.set(['player', 'popup', 'data'], []);
 
 	      this.setState({ loading: true });
 
-	      var _$find = _.find(urls, ['title', type]);
-
-	      var url = _$find.url;
-	      var img = _$find.img;
+	      var _$find = _.find(urls, ['title', type]),
+	          url = _$find.url,
+	          img = _$find.img;
 
 	      var limit = type === 'stats';
 	      this.getInfo(url, player.id, limit);
@@ -1135,7 +1205,8 @@ webpackJsonp([0],{
 
 	      news = _.map(news, function (nooz) {
 	        return _extends({}, nooz, {
-	          Headline: nooz.lastUpdate });
+	          Headline: nooz.lastUpdate //nooz.Headline ? nooz.Headline.split(nooz.LastName+': ')[1] :
+	        });
 	      });
 	      core.tree.set(['player', 'popup', 'data'], news);
 	      setTimeout(function () {
@@ -1278,13 +1349,13 @@ webpackJsonp([0],{
 	      );
 	    },
 	    render: function render() {
-	      var _state = this.state;
-	      var player = _state.player;
-	      var open = _state.open;
-	      var value = _state.value;
-	      var attr = _state.attr;
-	      var loading = _state.loading;
-	      var data = _state.data;
+	      var _state = this.state,
+	          player = _state.player,
+	          open = _state.open,
+	          value = _state.value,
+	          attr = _state.attr,
+	          loading = _state.loading,
+	          data = _state.data;
 
 	      var actions = [React.createElement(_FlatButton2.default, {
 	        label: 'Close',
@@ -1406,212 +1477,240 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 714:
+/***/ 759:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 715,
-		"./af.js": 715,
-		"./ar": 716,
-		"./ar-ma": 717,
-		"./ar-ma.js": 717,
-		"./ar-sa": 718,
-		"./ar-sa.js": 718,
-		"./ar-tn": 719,
-		"./ar-tn.js": 719,
-		"./ar.js": 716,
-		"./az": 720,
-		"./az.js": 720,
-		"./be": 721,
-		"./be.js": 721,
-		"./bg": 722,
-		"./bg.js": 722,
-		"./bn": 723,
-		"./bn.js": 723,
-		"./bo": 724,
-		"./bo.js": 724,
-		"./br": 725,
-		"./br.js": 725,
-		"./bs": 726,
-		"./bs.js": 726,
-		"./ca": 727,
-		"./ca.js": 727,
-		"./cs": 728,
-		"./cs.js": 728,
-		"./cv": 729,
-		"./cv.js": 729,
-		"./cy": 730,
-		"./cy.js": 730,
-		"./da": 731,
-		"./da.js": 731,
-		"./de": 732,
-		"./de-at": 733,
-		"./de-at.js": 733,
-		"./de.js": 732,
-		"./dv": 734,
-		"./dv.js": 734,
-		"./el": 735,
-		"./el.js": 735,
-		"./en-au": 736,
-		"./en-au.js": 736,
-		"./en-ca": 737,
-		"./en-ca.js": 737,
-		"./en-gb": 738,
-		"./en-gb.js": 738,
-		"./en-ie": 739,
-		"./en-ie.js": 739,
-		"./en-nz": 740,
-		"./en-nz.js": 740,
-		"./eo": 741,
-		"./eo.js": 741,
-		"./es": 742,
-		"./es-do": 743,
-		"./es-do.js": 743,
-		"./es.js": 742,
-		"./et": 744,
-		"./et.js": 744,
-		"./eu": 745,
-		"./eu.js": 745,
-		"./fa": 746,
-		"./fa.js": 746,
-		"./fi": 747,
-		"./fi.js": 747,
-		"./fo": 748,
-		"./fo.js": 748,
-		"./fr": 749,
-		"./fr-ca": 750,
-		"./fr-ca.js": 750,
-		"./fr-ch": 751,
-		"./fr-ch.js": 751,
-		"./fr.js": 749,
-		"./fy": 752,
-		"./fy.js": 752,
-		"./gd": 753,
-		"./gd.js": 753,
-		"./gl": 754,
-		"./gl.js": 754,
-		"./he": 755,
-		"./he.js": 755,
-		"./hi": 756,
-		"./hi.js": 756,
-		"./hr": 757,
-		"./hr.js": 757,
-		"./hu": 758,
-		"./hu.js": 758,
-		"./hy-am": 759,
-		"./hy-am.js": 759,
-		"./id": 760,
-		"./id.js": 760,
-		"./is": 761,
-		"./is.js": 761,
-		"./it": 762,
-		"./it.js": 762,
-		"./ja": 763,
-		"./ja.js": 763,
-		"./jv": 764,
-		"./jv.js": 764,
-		"./ka": 765,
-		"./ka.js": 765,
-		"./kk": 766,
-		"./kk.js": 766,
-		"./km": 767,
-		"./km.js": 767,
-		"./ko": 768,
-		"./ko.js": 768,
-		"./ky": 769,
-		"./ky.js": 769,
-		"./lb": 770,
-		"./lb.js": 770,
-		"./lo": 771,
-		"./lo.js": 771,
-		"./lt": 772,
-		"./lt.js": 772,
-		"./lv": 773,
-		"./lv.js": 773,
-		"./me": 774,
-		"./me.js": 774,
-		"./mk": 775,
-		"./mk.js": 775,
-		"./ml": 776,
-		"./ml.js": 776,
-		"./mr": 777,
-		"./mr.js": 777,
-		"./ms": 778,
-		"./ms-my": 779,
-		"./ms-my.js": 779,
-		"./ms.js": 778,
-		"./my": 780,
-		"./my.js": 780,
-		"./nb": 781,
-		"./nb.js": 781,
-		"./ne": 782,
-		"./ne.js": 782,
-		"./nl": 783,
-		"./nl.js": 783,
-		"./nn": 784,
-		"./nn.js": 784,
-		"./pa-in": 785,
-		"./pa-in.js": 785,
-		"./pl": 786,
-		"./pl.js": 786,
-		"./pt": 787,
-		"./pt-br": 788,
-		"./pt-br.js": 788,
-		"./pt.js": 787,
-		"./ro": 789,
-		"./ro.js": 789,
-		"./ru": 790,
-		"./ru.js": 790,
-		"./se": 791,
-		"./se.js": 791,
-		"./si": 792,
-		"./si.js": 792,
-		"./sk": 793,
-		"./sk.js": 793,
-		"./sl": 794,
-		"./sl.js": 794,
-		"./sq": 795,
-		"./sq.js": 795,
-		"./sr": 796,
-		"./sr-cyrl": 797,
-		"./sr-cyrl.js": 797,
-		"./sr.js": 796,
-		"./ss": 798,
-		"./ss.js": 798,
-		"./sv": 799,
-		"./sv.js": 799,
-		"./sw": 800,
-		"./sw.js": 800,
-		"./ta": 801,
-		"./ta.js": 801,
-		"./te": 802,
-		"./te.js": 802,
-		"./th": 803,
-		"./th.js": 803,
-		"./tl-ph": 804,
-		"./tl-ph.js": 804,
-		"./tlh": 805,
-		"./tlh.js": 805,
-		"./tr": 806,
-		"./tr.js": 806,
-		"./tzl": 807,
-		"./tzl.js": 807,
-		"./tzm": 808,
-		"./tzm-latn": 809,
-		"./tzm-latn.js": 809,
-		"./tzm.js": 808,
-		"./uk": 810,
-		"./uk.js": 810,
-		"./uz": 811,
-		"./uz.js": 811,
-		"./vi": 812,
-		"./vi.js": 812,
-		"./x-pseudo": 813,
-		"./x-pseudo.js": 813,
-		"./zh-cn": 814,
-		"./zh-cn.js": 814,
-		"./zh-tw": 815,
-		"./zh-tw.js": 815
+		"./af": 760,
+		"./af.js": 760,
+		"./ar": 761,
+		"./ar-dz": 762,
+		"./ar-dz.js": 762,
+		"./ar-kw": 763,
+		"./ar-kw.js": 763,
+		"./ar-ly": 764,
+		"./ar-ly.js": 764,
+		"./ar-ma": 765,
+		"./ar-ma.js": 765,
+		"./ar-sa": 766,
+		"./ar-sa.js": 766,
+		"./ar-tn": 767,
+		"./ar-tn.js": 767,
+		"./ar.js": 761,
+		"./az": 768,
+		"./az.js": 768,
+		"./be": 769,
+		"./be.js": 769,
+		"./bg": 770,
+		"./bg.js": 770,
+		"./bn": 771,
+		"./bn.js": 771,
+		"./bo": 772,
+		"./bo.js": 772,
+		"./br": 773,
+		"./br.js": 773,
+		"./bs": 774,
+		"./bs.js": 774,
+		"./ca": 775,
+		"./ca.js": 775,
+		"./cs": 776,
+		"./cs.js": 776,
+		"./cv": 777,
+		"./cv.js": 777,
+		"./cy": 778,
+		"./cy.js": 778,
+		"./da": 779,
+		"./da.js": 779,
+		"./de": 780,
+		"./de-at": 781,
+		"./de-at.js": 781,
+		"./de-ch": 782,
+		"./de-ch.js": 782,
+		"./de.js": 780,
+		"./dv": 783,
+		"./dv.js": 783,
+		"./el": 784,
+		"./el.js": 784,
+		"./en-au": 785,
+		"./en-au.js": 785,
+		"./en-ca": 786,
+		"./en-ca.js": 786,
+		"./en-gb": 787,
+		"./en-gb.js": 787,
+		"./en-ie": 788,
+		"./en-ie.js": 788,
+		"./en-nz": 789,
+		"./en-nz.js": 789,
+		"./eo": 790,
+		"./eo.js": 790,
+		"./es": 791,
+		"./es-do": 792,
+		"./es-do.js": 792,
+		"./es.js": 791,
+		"./et": 793,
+		"./et.js": 793,
+		"./eu": 794,
+		"./eu.js": 794,
+		"./fa": 795,
+		"./fa.js": 795,
+		"./fi": 796,
+		"./fi.js": 796,
+		"./fo": 797,
+		"./fo.js": 797,
+		"./fr": 798,
+		"./fr-ca": 799,
+		"./fr-ca.js": 799,
+		"./fr-ch": 800,
+		"./fr-ch.js": 800,
+		"./fr.js": 798,
+		"./fy": 801,
+		"./fy.js": 801,
+		"./gd": 802,
+		"./gd.js": 802,
+		"./gl": 803,
+		"./gl.js": 803,
+		"./gom-latn": 804,
+		"./gom-latn.js": 804,
+		"./he": 805,
+		"./he.js": 805,
+		"./hi": 806,
+		"./hi.js": 806,
+		"./hr": 807,
+		"./hr.js": 807,
+		"./hu": 808,
+		"./hu.js": 808,
+		"./hy-am": 809,
+		"./hy-am.js": 809,
+		"./id": 810,
+		"./id.js": 810,
+		"./is": 811,
+		"./is.js": 811,
+		"./it": 812,
+		"./it.js": 812,
+		"./ja": 813,
+		"./ja.js": 813,
+		"./jv": 814,
+		"./jv.js": 814,
+		"./ka": 815,
+		"./ka.js": 815,
+		"./kk": 816,
+		"./kk.js": 816,
+		"./km": 817,
+		"./km.js": 817,
+		"./kn": 818,
+		"./kn.js": 818,
+		"./ko": 819,
+		"./ko.js": 819,
+		"./ky": 820,
+		"./ky.js": 820,
+		"./lb": 821,
+		"./lb.js": 821,
+		"./lo": 822,
+		"./lo.js": 822,
+		"./lt": 823,
+		"./lt.js": 823,
+		"./lv": 824,
+		"./lv.js": 824,
+		"./me": 825,
+		"./me.js": 825,
+		"./mi": 826,
+		"./mi.js": 826,
+		"./mk": 827,
+		"./mk.js": 827,
+		"./ml": 828,
+		"./ml.js": 828,
+		"./mr": 829,
+		"./mr.js": 829,
+		"./ms": 830,
+		"./ms-my": 831,
+		"./ms-my.js": 831,
+		"./ms.js": 830,
+		"./my": 832,
+		"./my.js": 832,
+		"./nb": 833,
+		"./nb.js": 833,
+		"./ne": 834,
+		"./ne.js": 834,
+		"./nl": 835,
+		"./nl-be": 836,
+		"./nl-be.js": 836,
+		"./nl.js": 835,
+		"./nn": 837,
+		"./nn.js": 837,
+		"./pa-in": 838,
+		"./pa-in.js": 838,
+		"./pl": 839,
+		"./pl.js": 839,
+		"./pt": 840,
+		"./pt-br": 841,
+		"./pt-br.js": 841,
+		"./pt.js": 840,
+		"./ro": 842,
+		"./ro.js": 842,
+		"./ru": 843,
+		"./ru.js": 843,
+		"./sd": 844,
+		"./sd.js": 844,
+		"./se": 845,
+		"./se.js": 845,
+		"./si": 846,
+		"./si.js": 846,
+		"./sk": 847,
+		"./sk.js": 847,
+		"./sl": 848,
+		"./sl.js": 848,
+		"./sq": 849,
+		"./sq.js": 849,
+		"./sr": 850,
+		"./sr-cyrl": 851,
+		"./sr-cyrl.js": 851,
+		"./sr.js": 850,
+		"./ss": 852,
+		"./ss.js": 852,
+		"./sv": 853,
+		"./sv.js": 853,
+		"./sw": 854,
+		"./sw.js": 854,
+		"./ta": 855,
+		"./ta.js": 855,
+		"./te": 856,
+		"./te.js": 856,
+		"./tet": 857,
+		"./tet.js": 857,
+		"./th": 858,
+		"./th.js": 858,
+		"./tl-ph": 859,
+		"./tl-ph.js": 859,
+		"./tlh": 860,
+		"./tlh.js": 860,
+		"./tr": 861,
+		"./tr.js": 861,
+		"./tzl": 862,
+		"./tzl.js": 862,
+		"./tzm": 863,
+		"./tzm-latn": 864,
+		"./tzm-latn.js": 864,
+		"./tzm.js": 863,
+		"./uk": 865,
+		"./uk.js": 865,
+		"./ur": 866,
+		"./ur.js": 866,
+		"./uz": 867,
+		"./uz-latn": 868,
+		"./uz-latn.js": 868,
+		"./uz.js": 867,
+		"./vi": 869,
+		"./vi.js": 869,
+		"./x-pseudo": 870,
+		"./x-pseudo.js": 870,
+		"./yo": 871,
+		"./yo.js": 871,
+		"./zh-cn": 872,
+		"./zh-cn.js": 872,
+		"./zh-hk": 873,
+		"./zh-hk.js": 873,
+		"./zh-tw": 874,
+		"./zh-tw.js": 874
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -1624,88 +1723,88 @@ webpackJsonp([0],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 714;
+	webpackContext.id = 759;
 
 
 /***/ },
 
-/***/ 816:
+/***/ 875:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(685);
+	var _RaisedButton = __webpack_require__(730);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(473);
+	var _FontIcon = __webpack_require__(469);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(817);
+	var _Avatar = __webpack_require__(876);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(428);
+	var _Paper = __webpack_require__(423);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(819);
+	var _Chip = __webpack_require__(878);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Subheader = __webpack_require__(438);
+	var _Subheader = __webpack_require__(433);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(700);
+	var _List = __webpack_require__(745);
 
-	var _RefreshIndicator = __webpack_require__(822);
+	var _RefreshIndicator = __webpack_require__(881);
 
 	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
 
-	var _CircularProgress = __webpack_require__(706);
+	var _CircularProgress = __webpack_require__(751);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(831);
+	var _SelectField = __webpack_require__(890);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _TextField = __webpack_require__(833);
+	var _TextField = __webpack_require__(892);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Dialog = __webpack_require__(683);
+	var _Dialog = __webpack_require__(728);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
-	var _colors = __webpack_require__(168);
+	var _colors = __webpack_require__(169);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _moreVert = __webpack_require__(844);
+	var _moreVert = __webpack_require__(903);
 
 	var _moreVert2 = _interopRequireDefault(_moreVert);
 
-	var _IconMenu = __webpack_require__(486);
+	var _IconMenu = __webpack_require__(482);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _MenuItem = __webpack_require__(441);
+	var _MenuItem = __webpack_require__(436);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 
 	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
@@ -1743,12 +1842,12 @@ webpackJsonp([0],{
 	      console.log(player);
 	    },
 	    addToCompare: function addToCompare(team, player) {
-	      var _$find = _.find(urls, ['title', 'stats']);
-
-	      var url = _$find.url;
-	      var img = _$find.img;
+	      var _$find = _.find(urls, ['title', 'stats']),
+	          url = _$find.url,
+	          img = _$find.img;
 	      // var limit = type === 'stats';
 	      // this.getInfo(url, player.PlayerID, true)
+
 
 	      var stats = this.getInfo(url, player.PlayerID, true);
 	      this.compare.push(player);
@@ -1799,14 +1898,14 @@ webpackJsonp([0],{
 	      this.setState({ showPopup: false });
 	    },
 	    render: function render() {
-	      var _state = this.state;
-	      var showPopup = _state.showPopup;
-	      var data = _state.data;
-	      var popupType = _state.popupType;
-	      var _props = this.props;
-	      var player = _props.player;
-	      var selected = _props.selected;
-	      var isLoading = _props.isLoading;
+	      var _state = this.state,
+	          showPopup = _state.showPopup,
+	          data = _state.data,
+	          popupType = _state.popupType;
+	      var _props = this.props,
+	          player = _props.player,
+	          selected = _props.selected,
+	          isLoading = _props.isLoading;
 
 	      var selectedStyle = selected.toLowerCase() === 'rotoworld' ? { maxWidth: '100%' } : { maxHeight: '100%' };
 	      var style = {
@@ -1888,53 +1987,53 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 845:
+/***/ 904:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Drawer = __webpack_require__(410);
+	var _Drawer = __webpack_require__(406);
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _AppBar = __webpack_require__(480);
+	var _AppBar = __webpack_require__(476);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 
-	var _FlatButton = __webpack_require__(483);
+	var _FlatButton = __webpack_require__(479);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(685);
+	var _RaisedButton = __webpack_require__(730);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _Paper = __webpack_require__(428);
+	var _Paper = __webpack_require__(423);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _MenuItem = __webpack_require__(441);
+	var _MenuItem = __webpack_require__(436);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _List = __webpack_require__(700);
+	var _List = __webpack_require__(745);
 
-	var _close = __webpack_require__(846);
+	var _close = __webpack_require__(905);
 
 	var _close2 = _interopRequireDefault(_close);
 
-	var _Toolbar = __webpack_require__(847);
+	var _Toolbar = __webpack_require__(906);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 
 	var returnAvatar = function returnAvatar(id) {
@@ -1992,13 +2091,13 @@ webpackJsonp([0],{
 	      });
 	    },
 	    render: function render() {
-	      var _props = this.props;
-	      var primaryLabel = _props.primaryLabel;
-	      var secondaryLabel = _props.secondaryLabel;
-	      var data = _props.data;
-	      var player = _props.player;
-	      var handleClose = _props.handleClose;
-	      var showPopup = _props.showPopup;
+	      var _props = this.props,
+	          primaryLabel = _props.primaryLabel,
+	          secondaryLabel = _props.secondaryLabel,
+	          data = _props.data,
+	          player = _props.player,
+	          handleClose = _props.handleClose,
+	          showPopup = _props.showPopup;
 
 	      if (!showPopup) return null;
 	      return React.createElement(
@@ -2051,42 +2150,42 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 852:
+/***/ 911:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Card = __webpack_require__(853);
+	var _Card = __webpack_require__(912);
 
-	var _GridList = __webpack_require__(702);
+	var _GridList = __webpack_require__(747);
 
-	var _CircularProgress = __webpack_require__(706);
+	var _CircularProgress = __webpack_require__(751);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _Subheader = __webpack_require__(438);
+	var _Subheader = __webpack_require__(433);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _FlatButton = __webpack_require__(483);
+	var _FlatButton = __webpack_require__(479);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Avatar = __webpack_require__(817);
+	var _Avatar = __webpack_require__(876);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
+	var React = __webpack_require__(113);
 	var PropTypes = React.PropTypes;
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 
 	var imgUrl = 'http://stats.nba.com/media/players/230x185/';
@@ -2249,68 +2348,68 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 863:
+/***/ 922:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-	var _FlatButton = __webpack_require__(483);
+	var _FlatButton = __webpack_require__(479);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _FontIcon = __webpack_require__(473);
+	var _FontIcon = __webpack_require__(469);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(817);
+	var _Avatar = __webpack_require__(876);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(428);
+	var _Paper = __webpack_require__(423);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Subheader = __webpack_require__(438);
+	var _Subheader = __webpack_require__(433);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(700);
+	var _List = __webpack_require__(745);
 
-	var _LinearProgress = __webpack_require__(864);
+	var _LinearProgress = __webpack_require__(923);
 
 	var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
 
-	var _TextField = __webpack_require__(833);
+	var _TextField = __webpack_require__(892);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _IconMenu = __webpack_require__(486);
+	var _IconMenu = __webpack_require__(482);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _MenuItem = __webpack_require__(441);
+	var _MenuItem = __webpack_require__(436);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _Badge = __webpack_require__(866);
+	var _Badge = __webpack_require__(925);
 
 	var _Badge2 = _interopRequireDefault(_Badge);
 
-	var _Toolbar = __webpack_require__(847);
+	var _Toolbar = __webpack_require__(906);
 
-	var _CircularProgress = __webpack_require__(706);
+	var _CircularProgress = __webpack_require__(751);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _reactLazyload = __webpack_require__(868);
+	var _reactLazyload = __webpack_require__(927);
 
 	var _reactLazyload2 = _interopRequireDefault(_reactLazyload);
 
@@ -2318,29 +2417,12 @@ webpackJsonp([0],{
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 
-	var returnAvatar = function returnAvatar(id, uri, type) {
-	  run('' + uri + id + '.png');
-	  function run(uri) {
-	    var xhr = new XMLHttpRequest();
-	    xhr.responseType = 'blob';
-	    xhr.onload = function () {
-	      try {
-	        document.getElementById(id).src = window.URL.createObjectURL(xhr.response);
-	      } catch (e) {}
-	      // console.error(e)
-
-	      // return window.URL.createObjectURL(xhr.response);
-	    };
-	    xhr.open('GET', uri, true);
-	    xhr.send();
-	  }
-	};
 	var copy = function copy(obj) {
 	  if (null == obj || "object" != (typeof obj === 'undefined' ? 'undefined' : _typeof(obj))) return obj;
 	  var copy = obj.constructor();
@@ -2393,20 +2475,8 @@ webpackJsonp([0],{
 	      };
 	    },
 	    componentWillMount: function componentWillMount() {
-	      var _this = this;
-
 	      // this.initForm();
-	      core.on('players.loaded', function (_ref) {
-	        var players = _ref.players;
-	        var total = _ref.total;
 
-	        setTimeout(function () {
-	          if (players && players instanceof Array) {
-	            var list = _.orderBy(players, 'LastName');
-	            _this.setState({ total: total, players: list, originalList: list, isLoading: false });
-	          }
-	        }, 250);
-	      });
 	    },
 	    initForm: function initForm() {
 	      this.setState({
@@ -2417,11 +2487,24 @@ webpackJsonp([0],{
 	      });
 	    },
 	    componentDidMount: function componentDidMount() {
+	      var _this = this;
+
+	      core.on('players.loaded', function (_ref) {
+	        var players = _ref.players,
+	            total = _ref.total;
+
+	        setTimeout(function () {
+	          if (players && players instanceof Array) {
+	            var list = _.orderBy(players, 'LastName');
+	            _this.setState({ total: total, players: list, originalList: list, isLoading: false });
+	          }
+	        }, 250);
+	      });
 	      if (!this.state.players || !this.state.players.length) {
 	        var data = core.tree.get('allPlayers');
 	        if (data && typeof data !== 'undefined') {
-	          var players = data.players;
-	          var total = data.total;
+	          var players = data.players,
+	              total = data.total;
 
 	          if (players && players instanceof Array) {
 	            var list = _.orderBy(players, 'LastName');
@@ -2482,11 +2565,11 @@ webpackJsonp([0],{
 	      );
 	    },
 	    addTo: function addTo(where, id) {
-	      var _state = this.state;
-	      var form = _state.form;
-	      var list = _state.list;
-	      var selectedOpt = _state.selectedOpt;
-	      var players = _state.players;
+	      var _state = this.state,
+	          form = _state.form,
+	          list = _state.list,
+	          selectedOpt = _state.selectedOpt,
+	          players = _state.players;
 
 	      var temp = copy(form);
 	      // console.log(id, where)
@@ -2498,10 +2581,10 @@ webpackJsonp([0],{
 	      // }, 350);
 	    },
 	    removePlayer: function removePlayer(id) {
-	      var _state2 = this.state;
-	      var form = _state2.form;
-	      var players = _state2.players;
-	      var originalList = _state2.originalList;
+	      var _state2 = this.state,
+	          form = _state2.form,
+	          players = _state2.players,
+	          originalList = _state2.originalList;
 
 	      var index,
 	          temp = []; //copy(form);
@@ -2556,12 +2639,12 @@ webpackJsonp([0],{
 	      this.setState({ toggleSearch: !toggleSearch });
 	    },
 	    onSearchPlayers: function onSearchPlayers() {
-	      var _state3 = this.state;
-	      var list = _state3.list;
-	      var players = _state3.players;
-	      var originalList = _state3.originalList;
-	      var query = _state3.query;
-	      var searchLoading = _state3.searchLoading;
+	      var _state3 = this.state,
+	          list = _state3.list,
+	          players = _state3.players,
+	          originalList = _state3.originalList,
+	          query = _state3.query,
+	          searchLoading = _state3.searchLoading;
 
 	      this.setState({ searchLoading: true });
 	      var temp;
@@ -2592,9 +2675,9 @@ webpackJsonp([0],{
 	      this.setState({ query: string });
 	    },
 	    renderToolbar: function renderToolbar() {
-	      var _state4 = this.state;
-	      var toggleSearch = _state4.toggleSearch;
-	      var query = _state4.query;
+	      var _state4 = this.state,
+	          toggleSearch = _state4.toggleSearch,
+	          query = _state4.query;
 
 	      var textfield = {
 	        transition: 'margin 0.15s ease-in-out, width 0.10s ease-in-out',
@@ -2674,9 +2757,9 @@ webpackJsonp([0],{
 	      }
 	    },
 	    getTotal: function getTotal() {
-	      var _state5 = this.state;
-	      var total = _state5.total;
-	      var form = _state5.form;
+	      var _state5 = this.state,
+	          total = _state5.total,
+	          form = _state5.form;
 
 	      var realTotal;
 	      var num = Number(total) - Number(form['My Players'].length) - Number(form['Target Players'].length);
@@ -2761,18 +2844,18 @@ webpackJsonp([0],{
 	      );
 	    },
 	    sortBy: function sortBy(obj) {
-	      var _state6 = this.state;
-	      var players = _state6.players;
-	      var searchLoading = _state6.searchLoading;
-	      var isLoading = _state6.isLoading;
+	      var _state6 = this.state,
+	          players = _state6.players,
+	          searchLoading = _state6.searchLoading,
+	          isLoading = _state6.isLoading;
 
 	      this.setState({ searchLoading: true, isLoading: true });
 	      var temp;
 	      if (!obj) {
 	        temp = this.filterList(players, false);
 	      } else {
-	        var type = obj.type;
-	        var label = obj.label;
+	        var type = obj.type,
+	            label = obj.label;
 
 	        if (type.toLowerCase() !== 'lastname' && type.toLowerCase() !== 'name') {
 	          temp = temp = _.orderBy(players, 'Statistics.' + type, ['desc']);
@@ -2785,11 +2868,11 @@ webpackJsonp([0],{
 	      this.setState({ selectedOpt: obj });
 	    },
 	    render: function render() {
-	      var _state7 = this.state;
-	      var players = _state7.players;
-	      var isLoading = _state7.isLoading;
-	      var searchLoading = _state7.searchLoading;
-	      var form = _state7.form;
+	      var _state7 = this.state,
+	          players = _state7.players,
+	          isLoading = _state7.isLoading,
+	          searchLoading = _state7.searchLoading,
+	          form = _state7.form;
 
 
 	      return React.createElement(
@@ -2905,40 +2988,40 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 876:
+/***/ 933:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _FontIcon = __webpack_require__(473);
+	var _FontIcon = __webpack_require__(469);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _List = __webpack_require__(700);
+	var _List = __webpack_require__(745);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _IconMenu = __webpack_require__(486);
+	var _IconMenu = __webpack_require__(482);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _Popover = __webpack_require__(488);
+	var _Popover = __webpack_require__(484);
 
 	var _Popover2 = _interopRequireDefault(_Popover);
 
-	var _MenuItem = __webpack_require__(441);
+	var _MenuItem = __webpack_require__(436);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _Menu = __webpack_require__(431);
+	var _Menu = __webpack_require__(426);
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _nodeVibrant = __webpack_require__(490);
+	var _nodeVibrant = __webpack_require__(486);
 
 	var Vibrant = _interopRequireWildcard(_nodeVibrant);
 
@@ -2946,10 +3029,10 @@ webpackJsonp([0],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 
 	var stats = {
@@ -2981,19 +3064,19 @@ webpackJsonp([0],{
 	      return { open: false, backcolor: '#fff' };
 	    },
 	    componentDidMount: function componentDidMount() {
-	      this.getColor(this.props.item.teamLogo);
+	      // this.getColor(this.props.item.teamLogo)
 	      // console.log('this.props -> ',  this.props)
 	    },
 	    renderPrimary: function renderPrimary(item, i) {
 	      var _this = this;
 
 	      var selectedOpt = this.props.selectedOpt;
-	      var Name = item.Name;
-	      var LastName = item.LastName;
-	      var PlayerID = item.PlayerID;
-	      var isInComapre = item.isInComapre;
-	      var Statistics = item.Statistics;
-	      var teamLogo = item.teamLogo;
+	      var Name = item.Name,
+	          LastName = item.LastName,
+	          PlayerID = item.PlayerID,
+	          isInComapre = item.isInComapre,
+	          Statistics = item.Statistics,
+	          teamLogo = item.teamLogo;
 
 	      var primary = {
 	        wrap: {
@@ -3097,24 +3180,31 @@ webpackJsonp([0],{
 	      this.props.onRemove(id);
 	    },
 	    handlePlayerPop: function handlePlayerPop(e) {
-	      e.preventDefault();
-	      this.setState({
-	        open: true,
-	        anchorEl: e.currentTarget
-	      });
-	    },
-	    getColor: function getColor(src) {
 	      var _this2 = this;
 
+	      e.preventDefault();
+	      var anchorEl = e.currentTarget;
+
+	      var setState = function setState(color) {
+	        _this2.setState({
+	          open: true,
+	          backcolor: color,
+	          anchorEl: anchorEl
+	        });
+	      };
+
+	      this.getColor(this.props.item.teamLogo, setState);
+	    },
+	    getColor: function getColor(src, callback) {
 	      if (!src) {
-	        console.log('src -> ', src);return '#000';
+	        console.log('src -> ', src);callback('#000');
 	      }
 	      var r, g, b, pal;
 	      var x;
 	      Vibrant.from(src).getPalette(function (err, palette) {
 	        // console.log('palette -> ',  palette)
 	        if (err) {
-	          console.error(err);return _this2.setState({ backcolor: 'red' });
+	          console.error('ERROR!!', err);return callback('red');
 	        }
 	        if (palette && palette['Vibrant'] !== null && palette['Vibrant']['_rgb']) {
 	          pal = palette['Vibrant']['_rgb'];
@@ -3122,22 +3212,21 @@ webpackJsonp([0],{
 	          g = pal[1];
 	          b = pal[2];
 	          x = 'rgba(' + r + ',' + g + ',' + b + ', .26)';
-	          console.log('x -> ', x);
-	          _this2.setState({ backcolor: x });
-	        } else _this2.setState({ backcolor: 'green' });
+	          callback(x);
+	        } else callback('green');
 	      });
 	    },
 	    renderStats: function renderStats(item) {
-	      var _state = this.state;
-	      var open = _state.open;
-	      var backcolor = _state.backcolor;
-	      var Name = item.Name;
-	      var LastName = item.LastName;
-	      var PlayerID = item.PlayerID;
-	      var isInComapre = item.isInComapre;
-	      var Statistics = item.Statistics;
-	      var teamLogo = item.teamLogo;
-	      var teamName = item.teamName;
+	      var _state = this.state,
+	          open = _state.open,
+	          backcolor = _state.backcolor;
+	      var Name = item.Name,
+	          LastName = item.LastName,
+	          PlayerID = item.PlayerID,
+	          isInComapre = item.isInComapre,
+	          Statistics = item.Statistics,
+	          teamLogo = item.teamLogo,
+	          teamName = item.teamName;
 
 	      if (!open) return;
 
@@ -3147,9 +3236,9 @@ webpackJsonp([0],{
 	        opacity: '0.25',
 	        top: '0',
 	        background: 'url(' + teamLogo + ')',
-	        backgroundSize: 'cover',
+	        backgroundSize: 'contain',
 	        backgroundRepeat: 'no-repeat',
-	        backgroundPosition: '0, 0',
+	        backgroundPosition: 'center, center',
 	        bottom: '0',
 	        right: '0',
 	        left: '0'
@@ -3170,9 +3259,9 @@ webpackJsonp([0],{
 	      var _this3 = this;
 
 	      var item = this.props.item;
-	      var _state2 = this.state;
-	      var open = _state2.open;
-	      var anchorEl = _state2.anchorEl;
+	      var _state2 = this.state,
+	          open = _state2.open,
+	          anchorEl = _state2.anchorEl;
 
 	      return React.createElement(
 	        'div',
@@ -3226,17 +3315,17 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 877:
+/***/ 934:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactChartjs = __webpack_require__(878);
+	var _reactChartjs = __webpack_require__(935);
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 	core.Component('Stats.Google.Chart', [], function () {
 	  return {
@@ -3324,93 +3413,89 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 928:
+/***/ 985:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(685);
+	var _RaisedButton = __webpack_require__(730);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(473);
+	var _FontIcon = __webpack_require__(469);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(817);
+	var _Avatar = __webpack_require__(876);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(428);
+	var _Paper = __webpack_require__(423);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(819);
+	var _Chip = __webpack_require__(878);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Subheader = __webpack_require__(438);
+	var _Subheader = __webpack_require__(433);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(700);
+	var _List = __webpack_require__(745);
 
-	var _CircularProgress = __webpack_require__(706);
+	var _CircularProgress = __webpack_require__(751);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(831);
+	var _SelectField = __webpack_require__(890);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _TextField = __webpack_require__(833);
+	var _TextField = __webpack_require__(892);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Drawer = __webpack_require__(410);
+	var _Drawer = __webpack_require__(406);
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _colors = __webpack_require__(168);
+	var _colors = __webpack_require__(169);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _moreVert = __webpack_require__(844);
+	var _moreVert = __webpack_require__(903);
 
 	var _moreVert2 = _interopRequireDefault(_moreVert);
 
-	var _IconMenu = __webpack_require__(486);
+	var _IconMenu = __webpack_require__(482);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _MenuItem = __webpack_require__(441);
+	var _MenuItem = __webpack_require__(436);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _saladUi = __webpack_require__(929);
-
-	var _saladUi2 = _interopRequireDefault(_saladUi);
-
-	var _LinearProgress = __webpack_require__(864);
+	var _LinearProgress = __webpack_require__(923);
 
 	var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
 
-	var _Tabs = __webpack_require__(708);
+	var _Tabs = __webpack_require__(753);
 
-	var _reactSwipeableViews = __webpack_require__(930);
+	var _reactSwipeableViews = __webpack_require__(987);
 
 	var _reactSwipeableViews2 = _interopRequireDefault(_reactSwipeableViews);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 	core.Component('Stats.Diaglog', ['Stats.Google.Chart'], function (Chart) {
 	  return {
@@ -3431,8 +3516,8 @@ webpackJsonp([0],{
 	      var _this = this;
 
 	      core.on('players.loaded', function (_ref) {
-	        var players = _ref.players;
-	        var total = _ref.total;
+	        var players = _ref.players,
+	            total = _ref.total;
 
 	        _this.setState({ players: players });
 	      });
@@ -3508,9 +3593,9 @@ webpackJsonp([0],{
 	      });
 	    },
 	    renderPrimary: function renderPrimary(item) {
-	      var Name = item.Name;
-	      var LastName = item.LastName;
-	      var PlayerID = item.PlayerID;
+	      var Name = item.Name,
+	          LastName = item.LastName,
+	          PlayerID = item.PlayerID;
 
 	      var primary = {
 	        wrap: {
@@ -3616,9 +3701,9 @@ webpackJsonp([0],{
 	      this.setState({ tabIndex: val });
 	    },
 	    renderTabs: function renderTabs() {
-	      var _state = this.state;
-	      var tabIndex = _state.tabIndex;
-	      var data = _state.data;
+	      var _state = this.state,
+	          tabIndex = _state.tabIndex,
+	          data = _state.data;
 
 	      var styles = {
 	        headline: {
@@ -3661,11 +3746,11 @@ webpackJsonp([0],{
 	      );
 	    },
 	    render: function render() {
-	      var _state2 = this.state;
-	      var open = _state2.open;
-	      var MyPlayers = _state2.MyPlayers;
-	      var TargetPlayers = _state2.TargetPlayers;
-	      var data = _state2.data;
+	      var _state2 = this.state,
+	          open = _state2.open,
+	          MyPlayers = _state2.MyPlayers,
+	          TargetPlayers = _state2.TargetPlayers,
+	          data = _state2.data;
 
 
 	      var customContentStyle = {
@@ -3753,30 +3838,30 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1035:
+/***/ 999:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Subheader = __webpack_require__(438);
+	var _Subheader = __webpack_require__(433);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _Paper = __webpack_require__(428);
+	var _Paper = __webpack_require__(423);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _FlatButton = __webpack_require__(483);
+	var _FlatButton = __webpack_require__(479);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _IconButton = __webpack_require__(471);
+	var _IconButton = __webpack_require__(467);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Avatar = __webpack_require__(817);
+	var _Avatar = __webpack_require__(876);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -3784,11 +3869,11 @@ webpackJsonp([0],{
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var React = __webpack_require__(114);
+	var React = __webpack_require__(113);
 	var PropTypes = React.PropTypes;
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 
 	var imgUrl = 'http://stats.nba.com/media/players/230x185/';
@@ -3807,7 +3892,8 @@ webpackJsonp([0],{
 	  return {
 
 	    bindings: {
-	      myplayers: ['myPlayers']
+	      myplayers: ['myPlayers'],
+	      user: ['user']
 	    },
 
 	    getInitialState: function getInitialState() {
@@ -3815,6 +3901,25 @@ webpackJsonp([0],{
 	        hovered: '',
 	        cards: [{ label: 'Welcome, user', type: 'user', data: {} }, { label: 'News', type: 'news', data: [] }]
 	      };
+	    },
+	    componentDidMount: function componentDidMount() {
+	      if (this.state.user && this.state.user.id) {
+	        this.setUser(this.state.user);
+	      }
+	      core.on('user.logged.in', this.setUser);
+	    },
+	    setUser: function setUser(user) {
+	      var cards = this.state.cards;
+
+	      if (user && user.id) {
+	        for (var d = 0; d < cards.length; d++) {
+	          if (cards[d].type == 'user') {
+	            cards[d].label = 'Welcome, ' + user.fullName;
+	            cards[d].data = user;
+	          }
+	        }
+	        this.setState({ cards: cards });
+	      }
 	    },
 	    onMouseEnter: function onMouseEnter(id) {
 	      this.setState({ hovered: id });
@@ -3831,11 +3936,18 @@ webpackJsonp([0],{
 	      core.tree.set(['player', 'popup', 'player'], player);
 	      core.emit('get.Player.data', { player: player, type: 'stats' });
 	    },
-	    renderUser: function renderUser(data) {
-	      return React.createElement(
+	    renderUser: function renderUser(user) {
+	      // console.debug('user => ',  user)
+	      // var { user } = this.state;
+	      // console.debug('user => ',  user)
+	      if (_.isEmpty(user)) return React.createElement(
 	        'span',
 	        null,
 	        'no data'
+	      );else return React.createElement(
+	        'div',
+	        null,
+	        React.createElement('img', { src: user.avatar })
 	      );
 	    },
 	    renderNews: function renderNews(data) {
@@ -3888,8 +4000,9 @@ webpackJsonp([0],{
 	      );
 	    },
 	    renderCardData: function renderCardData(card) {
-	      var data = card.data;
-	      var type = card.type;
+	      var data = card.data,
+	          type = card.type;
+
 
 	      switch (type) {
 	        case 'user':
@@ -3917,10 +4030,11 @@ webpackJsonp([0],{
 	      );
 	    },
 	    render: function render() {
-	      var _state = this.state;
-	      var myplayers = _state.myplayers;
-	      var cards = _state.cards;
+	      var _state = this.state,
+	          myplayers = _state.myplayers,
+	          cards = _state.cards;
 
+	      console.log('this.state -> ', this.state);
 	      return React.createElement(
 	        'div',
 	        { style: styles.wrap },
@@ -3936,8 +4050,8 @@ webpackJsonp([0],{
 	var styles = {
 	  paper: {
 	    display: 'flex', flex: 1, width: '100%', overflow: 'auto', flexDirection: 'column',
-	    margin: '0 15px',
-	    boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
+	    margin: '0 15px'
+	    // boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
 	  },
 	  subheader: {
 	    backgroundColor: '#323e51',
@@ -3957,61 +4071,61 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1036:
+/***/ 1000:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(685);
+	var _RaisedButton = __webpack_require__(730);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(473);
+	var _FontIcon = __webpack_require__(469);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(817);
+	var _Avatar = __webpack_require__(876);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(428);
+	var _Paper = __webpack_require__(423);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(819);
+	var _Chip = __webpack_require__(878);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Subheader = __webpack_require__(438);
+	var _Subheader = __webpack_require__(433);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(700);
+	var _List = __webpack_require__(745);
 
-	var _RefreshIndicator = __webpack_require__(822);
+	var _RefreshIndicator = __webpack_require__(881);
 
 	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
 
-	var _CircularProgress = __webpack_require__(706);
+	var _CircularProgress = __webpack_require__(751);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(831);
+	var _SelectField = __webpack_require__(890);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _MenuItem = __webpack_require__(441);
+	var _MenuItem = __webpack_require__(436);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var _ = __webpack_require__(718);
 
 
 	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
@@ -4098,32 +4212,33 @@ webpackJsonp([0],{
 	      });
 	    },
 	    setListItems: function setListItems(json) {
-	      var _state = this.state;
-	      var selected = _state.selected;
-	      var img = _state.img;
-	      var entries = _state.entries;
+	      var _state = this.state,
+	          selected = _state.selected,
+	          img = _state.img,
+	          entries = _state.entries;
 	      var ListItems = json.ListItems;
 
 	      var news = _.map(ListItems, function (entry) {
-	        var Headline = entry.Headline;
-	        var PlayerID = entry.PlayerID;
-	        var ListItemCaption = entry.ListItemCaption;
-	        var ListItemDescription = entry.ListItemDescription;
+	        var Headline = entry.Headline,
+	            PlayerID = entry.PlayerID,
+	            ListItemCaption = entry.ListItemCaption,
+	            ListItemDescription = entry.ListItemDescription;
 
 	        return _extends({}, entry, {
 	          title: Headline,
 	          id: PlayerID,
 	          avatar: returnAvatar(PlayerID, img, selected.toLowerCase()),
 	          contentSnippet: ListItemCaption, //contentSnippet.replace(/<(?:.|\n)*?>/gm, '');,
-	          content: ListItemDescription });
+	          content: ListItemDescription //content.replace(/<(?:.|\n)*?>/gm, '');,
+	        });
 	      });
 	      this.setState({ news: news, isLoading: false, entries: json });
 	    },
 	    setEntries: function setEntries(newEntries) {
-	      var _state2 = this.state;
-	      var selected = _state2.selected;
-	      var img = _state2.img;
-	      var entries = _state2.entries;
+	      var _state2 = this.state,
+	          selected = _state2.selected,
+	          img = _state2.img,
+	          entries = _state2.entries;
 
 	      var id, news, title, avatar, url, type;
 
@@ -4151,7 +4266,9 @@ webpackJsonp([0],{
 	          title: title,
 	          id: id,
 	          avatar: avatar,
-	          contentSnippet: replaceStr(entry.contentSnippet) });
+	          contentSnippet: replaceStr(entry.contentSnippet) //entry.contentSnippet.replace(/<(?:.|\n)*?>/gm, '');,
+	          // content: replaceStr(entry.content),//entry.content.replace(/<(?:.|\n)*?>/gm, '');,
+	        });
 	      });
 
 	      this.setState({ news: news, isLoading: false, entries: newEntries });
@@ -4162,10 +4279,9 @@ webpackJsonp([0],{
 	    loadUrl: function loadUrl(selected) {
 	      var urls = this.state.urls;
 
-	      var _$find = _.find(urls, ['title', selected]);
-
-	      var url = _$find.url;
-	      var img = _$find.img;
+	      var _$find = _.find(urls, ['title', selected]),
+	          url = _$find.url,
+	          img = _$find.img;
 
 	      this.setState({ selected: selected, img: img });
 
@@ -4175,9 +4291,9 @@ webpackJsonp([0],{
 	      this.loadUrl(value);
 	    },
 	    renderNews: function renderNews(item, key) {
-	      var _state3 = this.state;
-	      var selected = _state3.selected;
-	      var isLoading = _state3.isLoading;
+	      var _state3 = this.state,
+	          selected = _state3.selected,
+	          isLoading = _state3.isLoading;
 
 	      var style = {
 	        transition: 'all 0.2s ease-in-out 0.1s',
@@ -4207,12 +4323,12 @@ webpackJsonp([0],{
 	      return React.createElement(_MenuItem2.default, { key: key, value: item.title, primaryText: item.title });
 	    },
 	    render: function render() {
-	      var _state4 = this.state;
-	      var type = _state4.type;
-	      var news = _state4.news;
-	      var isLoading = _state4.isLoading;
-	      var urls = _state4.urls;
-	      var selected = _state4.selected;
+	      var _state4 = this.state,
+	          type = _state4.type,
+	          news = _state4.news,
+	          isLoading = _state4.isLoading,
+	          urls = _state4.urls,
+	          selected = _state4.selected;
 
 	      return React.createElement(
 	        'div',
@@ -4274,23 +4390,23 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1037:
+/***/ 1001:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactGoogleLogin = __webpack_require__(671);
+	var _reactGoogleLogin = __webpack_require__(667);
 
 	var _reactGoogleLogin2 = _interopRequireDefault(_reactGoogleLogin);
 
-	var _reactFacebookLogin = __webpack_require__(672);
+	var _reactFacebookLogin = __webpack_require__(668);
 
 	var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var core = __webpack_require__(211);
+	var React = __webpack_require__(113);
+	var core = __webpack_require__(212);
 	// var moment = require('moment');
 	// var google = require('googleapis');
 	// var compute = google.compute('v1');
@@ -4392,36 +4508,36 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1038:
+/***/ 1002:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _TextField = __webpack_require__(833);
+	var _TextField = __webpack_require__(892);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _RaisedButton = __webpack_require__(685);
+	var _RaisedButton = __webpack_require__(730);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(473);
+	var _FontIcon = __webpack_require__(469);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(817);
+	var _Avatar = __webpack_require__(876);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(428);
+	var _Paper = __webpack_require__(423);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(819);
+	var _Chip = __webpack_require__(878);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _DatePicker = __webpack_require__(1039);
+	var _DatePicker = __webpack_require__(1003);
 
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 
@@ -4429,9 +4545,9 @@ webpackJsonp([0],{
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
 
 	core.Component('view.Steps.One', ['ui.Loader'], function (Loader) {
 	  return {
@@ -4477,10 +4593,10 @@ webpackJsonp([0],{
 	      reader.readAsDataURL(file);
 	    },
 	    getValidationState: function getValidationState() {
-	      var _state = this.state;
-	      var cap = _state.cap;
-	      var date = _state.date;
-	      var teamName = _state.teamName;
+	      var _state = this.state,
+	          cap = _state.cap,
+	          date = _state.date,
+	          teamName = _state.teamName;
 	      // return cap < 1 ;
 
 	      var length = teamName.length;
@@ -4494,12 +4610,12 @@ webpackJsonp([0],{
 	    render: function render() {
 	      var _this2 = this;
 
-	      var _state2 = this.state;
-	      var teamName = _state2.teamName;
-	      var imagePreview = _state2.imagePreview;
-	      var cap = _state2.cap;
-	      var date = _state2.date;
-	      var dchange = _state2.dchange;
+	      var _state2 = this.state,
+	          teamName = _state2.teamName,
+	          imagePreview = _state2.imagePreview,
+	          cap = _state2.cap,
+	          date = _state2.date,
+	          dchange = _state2.dchange;
 	      var callback = this.props.callback;
 
 
@@ -4587,62 +4703,62 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1055:
+/***/ 1019:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Snackbar = __webpack_require__(1056);
+	var _Snackbar = __webpack_require__(1020);
 
 	var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
-	var _RaisedButton = __webpack_require__(685);
+	var _RaisedButton = __webpack_require__(730);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FlatButton = __webpack_require__(483);
+	var _FlatButton = __webpack_require__(479);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _List = __webpack_require__(700);
+	var _List = __webpack_require__(745);
 
-	var _Subheader = __webpack_require__(438);
+	var _Subheader = __webpack_require__(433);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _Dialog = __webpack_require__(683);
+	var _Dialog = __webpack_require__(728);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
-	var _colors = __webpack_require__(168);
+	var _colors = __webpack_require__(169);
 
-	var _Paper = __webpack_require__(428);
+	var _Paper = __webpack_require__(423);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _TextField = __webpack_require__(833);
+	var _TextField = __webpack_require__(892);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Chip = __webpack_require__(819);
+	var _Chip = __webpack_require__(878);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Avatar = __webpack_require__(817);
+	var _Avatar = __webpack_require__(876);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _FontIcon = __webpack_require__(473);
+	var _FontIcon = __webpack_require__(469);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(114);
-	var sa = __webpack_require__(220);
-	var core = __webpack_require__(211);
-	var moment = __webpack_require__(713);
-	var _ = __webpack_require__(673);
+	var React = __webpack_require__(113);
+	var sa = __webpack_require__(221);
+	var core = __webpack_require__(212);
+	var moment = __webpack_require__(758);
+	var _ = __webpack_require__(718);
 
 	core.Component('view.Steps.Two', ['Slot'], function (Slot) {
 	  return {
@@ -4698,9 +4814,9 @@ webpackJsonp([0],{
 	      this.setState({ games: games });
 	    },
 	    getMoreNumbers: function getMoreNumbers() {
-	      var _state = this.state;
-	      var games = _state.games;
-	      var limit = _state.limit;
+	      var _state = this.state,
+	          games = _state.games,
+	          limit = _state.limit;
 
 	      var res = 0;
 
@@ -4820,18 +4936,18 @@ webpackJsonp([0],{
 	    render: function render() {
 	      var _this5 = this;
 
-	      var _props = this.props;
-	      var callback = _props.callback;
-	      var date = _props.date;
-	      var _state2 = this.state;
-	      var dates = _state2.dates;
-	      var cap = _state2.cap;
-	      var open = _state2.open;
-	      var modalMessage = _state2.modalMessage;
-	      var modalTitle = _state2.modalTitle;
-	      var message = _state2.message;
-	      var modalOpen = _state2.modalOpen;
-	      var reset = _state2.reset;
+	      var _props = this.props,
+	          callback = _props.callback,
+	          date = _props.date;
+	      var _state2 = this.state,
+	          dates = _state2.dates,
+	          cap = _state2.cap,
+	          open = _state2.open,
+	          modalMessage = _state2.modalMessage,
+	          modalTitle = _state2.modalTitle,
+	          message = _state2.message,
+	          modalOpen = _state2.modalOpen,
+	          reset = _state2.reset;
 
 	      var checkThermo = function checkThermo() {
 	        var x = { str: 'fa-thermometer-empty' },
@@ -4969,10 +5085,10 @@ webpackJsonp([0],{
 	      }
 	    },
 	    render: function render() {
-	      var _props2 = this.props;
-	      var callback = _props2.callback;
-	      var day = _props2.day;
-	      var onClearAll = _props2.onClearAll;
+	      var _props2 = this.props,
+	          callback = _props2.callback,
+	          day = _props2.day,
+	          onClearAll = _props2.onClearAll;
 
 	      var cap;
 	      if (onClearAll) cap = '';else cap = this.state.cap;
@@ -4995,14 +5111,21 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1060:
+/***/ 1024:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var React = __webpack_require__(114);
-	var core = __webpack_require__(211);
-	var moment = __webpack_require__(713);
+	var _CircularProgress = __webpack_require__(751);
+
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(113);
+	var core = __webpack_require__(212);
+	var moment = __webpack_require__(758);
+
 
 	core.Component('Views', [], function () {
 	  return {
@@ -5043,9 +5166,16 @@ webpackJsonp([0],{
 	    // },
 
 	    renderView: function renderView(view) {
-	      var changeViews = this.props.changeViews;
+	      var _props = this.props,
+	          changeViews = _props.changeViews,
+	          isLoading = _props.isLoading;
 
 	      var View = core.components['view.' + view];
+	      if (isLoading) return React.createElement(
+	        'div',
+	        { style: { display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center' } },
+	        React.createElement(_CircularProgress2.default, { size: 80, thickness: 5, color: 'rgba(50, 62, 81, 0.75)' })
+	      );
 	      if (View) return React.createElement(View, null);else return React.createElement(
 	        'span',
 	        null,
@@ -5064,6 +5194,36 @@ webpackJsonp([0],{
 	      );
 	    }
 	  };
+	});
+
+/***/ },
+
+/***/ 1025:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var React = __webpack_require__(113);
+	var core = __webpack_require__(212);
+	var sa = __webpack_require__(221);
+	var _ = __webpack_require__(718);
+	var teams = __webpack_require__(721);
+	var base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
+
+	core.Action('signupUser', { form: 'object' }, function (data, promise) {
+	  var compared = core.tree.select('compared');
+	  var form = data.form;
+
+	  console.debug('form => ', form);
+	  sa.post(base + '/ComparePlayers').send(_extends({}, form)).end(function (err, res) {
+	    if (res && res.ok) {
+	      promise.resolve(_extends({ stats: res.body }, form));
+	    } else {
+	      promise.resolve(_extends({ isError: true }, err));
+	    }
+	  });
 	});
 
 /***/ }

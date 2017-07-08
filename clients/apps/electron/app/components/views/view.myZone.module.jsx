@@ -29,7 +29,8 @@ core.Component('view.myZone', ['PlayerDialog'],
   return {
 
     bindings: {
-      myplayers: ['myPlayers']
+      myplayers: ['myPlayers'],
+      user: ['user']
     },
 
     getInitialState(){
@@ -38,6 +39,25 @@ core.Component('view.myZone', ['PlayerDialog'],
         cards: [
           { label: 'Welcome, user', type: 'user', data: {} }, { label: 'News', type: 'news', data: [] },
         ]
+      }
+    },
+
+    componentDidMount() {
+      if (this.state.user && this.state.user.id) {
+        this.setUser(this.state.user)
+      }
+      core.on('user.logged.in', this.setUser)
+    },
+    setUser(user){
+      var { cards } = this.state;
+      if (user && user.id) {
+        for (var d = 0; d < cards.length; d++) {
+          if (cards[d].type == 'user') {
+            cards[d].label = `Welcome, ${ user.fullName }`;
+            cards[d].data = user;
+          }
+        }
+        this.setState({ cards: cards });
       }
     },
 
@@ -59,8 +79,13 @@ core.Component('view.myZone', ['PlayerDialog'],
       core.emit('get.Player.data', { player: player , type: 'stats' });
     },
 
-    renderUser(data){
-       return (<span>no data</span>);
+    renderUser(user){
+      // console.debug('user => ',  user)
+      // var { user } = this.state;
+      // console.debug('user => ',  user)
+      if (_.isEmpty(user)) return (<span>no data</span>);
+      else return (<div><img src={ user.avatar }/></div>);
+
     },
 
     renderNews(data){
@@ -107,6 +132,7 @@ core.Component('view.myZone', ['PlayerDialog'],
 
     renderCardData(card){
       var { data, type } = card;
+
       switch (type) {
         case 'user':
             return this.renderUser(data)
@@ -134,6 +160,7 @@ core.Component('view.myZone', ['PlayerDialog'],
 
     render(){
       let { myplayers, cards } = this.state;
+      console.log('this.state -> ',  this.state)
       return (
         <div style={ styles.wrap }>
            <div style={{ height: 450, display:'flex', padding:'15px 0px' , flexDirection:'row', width: '100%', height: '100%' }}>
@@ -148,7 +175,7 @@ const styles = {
    paper : {
     display:'flex', flex: 1, width: '100%', overflow: 'auto', flexDirection: 'column',
     margin: '0 15px',
-    boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
+    // boxShadow: 'rgba(0, 0, 0, 0.107647) 0px 1px 2px, rgba(0, 0, 0, 0.107647) 0px 1px 1px'
   },
   subheader: {
     backgroundColor: '#323e51',

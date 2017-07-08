@@ -8,15 +8,15 @@ let base = 'http://Fantasyedge.ddns.net:8080/FantasyEdge';
 core.Action('getAllPlayers', { period: 'string' }, (data, promise)=>{
   var allPlayers = core.tree.select('allPlayers');
   var total = 0;
-  console.log(1111)
   sa.post(`${base}/GetAllPlayersAvg?Period=${ data.period }`)
     // .send(data)
     .end((err, res)=>{
       if (res && res.ok) {
         var { body, headers } = res;
-        console.debug('headers => ',  headers)
-        if (headers['players-count']) total = headers['players-count'];
+        // console.debug('headers => ',  headers)
         if(body['Players'] && !_.isEmpty(body['Players'])) {
+          if (headers['players-count']) total = headers['players-count'];
+          else total = body['Players'].length;
           allPlayers.set({ players: body['Players'], total: total });
           promise.resolve({ isError: false });
         }

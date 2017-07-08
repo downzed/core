@@ -2,6 +2,7 @@
 var React = require('react');
 var core = require('core');
 var moment = require('moment');
+import CircularProgress from 'material-ui/CircularProgress';
 
 
 core.Component('Views', [], ()=>{
@@ -42,8 +43,13 @@ core.Component('Views', [], ()=>{
       // },
 
       renderView(view){
-        let { changeViews } = this.props;
+        let { changeViews, isLoading } = this.props;
         var View = core.components[`view.${view}`];
+        if (isLoading) return (
+          <div style={{ display: 'flex',  height: '100%', alignItems: 'center', justifyContent: 'center' }}>
+            <CircularProgress size={80} thickness={5} color={ 'rgba(50, 62, 81, 0.75)' } />
+          </div>
+        );
         if (View) return <View />
         else return (<span> error </span>)
       },
@@ -54,7 +60,7 @@ core.Component('Views', [], ()=>{
 
           return (
             <div className={'steps'} style={{ height: '100%' }}>
-                  { this.renderView(view) }
+                { this.renderView(view) }
             </div>
           );
       }

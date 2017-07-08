@@ -43,7 +43,7 @@ core.Component('player.ListItem', [], ()=>{
         return { open: false, backcolor: '#fff' }
       },
       componentDidMount(){
-        this.getColor(this.props.item.teamLogo)
+        // this.getColor(this.props.item.teamLogo)
         // console.log('this.props -> ',  this.props)
       },
 
@@ -138,29 +138,36 @@ core.Component('player.ListItem', [], ()=>{
 
       handlePlayerPop(e){
         e.preventDefault();
-        this.setState({
-          open: true,
-          anchorEl: e.currentTarget,
-        });
+        var anchorEl = e.currentTarget;
+
+        const setState = (color) => {
+          this.setState({
+            open: true,
+            backcolor: color,
+            anchorEl: anchorEl,
+          });
+        }
+
+        this.getColor(this.props.item.teamLogo, setState)
+
       },
 
-      getColor(src){
-        if (!src) { console.log('src -> ',  src); return '#000'; }
+      getColor(src, callback){
+        if (!src) { console.log('src -> ',  src); callback('#000'); }
         var r, g, b, pal;
         var x;
         Vibrant.from(src).getPalette((err, palette) => {
             // console.log('palette -> ',  palette)
-            if (err){ console.error(err); return this.setState({ backcolor: 'red' }); }
+            if (err){ console.error('ERROR!!',err); return callback('red'); }
             if (palette && palette['Vibrant'] !== null && palette['Vibrant']['_rgb']) {
               pal = palette['Vibrant']['_rgb'];
               r = pal[0];
               g = pal[1];
               b = pal[2];
               x= `rgba(${r},${g},${b}, .26)`;
-              console.log('x -> ',  x)
-              this.setState({ backcolor: x })
+              callback(x)
             }
-          else this.setState({ backcolor: 'green' })
+          else callback('green')
         });
       },
 
@@ -174,7 +181,7 @@ core.Component('player.ListItem', [], ()=>{
           position: 'absolute',
           opacity: '0.25',
           top: '0',
-          background: `url(${teamLogo})`,          backgroundSize: 'cover',          backgroundRepeat: 'no-repeat',          backgroundPosition: '0, 0',          bottom: '0',          right: '0',
+          background: `url(${teamLogo})`,          backgroundSize: 'contain',          backgroundRepeat: 'no-repeat',          backgroundPosition: 'center, center',          bottom: '0',          right: '0',
           left: '0',
         }
 
