@@ -3,11 +3,12 @@ var core = require('core');
 var sa = require('superagent');
 var _ = require('lodash');
 var teams = require('./teams.js');
-let base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
+let base = 'http://Fantasyedge.ddns.net:8080/FantasyEdge';
 // Fantasyedge.ddns.net
 core.Action('getAllPlayers', { period: 'string' }, (data, promise)=>{
   var allPlayers = core.tree.select('allPlayers');
   var total = 0;
+  console.log(1111)
   sa.post(`${base}/GetAllPlayersAvg?Period=${ data.period }`)
     // .send(data)
     .end((err, res)=>{

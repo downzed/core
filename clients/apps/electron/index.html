@@ -4,20 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="google-signin-scope" content="profile email">
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://apis.google.com/js/client:platform.js"></script>
     <meta name="google-signin-client_id" content="79549914610-lmoailp8g9r956537ammi2jnh93u7vq1.apps.googleusercontent.com">
-
-
-    <!-- <script type="text/javascript" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=302562886764541"></script> -->
-
-    <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=302562886764541";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+        (function(d, s, id) {
+            console.log(111)
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=302562886764541";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <title>Fantasy Edge</title>
 
@@ -31,16 +30,12 @@
 <body style="-webkit-app-region: drag">
 
     <div id="app"></div>
-    <!--<script>
-        require('./build/bundle.js')
-    </script>-->
-    <script src="build/bundle.js"></script>
-    <!-- <script src="https://apis.google.com/js/platform.js"></script> -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="build/bundle.js">
+    </script>
 
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
 </body>
 
 </html>
