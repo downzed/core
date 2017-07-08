@@ -17,34 +17,34 @@ webpackJsonp([0],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _MuiThemeProvider = __webpack_require__(26);
+	var _MuiThemeProvider = __webpack_require__(27);
 
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-	var _darkBaseTheme = __webpack_require__(211);
+	var _darkBaseTheme = __webpack_require__(210);
 
 	var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
-	var _lightBaseTheme = __webpack_require__(168);
+	var _lightBaseTheme = __webpack_require__(167);
 
 	var _lightBaseTheme2 = _interopRequireDefault(_lightBaseTheme);
 
-	var _getMuiTheme = __webpack_require__(153);
+	var _getMuiTheme = __webpack_require__(152);
 
 	var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var core = __webpack_require__(212);
-	var ReactDom = __webpack_require__(268);
+	var React = __webpack_require__(114);
+	var core = __webpack_require__(211);
+	var ReactDom = __webpack_require__(266);
 
 
 	(0, _reactTapEventPlugin2.default)();
 
-	core.loadContext('index', __webpack_require__(404));
+	core.loadContext('index', __webpack_require__(408));
 	// core.loadContext('modules', require.context('modules', true, /.*\.module\.js/));
-	core.loadContext('source', __webpack_require__(404));
+	core.loadContext('source', __webpack_require__(408));
 	// core.run('loadGoogleChart').then( ()=>{
 	//     console.log('google.load')
 	//     google.load("visualization", "1", {
@@ -67,29 +67,29 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 404:
+/***/ 408:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./Index.module.jsx": 405,
-		"./actions/actions.module.jsx": 671,
-		"./actions/comparePlayers.module.jsx": 673,
-		"./actions/getAllPlayers.module.jsx": 674,
-		"./components/Loader/ui.Loader.module.jsx": 675,
-		"./components/modules/player_dialog.module.jsx": 678,
-		"./components/modules/roto_player.module.jsx": 826,
-		"./components/modules/roto_player_dialog.module.jsx": 855,
-		"./components/views/@@view.myZone.module.jsx": 862,
-		"./components/views/Compare/Compare.module.jsx": 873,
-		"./components/views/Compare/player.listItem.module.jsx": 884,
-		"./components/views/Compare/stats.google.chart.module.jsx": 885,
-		"./components/views/Compare/stats_dialog.module.jsx": 936,
-		"./components/views/view.myZone.module.jsx": 950,
-		"./components/views/view.rotoNews.module.jsx": 951,
-		"./components/views/view.sign_in.module.jsx": 952,
-		"./components/views/view.steps.one.module.jsx": 953,
-		"./components/views/view.steps.two.module.jsx": 970,
-		"./components/views/views.module.jsx": 975
+		"./Index.module.jsx": 409,
+		"./actions/actions.module.jsx": 675,
+		"./actions/comparePlayers.module.jsx": 677,
+		"./actions/getAllPlayers.module.jsx": 678,
+		"./components/Loader/ui.Loader.module.jsx": 679,
+		"./components/modules/player_dialog.module.jsx": 682,
+		"./components/modules/roto_player.module.jsx": 816,
+		"./components/modules/roto_player_dialog.module.jsx": 845,
+		"./components/views/@@view.myZone.module.jsx": 852,
+		"./components/views/Compare/Compare.module.jsx": 863,
+		"./components/views/Compare/player.listItem.module.jsx": 876,
+		"./components/views/Compare/stats.google.chart.module.jsx": 877,
+		"./components/views/Compare/stats_dialog.module.jsx": 928,
+		"./components/views/view.myZone.module.jsx": 1035,
+		"./components/views/view.rotoNews.module.jsx": 1036,
+		"./components/views/view.sign_in.module.jsx": 1037,
+		"./components/views/view.steps.one.module.jsx": 1038,
+		"./components/views/view.steps.two.module.jsx": 1055,
+		"./components/views/views.module.jsx": 1060
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -102,63 +102,63 @@ webpackJsonp([0],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 404;
+	webpackContext.id = 408;
 
 
 /***/ },
 
-/***/ 405:
+/***/ 409:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Drawer = __webpack_require__(406);
+	var _Drawer = __webpack_require__(410);
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _Menu = __webpack_require__(426);
+	var _Menu = __webpack_require__(431);
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _MenuItem = __webpack_require__(436);
+	var _MenuItem = __webpack_require__(441);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _AppBar = __webpack_require__(476);
+	var _AppBar = __webpack_require__(480);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(483);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _FontIcon = __webpack_require__(469);
+	var _FontIcon = __webpack_require__(473);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(486);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Popover = __webpack_require__(484);
+	var _Popover = __webpack_require__(488);
 
 	var _Popover2 = _interopRequireDefault(_Popover);
 
-	var _nodeVibrant = __webpack_require__(486);
+	var _nodeVibrant = __webpack_require__(490);
 
 	var Vibrant = _interopRequireWildcard(_nodeVibrant);
 
-	var _reactGoogleLogin = __webpack_require__(667);
+	var _reactGoogleLogin = __webpack_require__(671);
 
 	var _reactGoogleLogin2 = _interopRequireDefault(_reactGoogleLogin);
 
-	var _reactFacebookLogin = __webpack_require__(668);
+	var _reactFacebookLogin = __webpack_require__(672);
 
 	var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
 
@@ -166,15 +166,15 @@ webpackJsonp([0],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 	// var _ = window._;//
 	// console.dir(_);
 
 
-	var teams = __webpack_require__(670);
+	var teams = __webpack_require__(674);
 	var allPlayers = core.tree.select('allPlayers');
 
 	core.Component('Index', ['core.App', 'Views', 'PlayerDialog', 'Stats.Diaglog'], function (App, Views, PlayerDialog, StatsDiaglog) {
@@ -205,9 +205,9 @@ webpackJsonp([0],{
 	    getPlayers: function getPlayers(period) {
 	      var _this = this;
 
-	      var _state = this.state,
-	          allPlayers = _state.allPlayers,
-	          timeframe = _state.timeframe;
+	      var _state = this.state;
+	      var allPlayers = _state.allPlayers;
+	      var timeframe = _state.timeframe;
 
 	      if (!period) period = timeframe;
 	      core.run('getAllPlayers', { period: period }).then(function (_ref) {
@@ -215,12 +215,12 @@ webpackJsonp([0],{
 
 	        if (isError) return;
 
-	        var _allPlayers$get = _this.allPlayers.get(),
-	            players = _allPlayers$get.players,
-	            total = _allPlayers$get.total;
+	        var _allPlayers$get = _this.allPlayers.get();
+
+	        var players = _allPlayers$get.players;
+	        var total = _allPlayers$get.total;
 	        // console.debug('players => ', players);
 	        // console.debug('total => ', total);
-
 
 	        var res = _this.getTeams(players);
 	        res = _.sortBy(res, 'LastName');
@@ -318,16 +318,16 @@ webpackJsonp([0],{
 	    renderMenu: function renderMenu() {
 	      var _this2 = this;
 
-	      var _state2 = this.state,
-	          menuItems = _state2.menuItems,
-	          view = _state2.view;
+	      var _state2 = this.state;
+	      var menuItems = _state2.menuItems;
+	      var view = _state2.view;
 
 
 	      return _.map(menuItems, function (item, i) {
-	        var icon = item.icon,
-	            label = item.label,
-	            ref = item.ref,
-	            active = item.active;
+	        var icon = item.icon;
+	        var label = item.label;
+	        var ref = item.ref;
+	        var active = item.active;
 
 	        var itemStyle = {
 	          icon: { color: active ? '#f2fafa' : '#9196a6', fontSize: 18 },
@@ -451,13 +451,13 @@ webpackJsonp([0],{
 	    render: function render() {
 	      var _this5 = this;
 
-	      var _state3 = this.state,
-	          open = _state3.open,
-	          view = _state3.view,
-	          name = _state3.name,
-	          type = _state3.type,
-	          dialogOpen = _state3.dialogOpen,
-	          comparedData = _state3.comparedData;
+	      var _state3 = this.state;
+	      var open = _state3.open;
+	      var view = _state3.view;
+	      var name = _state3.name;
+	      var type = _state3.type;
+	      var dialogOpen = _state3.dialogOpen;
+	      var comparedData = _state3.comparedData;
 
 	      return React.createElement(
 	        App,
@@ -506,7 +506,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 671:
+/***/ 675:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -515,11 +515,11 @@ webpackJsonp([0],{
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var React = __webpack_require__(113);
-	var core = __webpack_require__(212);
-	var sa = __webpack_require__(221);
-	var _ = __webpack_require__(669);
-	var teams = __webpack_require__(672);
+	var React = __webpack_require__(114);
+	var core = __webpack_require__(211);
+	var sa = __webpack_require__(220);
+	var _ = __webpack_require__(673);
+	var teams = __webpack_require__(676);
 	var base = 'http://46.121.135.238:3310/api/v1.0/';
 	var nbaAvatar = 'http://stats.nba.com/media/players/230x185/';
 	var nbaTL = 'http://stats.nba.com/media/img/teams/logos/';
@@ -580,7 +580,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 672:
+/***/ 676:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -769,18 +769,18 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 673:
+/***/ 677:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(113);
-	var core = __webpack_require__(212);
-	var sa = __webpack_require__(221);
-	var _ = __webpack_require__(669);
-	var teams = __webpack_require__(672);
+	var React = __webpack_require__(114);
+	var core = __webpack_require__(211);
+	var sa = __webpack_require__(220);
+	var _ = __webpack_require__(673);
+	var teams = __webpack_require__(676);
 	var base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
 
 	core.Action('comparePlayers', { form: 'object' }, function (data, promise) {
@@ -799,29 +799,30 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 674:
+/***/ 678:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(113);
-	var core = __webpack_require__(212);
-	var sa = __webpack_require__(221);
-	var _ = __webpack_require__(669);
-	var teams = __webpack_require__(672);
-	var base = 'Fantasyedge.ddns.net:8080/FantasyEdge';
+	var React = __webpack_require__(114);
+	var core = __webpack_require__(211);
+	var sa = __webpack_require__(220);
+	var _ = __webpack_require__(673);
+	var teams = __webpack_require__(676);
+	var base = 'http://Fantasyedge.ddns.net:8080/FantasyEdge';
 	// Fantasyedge.ddns.net
 	core.Action('getAllPlayers', { period: 'string' }, function (data, promise) {
 	  var allPlayers = core.tree.select('allPlayers');
 	  var total = 0;
+	  console.log(1111);
 	  sa.post(base + '/GetAllPlayersAvg?Period=' + data.period)
 	  // .send(data)
 	  .end(function (err, res) {
 	    if (res && res.ok) {
-	      var body = res.body,
-	          headers = res.headers;
+	      var body = res.body;
+	      var headers = res.headers;
 
 	      console.debug('headers => ', headers);
 	      if (headers['players-count']) total = headers['players-count'];
@@ -846,8 +847,8 @@ webpackJsonp([0],{
 	  // .send(data)
 	  .end(function (err, res) {
 	    if (res && res.ok) {
-	      var body = res.body,
-	          headers = res.headers;
+	      var body = res.body;
+	      var headers = res.headers;
 	      // console.debug('res => ', res);
 
 	      if (headers['players-count']) total = headers['players-count'];
@@ -867,18 +868,18 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 675:
+/***/ 679:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var React = __webpack_require__(113);
+	var React = __webpack_require__(114);
 	var PropTypes = React.PropTypes;
 
-	var core = __webpack_require__(212);
-	var myCss = __webpack_require__(676);
+	var core = __webpack_require__(211);
+	var myCss = __webpack_require__(680);
 
 	var allScreen = {
 	  display: 'flex',
@@ -969,28 +970,27 @@ webpackJsonp([0],{
 	{/*
 	   calling to <Loader /> will be like:
 	  <Loader background="#000" style={ {width: 10px, marginLeft: 15px} } show={!this.state.data} spinner={1} />
-	  
 	  */}
 
 /***/ },
 
-/***/ 676:
+/***/ 680:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(677);
+	var content = __webpack_require__(681);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(261)(content, {});
+	var update = __webpack_require__(259)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./loader-theme.css", function() {
-				var newContent = require("!!../../../../../node_modules/css-loader/index.js!./loader-theme.css");
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./loader-theme.css", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./loader-theme.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1001,69 +1001,69 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 677:
+/***/ 681:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(260)();
+	exports = module.exports = __webpack_require__(258)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".spinner {\r\n  width: 70px;\r\n  text-align: center;\r\n}\r\n\r\n.spinner > div {\r\n  width: 10px;\r\n  height: 10px;\r\n  background-color: #333;\r\n  border-radius: 100%;\r\n  display: inline-block;\r\n  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\r\n  animation: sk-bouncedelay 1.4s infinite ease-in-out both;\r\n}\r\n\r\n.spinner .bounce1 {\r\n  -webkit-animation-delay: -0.32s;\r\n  animation-delay: -0.32s;\r\n}\r\n\r\n.spinner .bounce2 {\r\n  -webkit-animation-delay: -0.16s;\r\n  animation-delay: -0.16s;\r\n}\r\n\r\n@-webkit-keyframes sk-bouncedelay {\r\n  0%, 80%, 100% { -webkit-transform: scale(0) }\r\n  40% { -webkit-transform: scale(1.0) }\r\n}\r\n\r\n@keyframes sk-bouncedelay {\r\n  0%, 80%, 100% {\r\n    -webkit-transform: scale(0);\r\n    transform: scale(0);\r\n  } 40% {\r\n    -webkit-transform: scale(1.0);\r\n    transform: scale(1.0);\r\n  }\r\n}\r\n\r\n.sk-fading-circle {\r\n  width: 40px;\r\n  height: 40px;\r\n  position: relative;\r\n}\r\n\r\n.sk-fading-circle .sk-circle {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n}\r\n\r\n.sk-fading-circle .sk-circle:before {\r\n  content: '';\r\n  display: block;\r\n  margin: 0 auto;\r\n  width: 15%;\r\n  height: 15%;\r\n  background-color: #333;\r\n  border-radius: 100%;\r\n  -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\r\n          animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\r\n}\r\n.sk-fading-circle .sk-circle2 {\r\n  -webkit-transform: rotate(30deg);\r\n      -ms-transform: rotate(30deg);\r\n          transform: rotate(30deg);\r\n}\r\n.sk-fading-circle .sk-circle3 {\r\n  -webkit-transform: rotate(60deg);\r\n      -ms-transform: rotate(60deg);\r\n          transform: rotate(60deg);\r\n}\r\n.sk-fading-circle .sk-circle4 {\r\n  -webkit-transform: rotate(90deg);\r\n      -ms-transform: rotate(90deg);\r\n          transform: rotate(90deg);\r\n}\r\n.sk-fading-circle .sk-circle5 {\r\n  -webkit-transform: rotate(120deg);\r\n      -ms-transform: rotate(120deg);\r\n          transform: rotate(120deg);\r\n}\r\n.sk-fading-circle .sk-circle6 {\r\n  -webkit-transform: rotate(150deg);\r\n      -ms-transform: rotate(150deg);\r\n          transform: rotate(150deg);\r\n}\r\n.sk-fading-circle .sk-circle7 {\r\n  -webkit-transform: rotate(180deg);\r\n      -ms-transform: rotate(180deg);\r\n          transform: rotate(180deg);\r\n}\r\n.sk-fading-circle .sk-circle8 {\r\n  -webkit-transform: rotate(210deg);\r\n      -ms-transform: rotate(210deg);\r\n          transform: rotate(210deg);\r\n}\r\n.sk-fading-circle .sk-circle9 {\r\n  -webkit-transform: rotate(240deg);\r\n      -ms-transform: rotate(240deg);\r\n          transform: rotate(240deg);\r\n}\r\n.sk-fading-circle .sk-circle10 {\r\n  -webkit-transform: rotate(270deg);\r\n      -ms-transform: rotate(270deg);\r\n          transform: rotate(270deg);\r\n}\r\n.sk-fading-circle .sk-circle11 {\r\n  -webkit-transform: rotate(300deg);\r\n      -ms-transform: rotate(300deg);\r\n          transform: rotate(300deg);\r\n}\r\n.sk-fading-circle .sk-circle12 {\r\n  -webkit-transform: rotate(330deg);\r\n      -ms-transform: rotate(330deg);\r\n          transform: rotate(330deg);\r\n}\r\n.sk-fading-circle .sk-circle2:before {\r\n  -webkit-animation-delay: -1.1s;\r\n          animation-delay: -1.1s;\r\n}\r\n.sk-fading-circle .sk-circle3:before {\r\n  -webkit-animation-delay: -1s;\r\n          animation-delay: -1s;\r\n}\r\n.sk-fading-circle .sk-circle4:before {\r\n  -webkit-animation-delay: -0.9s;\r\n          animation-delay: -0.9s;\r\n}\r\n.sk-fading-circle .sk-circle5:before {\r\n  -webkit-animation-delay: -0.8s;\r\n          animation-delay: -0.8s;\r\n}\r\n.sk-fading-circle .sk-circle6:before {\r\n  -webkit-animation-delay: -0.7s;\r\n          animation-delay: -0.7s;\r\n}\r\n.sk-fading-circle .sk-circle7:before {\r\n  -webkit-animation-delay: -0.6s;\r\n          animation-delay: -0.6s;\r\n}\r\n.sk-fading-circle .sk-circle8:before {\r\n  -webkit-animation-delay: -0.5s;\r\n          animation-delay: -0.5s;\r\n}\r\n.sk-fading-circle .sk-circle9:before {\r\n  -webkit-animation-delay: -0.4s;\r\n          animation-delay: -0.4s;\r\n}\r\n.sk-fading-circle .sk-circle10:before {\r\n  -webkit-animation-delay: -0.3s;\r\n          animation-delay: -0.3s;\r\n}\r\n.sk-fading-circle .sk-circle11:before {\r\n  -webkit-animation-delay: -0.2s;\r\n          animation-delay: -0.2s;\r\n}\r\n.sk-fading-circle .sk-circle12:before {\r\n  -webkit-animation-delay: -0.1s;\r\n          animation-delay: -0.1s;\r\n}\r\n\r\n@-webkit-keyframes sk-circleFadeDelay {\r\n  0%, 39%, 100% { opacity: 0; }\r\n  40% { opacity: 1; }\r\n}\r\n\r\n@keyframes sk-circleFadeDelay {\r\n  0%, 39%, 100% { opacity: 0; }\r\n  40% { opacity: 1; }\r\n}\r\n\r\n.circle {\r\n  width: 40px;\r\n  height: 40px;\r\n  background-color: #333;\r\n\r\n  border-radius: 100%;\r\n  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;\r\n  animation: sk-scaleout 1.0s infinite ease-in-out;\r\n}\r\n\r\n@-webkit-keyframes sk-scaleout {\r\n  0% { -webkit-transform: scale(0) }\r\n  100% {\r\n    -webkit-transform: scale(1.0);\r\n    opacity: 0;\r\n  }\r\n}\r\n\r\n@keyframes sk-scaleout {\r\n  0% {\r\n    -webkit-transform: scale(0);\r\n    transform: scale(0);\r\n  } 100% {\r\n    -webkit-transform: scale(1.0);\r\n    transform: scale(1.0);\r\n    opacity: 0;\r\n  }\r\n}\r\n", ""]);
+	exports.push([module.id, ".spinner {\n  width: 70px;\n  text-align: center;\n}\n\n.spinner > div {\n  width: 10px;\n  height: 10px;\n  background-color: #333;\n  border-radius: 100%;\n  display: inline-block;\n  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n  animation: sk-bouncedelay 1.4s infinite ease-in-out both;\n}\n\n.spinner .bounce1 {\n  -webkit-animation-delay: -0.32s;\n  animation-delay: -0.32s;\n}\n\n.spinner .bounce2 {\n  -webkit-animation-delay: -0.16s;\n  animation-delay: -0.16s;\n}\n\n@-webkit-keyframes sk-bouncedelay {\n  0%, 80%, 100% { -webkit-transform: scale(0) }\n  40% { -webkit-transform: scale(1.0) }\n}\n\n@keyframes sk-bouncedelay {\n  0%, 80%, 100% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  } 40% {\n    -webkit-transform: scale(1.0);\n    transform: scale(1.0);\n  }\n}\n\n.sk-fading-circle {\n  width: 40px;\n  height: 40px;\n  position: relative;\n}\n\n.sk-fading-circle .sk-circle {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.sk-fading-circle .sk-circle:before {\n  content: '';\n  display: block;\n  margin: 0 auto;\n  width: 15%;\n  height: 15%;\n  background-color: #333;\n  border-radius: 100%;\n  -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\n          animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;\n}\n.sk-fading-circle .sk-circle2 {\n  -webkit-transform: rotate(30deg);\n      -ms-transform: rotate(30deg);\n          transform: rotate(30deg);\n}\n.sk-fading-circle .sk-circle3 {\n  -webkit-transform: rotate(60deg);\n      -ms-transform: rotate(60deg);\n          transform: rotate(60deg);\n}\n.sk-fading-circle .sk-circle4 {\n  -webkit-transform: rotate(90deg);\n      -ms-transform: rotate(90deg);\n          transform: rotate(90deg);\n}\n.sk-fading-circle .sk-circle5 {\n  -webkit-transform: rotate(120deg);\n      -ms-transform: rotate(120deg);\n          transform: rotate(120deg);\n}\n.sk-fading-circle .sk-circle6 {\n  -webkit-transform: rotate(150deg);\n      -ms-transform: rotate(150deg);\n          transform: rotate(150deg);\n}\n.sk-fading-circle .sk-circle7 {\n  -webkit-transform: rotate(180deg);\n      -ms-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n.sk-fading-circle .sk-circle8 {\n  -webkit-transform: rotate(210deg);\n      -ms-transform: rotate(210deg);\n          transform: rotate(210deg);\n}\n.sk-fading-circle .sk-circle9 {\n  -webkit-transform: rotate(240deg);\n      -ms-transform: rotate(240deg);\n          transform: rotate(240deg);\n}\n.sk-fading-circle .sk-circle10 {\n  -webkit-transform: rotate(270deg);\n      -ms-transform: rotate(270deg);\n          transform: rotate(270deg);\n}\n.sk-fading-circle .sk-circle11 {\n  -webkit-transform: rotate(300deg);\n      -ms-transform: rotate(300deg);\n          transform: rotate(300deg);\n}\n.sk-fading-circle .sk-circle12 {\n  -webkit-transform: rotate(330deg);\n      -ms-transform: rotate(330deg);\n          transform: rotate(330deg);\n}\n.sk-fading-circle .sk-circle2:before {\n  -webkit-animation-delay: -1.1s;\n          animation-delay: -1.1s;\n}\n.sk-fading-circle .sk-circle3:before {\n  -webkit-animation-delay: -1s;\n          animation-delay: -1s;\n}\n.sk-fading-circle .sk-circle4:before {\n  -webkit-animation-delay: -0.9s;\n          animation-delay: -0.9s;\n}\n.sk-fading-circle .sk-circle5:before {\n  -webkit-animation-delay: -0.8s;\n          animation-delay: -0.8s;\n}\n.sk-fading-circle .sk-circle6:before {\n  -webkit-animation-delay: -0.7s;\n          animation-delay: -0.7s;\n}\n.sk-fading-circle .sk-circle7:before {\n  -webkit-animation-delay: -0.6s;\n          animation-delay: -0.6s;\n}\n.sk-fading-circle .sk-circle8:before {\n  -webkit-animation-delay: -0.5s;\n          animation-delay: -0.5s;\n}\n.sk-fading-circle .sk-circle9:before {\n  -webkit-animation-delay: -0.4s;\n          animation-delay: -0.4s;\n}\n.sk-fading-circle .sk-circle10:before {\n  -webkit-animation-delay: -0.3s;\n          animation-delay: -0.3s;\n}\n.sk-fading-circle .sk-circle11:before {\n  -webkit-animation-delay: -0.2s;\n          animation-delay: -0.2s;\n}\n.sk-fading-circle .sk-circle12:before {\n  -webkit-animation-delay: -0.1s;\n          animation-delay: -0.1s;\n}\n\n@-webkit-keyframes sk-circleFadeDelay {\n  0%, 39%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n}\n\n@keyframes sk-circleFadeDelay {\n  0%, 39%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n}\n\n.circle {\n  width: 40px;\n  height: 40px;\n  background-color: #333;\n\n  border-radius: 100%;\n  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;\n  animation: sk-scaleout 1.0s infinite ease-in-out;\n}\n\n@-webkit-keyframes sk-scaleout {\n  0% { -webkit-transform: scale(0) }\n  100% {\n    -webkit-transform: scale(1.0);\n    opacity: 0;\n  }\n}\n\n@keyframes sk-scaleout {\n  0% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  } 100% {\n    -webkit-transform: scale(1.0);\n    transform: scale(1.0);\n    opacity: 0;\n  }\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
 
-/***/ 678:
+/***/ 682:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Dialog = __webpack_require__(679);
+	var _Dialog = __webpack_require__(683);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(483);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(681);
+	var _RaisedButton = __webpack_require__(685);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _MenuItem = __webpack_require__(436);
+	var _MenuItem = __webpack_require__(441);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Table = __webpack_require__(683);
+	var _Table = __webpack_require__(687);
 
-	var _List = __webpack_require__(696);
+	var _List = __webpack_require__(700);
 
-	var _GridList = __webpack_require__(698);
+	var _GridList = __webpack_require__(702);
 
-	var _CircularProgress = __webpack_require__(702);
+	var _CircularProgress = __webpack_require__(706);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _Tabs = __webpack_require__(704);
+	var _Tabs = __webpack_require__(708);
 
-	var _colors = __webpack_require__(169);
+	var _colors = __webpack_require__(168);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
-	var moment = __webpack_require__(709);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
+	var moment = __webpack_require__(713);
 
 	var urls = [{
 	  title: 'stats',
@@ -1094,17 +1094,18 @@ webpackJsonp([0],{
 	      core.on('get.Player.data', this.getData);
 	    },
 	    getData: function getData(_ref) {
-	      var player = _ref.player,
-	          type = _ref.type;
+	      var player = _ref.player;
+	      var type = _ref.type;
 
 	      // console.log('player', player)
 	      core.tree.set(['player', 'popup', 'data'], []);
 
 	      this.setState({ loading: true });
 
-	      var _$find = _.find(urls, ['title', type]),
-	          url = _$find.url,
-	          img = _$find.img;
+	      var _$find = _.find(urls, ['title', type]);
+
+	      var url = _$find.url;
+	      var img = _$find.img;
 
 	      var limit = type === 'stats';
 	      this.getInfo(url, player.id, limit);
@@ -1134,8 +1135,7 @@ webpackJsonp([0],{
 
 	      news = _.map(news, function (nooz) {
 	        return _extends({}, nooz, {
-	          Headline: nooz.lastUpdate //nooz.Headline ? nooz.Headline.split(nooz.LastName+': ')[1] :
-	        });
+	          Headline: nooz.lastUpdate });
 	      });
 	      core.tree.set(['player', 'popup', 'data'], news);
 	      setTimeout(function () {
@@ -1278,13 +1278,13 @@ webpackJsonp([0],{
 	      );
 	    },
 	    render: function render() {
-	      var _state = this.state,
-	          player = _state.player,
-	          open = _state.open,
-	          value = _state.value,
-	          attr = _state.attr,
-	          loading = _state.loading,
-	          data = _state.data;
+	      var _state = this.state;
+	      var player = _state.player;
+	      var open = _state.open;
+	      var value = _state.value;
+	      var attr = _state.attr;
+	      var loading = _state.loading;
+	      var data = _state.data;
 
 	      var actions = [React.createElement(_FlatButton2.default, {
 	        label: 'Close',
@@ -1406,56 +1406,48 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 710:
+/***/ 714:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 711,
-		"./af.js": 711,
-		"./ar": 712,
-		"./ar-dz": 713,
-		"./ar-dz.js": 713,
-		"./ar-kw": 714,
-		"./ar-kw.js": 714,
-		"./ar-ly": 715,
-		"./ar-ly.js": 715,
-		"./ar-ma": 716,
-		"./ar-ma.js": 716,
-		"./ar-sa": 717,
-		"./ar-sa.js": 717,
-		"./ar-tn": 718,
-		"./ar-tn.js": 718,
-		"./ar.js": 712,
-		"./az": 719,
-		"./az.js": 719,
-		"./be": 720,
-		"./be.js": 720,
-		"./bg": 721,
-		"./bg.js": 721,
-		"./bn": 722,
-		"./bn.js": 722,
-		"./bo": 723,
-		"./bo.js": 723,
-		"./br": 724,
-		"./br.js": 724,
-		"./bs": 725,
-		"./bs.js": 725,
-		"./ca": 726,
-		"./ca.js": 726,
-		"./cs": 727,
-		"./cs.js": 727,
-		"./cv": 728,
-		"./cv.js": 728,
-		"./cy": 729,
-		"./cy.js": 729,
-		"./da": 730,
-		"./da.js": 730,
-		"./de": 731,
-		"./de-at": 732,
-		"./de-at.js": 732,
-		"./de-ch": 733,
-		"./de-ch.js": 733,
-		"./de.js": 731,
+		"./af": 715,
+		"./af.js": 715,
+		"./ar": 716,
+		"./ar-ma": 717,
+		"./ar-ma.js": 717,
+		"./ar-sa": 718,
+		"./ar-sa.js": 718,
+		"./ar-tn": 719,
+		"./ar-tn.js": 719,
+		"./ar.js": 716,
+		"./az": 720,
+		"./az.js": 720,
+		"./be": 721,
+		"./be.js": 721,
+		"./bg": 722,
+		"./bg.js": 722,
+		"./bn": 723,
+		"./bn.js": 723,
+		"./bo": 724,
+		"./bo.js": 724,
+		"./br": 725,
+		"./br.js": 725,
+		"./bs": 726,
+		"./bs.js": 726,
+		"./ca": 727,
+		"./ca.js": 727,
+		"./cs": 728,
+		"./cs.js": 728,
+		"./cv": 729,
+		"./cv.js": 729,
+		"./cy": 730,
+		"./cy.js": 730,
+		"./da": 731,
+		"./da.js": 731,
+		"./de": 732,
+		"./de-at": 733,
+		"./de-at.js": 733,
+		"./de.js": 732,
 		"./dv": 734,
 		"./dv.js": 734,
 		"./el": 735,
@@ -1498,148 +1490,128 @@ webpackJsonp([0],{
 		"./gd.js": 753,
 		"./gl": 754,
 		"./gl.js": 754,
-		"./gom-latn": 755,
-		"./gom-latn.js": 755,
-		"./he": 756,
-		"./he.js": 756,
-		"./hi": 757,
-		"./hi.js": 757,
-		"./hr": 758,
-		"./hr.js": 758,
-		"./hu": 759,
-		"./hu.js": 759,
-		"./hy-am": 760,
-		"./hy-am.js": 760,
-		"./id": 761,
-		"./id.js": 761,
-		"./is": 762,
-		"./is.js": 762,
-		"./it": 763,
-		"./it.js": 763,
-		"./ja": 764,
-		"./ja.js": 764,
-		"./jv": 765,
-		"./jv.js": 765,
-		"./ka": 766,
-		"./ka.js": 766,
-		"./kk": 767,
-		"./kk.js": 767,
-		"./km": 768,
-		"./km.js": 768,
-		"./kn": 769,
-		"./kn.js": 769,
-		"./ko": 770,
-		"./ko.js": 770,
-		"./ky": 771,
-		"./ky.js": 771,
-		"./lb": 772,
-		"./lb.js": 772,
-		"./lo": 773,
-		"./lo.js": 773,
-		"./lt": 774,
-		"./lt.js": 774,
-		"./lv": 775,
-		"./lv.js": 775,
-		"./me": 776,
-		"./me.js": 776,
-		"./mi": 777,
-		"./mi.js": 777,
-		"./mk": 778,
-		"./mk.js": 778,
-		"./ml": 779,
-		"./ml.js": 779,
-		"./mr": 780,
-		"./mr.js": 780,
-		"./ms": 781,
-		"./ms-my": 782,
-		"./ms-my.js": 782,
-		"./ms.js": 781,
-		"./my": 783,
-		"./my.js": 783,
-		"./nb": 784,
-		"./nb.js": 784,
-		"./ne": 785,
-		"./ne.js": 785,
-		"./nl": 786,
-		"./nl-be": 787,
-		"./nl-be.js": 787,
-		"./nl.js": 786,
-		"./nn": 788,
-		"./nn.js": 788,
-		"./pa-in": 789,
-		"./pa-in.js": 789,
-		"./pl": 790,
-		"./pl.js": 790,
-		"./pt": 791,
-		"./pt-br": 792,
-		"./pt-br.js": 792,
-		"./pt.js": 791,
-		"./ro": 793,
-		"./ro.js": 793,
-		"./ru": 794,
-		"./ru.js": 794,
-		"./sd": 795,
-		"./sd.js": 795,
-		"./se": 796,
-		"./se.js": 796,
-		"./si": 797,
-		"./si.js": 797,
-		"./sk": 798,
-		"./sk.js": 798,
-		"./sl": 799,
-		"./sl.js": 799,
-		"./sq": 800,
-		"./sq.js": 800,
-		"./sr": 801,
-		"./sr-cyrl": 802,
-		"./sr-cyrl.js": 802,
-		"./sr.js": 801,
-		"./ss": 803,
-		"./ss.js": 803,
-		"./sv": 804,
-		"./sv.js": 804,
-		"./sw": 805,
-		"./sw.js": 805,
-		"./ta": 806,
-		"./ta.js": 806,
-		"./te": 807,
-		"./te.js": 807,
-		"./tet": 808,
-		"./tet.js": 808,
-		"./th": 809,
-		"./th.js": 809,
-		"./tl-ph": 810,
-		"./tl-ph.js": 810,
-		"./tlh": 811,
-		"./tlh.js": 811,
-		"./tr": 812,
-		"./tr.js": 812,
-		"./tzl": 813,
-		"./tzl.js": 813,
-		"./tzm": 814,
-		"./tzm-latn": 815,
-		"./tzm-latn.js": 815,
-		"./tzm.js": 814,
-		"./uk": 816,
-		"./uk.js": 816,
-		"./ur": 817,
-		"./ur.js": 817,
-		"./uz": 818,
-		"./uz-latn": 819,
-		"./uz-latn.js": 819,
-		"./uz.js": 818,
-		"./vi": 820,
-		"./vi.js": 820,
-		"./x-pseudo": 821,
-		"./x-pseudo.js": 821,
-		"./yo": 822,
-		"./yo.js": 822,
-		"./zh-cn": 823,
-		"./zh-cn.js": 823,
-		"./zh-hk": 824,
-		"./zh-hk.js": 824,
-		"./zh-tw": 825,
-		"./zh-tw.js": 825
+		"./he": 755,
+		"./he.js": 755,
+		"./hi": 756,
+		"./hi.js": 756,
+		"./hr": 757,
+		"./hr.js": 757,
+		"./hu": 758,
+		"./hu.js": 758,
+		"./hy-am": 759,
+		"./hy-am.js": 759,
+		"./id": 760,
+		"./id.js": 760,
+		"./is": 761,
+		"./is.js": 761,
+		"./it": 762,
+		"./it.js": 762,
+		"./ja": 763,
+		"./ja.js": 763,
+		"./jv": 764,
+		"./jv.js": 764,
+		"./ka": 765,
+		"./ka.js": 765,
+		"./kk": 766,
+		"./kk.js": 766,
+		"./km": 767,
+		"./km.js": 767,
+		"./ko": 768,
+		"./ko.js": 768,
+		"./ky": 769,
+		"./ky.js": 769,
+		"./lb": 770,
+		"./lb.js": 770,
+		"./lo": 771,
+		"./lo.js": 771,
+		"./lt": 772,
+		"./lt.js": 772,
+		"./lv": 773,
+		"./lv.js": 773,
+		"./me": 774,
+		"./me.js": 774,
+		"./mk": 775,
+		"./mk.js": 775,
+		"./ml": 776,
+		"./ml.js": 776,
+		"./mr": 777,
+		"./mr.js": 777,
+		"./ms": 778,
+		"./ms-my": 779,
+		"./ms-my.js": 779,
+		"./ms.js": 778,
+		"./my": 780,
+		"./my.js": 780,
+		"./nb": 781,
+		"./nb.js": 781,
+		"./ne": 782,
+		"./ne.js": 782,
+		"./nl": 783,
+		"./nl.js": 783,
+		"./nn": 784,
+		"./nn.js": 784,
+		"./pa-in": 785,
+		"./pa-in.js": 785,
+		"./pl": 786,
+		"./pl.js": 786,
+		"./pt": 787,
+		"./pt-br": 788,
+		"./pt-br.js": 788,
+		"./pt.js": 787,
+		"./ro": 789,
+		"./ro.js": 789,
+		"./ru": 790,
+		"./ru.js": 790,
+		"./se": 791,
+		"./se.js": 791,
+		"./si": 792,
+		"./si.js": 792,
+		"./sk": 793,
+		"./sk.js": 793,
+		"./sl": 794,
+		"./sl.js": 794,
+		"./sq": 795,
+		"./sq.js": 795,
+		"./sr": 796,
+		"./sr-cyrl": 797,
+		"./sr-cyrl.js": 797,
+		"./sr.js": 796,
+		"./ss": 798,
+		"./ss.js": 798,
+		"./sv": 799,
+		"./sv.js": 799,
+		"./sw": 800,
+		"./sw.js": 800,
+		"./ta": 801,
+		"./ta.js": 801,
+		"./te": 802,
+		"./te.js": 802,
+		"./th": 803,
+		"./th.js": 803,
+		"./tl-ph": 804,
+		"./tl-ph.js": 804,
+		"./tlh": 805,
+		"./tlh.js": 805,
+		"./tr": 806,
+		"./tr.js": 806,
+		"./tzl": 807,
+		"./tzl.js": 807,
+		"./tzm": 808,
+		"./tzm-latn": 809,
+		"./tzm-latn.js": 809,
+		"./tzm.js": 808,
+		"./uk": 810,
+		"./uk.js": 810,
+		"./uz": 811,
+		"./uz.js": 811,
+		"./vi": 812,
+		"./vi.js": 812,
+		"./x-pseudo": 813,
+		"./x-pseudo.js": 813,
+		"./zh-cn": 814,
+		"./zh-cn.js": 814,
+		"./zh-tw": 815,
+		"./zh-tw.js": 815
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -1652,88 +1624,88 @@ webpackJsonp([0],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 710;
+	webpackContext.id = 714;
 
 
 /***/ },
 
-/***/ 826:
+/***/ 816:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(681);
+	var _RaisedButton = __webpack_require__(685);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(469);
+	var _FontIcon = __webpack_require__(473);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(827);
+	var _Avatar = __webpack_require__(817);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(423);
+	var _Paper = __webpack_require__(428);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(829);
+	var _Chip = __webpack_require__(819);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Subheader = __webpack_require__(433);
+	var _Subheader = __webpack_require__(438);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(696);
+	var _List = __webpack_require__(700);
 
-	var _RefreshIndicator = __webpack_require__(832);
+	var _RefreshIndicator = __webpack_require__(822);
 
 	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
 
-	var _CircularProgress = __webpack_require__(702);
+	var _CircularProgress = __webpack_require__(706);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(841);
+	var _SelectField = __webpack_require__(831);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _TextField = __webpack_require__(843);
+	var _TextField = __webpack_require__(833);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Dialog = __webpack_require__(679);
+	var _Dialog = __webpack_require__(683);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
-	var _colors = __webpack_require__(169);
+	var _colors = __webpack_require__(168);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _moreVert = __webpack_require__(854);
+	var _moreVert = __webpack_require__(844);
 
 	var _moreVert2 = _interopRequireDefault(_moreVert);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(486);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _MenuItem = __webpack_require__(436);
+	var _MenuItem = __webpack_require__(441);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 
 	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
@@ -1771,12 +1743,12 @@ webpackJsonp([0],{
 	      console.log(player);
 	    },
 	    addToCompare: function addToCompare(team, player) {
-	      var _$find = _.find(urls, ['title', 'stats']),
-	          url = _$find.url,
-	          img = _$find.img;
+	      var _$find = _.find(urls, ['title', 'stats']);
+
+	      var url = _$find.url;
+	      var img = _$find.img;
 	      // var limit = type === 'stats';
 	      // this.getInfo(url, player.PlayerID, true)
-
 
 	      var stats = this.getInfo(url, player.PlayerID, true);
 	      this.compare.push(player);
@@ -1827,14 +1799,14 @@ webpackJsonp([0],{
 	      this.setState({ showPopup: false });
 	    },
 	    render: function render() {
-	      var _state = this.state,
-	          showPopup = _state.showPopup,
-	          data = _state.data,
-	          popupType = _state.popupType;
-	      var _props = this.props,
-	          player = _props.player,
-	          selected = _props.selected,
-	          isLoading = _props.isLoading;
+	      var _state = this.state;
+	      var showPopup = _state.showPopup;
+	      var data = _state.data;
+	      var popupType = _state.popupType;
+	      var _props = this.props;
+	      var player = _props.player;
+	      var selected = _props.selected;
+	      var isLoading = _props.isLoading;
 
 	      var selectedStyle = selected.toLowerCase() === 'rotoworld' ? { maxWidth: '100%' } : { maxHeight: '100%' };
 	      var style = {
@@ -1916,53 +1888,53 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 855:
+/***/ 845:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Drawer = __webpack_require__(406);
+	var _Drawer = __webpack_require__(410);
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _AppBar = __webpack_require__(476);
+	var _AppBar = __webpack_require__(480);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(483);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _RaisedButton = __webpack_require__(681);
+	var _RaisedButton = __webpack_require__(685);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _Paper = __webpack_require__(423);
+	var _Paper = __webpack_require__(428);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _MenuItem = __webpack_require__(436);
+	var _MenuItem = __webpack_require__(441);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _List = __webpack_require__(696);
+	var _List = __webpack_require__(700);
 
-	var _close = __webpack_require__(856);
+	var _close = __webpack_require__(846);
 
 	var _close2 = _interopRequireDefault(_close);
 
-	var _Toolbar = __webpack_require__(857);
+	var _Toolbar = __webpack_require__(847);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 
 	var returnAvatar = function returnAvatar(id) {
@@ -2020,13 +1992,13 @@ webpackJsonp([0],{
 	      });
 	    },
 	    render: function render() {
-	      var _props = this.props,
-	          primaryLabel = _props.primaryLabel,
-	          secondaryLabel = _props.secondaryLabel,
-	          data = _props.data,
-	          player = _props.player,
-	          handleClose = _props.handleClose,
-	          showPopup = _props.showPopup;
+	      var _props = this.props;
+	      var primaryLabel = _props.primaryLabel;
+	      var secondaryLabel = _props.secondaryLabel;
+	      var data = _props.data;
+	      var player = _props.player;
+	      var handleClose = _props.handleClose;
+	      var showPopup = _props.showPopup;
 
 	      if (!showPopup) return null;
 	      return React.createElement(
@@ -2079,42 +2051,42 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 862:
+/***/ 852:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Card = __webpack_require__(863);
+	var _Card = __webpack_require__(853);
 
-	var _GridList = __webpack_require__(698);
+	var _GridList = __webpack_require__(702);
 
-	var _CircularProgress = __webpack_require__(702);
+	var _CircularProgress = __webpack_require__(706);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _Subheader = __webpack_require__(433);
+	var _Subheader = __webpack_require__(438);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(483);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Avatar = __webpack_require__(827);
+	var _Avatar = __webpack_require__(817);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
+	var React = __webpack_require__(114);
 	var PropTypes = React.PropTypes;
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 
 	var imgUrl = 'http://stats.nba.com/media/players/230x185/';
@@ -2277,68 +2249,68 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 873:
+/***/ 863:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(483);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _FontIcon = __webpack_require__(469);
+	var _FontIcon = __webpack_require__(473);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(827);
+	var _Avatar = __webpack_require__(817);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(423);
+	var _Paper = __webpack_require__(428);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Subheader = __webpack_require__(433);
+	var _Subheader = __webpack_require__(438);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(696);
+	var _List = __webpack_require__(700);
 
-	var _LinearProgress = __webpack_require__(874);
+	var _LinearProgress = __webpack_require__(864);
 
 	var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
 
-	var _TextField = __webpack_require__(843);
+	var _TextField = __webpack_require__(833);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(486);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _MenuItem = __webpack_require__(436);
+	var _MenuItem = __webpack_require__(441);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _Badge = __webpack_require__(876);
+	var _Badge = __webpack_require__(866);
 
 	var _Badge2 = _interopRequireDefault(_Badge);
 
-	var _Toolbar = __webpack_require__(857);
+	var _Toolbar = __webpack_require__(847);
 
-	var _CircularProgress = __webpack_require__(702);
+	var _CircularProgress = __webpack_require__(706);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _reactLazyload = __webpack_require__(878);
+	var _reactLazyload = __webpack_require__(868);
 
 	var _reactLazyload2 = _interopRequireDefault(_reactLazyload);
 
@@ -2346,10 +2318,10 @@ webpackJsonp([0],{
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 
 	var returnAvatar = function returnAvatar(id, uri, type) {
@@ -2425,8 +2397,8 @@ webpackJsonp([0],{
 
 	      // this.initForm();
 	      core.on('players.loaded', function (_ref) {
-	        var players = _ref.players,
-	            total = _ref.total;
+	        var players = _ref.players;
+	        var total = _ref.total;
 
 	        setTimeout(function () {
 	          if (players && players instanceof Array) {
@@ -2448,8 +2420,8 @@ webpackJsonp([0],{
 	      if (!this.state.players || !this.state.players.length) {
 	        var data = core.tree.get('allPlayers');
 	        if (data && typeof data !== 'undefined') {
-	          var players = data.players,
-	              total = data.total;
+	          var players = data.players;
+	          var total = data.total;
 
 	          if (players && players instanceof Array) {
 	            var list = _.orderBy(players, 'LastName');
@@ -2510,11 +2482,11 @@ webpackJsonp([0],{
 	      );
 	    },
 	    addTo: function addTo(where, id) {
-	      var _state = this.state,
-	          form = _state.form,
-	          list = _state.list,
-	          selectedOpt = _state.selectedOpt,
-	          players = _state.players;
+	      var _state = this.state;
+	      var form = _state.form;
+	      var list = _state.list;
+	      var selectedOpt = _state.selectedOpt;
+	      var players = _state.players;
 
 	      var temp = copy(form);
 	      // console.log(id, where)
@@ -2526,10 +2498,10 @@ webpackJsonp([0],{
 	      // }, 350);
 	    },
 	    removePlayer: function removePlayer(id) {
-	      var _state2 = this.state,
-	          form = _state2.form,
-	          players = _state2.players,
-	          originalList = _state2.originalList;
+	      var _state2 = this.state;
+	      var form = _state2.form;
+	      var players = _state2.players;
+	      var originalList = _state2.originalList;
 
 	      var index,
 	          temp = []; //copy(form);
@@ -2584,12 +2556,12 @@ webpackJsonp([0],{
 	      this.setState({ toggleSearch: !toggleSearch });
 	    },
 	    onSearchPlayers: function onSearchPlayers() {
-	      var _state3 = this.state,
-	          list = _state3.list,
-	          players = _state3.players,
-	          originalList = _state3.originalList,
-	          query = _state3.query,
-	          searchLoading = _state3.searchLoading;
+	      var _state3 = this.state;
+	      var list = _state3.list;
+	      var players = _state3.players;
+	      var originalList = _state3.originalList;
+	      var query = _state3.query;
+	      var searchLoading = _state3.searchLoading;
 
 	      this.setState({ searchLoading: true });
 	      var temp;
@@ -2620,9 +2592,9 @@ webpackJsonp([0],{
 	      this.setState({ query: string });
 	    },
 	    renderToolbar: function renderToolbar() {
-	      var _state4 = this.state,
-	          toggleSearch = _state4.toggleSearch,
-	          query = _state4.query;
+	      var _state4 = this.state;
+	      var toggleSearch = _state4.toggleSearch;
+	      var query = _state4.query;
 
 	      var textfield = {
 	        transition: 'margin 0.15s ease-in-out, width 0.10s ease-in-out',
@@ -2702,9 +2674,9 @@ webpackJsonp([0],{
 	      }
 	    },
 	    getTotal: function getTotal() {
-	      var _state5 = this.state,
-	          total = _state5.total,
-	          form = _state5.form;
+	      var _state5 = this.state;
+	      var total = _state5.total;
+	      var form = _state5.form;
 
 	      var realTotal;
 	      var num = Number(total) - Number(form['My Players'].length) - Number(form['Target Players'].length);
@@ -2789,18 +2761,18 @@ webpackJsonp([0],{
 	      );
 	    },
 	    sortBy: function sortBy(obj) {
-	      var _state6 = this.state,
-	          players = _state6.players,
-	          searchLoading = _state6.searchLoading,
-	          isLoading = _state6.isLoading;
+	      var _state6 = this.state;
+	      var players = _state6.players;
+	      var searchLoading = _state6.searchLoading;
+	      var isLoading = _state6.isLoading;
 
 	      this.setState({ searchLoading: true, isLoading: true });
 	      var temp;
 	      if (!obj) {
 	        temp = this.filterList(players, false);
 	      } else {
-	        var type = obj.type,
-	            label = obj.label;
+	        var type = obj.type;
+	        var label = obj.label;
 
 	        if (type.toLowerCase() !== 'lastname' && type.toLowerCase() !== 'name') {
 	          temp = temp = _.orderBy(players, 'Statistics.' + type, ['desc']);
@@ -2813,11 +2785,11 @@ webpackJsonp([0],{
 	      this.setState({ selectedOpt: obj });
 	    },
 	    render: function render() {
-	      var _state7 = this.state,
-	          players = _state7.players,
-	          isLoading = _state7.isLoading,
-	          searchLoading = _state7.searchLoading,
-	          form = _state7.form;
+	      var _state7 = this.state;
+	      var players = _state7.players;
+	      var isLoading = _state7.isLoading;
+	      var searchLoading = _state7.searchLoading;
+	      var form = _state7.form;
 
 
 	      return React.createElement(
@@ -2933,40 +2905,40 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 884:
+/***/ 876:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _FontIcon = __webpack_require__(469);
+	var _FontIcon = __webpack_require__(473);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _List = __webpack_require__(696);
+	var _List = __webpack_require__(700);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(486);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _Popover = __webpack_require__(484);
+	var _Popover = __webpack_require__(488);
 
 	var _Popover2 = _interopRequireDefault(_Popover);
 
-	var _MenuItem = __webpack_require__(436);
+	var _MenuItem = __webpack_require__(441);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _Menu = __webpack_require__(426);
+	var _Menu = __webpack_require__(431);
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _nodeVibrant = __webpack_require__(486);
+	var _nodeVibrant = __webpack_require__(490);
 
 	var Vibrant = _interopRequireWildcard(_nodeVibrant);
 
@@ -2974,10 +2946,10 @@ webpackJsonp([0],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 
 	var stats = {
@@ -3016,12 +2988,12 @@ webpackJsonp([0],{
 	      var _this = this;
 
 	      var selectedOpt = this.props.selectedOpt;
-	      var Name = item.Name,
-	          LastName = item.LastName,
-	          PlayerID = item.PlayerID,
-	          isInComapre = item.isInComapre,
-	          Statistics = item.Statistics,
-	          teamLogo = item.teamLogo;
+	      var Name = item.Name;
+	      var LastName = item.LastName;
+	      var PlayerID = item.PlayerID;
+	      var isInComapre = item.isInComapre;
+	      var Statistics = item.Statistics;
+	      var teamLogo = item.teamLogo;
 
 	      var primary = {
 	        wrap: {
@@ -3156,16 +3128,16 @@ webpackJsonp([0],{
 	      });
 	    },
 	    renderStats: function renderStats(item) {
-	      var _state = this.state,
-	          open = _state.open,
-	          backcolor = _state.backcolor;
-	      var Name = item.Name,
-	          LastName = item.LastName,
-	          PlayerID = item.PlayerID,
-	          isInComapre = item.isInComapre,
-	          Statistics = item.Statistics,
-	          teamLogo = item.teamLogo,
-	          teamName = item.teamName;
+	      var _state = this.state;
+	      var open = _state.open;
+	      var backcolor = _state.backcolor;
+	      var Name = item.Name;
+	      var LastName = item.LastName;
+	      var PlayerID = item.PlayerID;
+	      var isInComapre = item.isInComapre;
+	      var Statistics = item.Statistics;
+	      var teamLogo = item.teamLogo;
+	      var teamName = item.teamName;
 
 	      if (!open) return;
 
@@ -3198,9 +3170,9 @@ webpackJsonp([0],{
 	      var _this3 = this;
 
 	      var item = this.props.item;
-	      var _state2 = this.state,
-	          open = _state2.open,
-	          anchorEl = _state2.anchorEl;
+	      var _state2 = this.state;
+	      var open = _state2.open;
+	      var anchorEl = _state2.anchorEl;
 
 	      return React.createElement(
 	        'div',
@@ -3254,17 +3226,17 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 885:
+/***/ 877:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactChartjs = __webpack_require__(886);
+	var _reactChartjs = __webpack_require__(878);
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 	core.Component('Stats.Google.Chart', [], function () {
 	  return {
@@ -3352,93 +3324,93 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 936:
+/***/ 928:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(681);
+	var _RaisedButton = __webpack_require__(685);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(469);
+	var _FontIcon = __webpack_require__(473);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(827);
+	var _Avatar = __webpack_require__(817);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(423);
+	var _Paper = __webpack_require__(428);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(829);
+	var _Chip = __webpack_require__(819);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Subheader = __webpack_require__(433);
+	var _Subheader = __webpack_require__(438);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(696);
+	var _List = __webpack_require__(700);
 
-	var _CircularProgress = __webpack_require__(702);
+	var _CircularProgress = __webpack_require__(706);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(841);
+	var _SelectField = __webpack_require__(831);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _TextField = __webpack_require__(843);
+	var _TextField = __webpack_require__(833);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Drawer = __webpack_require__(406);
+	var _Drawer = __webpack_require__(410);
 
 	var _Drawer2 = _interopRequireDefault(_Drawer);
 
-	var _colors = __webpack_require__(169);
+	var _colors = __webpack_require__(168);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _moreVert = __webpack_require__(854);
+	var _moreVert = __webpack_require__(844);
 
 	var _moreVert2 = _interopRequireDefault(_moreVert);
 
-	var _IconMenu = __webpack_require__(482);
+	var _IconMenu = __webpack_require__(486);
 
 	var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-	var _MenuItem = __webpack_require__(436);
+	var _MenuItem = __webpack_require__(441);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _saladUi = __webpack_require__(937);
+	var _saladUi = __webpack_require__(929);
 
 	var _saladUi2 = _interopRequireDefault(_saladUi);
 
-	var _LinearProgress = __webpack_require__(874);
+	var _LinearProgress = __webpack_require__(864);
 
 	var _LinearProgress2 = _interopRequireDefault(_LinearProgress);
 
-	var _Tabs = __webpack_require__(704);
+	var _Tabs = __webpack_require__(708);
 
-	var _reactSwipeableViews = __webpack_require__(938);
+	var _reactSwipeableViews = __webpack_require__(930);
 
 	var _reactSwipeableViews2 = _interopRequireDefault(_reactSwipeableViews);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 	core.Component('Stats.Diaglog', ['Stats.Google.Chart'], function (Chart) {
 	  return {
@@ -3459,8 +3431,8 @@ webpackJsonp([0],{
 	      var _this = this;
 
 	      core.on('players.loaded', function (_ref) {
-	        var players = _ref.players,
-	            total = _ref.total;
+	        var players = _ref.players;
+	        var total = _ref.total;
 
 	        _this.setState({ players: players });
 	      });
@@ -3536,9 +3508,9 @@ webpackJsonp([0],{
 	      });
 	    },
 	    renderPrimary: function renderPrimary(item) {
-	      var Name = item.Name,
-	          LastName = item.LastName,
-	          PlayerID = item.PlayerID;
+	      var Name = item.Name;
+	      var LastName = item.LastName;
+	      var PlayerID = item.PlayerID;
 
 	      var primary = {
 	        wrap: {
@@ -3644,9 +3616,9 @@ webpackJsonp([0],{
 	      this.setState({ tabIndex: val });
 	    },
 	    renderTabs: function renderTabs() {
-	      var _state = this.state,
-	          tabIndex = _state.tabIndex,
-	          data = _state.data;
+	      var _state = this.state;
+	      var tabIndex = _state.tabIndex;
+	      var data = _state.data;
 
 	      var styles = {
 	        headline: {
@@ -3689,11 +3661,11 @@ webpackJsonp([0],{
 	      );
 	    },
 	    render: function render() {
-	      var _state2 = this.state,
-	          open = _state2.open,
-	          MyPlayers = _state2.MyPlayers,
-	          TargetPlayers = _state2.TargetPlayers,
-	          data = _state2.data;
+	      var _state2 = this.state;
+	      var open = _state2.open;
+	      var MyPlayers = _state2.MyPlayers;
+	      var TargetPlayers = _state2.TargetPlayers;
+	      var data = _state2.data;
 
 
 	      var customContentStyle = {
@@ -3781,30 +3753,30 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 950:
+/***/ 1035:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _Subheader = __webpack_require__(433);
+	var _Subheader = __webpack_require__(438);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _Paper = __webpack_require__(423);
+	var _Paper = __webpack_require__(428);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(483);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _IconButton = __webpack_require__(467);
+	var _IconButton = __webpack_require__(471);
 
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 
-	var _Avatar = __webpack_require__(827);
+	var _Avatar = __webpack_require__(817);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -3812,11 +3784,11 @@ webpackJsonp([0],{
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var React = __webpack_require__(113);
+	var React = __webpack_require__(114);
 	var PropTypes = React.PropTypes;
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 
 	var imgUrl = 'http://stats.nba.com/media/players/230x185/';
@@ -3916,8 +3888,8 @@ webpackJsonp([0],{
 	      );
 	    },
 	    renderCardData: function renderCardData(card) {
-	      var data = card.data,
-	          type = card.type;
+	      var data = card.data;
+	      var type = card.type;
 
 	      switch (type) {
 	        case 'user':
@@ -3945,9 +3917,9 @@ webpackJsonp([0],{
 	      );
 	    },
 	    render: function render() {
-	      var _state = this.state,
-	          myplayers = _state.myplayers,
-	          cards = _state.cards;
+	      var _state = this.state;
+	      var myplayers = _state.myplayers;
+	      var cards = _state.cards;
 
 	      return React.createElement(
 	        'div',
@@ -3985,61 +3957,61 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 951:
+/***/ 1036:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _RaisedButton = __webpack_require__(681);
+	var _RaisedButton = __webpack_require__(685);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(469);
+	var _FontIcon = __webpack_require__(473);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(827);
+	var _Avatar = __webpack_require__(817);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(423);
+	var _Paper = __webpack_require__(428);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(829);
+	var _Chip = __webpack_require__(819);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Subheader = __webpack_require__(433);
+	var _Subheader = __webpack_require__(438);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _List = __webpack_require__(696);
+	var _List = __webpack_require__(700);
 
-	var _RefreshIndicator = __webpack_require__(832);
+	var _RefreshIndicator = __webpack_require__(822);
 
 	var _RefreshIndicator2 = _interopRequireDefault(_RefreshIndicator);
 
-	var _CircularProgress = __webpack_require__(702);
+	var _CircularProgress = __webpack_require__(706);
 
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 
-	var _SelectField = __webpack_require__(841);
+	var _SelectField = __webpack_require__(831);
 
 	var _SelectField2 = _interopRequireDefault(_SelectField);
 
-	var _MenuItem = __webpack_require__(436);
+	var _MenuItem = __webpack_require__(441);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var _ = __webpack_require__(673);
 
 
 	// http://ejohn.org/apps/rss2json/?url=http://www.rotoworld.com/rss/feed.aspx?sport=nba&ftype=headlines&count=20&format=rss
@@ -4126,33 +4098,32 @@ webpackJsonp([0],{
 	      });
 	    },
 	    setListItems: function setListItems(json) {
-	      var _state = this.state,
-	          selected = _state.selected,
-	          img = _state.img,
-	          entries = _state.entries;
+	      var _state = this.state;
+	      var selected = _state.selected;
+	      var img = _state.img;
+	      var entries = _state.entries;
 	      var ListItems = json.ListItems;
 
 	      var news = _.map(ListItems, function (entry) {
-	        var Headline = entry.Headline,
-	            PlayerID = entry.PlayerID,
-	            ListItemCaption = entry.ListItemCaption,
-	            ListItemDescription = entry.ListItemDescription;
+	        var Headline = entry.Headline;
+	        var PlayerID = entry.PlayerID;
+	        var ListItemCaption = entry.ListItemCaption;
+	        var ListItemDescription = entry.ListItemDescription;
 
 	        return _extends({}, entry, {
 	          title: Headline,
 	          id: PlayerID,
 	          avatar: returnAvatar(PlayerID, img, selected.toLowerCase()),
 	          contentSnippet: ListItemCaption, //contentSnippet.replace(/<(?:.|\n)*?>/gm, '');,
-	          content: ListItemDescription //content.replace(/<(?:.|\n)*?>/gm, '');,
-	        });
+	          content: ListItemDescription });
 	      });
 	      this.setState({ news: news, isLoading: false, entries: json });
 	    },
 	    setEntries: function setEntries(newEntries) {
-	      var _state2 = this.state,
-	          selected = _state2.selected,
-	          img = _state2.img,
-	          entries = _state2.entries;
+	      var _state2 = this.state;
+	      var selected = _state2.selected;
+	      var img = _state2.img;
+	      var entries = _state2.entries;
 
 	      var id, news, title, avatar, url, type;
 
@@ -4180,9 +4151,7 @@ webpackJsonp([0],{
 	          title: title,
 	          id: id,
 	          avatar: avatar,
-	          contentSnippet: replaceStr(entry.contentSnippet) //entry.contentSnippet.replace(/<(?:.|\n)*?>/gm, '');,
-	          // content: replaceStr(entry.content),//entry.content.replace(/<(?:.|\n)*?>/gm, '');,
-	        });
+	          contentSnippet: replaceStr(entry.contentSnippet) });
 	      });
 
 	      this.setState({ news: news, isLoading: false, entries: newEntries });
@@ -4193,9 +4162,10 @@ webpackJsonp([0],{
 	    loadUrl: function loadUrl(selected) {
 	      var urls = this.state.urls;
 
-	      var _$find = _.find(urls, ['title', selected]),
-	          url = _$find.url,
-	          img = _$find.img;
+	      var _$find = _.find(urls, ['title', selected]);
+
+	      var url = _$find.url;
+	      var img = _$find.img;
 
 	      this.setState({ selected: selected, img: img });
 
@@ -4205,9 +4175,9 @@ webpackJsonp([0],{
 	      this.loadUrl(value);
 	    },
 	    renderNews: function renderNews(item, key) {
-	      var _state3 = this.state,
-	          selected = _state3.selected,
-	          isLoading = _state3.isLoading;
+	      var _state3 = this.state;
+	      var selected = _state3.selected;
+	      var isLoading = _state3.isLoading;
 
 	      var style = {
 	        transition: 'all 0.2s ease-in-out 0.1s',
@@ -4237,12 +4207,12 @@ webpackJsonp([0],{
 	      return React.createElement(_MenuItem2.default, { key: key, value: item.title, primaryText: item.title });
 	    },
 	    render: function render() {
-	      var _state4 = this.state,
-	          type = _state4.type,
-	          news = _state4.news,
-	          isLoading = _state4.isLoading,
-	          urls = _state4.urls,
-	          selected = _state4.selected;
+	      var _state4 = this.state;
+	      var type = _state4.type;
+	      var news = _state4.news;
+	      var isLoading = _state4.isLoading;
+	      var urls = _state4.urls;
+	      var selected = _state4.selected;
 
 	      return React.createElement(
 	        'div',
@@ -4304,23 +4274,23 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 952:
+/***/ 1037:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactGoogleLogin = __webpack_require__(667);
+	var _reactGoogleLogin = __webpack_require__(671);
 
 	var _reactGoogleLogin2 = _interopRequireDefault(_reactGoogleLogin);
 
-	var _reactFacebookLogin = __webpack_require__(668);
+	var _reactFacebookLogin = __webpack_require__(672);
 
 	var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var core = __webpack_require__(212);
+	var React = __webpack_require__(114);
+	var core = __webpack_require__(211);
 	// var moment = require('moment');
 	// var google = require('googleapis');
 	// var compute = google.compute('v1');
@@ -4422,36 +4392,36 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 953:
+/***/ 1038:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _TextField = __webpack_require__(843);
+	var _TextField = __webpack_require__(833);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _RaisedButton = __webpack_require__(681);
+	var _RaisedButton = __webpack_require__(685);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FontIcon = __webpack_require__(469);
+	var _FontIcon = __webpack_require__(473);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-	var _Avatar = __webpack_require__(827);
+	var _Avatar = __webpack_require__(817);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _Paper = __webpack_require__(423);
+	var _Paper = __webpack_require__(428);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _Chip = __webpack_require__(829);
+	var _Chip = __webpack_require__(819);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _DatePicker = __webpack_require__(954);
+	var _DatePicker = __webpack_require__(1039);
 
 	var _DatePicker2 = _interopRequireDefault(_DatePicker);
 
@@ -4459,9 +4429,9 @@ webpackJsonp([0],{
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
 
 	core.Component('view.Steps.One', ['ui.Loader'], function (Loader) {
 	  return {
@@ -4507,10 +4477,10 @@ webpackJsonp([0],{
 	      reader.readAsDataURL(file);
 	    },
 	    getValidationState: function getValidationState() {
-	      var _state = this.state,
-	          cap = _state.cap,
-	          date = _state.date,
-	          teamName = _state.teamName;
+	      var _state = this.state;
+	      var cap = _state.cap;
+	      var date = _state.date;
+	      var teamName = _state.teamName;
 	      // return cap < 1 ;
 
 	      var length = teamName.length;
@@ -4524,12 +4494,12 @@ webpackJsonp([0],{
 	    render: function render() {
 	      var _this2 = this;
 
-	      var _state2 = this.state,
-	          teamName = _state2.teamName,
-	          imagePreview = _state2.imagePreview,
-	          cap = _state2.cap,
-	          date = _state2.date,
-	          dchange = _state2.dchange;
+	      var _state2 = this.state;
+	      var teamName = _state2.teamName;
+	      var imagePreview = _state2.imagePreview;
+	      var cap = _state2.cap;
+	      var date = _state2.date;
+	      var dchange = _state2.dchange;
 	      var callback = this.props.callback;
 
 
@@ -4617,62 +4587,62 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 970:
+/***/ 1055:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Snackbar = __webpack_require__(971);
+	var _Snackbar = __webpack_require__(1056);
 
 	var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
-	var _RaisedButton = __webpack_require__(681);
+	var _RaisedButton = __webpack_require__(685);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-	var _FlatButton = __webpack_require__(479);
+	var _FlatButton = __webpack_require__(483);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-	var _List = __webpack_require__(696);
+	var _List = __webpack_require__(700);
 
-	var _Subheader = __webpack_require__(433);
+	var _Subheader = __webpack_require__(438);
 
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 
-	var _Dialog = __webpack_require__(679);
+	var _Dialog = __webpack_require__(683);
 
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 
-	var _colors = __webpack_require__(169);
+	var _colors = __webpack_require__(168);
 
-	var _Paper = __webpack_require__(423);
+	var _Paper = __webpack_require__(428);
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _TextField = __webpack_require__(843);
+	var _TextField = __webpack_require__(833);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
-	var _Chip = __webpack_require__(829);
+	var _Chip = __webpack_require__(819);
 
 	var _Chip2 = _interopRequireDefault(_Chip);
 
-	var _Avatar = __webpack_require__(827);
+	var _Avatar = __webpack_require__(817);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
-	var _FontIcon = __webpack_require__(469);
+	var _FontIcon = __webpack_require__(473);
 
 	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var React = __webpack_require__(113);
-	var sa = __webpack_require__(221);
-	var core = __webpack_require__(212);
-	var moment = __webpack_require__(709);
-	var _ = __webpack_require__(669);
+	var React = __webpack_require__(114);
+	var sa = __webpack_require__(220);
+	var core = __webpack_require__(211);
+	var moment = __webpack_require__(713);
+	var _ = __webpack_require__(673);
 
 	core.Component('view.Steps.Two', ['Slot'], function (Slot) {
 	  return {
@@ -4728,9 +4698,9 @@ webpackJsonp([0],{
 	      this.setState({ games: games });
 	    },
 	    getMoreNumbers: function getMoreNumbers() {
-	      var _state = this.state,
-	          games = _state.games,
-	          limit = _state.limit;
+	      var _state = this.state;
+	      var games = _state.games;
+	      var limit = _state.limit;
 
 	      var res = 0;
 
@@ -4850,18 +4820,18 @@ webpackJsonp([0],{
 	    render: function render() {
 	      var _this5 = this;
 
-	      var _props = this.props,
-	          callback = _props.callback,
-	          date = _props.date;
-	      var _state2 = this.state,
-	          dates = _state2.dates,
-	          cap = _state2.cap,
-	          open = _state2.open,
-	          modalMessage = _state2.modalMessage,
-	          modalTitle = _state2.modalTitle,
-	          message = _state2.message,
-	          modalOpen = _state2.modalOpen,
-	          reset = _state2.reset;
+	      var _props = this.props;
+	      var callback = _props.callback;
+	      var date = _props.date;
+	      var _state2 = this.state;
+	      var dates = _state2.dates;
+	      var cap = _state2.cap;
+	      var open = _state2.open;
+	      var modalMessage = _state2.modalMessage;
+	      var modalTitle = _state2.modalTitle;
+	      var message = _state2.message;
+	      var modalOpen = _state2.modalOpen;
+	      var reset = _state2.reset;
 
 	      var checkThermo = function checkThermo() {
 	        var x = { str: 'fa-thermometer-empty' },
@@ -4999,10 +4969,10 @@ webpackJsonp([0],{
 	      }
 	    },
 	    render: function render() {
-	      var _props2 = this.props,
-	          callback = _props2.callback,
-	          day = _props2.day,
-	          onClearAll = _props2.onClearAll;
+	      var _props2 = this.props;
+	      var callback = _props2.callback;
+	      var day = _props2.day;
+	      var onClearAll = _props2.onClearAll;
 
 	      var cap;
 	      if (onClearAll) cap = '';else cap = this.state.cap;
@@ -5025,75 +4995,75 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 975:
+/***/ 1060:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var React = __webpack_require__(113);
-	var core = __webpack_require__(212);
-	var moment = __webpack_require__(709);
+	var React = __webpack_require__(114);
+	var core = __webpack_require__(211);
+	var moment = __webpack_require__(713);
 
 	core.Component('Views', [], function () {
+	  return {
+	    getInitialState: function getInitialState() {
 	      return {
-	            getInitialState: function getInitialState() {
-	                  return {
-	                        roster: {}
-	                  };
-	            },
-
-
-	            // setLocalStorage(data){
-	            //
-	            //   let { changeSteps, getLocalStorageDetails, stepIndex } = this.props;
-	            //
-	            //   if (!data.teamName) {
-	            //     console.warn('bad boy why no name?')
-	            //     return;
-	            //   } else {
-	            //     window.chrome.storage.local.set({ 'rosterSetObject':  {...data} }, (e) => {
-	            //       window.chrome.storage.local.get('rosterSetObject', (val)=>{
-	            //         getLocalStorageDetails(val['rosterSetObject'])
-	            //         changeSteps(stepIndex+1);
-	            //       });
-	            //     });
-	            //   }
-	            //
-	            // },
-
-	            handleNameChange: function handleNameChange(name) {
-	                  // this.props.handleNameChange(name);
-	                  // this.setState({ roster : { teamName: name } })
-	            },
-
-
-	            // changeCap(e) {
-	            //   console.log(e)
-	            //   this.setState({ roster : { cap: e.target.value } });
-	            // },
-
-	            renderView: function renderView(view) {
-	                  var changeViews = this.props.changeViews;
-
-	                  var View = core.components['view.' + view];
-	                  if (View) return React.createElement(View, null);else return React.createElement(
-	                        'span',
-	                        null,
-	                        ' error '
-	                  );
-	            },
-	            render: function render() {
-	                  var roster = this.state.roster;
-	                  var view = this.props.view;
-
-
-	                  return React.createElement(
-	                        'div',
-	                        { className: 'steps', style: { height: '100%' } },
-	                        this.renderView(view)
-	                  );
-	            }
+	        roster: {}
 	      };
+	    },
+
+
+	    // setLocalStorage(data){
+	    //
+	    //   let { changeSteps, getLocalStorageDetails, stepIndex } = this.props;
+	    //
+	    //   if (!data.teamName) {
+	    //     console.warn('bad boy why no name?')
+	    //     return;
+	    //   } else {
+	    //     window.chrome.storage.local.set({ 'rosterSetObject':  {...data} }, (e) => {
+	    //       window.chrome.storage.local.get('rosterSetObject', (val)=>{
+	    //         getLocalStorageDetails(val['rosterSetObject'])
+	    //         changeSteps(stepIndex+1);
+	    //       });
+	    //     });
+	    //   }
+	    //
+	    // },
+
+	    handleNameChange: function handleNameChange(name) {
+	      // this.props.handleNameChange(name);
+	      // this.setState({ roster : { teamName: name } })
+	    },
+
+
+	    // changeCap(e) {
+	    //   console.log(e)
+	    //   this.setState({ roster : { cap: e.target.value } });
+	    // },
+
+	    renderView: function renderView(view) {
+	      var changeViews = this.props.changeViews;
+
+	      var View = core.components['view.' + view];
+	      if (View) return React.createElement(View, null);else return React.createElement(
+	        'span',
+	        null,
+	        ' error '
+	      );
+	    },
+	    render: function render() {
+	      var roster = this.state.roster;
+	      var view = this.props.view;
+
+
+	      return React.createElement(
+	        'div',
+	        { className: 'steps', style: { height: '100%' } },
+	        this.renderView(view)
+	      );
+	    }
+	  };
 	});
 
 /***/ }
