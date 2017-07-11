@@ -90,7 +90,7 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
         core.on('players.loaded', ({ players, total })=>{
           setTimeout(() => {
             if (players && players instanceof Array) {
-              var list = _.orderBy(players, 'LastName');
+              var list = _.orderBy(players, 'fullName');
               this.setState({ total: total, players: list, originalList: list, isLoading: false });
             }
           }, 250);
@@ -110,7 +110,7 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
       renderPlayersList(list){
         if (list && list.length) {
           return (
-            <List style={{ fontSize: 12, overflow: 'auto', flex: 1, padding: '0px !important' }}>
+            <List style={{ fontSize: 12, overflow: 'auto', flex: 1, padding: '0px !important' }} >
               { _.map(list, this.renderList) }
             </List>
           );
@@ -236,21 +236,21 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
       },
 
       onSearchPlayers(){
-        let { list, players, originalList, query, searchLoading } = this.state;
-        this.setState({ searchLoading: true })
-        var temp;
-        if (!query) {
-          temp = this.filterList(originalList, false);
-        } else {
-          temp  =  _.filter(players, o => {
-            return o.Name.toLowerCase().indexOf(query.toLowerCase()) > -1 || o.LastName.toLowerCase().indexOf(query.toLowerCase()) > -1
-          });
-        }
-        temp = _.sortBy(temp, 'LastName');
-
-        // setTimeout(()=>{
-          this.setState({ players: temp, searchLoading: false })
-        // }, 1500)
+      //   let { list, players, originalList, query, searchLoading } = this.state;
+      //   this.setState({ searchLoading: true })
+      //   var temp;
+      //   if (!query) {
+      //     temp = this.filterList(originalList, false);
+      //   } else {
+      //     temp  =  _.filter(players, o => {
+      //       return o.Name.toLowerCase().indexOf(query.toLowerCase()) > -1 || o.LastName.toLowerCase().indexOf(query.toLowerCase()) > -1
+      //     });
+      //   }
+      //   temp = _.sortBy(temp, 'LastName');
+      //
+      //   // setTimeout(()=>{
+      //     this.setState({ players: temp, searchLoading: false })
+      //   // }, 1500)
       },
 
       onReset(){
@@ -263,7 +263,23 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
       },
 
       onKeyDown(e, string){
-        this.setState({ query: string })
+        var temp;
+        let { list, players, originalList, query, searchLoading } = this.state;
+        this.setState({ searchLoading: true })
+        console.log('string -> ',  string)
+
+        if (!string) {
+          temp = this.filterList(originalList, false);
+        } else {
+          temp  =  _.filter(originalList, o => {
+            return o.fullName.toLowerCase().indexOf(string.toLowerCase()) !== -1
+          });
+        }
+        temp = _.sortBy(temp, 'LastName');
+
+        setTimeout(()=>{
+          this.setState({ players: temp, query: string, searchLoading: false })
+        }, 255);
       },
 
       renderToolbar(){
@@ -352,7 +368,7 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
               label: val
             };
         } );
-        options.push({ type: 'Name', label: 'First Name' }, { type: 'LastName', label: 'Last Name'});
+        options.push({ type: 'Name', label: 'First Name' }, { type: 'LastName', label: 'Last Name'}, { type: 'fullName', label: 'Full Name'});
         options = _.sortBy(options, 'label');
         return _.map(options, (opt, i)=>{
           return <MenuItem value={ opt.type } key={ i } primaryText={ opt.label }  onTouchTap={ (e)=> { this.sortBy(opt); } }/>

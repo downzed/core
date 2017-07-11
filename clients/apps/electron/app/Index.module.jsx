@@ -143,6 +143,7 @@ core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compa
               wteams.push({
                 ...players[x],
                 ...teams[t],
+                fullName: players[x].Name +' '+players[x].LastName,
                 teamLogo: `http://stats.nba.com/media/img/teams/logos/${teams[t].abbreviation}_logo.svg`
               })
             }

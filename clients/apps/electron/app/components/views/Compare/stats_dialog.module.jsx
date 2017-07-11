@@ -90,6 +90,7 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
           </Paper>
         )
       },
+
       renderPlayer(player, key){
         return (
           <ListItem key={ key }
@@ -108,6 +109,7 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
               />
         )
       },
+      
       renderPrimary(item){
         var { Name, LastName, PlayerID } = item;
         var primary = {

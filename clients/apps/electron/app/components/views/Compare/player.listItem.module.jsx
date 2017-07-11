@@ -49,7 +49,7 @@ core.Component('player.ListItem', [], ()=>{
 
       renderPrimary(item, i){
         var { selectedOpt } = this.props;
-        var { Name, LastName, PlayerID, isInComapre, Statistics, teamLogo } = item;
+        var { Name, LastName, fullName, PlayerID, isInComapre, Statistics, teamLogo } = item;
         var primary = {
           wrap: {
             width: '100%',
@@ -97,7 +97,7 @@ core.Component('player.ListItem', [], ()=>{
           <div style={ primary.wrap }  >
 
             <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-              { LastName }, { Name }
+              { fullName }
               { renderStat() }
             </div>
 
