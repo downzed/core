@@ -16,6 +16,6 @@ app.on('ready', () => {
         protocol: 'file:',
         slashes: true
     }));
-    // console.log('path -> ',  path)
+    
     win.webContents.openDevTools()
 })

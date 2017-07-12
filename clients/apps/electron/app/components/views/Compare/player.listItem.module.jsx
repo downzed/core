@@ -6,10 +6,8 @@ var _ = require('lodash');
 import FontIcon from 'material-ui/FontIcon';
 import {List, ListItem} from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
+import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
-import MenuItem from 'material-ui/MenuItem';
-import Menu from 'material-ui/Menu';
 
 import * as Vibrant from 'node-vibrant';
 
@@ -102,24 +100,20 @@ core.Component('player.ListItem', [], ()=>{
             </div>
 
             <div style={{ flex:'0 auto', ...primary.add }}>
-              <IconButton style={{ marginRight: 2.5 }}
-                  iconStyle={{ fontSize: 16 }}
-                  iconClassName="material-icons"
-                  onTouchTap={ (e)=>{ this.addTo('Target Players', PlayerID) } }>
-                  add_shopping_cart
-              </IconButton>
+              <FlatButton style={{ marginRight: 2.5 }}
+                  style={{ fontSize: 12 }}
+                  label={ 'get' }
+                  onTouchTap={ (e)=>{ e.preventDefault(); this.addTo('Target Players', PlayerID) } } />
 
-              <IconButton
-                  iconClassName="material-icons"
-                  iconStyle={{ fontSize: 16 }}
-                  onTouchTap={ (e)=>{ this.addTo('My Players', PlayerID) } }>
-                remove_shopping_cart
-              </IconButton>
+              <FlatButton
+                  style={{ fontSize: 12 }}
+                  label={ 'give' }
+                  onTouchTap={ (e)=>{ e.preventDefault(); this.addTo('My Players', PlayerID) } } />
             </div>
             <div style={{ flex:'0 auto', ...primary.remove }}>
               <IconButton iconStyle={{ fontSize: 16 }}
                   iconClassName="material-icons"
-                  onTouchTap={ (e)=>{ this.removePlayer(PlayerID) } }>
+                  onTouchTap={ (e)=>{ e.preventDefault(); this.removePlayer(PlayerID) } }>
                   remove_circle
               </IconButton>
             </div>

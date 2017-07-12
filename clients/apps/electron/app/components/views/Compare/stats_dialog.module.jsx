@@ -3,22 +3,12 @@ var React = require('react');
 var sa = require('superagent')
 var core = require('core');
 var _ = require('lodash');
-import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
-import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
-import Chip from 'material-ui/Chip';
 import Subheader from 'material-ui/Subheader';
 import {List, ListItem} from 'material-ui/List';
-import CircularProgress from 'material-ui/CircularProgress';
-import SelectField from 'material-ui/SelectField';
-import TextField from 'material-ui/TextField';
 import Drawer from 'material-ui/Drawer';
-import { transparent } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
 import LinearProgress from 'material-ui/LinearProgress';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -109,7 +99,7 @@ core.Component('Stats.Diaglog', ['Stats.Google.Chart'], (Chart)=>{
               />
         )
       },
-      
+
       renderPrimary(item){
         var { Name, LastName, PlayerID } = item;
         var primary = {

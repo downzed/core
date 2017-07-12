@@ -1,11 +1,11 @@
 {
-  "name": "roster_set",
+  "name": "Fantasy_Edge",
   "version": "1.0.0",
   "description": "short description",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager ./ RosterTest --all --out ~/Desktop/RosterTest"
+    "package": "electron-packager ./ fantasy_edge_Test --all --out ~/Desktop/fantasy_edge_Test"
   },
   "author": "ziv zaloscer",
   "license": "ISC",

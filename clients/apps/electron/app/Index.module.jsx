@@ -57,7 +57,7 @@ core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compa
           name: 'Fantasy Edge',
           dialogOpen: false,
           comparedData: [],
-          location: this.props.hash,
+          location: this.props.hash || '/',
           loading: true,
           isLoggedIn: isLoggedIn,
           timeframe: '14',
@@ -91,7 +91,6 @@ core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compa
       },
 
       componentWillMount() {
-        var { user } = this.state;
         this.getPlayers();
         this.allPlayers = core.tree.select('allPlayers');
         // console.log(this.state.user)
@@ -99,8 +98,9 @@ core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compa
         core.on('compared.players', this.handleCompare);
 
       },
-      componentDidMount: function() {
-        var {user}=this.state;
+
+      componentDidMount() {
+        var { user } = this.state;
         if (user && user.id !== null) {
           this.emitUser(user)
         }
@@ -116,7 +116,7 @@ core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compa
               // console.debug('players => ', players);
               // console.debug('total => ', total);
               var res = this.getTeams(players);
-              res = _.sortBy(res, 'LastName');
+              res = _.sortBy(res, 'fullName');
               core.tree.set('allPlayers', { players: res, total: total });
               // { players: res instanceof Array ? res : [], total: total });
               // var res = this.getTeams(players, this.getColor);
@@ -297,22 +297,6 @@ core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compa
           } else {
             console.error('response [Facebook] eror! > ',  response)
           }
-          /*
-                    {
-            "name": "Ziv Zaloscer",
-            "email": "downzed@gmail.com",
-            "picture": {
-              "data": {
-                "is_silhouette": false,
-                "url": "https://fb-s-d-a.akamaihd.net/h-ak-fbx/v/t1.0-1/p50x50/11032599_10153599356804391_1596119410188371739_n.jpg?oh=947b7df264f0935d44d769cb5d647709&oe=5A04425F&__gda__=1506122703_b06d76770d47a75d46c4b85e710a04e1"
-              }
-            },
-            "id": "10154545029714391",
-            "accessToken": "EAAETLeljRZC0BAO9SMpwyVlJphSA6QentEOz4QwGBtJr3NyizD9w9r8pBOgjjOZB0Y6sfdqFCtuZCIodi5vEGdqVxa1bTYYQy7OYSbTVP07XSVFf7VLh70O9LIu8w6ucRDWe4iZAsZBiBI9murrauOxWlva7gz4zY2MuHYbS02sDGI7rubwZCljpCicin7ZBnoZD",
-            "userID": "10154545029714391",
-            "expiresIn": 7133,
-            "signedRequest": "0WmDYG29Jhg6TIyOS3_h1zqeVKaCWLR24XXNFGGPF90.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUURCODJURDh5SWg2R0pjS0NDRlRDeEUtLVJmZk1tQ005SUNnTXJQSjI3anI4dG1BLWE2WE1PWUhsVHNJTTNpOHZxUkt0a09RYld3NDNfVUtfS3VBYzJ3TWRKM1M4VEFrSmI5VE5vZTNieVQ2YzFrZjJfcmJrbUMxM1pSTjdJck5JckJEXzVxRDdtTjhmVHppMVdQN05mRXpxMUZxczFGZnhyNENJZjVLYlp3N3FHNGtJdFBweElYTE40dGJfck5BZkFmQ092TGVJY0hGY3I5aGpXbk1KdkhqZDVfOFV1WU93TFdmVGFlRW9Hd004R2xPR01fNWp4SDJiV2h3Y0dHQ0U3bEQ2Z2JGYWpsZ0UwLUtMUVBOWW91UWl0ODlxUjNmcnl2c29oTUdYS3A4VHZGeEtSWWt3UWVFTWw5emZ2VTJQR250cGJ6U0lmLXpEdnNFQzZCRVptRyIsImlzc3VlZF9hdCI6MTQ5OTUyMjQ2NywidXNlcl9pZCI6IjEwMTU0NTQ1MDI5NzE0MzkxIn0"
-          }*/
         };
 
         return (
@@ -348,9 +332,9 @@ core.Component('Index', ['core.App', 'view.myZone', 'view.RotoNews', 'view.Compa
               _.map(routes, (item, key)=>{
                 return <Route
                            user={ user }
-                           key={key}
-                           path={item.path}
-                           exact={item.exact}
+                           key={ key }
+                           path={ item.path }
+                           exact={ item.exact }
                            component={ item.ref } />
              })
            }

@@ -47,7 +47,7 @@ var stats = {
   'AST': 'Assists'
 };
 
-core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
+core.Component('view.Compare', ['compare.player.List'], (CompareList)=>{
   return {
       bindings: {
         players: ['allPlayers']
@@ -56,7 +56,7 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
       getInitialState(){
         return {
           selected: 'players', // Rotoworld
-          selectedOpt: { label: 'Last Name', type: 'LastName' },
+          selectedOpt: { label: 'Full Name', type: 'fullName' },
           list: [],
           originalList: [],
           query: '',
@@ -70,11 +70,6 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
           pageNumber: 1,
           total: 0
         }
-      },
-
-      componentWillMount(){
-        // this.initForm();
-
       },
 
       initForm(){
@@ -110,60 +105,29 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
       renderPlayersList(list){
         if (list && list.length) {
           return (
-            <List style={{ fontSize: 12, overflow: 'auto', flex: 1, padding: '0px !important' }} >
-              { _.map(list, this.renderList) }
-            </List>
-          );
+            <CompareList onAdd={ this.addTo } selectedOpt={ this.state.selectedOpt } list={ list } />
+          )
         }
         return null;
       },
 
       renderComparePlayers(ids, title){
-        var { players } = this.state;
+        var { players, originalList } = this.state;
         if (!ids || !ids.length) return null;
-        var mlist = _.filter(players, (item)=>{
-          return ids.indexOf(item.PlayerID) > -1;
+        var comparedList = [];
+        comparedList = _.filter(originalList, (item)=>{
+          return ids.indexOf(item.PlayerID) !== -1;
         });
-        if (!mlist || !mlist.length) return null;
-        else mlist = _.map(mlist, (item)=>{
+        if (!comparedList || !comparedList.length) return null;
+        else comparedList = _.map(comparedList, (item)=>{
           return {
             ...item,
             isInComapre: true
           }
         })
         return (
-           <List style={{ fontSize: 12, width: '100%', padding: '0px !important', overflow: 'auto', height: '100%' }}>
-              { _.map(mlist, this.renderComparedList) }
-            </List>
+          <CompareList id={ 'to_compare' } key={ 'to_compare' } selectedOpt={ this.state.selectedOpt } list={ comparedList } onRemove={ this.removePlayer } />
         )
-      },
-
-      renderComparedList(item, key){
-        return (
-          <PlayerItem key={ key } item={ item } onRemove={ this.removePlayer } selectedOpt={ this.state.selectedOpt }/>
-        );
-      },
-
-      renderList(item, key){
-        const placeholder = () => {
-          return (
-            <div style={{ ...styles.listItem, justifyContent: 'center' }}>
-                Loading
-            </div>
-          )
-        }
-
-        if (item.isInComapre) return null;
-        return (
-          <LazyLoad height={45} key={ key } once={ true } resize={ true }
-                    overflow={ true }
-                    unmountIfInvisible={ true }
-                    placeholder={ placeholder() }
-                    offset={[-15, 0]} debounce={350}>
-            <PlayerItem item={ item } onAdd={ this.addTo } selectedOpt={ this.state.selectedOpt } />
-          </LazyLoad>
-
-        );
       },
 
       addTo(where, id){
@@ -219,7 +183,7 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
           });
         }
         if (!updateState) return mlist;
-        this.setState({ players: mlist, isLoading: false, searchLoading: false })
+        this.setState({ players: _.sortBy(mlist, 'fullName'), isLoading: false, searchLoading: false })
       },
 
       makeCompare(){
@@ -235,38 +199,19 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
 
       },
 
-      onSearchPlayers(){
-      //   let { list, players, originalList, query, searchLoading } = this.state;
-      //   this.setState({ searchLoading: true })
-      //   var temp;
-      //   if (!query) {
-      //     temp = this.filterList(originalList, false);
-      //   } else {
-      //     temp  =  _.filter(players, o => {
-      //       return o.Name.toLowerCase().indexOf(query.toLowerCase()) > -1 || o.LastName.toLowerCase().indexOf(query.toLowerCase()) > -1
-      //     });
-      //   }
-      //   temp = _.sortBy(temp, 'LastName');
-      //
-      //   // setTimeout(()=>{
-      //     this.setState({ players: temp, searchLoading: false })
-      //   // }, 1500)
-      },
-
       onReset(){
         this.initForm();
         this.setState({ query: '', isLoading: true });
         setTimeout(()=>{
           this.filterList(this.state.originalList, true);
-          this.setState({ selectedOpt: { type: 'LastName', label: 'Last Name' }, isLoading: false })
+          this.setState({ selectedOpt: { type: 'fullName', label: 'Full Name' }, isLoading: false });
         }, 350);
       },
 
-      onKeyDown(e, string){
-        var temp;
+      onSearchPlayers(e, string){
+        var temp, newtemp;
         let { list, players, originalList, query, searchLoading } = this.state;
         this.setState({ searchLoading: true })
-        console.log('string -> ',  string)
 
         if (!string) {
           temp = this.filterList(originalList, false);
@@ -275,11 +220,13 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
             return o.fullName.toLowerCase().indexOf(string.toLowerCase()) !== -1
           });
         }
-        temp = _.sortBy(temp, 'LastName');
+        newtemp = _.sortBy(this.filterList(temp, false), 'fullName');
+        this.setState({ players: newtemp, query: string });
 
         setTimeout(()=>{
-          this.setState({ players: temp, query: string, searchLoading: false })
+          this.setState({ searchLoading: false })
         }, 255);
+
       },
 
       renderToolbar(){
@@ -294,7 +241,7 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
         var fieldWrap = {
           transition: 'all 0.10s ease-in-out',
           opacity: toggleSearch ? '1' : '0',
-          width: toggleSearch ? '175px' : '0px',
+          width: toggleSearch ? '165px' : '0px',
           display: 'flex'
         }
         var icon = { display: 'flex', alignItems: 'center', fontSize: 18, cursor: 'pointer' };
@@ -308,13 +255,8 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
               </FontIcon>
 
               <div style={ fieldWrap }>
-                <TextField id={ 'search_players' } underlineStyle={{ borderColor: 'rgb(0, 188, 212)' }} style={ textfield } value={ query } onChange={ this.onKeyDown } />
-                <FontIcon className="material-icons"
-                          disabled={ !this.state.query }
-                          onTouchTap={ this.onSearchPlayers }
-                          style={{ ...icon, marginRight: '0.5em' }} >
-                          navigate_next
-                </FontIcon>
+                <TextField id={ 'search_players' } underlineStyle={{ borderColor: 'rgb(0, 188, 212)' }} style={ textfield } value={ query } onChange={ this.onSearchPlayers } />
+
                 <FontIcon className="material-icons"
                           onTouchTap={ this.clear }
                           disabled={ !this.state.query }
@@ -334,7 +276,7 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
       },
 
       clear(){
-        this.setState({ query: '', toggleSearch: false });
+        this.setState({ query: '', toggleSearch: false, isLoading: true });
         setTimeout(()=>{
           this.onSearchPlayers()
         }, 250);
@@ -433,11 +375,11 @@ core.Component('view.Compare', ['player.ListItem'], (PlayerItem)=>{
         }
         else {
           var { type, label } = obj;
-          if ((type.toLowerCase() !== 'lastname') && (type.toLowerCase() !== 'name') ) {
+          if ((type.toLowerCase() !== 'lastname') && (type.toLowerCase() !== 'name') && (type.toLowerCase() !== 'fullname')) {
             temp = temp = _.orderBy(players, `Statistics.${type}`, ['desc']);
           }
           else {
-            temp = _.orderBy(players, type, ['asc']);
+            temp = _.sortBy(players, type);
           }
         }
 
